@@ -1,4 +1,4 @@
-// Auto-generated at 2025-07-29 03:19:41.438601 by ops-translator
+// Auto-generated at 2025-09-03 00:37:25.855853 by ops-translator
 
 #pragma once
 #include <ops_hls_kernel_support.h>
@@ -43,6 +43,7 @@ extern "C" void datamover_outerloop_0(
         const unsigned short gridSize_1,
         const unsigned short gridSize_2,
         const unsigned int outer_itr,
+        const unsigned short batch_size,
     //yy_0_1
         ap_uint<mem_data_width>* arg0,
     //rho_mu
@@ -58,25 +59,19 @@ extern "C" void datamover_outerloop_0(
     //ytemp2_4_5
         ap_uint<mem_data_width>* arg6,
     //yy_0_1
-
         hls::stream <ap_axiu<multidim_axis_data_width_0_yy_0_1,0,0,0>>& arg0_axis_out,
     //rho_mu
         hls::stream <ap_axiu<multidim_axis_data_width_0_rho_mu,0,0,0>>& arg1_axis_out,
         hls::stream <ap_axiu<multidim_axis_data_width_0_rho_mu,0,0,0>>& arg1_axis_in,
     //yy_4_5
-
         hls::stream <ap_axiu<multidim_axis_data_width_0_yy_4_5,0,0,0>>& arg2_axis_out,
     //yy_2_3
-
         hls::stream <ap_axiu<multidim_axis_data_width_0_yy_2_3,0,0,0>>& arg3_axis_out,
     //ytemp2_0_1
-
         hls::stream <ap_axiu<multidim_axis_data_width_0_ytemp2_0_1,0,0,0>>& arg4_axis_in,
     //ytemp2_2_3
-
         hls::stream <ap_axiu<multidim_axis_data_width_0_ytemp2_2_3,0,0,0>>& arg5_axis_in,
     //ytemp2_4_5
-
         hls::stream <ap_axiu<multidim_axis_data_width_0_ytemp2_4_5,0,0,0>>& arg6_axis_in
     )
 ;

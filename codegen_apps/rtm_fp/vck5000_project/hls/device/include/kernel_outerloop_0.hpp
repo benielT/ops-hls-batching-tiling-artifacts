@@ -1,4 +1,4 @@
-// Auto-generated at 2025-07-29 03:19:41.443890 by ops-translator
+// Auto-generated at 2025-09-03 00:37:25.860991 by ops-translator
 #pragma once
 #include "PE_fd3d_pml_kernel1.hpp"
 #include "PE_fd3d_pml_kernel2.hpp"
@@ -50,6 +50,7 @@ extern "C" void kernel_outerloop_0(
         const unsigned short stencilConfig_upper_limit_1,
         const unsigned short stencilConfig_upper_limit_2,
         const unsigned short stencilConfig_outer_loop_limit,
+        const unsigned short stencilConfig_batch_size,
         const int disps0,
         const int disps1,
         const int disps2,

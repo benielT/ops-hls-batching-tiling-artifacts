@@ -207,10 +207,10 @@
     "version": "2022.1",
     "cl": "3524075",
     "time_stamp": "2022-04-13-17:42:45",
-    "options": "/tools/Xilinx/Vitis/2022.1/bin/unwrapped/lnx64.o/v++ -s -O3 --target hw --platform xilinx_vck5000_gen4x8_xdma_2_202210_1 --hls.jobs 128 --remote_ip_cache /home/x_thileeb/repos/OPS_mine_vck5000/ops//hls/IP_CACHE/ --temp_dir hls/build/hw/temp_dir/link/ --log_dir hls/build/hw/temp_dir/link/logs/ --link --config hls/host/xrt.cfg -o ./hls/build/hw/rtm3d.xsa ./hls/build/hw/datamover_outerloop_0.xo ./hls/build/hw/kernel_outerloop_0.xo ",
+    "options": "/tools/Xilinx/Vitis/2022.1/bin/unwrapped/lnx64.o/v++ -s -O3 --target hw --platform xilinx_vck5000_gen4x8_xdma_2_202210_1 --hls.jobs 64 --remote_ip_cache /home/x_thileeb/repos/ops-hls-pact25-artifact/scripts/../OPS/ops/hls/IP_CACHE/ --temp_dir hls/build/hw/temp_dir/link/ --log_dir hls/build/hw/temp_dir/link/logs/ --link --config hls/host/xrt.cfg -o ./hls/build/hw/rtm3d.xsa ./hls/build/hw/datamover_outerloop_0.xo ./hls/build/hw/kernel_outerloop_0.xo ",
     "xclbin_name": "rtm3d",
-    "uuid": "b3f8af16-a4d8-411b-be5f-b36fdbf01ef7",
-    "link_uuid": "b3f8af16-a4d8-411b-be5f-b36fdbf01ef7",
+    "uuid": "bae0d63d-6b83-4d7e-abd1-cf9c5193e1fb",
+    "link_uuid": "bae0d63d-6b83-4d7e-abd1-cf9c5193e1fb",
     "package_uuid": "",
     "system_compile_flow": false
    },
@@ -231,7 +231,7 @@
       {
        "name": "kernel_outerloop_0",
        "estimated_resources": {
-        "LUT": "58",
+        "LUT": "60",
         "REG": "3",
         "BRAM": "",
         "DSP": "",
@@ -313,7 +313,7 @@
         {
          "name": "S_AXI_CONTROL",
          "mode": "slave",
-         "range": "0x140",
+         "range": "0x148",
          "data_width": "32",
          "port_type": "addressable",
          "base": "0x0",
@@ -491,19 +491,19 @@
         },
         {
          "id": "14",
-         "name": "disps0",
+         "name": "stencilConfig_batch_size",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
          "offset": "0x80",
          "host_offset": "0x0",
-         "host_size": "0x4",
+         "host_size": "0x2",
          "type": "unsigned int",
          "direction": "DirUnknown"
         },
         {
          "id": "15",
-         "name": "disps1",
+         "name": "disps0",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -515,7 +515,7 @@
         },
         {
          "id": "16",
-         "name": "disps2",
+         "name": "disps1",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -527,19 +527,19 @@
         },
         {
          "id": "17",
-         "name": "dt",
+         "name": "disps2",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
          "offset": "0x98",
          "host_offset": "0x0",
          "host_size": "0x4",
-         "type": "float",
+         "type": "unsigned int",
          "direction": "DirUnknown"
         },
         {
          "id": "18",
-         "name": "scale1_der1",
+         "name": "dt",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -551,7 +551,7 @@
         },
         {
          "id": "19",
-         "name": "scale2_der1",
+         "name": "scale1_der1",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -563,7 +563,7 @@
         },
         {
          "id": "20",
-         "name": "scale1_der2_1",
+         "name": "scale2_der1",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -575,7 +575,7 @@
         },
         {
          "id": "21",
-         "name": "scale2_der2_1",
+         "name": "scale1_der2_1",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -587,7 +587,7 @@
         },
         {
          "id": "22",
-         "name": "scale1_der2_2",
+         "name": "scale2_der2_1",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -599,7 +599,7 @@
         },
         {
          "id": "23",
-         "name": "scale2_der2_2",
+         "name": "scale1_der2_2",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -611,7 +611,7 @@
         },
         {
          "id": "24",
-         "name": "scale1_der3",
+         "name": "scale2_der2_2",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -623,7 +623,7 @@
         },
         {
          "id": "25",
-         "name": "scale2_der3",
+         "name": "scale1_der3",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -635,7 +635,7 @@
         },
         {
          "id": "26",
-         "name": "dx",
+         "name": "scale2_der3",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -647,7 +647,7 @@
         },
         {
          "id": "27",
-         "name": "dy",
+         "name": "dx",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -659,7 +659,7 @@
         },
         {
          "id": "28",
-         "name": "dz",
+         "name": "dy",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -671,7 +671,7 @@
         },
         {
          "id": "29",
-         "name": "invdx",
+         "name": "dz",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -683,7 +683,7 @@
         },
         {
          "id": "30",
-         "name": "invdy",
+         "name": "invdx",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -695,7 +695,7 @@
         },
         {
          "id": "31",
-         "name": "invdz",
+         "name": "invdy",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -707,19 +707,19 @@
         },
         {
          "id": "32",
-         "name": "nx",
+         "name": "invdz",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
          "offset": "0x110",
          "host_offset": "0x0",
          "host_size": "0x4",
-         "type": "unsigned int",
+         "type": "float",
          "direction": "DirUnknown"
         },
         {
          "id": "33",
-         "name": "ny",
+         "name": "nx",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -731,7 +731,7 @@
         },
         {
          "id": "34",
-         "name": "nz",
+         "name": "ny",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -743,7 +743,7 @@
         },
         {
          "id": "35",
-         "name": "pml_width",
+         "name": "nz",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -755,7 +755,7 @@
         },
         {
          "id": "36",
-         "name": "half_order",
+         "name": "pml_width",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -767,7 +767,7 @@
         },
         {
          "id": "37",
-         "name": "order",
+         "name": "half_order",
          "address_qualifier": "0",
          "port": "S_AXI_CONTROL",
          "size": "0x4",
@@ -779,6 +779,18 @@
         },
         {
          "id": "38",
+         "name": "order",
+         "address_qualifier": "0",
+         "port": "S_AXI_CONTROL",
+         "size": "0x4",
+         "offset": "0x140",
+         "host_offset": "0x0",
+         "host_size": "0x4",
+         "type": "unsigned int",
+         "direction": "DirUnknown"
+        },
+        {
+         "id": "39",
          "name": "arg0_axis_in",
          "address_qualifier": "4",
          "port": "ARG0_AXIS_IN",
@@ -790,7 +802,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "39",
+         "id": "40",
          "name": "arg1_axis_in",
          "address_qualifier": "4",
          "port": "ARG1_AXIS_IN",
@@ -802,7 +814,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "40",
+         "id": "41",
          "name": "arg1_axis_out",
          "address_qualifier": "4",
          "port": "ARG1_AXIS_OUT",
@@ -814,7 +826,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "41",
+         "id": "42",
          "name": "arg2_axis_in",
          "address_qualifier": "4",
          "port": "ARG2_AXIS_IN",
@@ -826,7 +838,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "42",
+         "id": "43",
          "name": "arg3_axis_in",
          "address_qualifier": "4",
          "port": "ARG3_AXIS_IN",
@@ -838,7 +850,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "43",
+         "id": "44",
          "name": "arg4_axis_out",
          "address_qualifier": "4",
          "port": "ARG4_AXIS_OUT",
@@ -850,7 +862,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "44",
+         "id": "45",
          "name": "arg5_axis_out",
          "address_qualifier": "4",
          "port": "ARG5_AXIS_OUT",
@@ -862,7 +874,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "45",
+         "id": "46",
          "name": "arg6_axis_out",
          "address_qualifier": "4",
          "port": "ARG6_AXIS_OUT",
@@ -881,7 +893,7 @@
       {
        "name": "datamover_outerloop_0",
        "estimated_resources": {
-        "LUT": "26",
+        "LUT": "30",
         "REG": "3",
         "BRAM": "",
         "DSP": "",
@@ -1026,7 +1038,7 @@
         {
          "name": "S_AXI_CONTROL",
          "mode": "slave",
-         "range": "0xBC",
+         "range": "0xC4",
          "data_width": "32",
          "port_type": "addressable",
          "base": "0x0",
@@ -1168,23 +1180,23 @@
         },
         {
          "id": "11",
-         "name": "arg0",
-         "address_qualifier": "1",
-         "port": "M_AXI_GMEM0",
-         "size": "0x8",
+         "name": "batch_size",
+         "address_qualifier": "0",
+         "port": "S_AXI_CONTROL",
+         "size": "0x4",
          "offset": "0x68",
          "host_offset": "0x0",
-         "host_size": "0x8",
-         "type": "void*",
+         "host_size": "0x2",
+         "type": "unsigned int",
          "direction": "DirUnknown"
         },
         {
          "id": "12",
-         "name": "arg1",
+         "name": "arg0",
          "address_qualifier": "1",
-         "port": "M_AXI_GMEM1",
+         "port": "M_AXI_GMEM0",
          "size": "0x8",
-         "offset": "0x74",
+         "offset": "0x70",
          "host_offset": "0x0",
          "host_size": "0x8",
          "type": "void*",
@@ -1192,11 +1204,11 @@
         },
         {
          "id": "13",
-         "name": "arg2",
+         "name": "arg1",
          "address_qualifier": "1",
-         "port": "M_AXI_GMEM2",
+         "port": "M_AXI_GMEM1",
          "size": "0x8",
-         "offset": "0x80",
+         "offset": "0x7C",
          "host_offset": "0x0",
          "host_size": "0x8",
          "type": "void*",
@@ -1204,11 +1216,11 @@
         },
         {
          "id": "14",
-         "name": "arg3",
+         "name": "arg2",
          "address_qualifier": "1",
-         "port": "M_AXI_GMEM3",
+         "port": "M_AXI_GMEM2",
          "size": "0x8",
-         "offset": "0x8C",
+         "offset": "0x88",
          "host_offset": "0x0",
          "host_size": "0x8",
          "type": "void*",
@@ -1216,11 +1228,11 @@
         },
         {
          "id": "15",
-         "name": "arg4",
+         "name": "arg3",
          "address_qualifier": "1",
-         "port": "M_AXI_GMEM4",
+         "port": "M_AXI_GMEM3",
          "size": "0x8",
-         "offset": "0x98",
+         "offset": "0x94",
          "host_offset": "0x0",
          "host_size": "0x8",
          "type": "void*",
@@ -1228,11 +1240,11 @@
         },
         {
          "id": "16",
-         "name": "arg5",
+         "name": "arg4",
          "address_qualifier": "1",
-         "port": "M_AXI_GMEM5",
+         "port": "M_AXI_GMEM4",
          "size": "0x8",
-         "offset": "0xA4",
+         "offset": "0xA0",
          "host_offset": "0x0",
          "host_size": "0x8",
          "type": "void*",
@@ -1240,11 +1252,11 @@
         },
         {
          "id": "17",
-         "name": "arg6",
+         "name": "arg5",
          "address_qualifier": "1",
-         "port": "M_AXI_GMEM6",
+         "port": "M_AXI_GMEM5",
          "size": "0x8",
-         "offset": "0xB0",
+         "offset": "0xAC",
          "host_offset": "0x0",
          "host_size": "0x8",
          "type": "void*",
@@ -1252,6 +1264,18 @@
         },
         {
          "id": "18",
+         "name": "arg6",
+         "address_qualifier": "1",
+         "port": "M_AXI_GMEM6",
+         "size": "0x8",
+         "offset": "0xB8",
+         "host_offset": "0x0",
+         "host_size": "0x8",
+         "type": "void*",
+         "direction": "DirUnknown"
+        },
+        {
+         "id": "19",
          "name": "arg0_axis_out",
          "address_qualifier": "4",
          "port": "ARG0_AXIS_OUT",
@@ -1263,7 +1287,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "19",
+         "id": "20",
          "name": "arg1_axis_out",
          "address_qualifier": "4",
          "port": "ARG1_AXIS_OUT",
@@ -1275,7 +1299,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "20",
+         "id": "21",
          "name": "arg1_axis_in",
          "address_qualifier": "4",
          "port": "ARG1_AXIS_IN",
@@ -1287,7 +1311,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "21",
+         "id": "22",
          "name": "arg2_axis_out",
          "address_qualifier": "4",
          "port": "ARG2_AXIS_OUT",
@@ -1299,7 +1323,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "22",
+         "id": "23",
          "name": "arg3_axis_out",
          "address_qualifier": "4",
          "port": "ARG3_AXIS_OUT",
@@ -1311,7 +1335,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "23",
+         "id": "24",
          "name": "arg4_axis_in",
          "address_qualifier": "4",
          "port": "ARG4_AXIS_IN",
@@ -1323,7 +1347,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "24",
+         "id": "25",
          "name": "arg5_axis_in",
          "address_qualifier": "4",
          "port": "ARG5_AXIS_IN",
@@ -1335,7 +1359,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "25",
+         "id": "26",
          "name": "arg6_axis_in",
          "address_qualifier": "4",
          "port": "ARG6_AXIS_IN",
@@ -1361,25 +1385,25 @@
        "actual_resources": [
         {
          "design_state": "routed",
-         "LUT": "18237",
-         "REG": "20506",
-         "BRAM": "13",
+         "LUT": "19824",
+         "REG": "22539",
+         "BRAM": "14",
          "DSP": "",
          "URAM": "0"
         },
         {
          "design_state": "fully_placed",
-         "LUT": "18227",
-         "REG": "20501",
-         "BRAM": "13",
+         "LUT": "19822",
+         "REG": "22538",
+         "BRAM": "14",
          "DSP": "",
          "URAM": "0"
         },
         {
          "design_state": "synthesized",
-         "LUT": "18830",
-         "REG": "20412",
-         "BRAM": "13",
+         "LUT": "20461",
+         "REG": "22406",
+         "BRAM": "14",
          "DSP": "",
          "URAM": "0"
         }
@@ -1402,25 +1426,25 @@
        "actual_resources": [
         {
          "design_state": "routed",
-         "LUT": "113134",
-         "REG": "218059",
-         "BRAM": "352",
+         "LUT": "110723",
+         "REG": "171803",
+         "BRAM": "704",
          "DSP": "",
          "URAM": "0"
         },
         {
          "design_state": "fully_placed",
-         "LUT": "113127",
-         "REG": "218059",
-         "BRAM": "352",
+         "LUT": "110710",
+         "REG": "171802",
+         "BRAM": "704",
          "DSP": "",
          "URAM": "0"
         },
         {
          "design_state": "synthesized",
-         "LUT": "153793",
-         "REG": "220010",
-         "BRAM": "352",
+         "LUT": "145442",
+         "REG": "173345",
+         "BRAM": "704",
          "DSP": "",
          "URAM": "0"
         }
@@ -1442,7 +1466,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "11",
+        "kernel_argument_id": "12",
         "arg_name": "arg0",
         "mode": "Master",
         "name": "",
@@ -1463,7 +1487,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "12",
+        "kernel_argument_id": "13",
         "arg_name": "arg1",
         "mode": "Master",
         "name": "",
@@ -1484,7 +1508,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "13",
+        "kernel_argument_id": "14",
         "arg_name": "arg2",
         "mode": "Master",
         "name": "",
@@ -1505,7 +1529,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "14",
+        "kernel_argument_id": "15",
         "arg_name": "arg3",
         "mode": "Master",
         "name": "",
@@ -1526,7 +1550,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "15",
+        "kernel_argument_id": "16",
         "arg_name": "arg4",
         "mode": "Master",
         "name": "",
@@ -1547,7 +1571,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "16",
+        "kernel_argument_id": "17",
         "arg_name": "arg5",
         "mode": "Master",
         "name": "",
@@ -1568,7 +1592,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "17",
+        "kernel_argument_id": "18",
         "arg_name": "arg6",
         "mode": "Master",
         "name": "",
@@ -1589,7 +1613,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "45",
+        "kernel_argument_id": "46",
         "arg_name": "arg6_axis_out",
         "mode": "Master",
         "name": "",
@@ -1598,7 +1622,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "25",
+        "kernel_argument_id": "26",
         "arg_name": "arg6_axis_in",
         "mode": "Slave",
         "name": "",
@@ -1610,7 +1634,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "44",
+        "kernel_argument_id": "45",
         "arg_name": "arg5_axis_out",
         "mode": "Master",
         "name": "",
@@ -1619,7 +1643,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "24",
+        "kernel_argument_id": "25",
         "arg_name": "arg5_axis_in",
         "mode": "Slave",
         "name": "",
@@ -1631,7 +1655,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "43",
+        "kernel_argument_id": "44",
         "arg_name": "arg4_axis_out",
         "mode": "Master",
         "name": "",
@@ -1640,7 +1664,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "23",
+        "kernel_argument_id": "24",
         "arg_name": "arg4_axis_in",
         "mode": "Slave",
         "name": "",
@@ -1652,7 +1676,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "40",
+        "kernel_argument_id": "41",
         "arg_name": "arg1_axis_out",
         "mode": "Master",
         "name": "",
@@ -1661,7 +1685,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "20",
+        "kernel_argument_id": "21",
         "arg_name": "arg1_axis_in",
         "mode": "Slave",
         "name": "",
@@ -1673,7 +1697,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "21",
+        "kernel_argument_id": "22",
         "arg_name": "arg2_axis_out",
         "mode": "Master",
         "name": "",
@@ -1682,7 +1706,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "41",
+        "kernel_argument_id": "42",
         "arg_name": "arg2_axis_in",
         "mode": "Slave",
         "name": "",
@@ -1694,7 +1718,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "22",
+        "kernel_argument_id": "23",
         "arg_name": "arg3_axis_out",
         "mode": "Master",
         "name": "",
@@ -1703,7 +1727,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "42",
+        "kernel_argument_id": "43",
         "arg_name": "arg3_axis_in",
         "mode": "Slave",
         "name": "",
@@ -1715,7 +1739,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "19",
+        "kernel_argument_id": "20",
         "arg_name": "arg1_axis_out",
         "mode": "Master",
         "name": "",
@@ -1724,7 +1748,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "39",
+        "kernel_argument_id": "40",
         "arg_name": "arg1_axis_in",
         "mode": "Slave",
         "name": "",
@@ -1736,7 +1760,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "18",
+        "kernel_argument_id": "19",
         "arg_name": "arg0_axis_out",
         "mode": "Master",
         "name": "",
@@ -1745,7 +1769,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "38",
+        "kernel_argument_id": "39",
         "arg_name": "arg0_axis_in",
         "mode": "Slave",
         "name": "",

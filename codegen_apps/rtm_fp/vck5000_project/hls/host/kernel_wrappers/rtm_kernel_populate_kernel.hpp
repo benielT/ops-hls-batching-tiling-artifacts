@@ -1,4 +1,4 @@
-// Auto-generated at 2025-07-29 03:19:39.199482 by ops-translator
+// Auto-generated at 2025-09-03 00:37:23.431262 by ops-translator
 #pragma once 
 #include <ops_hls_rt_support.h>
 
@@ -45,23 +45,29 @@ void ops_par_loop_rtm_kernel_populate(ops::hls::Block dummyBlock, int dim, int* 
     getGrid(arg4);
     getGrid(arg5);
 
-    for (unsigned short k = range.start[2]; k < range.end[2]; k++)
+    for (unsigned short bat = 0; bat < dummyBlock.batch_size; bat++)
     {
-        for (unsigned short j = range.start[1]; j < range.end[1]; j++)
+        for (unsigned short k = range.start[2]; k < range.end[2]; k++)
         {
-            for (unsigned short i = range.start[0]; i < range.end[0]; i++)
+            for (unsigned short j = range.start[1]; j < range.end[1]; j++)
             {
-                ops::hls::IdxType idx({i - arg4.originalProperty.d_m[0], j - arg4.originalProperty.d_m[1], k - arg4.originalProperty.d_m[2]});
-                kernel_rtm_kernel_populate_core(
-                    disps0,
-                    disps1,
-                    disps2,
-                    idx,
-                    &arg4.hostBuffer[getOffset(arg4_0_stencil_offset, arg4.originalProperty, i , j, k)],
-                    &arg5.hostBuffer[getOffset(arg5_0_stencil_offset, arg5.originalProperty, i , j, k)]
-                );
+                for (unsigned short i = range.start[0]; i < range.end[0]; i++)
+                {
+                    ops::hls::IdxType idx({i - arg4.originalProperty.d_m[0], j - arg4.originalProperty.d_m[1], k - arg4.originalProperty.d_m[2]- (bat * arg4.originalProperty.grid_size[2])});
+                    kernel_rtm_kernel_populate_core(
+                        disps0,
+                        disps1,
+                        disps2,
+                        idx,
+                        &arg4.hostBuffer[getOffset(arg4_0_stencil_offset, arg4.originalProperty, i , j, k)],
+                        &arg5.hostBuffer[getOffset(arg5_0_stencil_offset, arg5.originalProperty, i , j, k)]
+                    );
+                }
             }
         }
+
+        range.start[2] += arg4.originalProperty.grid_size[2];
+        range.end[2] += arg4.originalProperty.grid_size[2];
     }
 
     arg4.isHostBufDirty = true;

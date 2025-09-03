@@ -94,6 +94,7 @@ int main(int argc, const char** argv)
 //   int non_copy = 0;
 
   int batches = 1;
+  int batch_size = 1;
 
   const char* pch;
   printf(" argc = %d\n",argc);
@@ -126,6 +127,17 @@ int main(int argc, const char** argv)
     if(pch != NULL) {
       batches = atoi ( argv[n] + 7 ); continue;
     }
+#ifdef BATCHING
+    pch = strstr(argv[n], "-bsize=");
+    if(pch != NULL) {
+        batch_size = atoi ( argv[n] + 7 );
+        if(batch_size < 1) {
+            std::cerr << "Batch size must be greater than 0" << std::endl;
+            exit(-1);
+        }
+        continue;
+    }
+#endif
 #ifdef POWER_PROFILE
     pch = strstr(argv[n], "-piter=");
     if(pch != NULL) {
@@ -135,6 +147,28 @@ int main(int argc, const char** argv)
 #endif
   }
 
+#ifdef BATCHING
+    #ifndef POWER_PROFILE
+    if(batches % batch_size != 0) {
+        std::cerr << "Batch size must divide the number of batches evenly" << std::endl;
+        exit(-1);
+    }
+    batches /= batch_size;
+    std::cout << "Batching enabled, number of batches: " << batches << ", batch size: " << batch_size << std::endl;
+    #endif
+#endif
+#ifdef POWER_PROFILE
+    #ifdef BATCHING
+            if(power_iter % batch_size != 0) {
+                    std::cerr << "Batch size must divide the number of power batches evenly" << std::endl;
+                    exit(-1);
+            }
+            std::cout << "Total power iterations: " << power_iter << std::endl;
+            std::cout << "Power profiling enabled, number of power iterations per batch: " << power_iter / batch_size << std::endl;
+            power_iter = power_iter / batch_size;
+    #endif 
+            std::cout << "Power profiling enabled, number of power iterations: " << power_iter << std::endl;
+#endif
 #ifdef PROFILE
 	double init_runtime[batches];
 	double main_loop_runtime[batches];
@@ -150,7 +184,7 @@ int main(int argc, const char** argv)
     }
 #endif
 
-  printf("Grid: %dx%dx%d , %d iterations\n",logical_size_x,logical_size_y,logical_size_z,n_iter);
+  printf("Grid: %dx%dx%d , %d iterations, % batches with %d batch_size of each\n",logical_size_x,logical_size_y,logical_size_z,n_iter, batches, batch_size);
   
   dx = 0.005;
   dy = 0.005;
@@ -182,7 +216,11 @@ int main(int argc, const char** argv)
   for (unsigned int bat=0; bat < batches; bat++)
   {
      std::string name = std::string("batch_") + std::to_string(bat);
+#ifndef BATCHING
      blocks[bat] = ops_decl_block(3, name.c_str());
+#else
+     blocks[bat] = ops_decl_block_batch(3, name.c_str(), batch_size);
+#endif
   }
   printf(" HERE \n");
   
@@ -245,7 +283,7 @@ int main(int argc, const char** argv)
     ops_dat ytemp2_2_3[batches];
     ops_dat ytemp2_4_5[batches];
 
-    //Allocationß
+    //Allocation
     for (unsigned int bat=0; bat < batches; bat++)
     {
         std::string name = std::string("coordx_bat_") + std::to_string(bat);
@@ -309,7 +347,16 @@ int main(int argc, const char** argv)
   //populate density, bulk modulus, velx, vely, velz, and boundary conditions
 	int full_range[] = {d_m[0], size[0] + d_p[0], d_m[1], size[1] + d_p[1], d_m[2], size[2] + d_p[2]};
     int internal_range[] = {0,size[0],0,size[1],0,size[2]};
-	
+
+#ifdef POWER_PROFILE
+    for (unsigned int p = 0; p < power_iter; p++)
+    {
+#endif
+#ifndef OPS_FPGA
+    #ifdef BATCHING
+        ops_par_loop_blocks_all(batch_size);
+    #endif
+#endif
     //Intialisation
     for (unsigned int bat = 0; bat < batches; bat++)
     {
@@ -364,10 +411,6 @@ int main(int argc, const char** argv)
     float scale1_der3 = 1.0f;
     float scale2_der3 = 1/6.0f;
 
-#ifdef POWER_PROFILE
-    for (unsigned int p = 0; p < power_iter; p++)
-    {
-#endif
     //Iterative stencil loop
     for (unsigned int bat =0; bat < batches; bat++)
     {
@@ -389,7 +432,7 @@ int main(int argc, const char** argv)
                 ops_arg_gbl(&scale2_der1, 1, "float", OPS_READ),
                 // ops_arg_dat(rho[bat], 1, S3D_000, "float", OPS_READ),
                 // ops_arg_dat(mu[bat], 1, S3D_000, "float", OPS_READ),
-                ops_arg_dat(rho_mu[bat], 2, S3D_000, "float", OPS_READ),
+                ops_arg_dat(rho_mu[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(yy_0_1[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(yy_2_3[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(yy_4_5[bat], 2, S3D_big_sten, "float", OPS_READ),
@@ -411,7 +454,7 @@ int main(int argc, const char** argv)
                 ops_arg_gbl(&scale2_der2_1, 1, "float", OPS_READ),
                 // ops_arg_dat(rho[bat], 1, S3D_000, "float", OPS_READ),
                 // ops_arg_dat(mu[bat], 1, S3D_000, "float", OPS_READ),
-                ops_arg_dat(rho_mu[bat], 2, S3D_000, "float", OPS_READ),
+                ops_arg_dat(rho_mu[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(yy_0_1[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(yy_2_3[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(yy_4_5[bat], 2, S3D_big_sten, "float", OPS_READ),
@@ -421,9 +464,9 @@ int main(int argc, const char** argv)
                 ops_arg_dat(ytemp2_0_1[bat], 2, S3D_000, "float", OPS_WRITE),
                 ops_arg_dat(ytemp2_2_3[bat], 2, S3D_000, "float", OPS_WRITE),
                 ops_arg_dat(ytemp2_4_5[bat], 2, S3D_000, "float", OPS_WRITE),
-                ops_arg_dat(yy_sum_0_1[bat], 2, S3D_000, "float", OPS_RW),
-                ops_arg_dat(yy_sum_2_3[bat], 2, S3D_000, "float", OPS_RW),
-                ops_arg_dat(yy_sum_4_5[bat], 2, S3D_000, "float", OPS_RW));
+                ops_arg_dat(yy_sum_0_1[bat], 2, S3D_big_sten, "float", OPS_RW),
+                ops_arg_dat(yy_sum_2_3[bat], 2, S3D_big_sten, "float", OPS_RW),
+                ops_arg_dat(yy_sum_4_5[bat], 2, S3D_big_sten, "float", OPS_RW));
 
             ops_par_loop(fd3d_pml_kernel2, "fd3d_pml_kernel2", blocks[bat], 3, internal_range,
                 ops_arg_gbl(&disps[0], 1, "int", OPS_READ),
@@ -435,19 +478,19 @@ int main(int argc, const char** argv)
                 ops_arg_gbl(&scale2_der2_2, 1, "float", OPS_READ),
                 // ops_arg_dat(rho[bat], 1, S3D_000, "float", OPS_READ),
                 // ops_arg_dat(mu[bat], 1, S3D_000, "float", OPS_READ),
-                ops_arg_dat(rho_mu[bat], 2, S3D_000, "float", OPS_READ),
-                ops_arg_dat(yy_0_1[bat], 2, S3D_000, "float", OPS_READ),
-                ops_arg_dat(yy_2_3[bat], 2, S3D_000, "float", OPS_READ),
-                ops_arg_dat(yy_4_5[bat], 2, S3D_000, "float", OPS_READ),
+                ops_arg_dat(rho_mu[bat], 2, S3D_big_sten, "float", OPS_READ),
+                ops_arg_dat(yy_0_1[bat], 2, S3D_big_sten, "float", OPS_READ),
+                ops_arg_dat(yy_2_3[bat], 2, S3D_big_sten, "float", OPS_READ),
+                ops_arg_dat(yy_4_5[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(ytemp2_0_1[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(ytemp2_2_3[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(ytemp2_4_5[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(ytemp1_0_1[bat], 2, S3D_000, "float", OPS_WRITE),
                 ops_arg_dat(ytemp1_2_3[bat], 2, S3D_000, "float", OPS_WRITE),
                 ops_arg_dat(ytemp1_4_5[bat], 2, S3D_000, "float", OPS_WRITE),
-                ops_arg_dat(yy_sum_0_1[bat], 2, S3D_000, "float", OPS_RW),
-                ops_arg_dat(yy_sum_2_3[bat], 2, S3D_000, "float", OPS_RW),
-                ops_arg_dat(yy_sum_4_5[bat], 2, S3D_000, "float", OPS_RW));
+                ops_arg_dat(yy_sum_0_1[bat], 2, S3D_big_sten, "float", OPS_RW),
+                ops_arg_dat(yy_sum_2_3[bat], 2, S3D_big_sten, "float", OPS_RW),
+                ops_arg_dat(yy_sum_4_5[bat], 2, S3D_big_sten, "float", OPS_RW));
 
             ops_par_loop(fd3d_pml_kernel3, "fd3d_pml_kernel3", blocks[bat], 3, internal_range,
                 ops_arg_gbl(&disps[0], 1, "int", OPS_READ),
@@ -459,19 +502,19 @@ int main(int argc, const char** argv)
                 ops_arg_gbl(&scale2_der3, 1, "float", OPS_READ),
                 // ops_arg_dat(rho[bat], 1, S3D_000, "float", OPS_READ),
                 // ops_arg_dat(mu[bat], 1, S3D_000, "float", OPS_READ),
-                ops_arg_dat(rho_mu[bat], 2, S3D_000, "float", OPS_READ),
-                ops_arg_dat(yy_0_1[bat], 2, S3D_000, "float", OPS_READ),
-                ops_arg_dat(yy_2_3[bat], 2, S3D_000, "float", OPS_READ),
-                ops_arg_dat(yy_4_5[bat], 2, S3D_000, "float", OPS_READ),
+                ops_arg_dat(rho_mu[bat], 2, S3D_big_sten, "float", OPS_READ),
+                ops_arg_dat(yy_0_1[bat], 2, S3D_big_sten, "float", OPS_READ),
+                ops_arg_dat(yy_2_3[bat], 2, S3D_big_sten, "float", OPS_READ),
+                ops_arg_dat(yy_4_5[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(ytemp1_0_1[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(ytemp1_2_3[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(ytemp1_4_5[bat], 2, S3D_big_sten, "float", OPS_READ),
                 ops_arg_dat(ytemp2_0_1[bat], 2, S3D_000, "float", OPS_WRITE),
                 ops_arg_dat(ytemp2_2_3[bat], 2, S3D_000, "float", OPS_WRITE),
                 ops_arg_dat(ytemp2_4_5[bat], 2, S3D_000, "float", OPS_WRITE),
-                ops_arg_dat(yy_sum_0_1[bat], 2, S3D_000, "float", OPS_READ),
-                ops_arg_dat(yy_sum_2_3[bat], 2, S3D_000, "float", OPS_READ),
-                ops_arg_dat(yy_sum_4_5[bat], 2, S3D_000, "float", OPS_READ));
+                ops_arg_dat(yy_sum_0_1[bat], 2, S3D_big_sten, "float", OPS_READ),
+                ops_arg_dat(yy_sum_2_3[bat], 2, S3D_big_sten, "float", OPS_READ),
+                ops_arg_dat(yy_sum_4_5[bat], 2, S3D_big_sten, "float", OPS_READ));
 
             ops_par_loop(simple_forward_k1, "simple_forward_k1", blocks[bat], 3, internal_range,
                 ops_arg_dat(ytemp2_0_1[bat], 2, S3D_000, "float", OPS_READ),
@@ -482,14 +525,17 @@ int main(int argc, const char** argv)
                 ops_arg_dat(yy_4_5[bat], 2, S3D_000, "float", OPS_WRITE));
         } 
 #ifdef PROFILE
-        auto main_loop_end_clk_point = std::chrono::high_resolution_clock::now();
     #ifndef OPS_FPGA
+        auto main_loop_end_clk_point = std::chrono::high_resolution_clock::now();
         main_loop_runtime[bat] = std::chrono::duration<double, std::micro>(main_loop_end_clk_point - main_loop_start_clk_point).count();
-    #else
-        main_loop_runtime[bat] = ops_hls_get_execution_runtime<std::chrono::microseconds>(std::string("isl0"));
     #endif
 #endif
     }
+#ifndef OPS_FPGA
+    #ifndef BATCHING
+    ops_par_loop_blocks_end();
+    #endif
+#endif
 #ifdef POWER_PROFILE
     }
 #endif
@@ -535,8 +581,17 @@ int main(int argc, const char** argv)
 
 	for (unsigned int bat = 0; bat < batches; bat++)
 	{
+#ifdef OPS_FPGA
+        main_loop_runtime[bat] = ops_hls_get_execution_runtime<std::chrono::microseconds>(std::string("isl0"), bat);
+#endif
+        main_loop_runtime[bat] /= batch_size;
+        init_runtime[bat] /= batch_size;
+
         fstream << logical_size_x << "," << logical_size_y << "," << logical_size_z << "," << n_iter << "," << 1 << "," << bat << "," << init_runtime[bat] \
         << "," << main_loop_runtime[bat] << "," << main_loop_runtime[bat] + init_runtime[bat] << std::endl;
+
+        if (batch_size > 1)
+            std::cout << "[WARNING] The runtime is averaged over the batch size of " << batch_size << std::endl;
 
 		std::cout << "run: "<< bat << "| total runtime: " << main_loop_runtime[bat] + init_runtime[bat] << "(us)" << std::endl;
 		std::cout << "     |--> init runtime: " << init_runtime[bat] << "(us)" << std::endl;
@@ -588,6 +643,9 @@ int main(int argc, const char** argv)
 	std::cout << "Standard Deviation total: " << total_std << std::endl;
 	std::cout << "======================================================" << std::endl;
 
+    fstream << "args: " << "-sizex=" << logical_size_x << " -sizey=" << logical_size_y << " -sizez=" << logical_size_z << " -iters=" << n_iter << " -batch=" << batches << " -bsize=" << batch_size << std::endl;
+    fstream.close();
+    
     fstream.close();
 
     if (fstream.good()) { // Check if operations were successful after closing

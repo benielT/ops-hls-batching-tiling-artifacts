@@ -1,4 +1,4 @@
-// Auto-generated at 2025-07-29 03:19:39.803602 by ops-translator
+// Auto-generated at 2025-09-03 00:37:24.054764 by ops-translator
 
 #pragma once 
 #include <ops_hls_rt_support.h>
@@ -85,6 +85,7 @@ public:
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.upper_limit[1]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.upper_limit[2]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.outer_loop_limit));
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.batch_size));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, *disps0));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, *disps1));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, *disps2));
@@ -128,6 +129,7 @@ public:
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.originalProperty.grid_size[2]));
  
         OCL_CHECK(err, err = m_datamover.setArg(narg++, adjusted_outer_iter));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.originalProperty.batch_size));    
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.deviceBuffer));
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg1.deviceBuffer));
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg2.deviceBuffer));
@@ -136,18 +138,23 @@ public:
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg5.deviceBuffer));
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg6.deviceBuffer));
 
+        std::vector<cl::Event> h2d_events;
+        cl::Event event_h2d_arg0 = arg0.set_as_arg();
+        cl::Event event_h2d_arg1 = arg1.set_as_arg();
+        cl::Event event_h2d_arg2 = arg2.set_as_arg();
+        cl::Event event_h2d_arg3 = arg3.set_as_arg();
+        cl::Event event_h2d_arg4 = arg4.set_as_arg();
+        cl::Event event_h2d_arg5 = arg5.set_as_arg();
+        cl::Event event_h2d_arg6 = arg6.set_as_arg();
 #ifdef PROFILE
-    startHtoDTimer();
-#endif
-        arg0.set_as_arg();
-        arg1.set_as_arg();
-        arg2.set_as_arg();
-        arg3.set_as_arg();
-        arg4.set_as_arg();
-        arg5.set_as_arg();
-        arg6.set_as_arg();
-#ifdef PROFILE
-    endHtoDTimer();
+        h2d_events.push_back(event_h2d_arg0);
+        h2d_events.push_back(event_h2d_arg1);
+        h2d_events.push_back(event_h2d_arg2);
+        h2d_events.push_back(event_h2d_arg3);
+        h2d_events.push_back(event_h2d_arg4);
+        h2d_events.push_back(event_h2d_arg5);
+        h2d_events.push_back(event_h2d_arg6);
+        recordH2DEvent(h2d_events);
 #endif
 
         cl::Event event_kernel_0;
@@ -162,11 +169,17 @@ public:
         activeEvents.insert(activeEvents.end(), arg5.activeEvents.begin(), arg5.activeEvents.end());
         activeEvents.insert(activeEvents.end(), arg6.activeEvents.begin(), arg6.activeEvents.end());
 
-#ifdef PROFILE
-    startExecTimer();
-#endif
         OCL_CHECK(err, err = m_fpga->getCommandQueue().enqueueTask(m_datamover, &activeEvents, &event_datamover));
         OCL_CHECK(err, err = m_fpga->getCommandQueue().enqueueTask(m_kernel_0, &activeEvents, &event_kernel_0));
+
+
+#ifdef PROFILE
+    std::vector<cl::Event> execEvents;
+    execEvents.push_back(event_datamover);
+        execEvents.push_back(event_kernel_0);
+    recordExecEvent(event_datamover);
+    registerProfileEvents();
+#endif
 
         arg0.isDevBufDirty = true;
         arg0.activeEvents.resize(0);
@@ -200,10 +213,10 @@ public:
 #ifndef ASYNC_DISPATCH
         event_datamover.wait();
         event_kernel_0.wait();
-#endif
-#ifdef PROFILE
-    endExecTimer();
-    registerProfileTime();
+#else
+    #ifdef DEBUG_LOG
+        printf("[DEBUG_HOST] Async dispatch enabled, not waiting for kernel completion.\n");
+    #endif
 #endif
 
 /*

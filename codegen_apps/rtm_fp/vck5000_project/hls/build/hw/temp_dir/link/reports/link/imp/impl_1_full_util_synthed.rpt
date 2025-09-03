@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date         : Thu Apr 24 19:13:18 2025
+| Date         : Wed Sep  3 02:29:45 2025
 | Host         : acclnode02 running 64-bit Ubuntu 20.04.6 LTS
 | Command      : report_utilization -file full_util_synthed.rpt -pb full_util_synthed.pb
 | Design       : top_wrapper
@@ -32,17 +32,17 @@ Table of Contents
 +----------------------------+--------+-------+------------+-----------+-------+
 |          Site Type         |  Used  | Fixed | Prohibited | Available | Util% |
 +----------------------------+--------+-------+------------+-----------+-------+
-| Registers                  | 272917 | 19799 |          0 |   1799680 | 15.16 |
-|   Register as Flip Flop    | 272917 | 19799 |          0 |   1799680 | 15.16 |
+| Registers                  | 226998 | 19799 |          0 |   1799680 | 12.61 |
+|   Register as Flip Flop    | 226998 | 19799 |          0 |   1799680 | 12.61 |
 |   Register as Latch        |      0 |     0 |          0 |   1799680 |  0.00 |
-| CLB LUTs*                  | 195840 | 15457 |          0 |    899840 | 21.76 |
-|   LUT as Logic             | 127234 | 15258 |          0 |    899840 | 14.14 |
-|   LUT as Memory            |  68606 |   199 |          0 |    449920 | 15.25 |
-|     LUT as Distributed RAM |   1184 |    32 |            |           |       |
-|     LUT as Shift Register  |  67422 |   167 |            |           |       |
+| CLB LUTs*                  | 188864 | 15457 |          0 |    899840 | 20.99 |
+|   LUT as Logic             | 113515 | 15258 |          0 |    899840 | 12.62 |
+|   LUT as Memory            |  75349 |   199 |          0 |    449920 | 16.75 |
+|     LUT as Distributed RAM |    800 |    32 |            |           |       |
+|     LUT as Shift Register  |  74549 |   167 |            |           |       |
 |       Variable Length      |      0 |     0 |            |           |       |
 |       Fixed Length         |      0 |     0 |            |           |       |
-| LOOKAHEAD8                 |   6058 |    62 |          0 |    112480 |  5.39 |
+| LOOKAHEAD8                 |   5607 |    62 |          0 |    112480 |  4.98 |
 +----------------------------+--------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -53,9 +53,9 @@ Table of Contents
 +--------------------------+------+-------+------------+-----------+-------+
 |         Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +--------------------------+------+-------+------------+-----------+-------+
-| Block RAM Tile           |  397 |     0 |          0 |       967 | 41.05 |
-|   RAMB36E5               |  365 |     0 |          0 |       967 | 37.75 |
-|   RAMB18E5*              |   64 |     0 |          0 |      1934 |  3.31 |
+| Block RAM Tile           |  762 |     0 |          0 |       967 | 78.80 |
+|   RAMB36E5               |  726 |     0 |          0 |       967 | 75.08 |
+|   RAMB18E5*              |   72 |     0 |          0 |      1934 |  3.72 |
 | Block RAM Imux registers |    0 |     0 |            |           |       |
 |   Pipelining             |    0 |       |            |           |       |
 | URAM                     |    0 |     0 |          0 |       463 |  0.00 |
@@ -71,8 +71,8 @@ Table of Contents
 +--------------------+------+-------+------------+-----------+-------+
 |      Site Type     | Used | Fixed | Prohibited | Available | Util% |
 +--------------------+------+-------+------------+-----------+-------+
-| DSP Slices         | 1378 |     0 |          0 |      1968 | 70.02 |
-|   DSP58            |   50 |     0 |            |           |       |
+| DSP Slices         | 1382 |     0 |          0 |      1968 | 70.22 |
+|   DSP58            |   54 |     0 |            |           |       |
 |   DSPCPLX          |    0 |     0 |            |           |       |
 |   DSPFP32          | 1328 |     0 |            |           |       |
 |   DSP48E5          |    0 |     0 |            |           |       |
@@ -189,30 +189,30 @@ Table of Contents
 +---------------+--------+---------------------+
 |    Ref Name   |  Used  | Functional Category |
 +---------------+--------+---------------------+
-| FDRE          | 266196 |            Register |
-| LUT3          |  59917 |                 CLB |
-| SRL16E        |  55482 |                 CLB |
-| LUTCY2        |  40712 |                 CLB |
-| LUTCY1        |  40712 |                 CLB |
-| LUT4          |  17444 |                 CLB |
-| LUT6          |  14031 |                 CLB |
-| SRLC32E       |  11940 |                 CLB |
-| LUT2          |  10966 |                 CLB |
-| LUT5          |  10509 |                 CLB |
-| LOOKAHEAD8    |   6058 |                 CLB |
-| FDSE          |   4725 |            Register |
-| LUT1          |   2454 |                 CLB |
-| RAMD32        |   2008 |                 CLB |
+| FDRE          | 222384 |            Register |
+| SRL16E        |  45167 |                 CLB |
+| LUT3          |  37711 |                 CLB |
+| LUTCY2        |  37067 |                 CLB |
+| LUTCY1        |  37067 |                 CLB |
+| SRLC32E       |  29382 |                 CLB |
+| LUT4          |  17795 |                 CLB |
+| LUT6          |  14040 |                 CLB |
+| LUT2          |  11290 |                 CLB |
+| LUT5          |  10941 |                 CLB |
+| LOOKAHEAD8    |   5607 |                 CLB |
+| FDSE          |   2618 |            Register |
+| LUT1          |   2500 |                 CLB |
 | FDCE          |   1970 |            Register |
+| RAMD32        |   1336 |                 CLB |
 | DSPFP32       |   1328 |          Arithmetic |
-| RAMB36E5_INT  |    365 |            BLOCKRAM |
+| RAMB36E5_INT  |    726 |            BLOCKRAM |
 | IOBUF         |    324 |                 I/O |
-| RAMS32        |    320 |                 CLB |
+| RAMS32        |    224 |                 CLB |
 | OBUF          |    100 |                 I/O |
 | XPHY          |     92 |                 I/O |
 | XPIO_VREF     |     72 |                 I/O |
-| RAMB18E5_INT  |     64 |            BLOCKRAM |
-| DSP58         |     50 |          Arithmetic |
+| RAMB18E5_INT  |     72 |            BLOCKRAM |
+| DSP58         |     54 |          Arithmetic |
 | IOBUFDS       |     36 |                 I/O |
 | FDPE          |     26 |            Register |
 | XPLL          |     12 |               Clock |

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'kernel_outerloop_0'
 ================================================================
-* Date:           Thu Apr 24 18:32:25 2025
+* Date:           Wed Sep  3 01:49:40 2025
 
 * Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
 * Project:        kernel_outerloop_0
@@ -38,7 +38,7 @@
         |                                               |                                    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
         |                    Instance                   |               Module               |   min   |   max   |    min   |    max   | min | max |   Type   |
         +-----------------------------------------------+------------------------------------+---------+---------+----------+----------+-----+-----+----------+
-        |grp_kernel_outerloop_0_dataflow_region_fu_430  |kernel_outerloop_0_dataflow_region  |        ?|        ?|         ?|         ?|    ?|    ?|  dataflow|
+        |grp_kernel_outerloop_0_dataflow_region_fu_442  |kernel_outerloop_0_dataflow_region  |        ?|        ?|         ?|         ?|    ?|    ?|  dataflow|
         +-----------------------------------------------+------------------------------------+---------+---------+----------+----------+-----+-----+----------+
 
         * Loop: 
@@ -46,7 +46,7 @@
         |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
         |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
         +--------------------+---------+---------+----------+-----------+-----------+------+----------+
-        |- VITIS_LOOP_512_1  |        ?|        ?|         ?|          -|          -|     ?|        no|
+        |- VITIS_LOOP_518_1  |        ?|        ?|         ?|          -|          -|     ?|        no|
         +--------------------+---------+---------+----------+-----------+-----------+------+----------+
 
 
@@ -61,28 +61,29 @@
 |DSP              |        -|     -|        -|       -|    -|
 |Expression       |        -|     -|        0|      64|    -|
 |FIFO             |        -|     -|        -|       -|    -|
-|Instance         |      704|  1376|   366725|  135088|    0|
+|Instance         |     1848|  1378|   359116|   60249|    0|
 |Memory           |        -|     -|        -|       -|    -|
 |Multiplexer      |        -|     -|        -|      48|    -|
-|Register         |        -|     -|       72|       -|    -|
+|Register         |        -|     -|       74|       -|    -|
 +-----------------+---------+------+---------+--------+-----+
-|Total            |      704|  1376|   366797|  135200|    0|
+|Total            |     1848|  1378|   359190|   60361|    0|
 +-----------------+---------+------+---------+--------+-----+
 |Available        |     1934|  1968|  1799680|  899840|  463|
 +-----------------+---------+------+---------+--------+-----+
-|Utilization (%)  |       36|    69|       20|      15|    0|
+|Utilization (%)  |       95|    70|       19|       6|    0|
 +-----------------+---------+------+---------+--------+-----+
 
 + Detail: 
     * Instance: 
-    +-----------------------------------------------+------------------------------------+---------+------+--------+--------+-----+
-    |                    Instance                   |               Module               | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
-    +-----------------------------------------------+------------------------------------+---------+------+--------+--------+-----+
-    |control_s_axi_U                                |control_s_axi                       |        0|     0|    1288|    2088|    0|
-    |grp_kernel_outerloop_0_dataflow_region_fu_430  |kernel_outerloop_0_dataflow_region  |      704|  1376|  365437|  133000|    0|
-    +-----------------------------------------------+------------------------------------+---------+------+--------+--------+-----+
-    |Total                                          |                                    |      704|  1376|  366725|  135088|    0|
-    +-----------------------------------------------+------------------------------------+---------+------+--------+--------+-----+
+    +-----------------------------------------------+------------------------------------+---------+------+--------+-------+-----+
+    |                    Instance                   |               Module               | BRAM_18K|  DSP |   FF   |  LUT  | URAM|
+    +-----------------------------------------------+------------------------------------+---------+------+--------+-------+-----+
+    |control_s_axi_U                                |control_s_axi                       |        0|     0|    1310|   2120|    0|
+    |grp_kernel_outerloop_0_dataflow_region_fu_442  |kernel_outerloop_0_dataflow_region  |     1848|  1376|  357783|  58129|    0|
+    |mul_29s_16ns_29_3_1_U2586                      |mul_29s_16ns_29_3_1                 |        0|     2|      23|      0|    0|
+    +-----------------------------------------------+------------------------------------+---------+------+--------+-------+-----+
+    |Total                                          |                                    |     1848|  1378|  359116|  60249|    0|
+    +-----------------------------------------------+------------------------------------+---------+------+--------+-------+-----+
 
     * DSP: 
     N/A
@@ -97,16 +98,16 @@
     +--------------------------------------------------------------------+----------+----+---+----+------------+------------+
     |                            Variable Name                           | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
     +--------------------------------------------------------------------+----------+----+---+----+------------+------------+
-    |i_8_fu_539_p2                                                       |         +|   0|  0|  32|          32|           1|
-    |grp_kernel_outerloop_0_dataflow_region_fu_430_arg1_axis_out_TREADY  |       and|   0|  0|   2|           1|           1|
-    |grp_kernel_outerloop_0_dataflow_region_fu_430_arg4_axis_out_TREADY  |       and|   0|  0|   2|           1|           1|
-    |grp_kernel_outerloop_0_dataflow_region_fu_430_arg5_axis_out_TREADY  |       and|   0|  0|   2|           1|           1|
-    |grp_kernel_outerloop_0_dataflow_region_fu_430_arg6_axis_out_TREADY  |       and|   0|  0|   2|           1|           1|
-    |icmp_ln512_fu_545_p2                                                |      icmp|   0|  0|  16|          32|          32|
+    |i_8_fu_568_p2                                                       |         +|   0|  0|  32|          32|           1|
+    |grp_kernel_outerloop_0_dataflow_region_fu_442_arg1_axis_out_TREADY  |       and|   0|  0|   2|           1|           1|
+    |grp_kernel_outerloop_0_dataflow_region_fu_442_arg4_axis_out_TREADY  |       and|   0|  0|   2|           1|           1|
+    |grp_kernel_outerloop_0_dataflow_region_fu_442_arg5_axis_out_TREADY  |       and|   0|  0|   2|           1|           1|
+    |grp_kernel_outerloop_0_dataflow_region_fu_442_arg6_axis_out_TREADY  |       and|   0|  0|   2|           1|           1|
+    |icmp_ln518_fu_574_p2                                                |      icmp|   0|  0|  16|          32|          32|
     |ap_block_state1                                                     |        or|   0|  0|   2|           1|           1|
-    |ap_block_state4                                                     |        or|   0|  0|   2|           1|           1|
-    |ap_sync_grp_kernel_outerloop_0_dataflow_region_fu_430_ap_done       |        or|   0|  0|   2|           1|           1|
-    |ap_sync_grp_kernel_outerloop_0_dataflow_region_fu_430_ap_ready      |        or|   0|  0|   2|           1|           1|
+    |ap_block_state6                                                     |        or|   0|  0|   2|           1|           1|
+    |ap_sync_grp_kernel_outerloop_0_dataflow_region_fu_442_ap_done       |        or|   0|  0|   2|           1|           1|
+    |ap_sync_grp_kernel_outerloop_0_dataflow_region_fu_442_ap_ready      |        or|   0|  0|   2|           1|           1|
     +--------------------------------------------------------------------+----------+----+---+----+------------+------------+
     |Total                                                               |          |   0|  0|  64|          72|          41|
     +--------------------------------------------------------------------+----------+----+---+----+------------+------------+
@@ -115,33 +116,33 @@
     +----------------------------------+----+-----------+-----+-----------+
     |               Name               | LUT| Input Size| Bits| Total Bits|
     +----------------------------------+----+-----------+-----+-----------+
-    |ap_NS_fsm                         |   6|          5|    1|          5|
+    |ap_NS_fsm                         |   6|          7|    1|          7|
     |ap_done                           |   2|          2|    1|          2|
     |arg0_axis_in_TREADY_int_regslice  |   2|          2|    1|          2|
     |arg1_axis_in_TREADY_int_regslice  |   2|          2|    1|          2|
     |arg2_axis_in_TREADY_int_regslice  |   2|          2|    1|          2|
     |arg3_axis_in_TREADY_int_regslice  |   2|          2|    1|          2|
-    |i_fu_258                          |  32|          2|   32|         64|
+    |i_fu_264                          |  32|          2|   32|         64|
     +----------------------------------+----+-----------+-----+-----------+
-    |Total                             |  48|         17|   38|         79|
+    |Total                             |  48|         19|   38|         81|
     +----------------------------------+----+-----------+-----+-----------+
 
     * Register: 
     +--------------------------------------------------------------------+----+----+-----+-----------+
     |                                Name                                | FF | LUT| Bits| Const Bits|
     +--------------------------------------------------------------------+----+----+-----+-----------+
-    |ap_CS_fsm                                                           |   4|   0|    4|          0|
+    |ap_CS_fsm                                                           |   6|   0|    6|          0|
     |ap_done_reg                                                         |   1|   0|    1|          0|
     |ap_rst_n_inv                                                        |   1|   0|    1|          0|
     |ap_rst_reg_1                                                        |   1|   0|    1|          0|
     |ap_rst_reg_2                                                        |   1|   0|    1|          0|
-    |ap_sync_reg_grp_kernel_outerloop_0_dataflow_region_fu_430_ap_done   |   1|   0|    1|          0|
-    |ap_sync_reg_grp_kernel_outerloop_0_dataflow_region_fu_430_ap_ready  |   1|   0|    1|          0|
-    |grp_kernel_outerloop_0_dataflow_region_fu_430_ap_start_reg          |   1|   0|    1|          0|
-    |i_fu_258                                                            |  32|   0|   32|          0|
-    |total_bytes_d2_reg_697                                              |  29|   0|   32|          3|
+    |ap_sync_reg_grp_kernel_outerloop_0_dataflow_region_fu_442_ap_done   |   1|   0|    1|          0|
+    |ap_sync_reg_grp_kernel_outerloop_0_dataflow_region_fu_442_ap_ready  |   1|   0|    1|          0|
+    |grp_kernel_outerloop_0_dataflow_region_fu_442_ap_start_reg          |   1|   0|    1|          0|
+    |i_fu_264                                                            |  32|   0|   32|          0|
+    |total_bytes_d2_reg_741                                              |  29|   0|   32|          3|
     +--------------------------------------------------------------------+----+----+-----+-----------+
-    |Total                                                               |  72|   0|   75|          3|
+    |Total                                                               |  74|   0|   77|          3|
     +--------------------------------------------------------------------+----+----+-----+-----------+
 
 
