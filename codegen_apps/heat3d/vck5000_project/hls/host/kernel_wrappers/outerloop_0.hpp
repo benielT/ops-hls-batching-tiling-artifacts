@@ -1,4 +1,4 @@
-// Auto-generated at 2025-07-28 22:29:08.344406 by ops-translator
+// Auto-generated at 2025-09-04 18:12:07.680670 by ops-translator
 
 #pragma once 
 #include <ops_hls_rt_support.h>
@@ -57,6 +57,7 @@ public:
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.upper_limit[1]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.upper_limit[2]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.outer_loop_limit));
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.batch_size));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, *param_k));
 
 #ifndef OPS_HLS_NO_LOOPBACK
@@ -77,16 +78,17 @@ public:
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.originalProperty.grid_size[2]));
  
         OCL_CHECK(err, err = m_datamover.setArg(narg++, adjusted_outer_iter));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.originalProperty.batch_size));    
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.deviceBuffer));
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg1.deviceBuffer));
 
+        std::vector<cl::Event> h2d_events;
+        cl::Event event_h2d_arg0 = arg0.set_as_arg();
+        cl::Event event_h2d_arg1 = arg1.set_as_arg();
 #ifdef PROFILE
-    startHtoDTimer();
-#endif
-        arg0.set_as_arg();
-        arg1.set_as_arg();
-#ifdef PROFILE
-    endHtoDTimer();
+        h2d_events.push_back(event_h2d_arg0);
+        h2d_events.push_back(event_h2d_arg1);
+        recordH2DEvent(h2d_events);
 #endif
 
         cl::Event event_kernel_0;
@@ -96,11 +98,17 @@ public:
         activeEvents.insert(activeEvents.end(), arg0.activeEvents.begin(), arg0.activeEvents.end());
         activeEvents.insert(activeEvents.end(), arg1.activeEvents.begin(), arg1.activeEvents.end());
 
-#ifdef PROFILE
-    startExecTimer();
-#endif
         OCL_CHECK(err, err = m_fpga->getCommandQueue().enqueueTask(m_datamover, &activeEvents, &event_datamover));
         OCL_CHECK(err, err = m_fpga->getCommandQueue().enqueueTask(m_kernel_0, &activeEvents, &event_kernel_0));
+
+
+#ifdef PROFILE
+    std::vector<cl::Event> execEvents;
+    execEvents.push_back(event_datamover);
+        execEvents.push_back(event_kernel_0);
+    recordExecEvent(event_datamover);
+    registerProfileEvents();
+#endif
 
         arg0.isDevBufDirty = true;
         arg0.activeEvents.resize(0);
@@ -114,10 +122,10 @@ public:
 #ifndef ASYNC_DISPATCH
         event_datamover.wait();
         event_kernel_0.wait();
-#endif
-#ifdef PROFILE
-    endExecTimer();
-    registerProfileTime();
+#else
+    #ifdef DEBUG_LOG
+        printf("[DEBUG_HOST] Async dispatch enabled, not waiting for kernel completion.\n");
+    #endif
 #endif
 
 /*
