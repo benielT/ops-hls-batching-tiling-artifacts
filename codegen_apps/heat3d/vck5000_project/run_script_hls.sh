@@ -42,20 +42,20 @@ if [[ "${CXXFLAGS}" == *"-DPOWER_PROFILE"* ]]; then
             )
         else
             parameter_sets=(
-                "30,30,30,60044,1000,1"
-                "50,50,50,60044,1000,1"
-                # "100,100,100,60044,500,1"
-                # "150,150,150,60044,500,1"
-                # "200,200,200,60044,250,1"
-                # "250,250,250,60044,50,1"
-                # "300,300,300,60044,50,1"
-                "30,30,30,60044,2000,10"
-                "50,50,50,60044,2000,10"
-                # "100,100,100,60044,1000,10"
-                # "150,150,150,60044,500,10"
+                "30,30,30,60044,100,1"
+                "50,50,50,60044,100,1"
+                "100,100,100,60044,100,1"
+                "150,150,150,60044,100,1"
+                "200,200,200,60044,50,1"
+                "250,250,250,60044,50,1"
+                "300,300,300,60044,50,1"
+                "30,30,30,60044,1000,10"
+                "50,50,50,60044,1000,10"
+                "100,100,100,60044,1000,10"
+                "150,150,150,60044,100,10"
                 "30,30,30,60044,4000,50"
                 "50,50,50,60044,4000,50"
-                # "100,100,100,60044,2000,50"
+                "100,100,100,60044,2000,50"
                 # Add more parameter sets here as needed
             )
         fi
@@ -145,7 +145,7 @@ for params in "${parameter_sets[@]}"; do
 
     if [[ "${CXXFLAGS}" == *"-DPOWER_PROFILE"* ]]; then
         echo "Running HW mode with power profiling"
-            ${OPS_INSTALL_PATH}/../scripts/power_profile_hls.sh ${DEVICE_BDF} ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}_host ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}.xclbin -sizex="${sizex}" -sizey="${sizey}" -sizez="${sizez}" -iters="${iters}" -piter="${batch}"
+            ${OPS_INSTALL_PATH}/../scripts/power_profile_hls.sh ${DEVICE_BDF} ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}_host ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}.xclbin -sizex="${sizex}" -sizey="${sizey}" -sizez="${sizez}" -iters="${iters}" -piter="${batch}" -bsize="${bsize}"
 
     else
         if [[ $TARGET_MODE == sw_emu || $TARGET_MODE == hw_emu ]]; then
