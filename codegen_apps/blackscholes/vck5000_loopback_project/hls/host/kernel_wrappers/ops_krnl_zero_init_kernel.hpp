@@ -1,4 +1,4 @@
-// Auto-generated at 2025-07-28 21:56:24.028726 by ops-translator
+// Auto-generated at 2025-09-04 18:06:17.638124 by ops-translator
 #pragma once 
 #include <ops_hls_rt_support.h>
 
@@ -21,12 +21,18 @@ void ops_par_loop_ops_krnl_zero_init(ops::hls::Block dummyBlock, int dim, int* o
     constexpr int arg0_0_stencil_offset[] = { 0, 0, 0 };
     getGrid(arg0);
 
-            for (unsigned short i = range.start[0]; i < range.end[0]; i++)
-            {
-                kernel_ops_krnl_zero_init_core(
-                    arg0.hostBuffer[getOffset(arg0_0_stencil_offset, arg0.originalProperty, i )]
-                );
-            }
+    for (unsigned short bat = 0; bat < dummyBlock.batch_size; bat++)
+    {
+                for (unsigned short i = range.start[0]; i < range.end[0]; i++)
+                {
+                    kernel_ops_krnl_zero_init_core(
+                        arg0.hostBuffer[getOffset(arg0_0_stencil_offset, arg0.originalProperty, i )]
+                    );
+                }
+
+        range.start[0] += arg0.originalProperty.grid_size[0];
+        range.end[0] += arg0.originalProperty.grid_size[0];
+    }
 
     arg0.isHostBufDirty = true;
 
