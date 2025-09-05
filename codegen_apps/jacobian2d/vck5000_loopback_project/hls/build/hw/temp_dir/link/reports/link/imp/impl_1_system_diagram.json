@@ -147,10 +147,10 @@
     "version": "2022.1",
     "cl": "3524075",
     "time_stamp": "2022-04-13-17:42:45",
-    "options": "/tools/Xilinx/Vitis/2022.1/bin/unwrapped/lnx64.o/v++ -s -O3 --target hw --platform xilinx_vck5000_gen4x8_xdma_2_202210_1 --hls.jobs 64 --remote_ip_cache /home/x_thileeb/repos/OPS_mine_vck5000/ops//hls/IP_CACHE/ --temp_dir hls/build/hw/temp_dir/link/ --log_dir hls/build/hw/temp_dir/link/logs/ --link --config hls/host/xrt.cfg -o ./hls/build/hw/jac2D9pt.xsa ./hls/build/hw/datamover_outerloop_0.xo ./hls/build/hw/kernel_outerloop_0.xo ",
+    "options": "/tools/Xilinx/Vitis/2022.1/bin/unwrapped/lnx64.o/v++ -s -O3 --target hw --platform xilinx_vck5000_gen4x8_xdma_2_202210_1 --hls.jobs 64 --remote_ip_cache /home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/scripts/../OPS/ops/hls/IP_CACHE/ --temp_dir hls/build/hw/temp_dir/link/ --log_dir hls/build/hw/temp_dir/link/logs/ --link --config hls/host/xrt.cfg -o ./hls/build/hw/jac2D9pt.xsa ./hls/build/hw/datamover_outerloop_0.xo ./hls/build/hw/kernel_outerloop_0.xo ",
     "xclbin_name": "jac2D9pt",
-    "uuid": "7c9a2d08-507f-4a5f-bfc0-3fb0ccd03cc5",
-    "link_uuid": "7c9a2d08-507f-4a5f-bfc0-3fb0ccd03cc5",
+    "uuid": "ae19ae89-233d-46df-8a03-0eb3c0f1831a",
+    "link_uuid": "ae19ae89-233d-46df-8a03-0eb3c0f1831a",
     "package_uuid": "",
     "system_compile_flow": false
    },
@@ -171,7 +171,7 @@
       {
        "name": "kernel_outerloop_0",
        "estimated_resources": {
-        "LUT": "20",
+        "LUT": "22",
         "REG": "3",
         "BRAM": "",
         "DSP": "",
@@ -199,7 +199,7 @@
         {
          "name": "S_AXI_CONTROL",
          "mode": "slave",
-         "range": "0x68",
+         "range": "0x70",
          "data_width": "32",
          "port_type": "addressable",
          "base": "0x0",
@@ -341,6 +341,18 @@
         },
         {
          "id": "11",
+         "name": "stencilConfig_batch_size",
+         "address_qualifier": "0",
+         "port": "S_AXI_CONTROL",
+         "size": "0x4",
+         "offset": "0x68",
+         "host_offset": "0x0",
+         "host_size": "0x2",
+         "type": "unsigned int",
+         "direction": "DirUnknown"
+        },
+        {
+         "id": "12",
          "name": "arg0_axis_in",
          "address_qualifier": "4",
          "port": "ARG0_AXIS_IN",
@@ -352,7 +364,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "12",
+         "id": "13",
          "name": "arg1_axis_out",
          "address_qualifier": "4",
          "port": "ARG1_AXIS_OUT",
@@ -417,7 +429,7 @@
         {
          "name": "S_AXI_CONTROL",
          "mode": "slave",
-         "range": "0x68",
+         "range": "0x70",
          "data_width": "32",
          "port_type": "addressable",
          "base": "0x0",
@@ -523,23 +535,23 @@
         },
         {
          "id": "8",
-         "name": "arg0",
-         "address_qualifier": "1",
-         "port": "M_AXI_GMEM0",
-         "size": "0x8",
+         "name": "batch_size",
+         "address_qualifier": "0",
+         "port": "S_AXI_CONTROL",
+         "size": "0x4",
          "offset": "0x50",
          "host_offset": "0x0",
-         "host_size": "0x8",
-         "type": "void*",
+         "host_size": "0x2",
+         "type": "unsigned int",
          "direction": "DirUnknown"
         },
         {
          "id": "9",
-         "name": "arg1",
+         "name": "arg0",
          "address_qualifier": "1",
-         "port": "M_AXI_GMEM1",
+         "port": "M_AXI_GMEM0",
          "size": "0x8",
-         "offset": "0x5C",
+         "offset": "0x58",
          "host_offset": "0x0",
          "host_size": "0x8",
          "type": "void*",
@@ -547,6 +559,18 @@
         },
         {
          "id": "10",
+         "name": "arg1",
+         "address_qualifier": "1",
+         "port": "M_AXI_GMEM1",
+         "size": "0x8",
+         "offset": "0x64",
+         "host_offset": "0x0",
+         "host_size": "0x8",
+         "type": "void*",
+         "direction": "DirUnknown"
+        },
+        {
+         "id": "11",
          "name": "arg0_axis_out",
          "address_qualifier": "4",
          "port": "ARG0_AXIS_OUT",
@@ -558,7 +582,7 @@
          "direction": "DirUnknown"
         },
         {
-         "id": "11",
+         "id": "12",
          "name": "arg1_axis_in",
          "address_qualifier": "4",
          "port": "ARG1_AXIS_IN",
@@ -584,24 +608,24 @@
        "actual_resources": [
         {
          "design_state": "routed",
-         "LUT": "7476",
-         "REG": "15485",
+         "LUT": "7416",
+         "REG": "15484",
          "BRAM": "15",
          "DSP": "",
          "URAM": "0"
         },
         {
          "design_state": "fully_placed",
-         "LUT": "7476",
-         "REG": "15485",
+         "LUT": "7416",
+         "REG": "15484",
          "BRAM": "15",
          "DSP": "",
          "URAM": "0"
         },
         {
          "design_state": "synthesized",
-         "LUT": "7541",
-         "REG": "15364",
+         "LUT": "7539",
+         "REG": "15405",
          "BRAM": "15",
          "DSP": "",
          "URAM": "0"
@@ -625,24 +649,24 @@
        "actual_resources": [
         {
          "design_state": "routed",
-         "LUT": "36224",
-         "REG": "220199",
+         "LUT": "30394",
+         "REG": "195853",
          "BRAM": "144",
          "DSP": "",
          "URAM": "0"
         },
         {
          "design_state": "fully_placed",
-         "LUT": "36224",
-         "REG": "220199",
+         "LUT": "30394",
+         "REG": "195853",
          "BRAM": "144",
          "DSP": "",
          "URAM": "0"
         },
         {
          "design_state": "synthesized",
-         "LUT": "42189",
-         "REG": "221825",
+         "LUT": "37606",
+         "REG": "197475",
          "BRAM": "144",
          "DSP": "",
          "URAM": "0"
@@ -665,7 +689,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "8",
+        "kernel_argument_id": "9",
         "arg_name": "arg0",
         "mode": "Master",
         "name": "",
@@ -686,7 +710,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "9",
+        "kernel_argument_id": "10",
         "arg_name": "arg1",
         "mode": "Master",
         "name": "",
@@ -707,7 +731,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "12",
+        "kernel_argument_id": "13",
         "arg_name": "arg1_axis_out",
         "mode": "Master",
         "name": "",
@@ -716,7 +740,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "11",
+        "kernel_argument_id": "12",
         "arg_name": "arg1_axis_in",
         "mode": "Slave",
         "name": "",
@@ -728,7 +752,7 @@
        "node1": {
         "type": "compute_unit",
         "id": "0",
-        "kernel_argument_id": "10",
+        "kernel_argument_id": "11",
         "arg_name": "arg0_axis_out",
         "mode": "Master",
         "name": "",
@@ -737,7 +761,7 @@
        "node2": {
         "type": "compute_unit",
         "id": "1",
-        "kernel_argument_id": "11",
+        "kernel_argument_id": "12",
         "arg_name": "arg0_axis_in",
         "mode": "Slave",
         "name": "",

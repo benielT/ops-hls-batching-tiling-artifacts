@@ -1,4 +1,4 @@
-// Auto-generated at 2025-07-28 23:08:00.334659 by ops-translator
+// Auto-generated at 2025-09-04 18:20:59.723366 by ops-translator
 #pragma once
 
 typedef float stencil_type;
