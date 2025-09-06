@@ -39,7 +39,7 @@ TARGETS=hls #tiled openmp mpi mpi_tiled mpi_openmp cuda mpi_cuda mpi_cuda_tiled 
 #Enable if wanted to profile
 CXXFLAGS += -DPROFILE
 #Enable if wanted to power_profile
-# CXXFLAGS += -DPOWER_PROFILE
+#CXXFLAGS += -DPOWER_PROFILE
 
 ########  VERIIFICATION OPTIONS  ######
 #Enable if wanted to verify

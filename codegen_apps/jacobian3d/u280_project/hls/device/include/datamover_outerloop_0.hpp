@@ -1,4 +1,4 @@
-// Auto-generated at 2025-08-16 01:04:10.028278 by ops-translator
+// Auto-generated at 2025-09-06 21:18:49.923939 by ops-translator
 
 #pragma once
 #include <ops_hls_kernel_support.h>

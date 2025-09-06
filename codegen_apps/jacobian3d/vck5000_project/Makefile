@@ -32,19 +32,31 @@ MAIN_SRC=jac3D7pt
 # OPS_FPGA_ONLY=1 #Enable if building FPGA only mode
 OPS_TARGET_CONFIG_FILE= ./config_vck5000.json
 
-
-TARGETS=hls
+TARGETS=hls #tiled openmp mpi mpi_tiled mpi_openmp cuda mpi_cuda mpi_cuda_tiled hip mpi_hip mpi_hip_tiled ompoffload mpi_ompoffload mpi_ompoffload_tiled sycl mpi_sycl mpi_sycl_tiled openacc mpi_openacc mpi_openacc_tiled
 
 ########  PRFOFILE OPTIONS (ONLY ENABLE ONE OPTION) ######
 
 #Enable if wanted to profile
 CXXFLAGS += -DPROFILE
 #Enable if wanted to power_profile
-# CXXFLAGS += -DPOWER_PROFILE
+#CXXFLAGS += -DPOWER_PROFILE
 
 ########  VERIIFICATION OPTIONS  ######
 #Enable if wanted to verify
-# CXXFLAGS += -DVERIFICATION
+#CXXFLAGS += -DVERIFICATION
+
+######## ASYN_DISPATCH OPTION ########
+#Enable if wanted to use asynchronous dispatch
+# CXXFLAGS += -DASYNC_DISPATCH
+
+######## BATCHING OPTION ########
+# Enable if wanted to use batching
+CXXFLAGS += -DBATCHING
+
+########  DEBUG OPTIONS  ######
+#Enable if wanted to debug
+# CXXFLAGS += -DDEBUG_LOG
+# VPP_FLAGS += -DDEBUG_LOG
 
 #include $(OPS_INSTALL_PATH)/../makefiles/Makefile.c_app_legacy
 include $(OPS_INSTALL_PATH)/../makefiles/Makefile.c_app

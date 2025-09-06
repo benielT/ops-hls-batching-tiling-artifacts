@@ -24,20 +24,20 @@ if [[ "${CXXFLAGS}" == *"-DPOWER_PROFILE"* ]]; then
     if [[ "${TARGET_MODE}" == "hw" ]]; then
         if [[ "${PLATFORM}" == *"u280"* ]]; then
             parameter_sets=(
-                "30,30,30,60048,10,1"
-                "50,50,50,60048,10,1"
-                "100,100,100,60048,10,1"
-                "150,150,150,60048,10,1"
-                "200,200,200,60048,5,1"
-                "250,250,250,60048,5,1"
-                "300,300,300,60048,5,1"
-                "30,30,30,60048,20,10"
-                "50,50,50,60048,20,10"
-                "100,100,100,60048,20,10"
-                "150,150,150,60048,20,10"
-                "30,30,30,60048,100,50"
-                "50,50,50,60048,100,50"
-                "100,100,100,60048,100,50"
+                "30,30,30,60048,100,1"
+                "50,50,50,60048,100,1"
+                "100,100,100,60048,100,1"
+                "150,150,150,60048,100,1"
+                "200,200,200,60048,20,1"
+                "250,250,250,60048,20,1"
+                "300,300,300,60048,20,1"
+                "30,30,30,60048,200,10"
+                "50,50,50,60048,200,10"
+                "100,100,100,60048,200,10"
+                "150,150,150,60048,200,10"
+                "30,30,30,60048,500,50"
+                "50,50,50,60048,500,50"
+                "100,100,100,60048,500,50"
                 # Add more parameter sets here as needed
             )
         else
@@ -134,7 +134,7 @@ for params in "${parameter_sets[@]}"; do
 
     if [[ "${CXXFLAGS}" == *"-DPOWER_PROFILE"* ]]; then
         echo "Running HW mode with power profiling"
-            ${OPS_INSTALL_PATH}/../scripts/power_profile_hls.sh ${DEVICE_BDF} ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}_host ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}.xclbin -sizex="${sizex}" -sizey="${sizey}" -sizez="${sizez}" -iters="${iters}" -piter="${batch}"
+            ${OPS_INSTALL_PATH}/../scripts/power_profile_hls.sh ${DEVICE_BDF} ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}_host ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}.xclbin -sizex="${sizex}" -sizey="${sizey}" -sizez="${sizez}" -iters="${iters}" -piter="${batch}" -bsize="${bsize}"
 
     else
         if [[ $TARGET_MODE == sw_emu || $TARGET_MODE == hw_emu ]]; then
