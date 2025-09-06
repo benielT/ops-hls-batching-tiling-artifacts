@@ -1,4 +1,4 @@
-// Auto-generated at 2025-08-16 01:02:52.341298 by ops-translator
+// Auto-generated at 2025-09-06 14:47:20.881954 by ops-translator
 
 #pragma once
 #include <ops_hls_kernel_support.h>
@@ -23,10 +23,10 @@ typedef ::hls::stream<widen_ops_krnl_heat3D_0_dt> widen_stream_ops_krnl_heat3D_0
 typedef ::hls::stream<widen_ops_krnl_heat3D_1_dt> widen_stream_ops_krnl_heat3D_1_dt;
 
 /*
-    ArgDat(id=0, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/heat3d/u280_project/heat3d.cpp/347:21, access_type=AccessType.OPS_WRITE, opt=True, dat_id=0, global_dat_id=-1, stencil_id=stencil3D_1pt)
-    ArgDat(id=1, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/heat3d/u280_project/heat3d.cpp/348:21, access_type=AccessType.OPS_READ, opt=True, dat_id=1, global_dat_id=-1, stencil_id=stencil3D_7pt)
-    ArgGbl(id=2, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/heat3d/u280_project/heat3d.cpp/349:21, access_type=AccessType.OPS_READ,ptr=&param_k, dim=1, type=float)
-    ArgIdx(id=3, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/heat3d/u280_project/heat3d.cpp/350:21)
+    ArgDat(id=0, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/heat3d/u280_project/heat3d.cpp/347:21, access_type=AccessType.OPS_WRITE, opt=True, dat_id=0, global_dat_id=-1, stencil_id=stencil3D_1pt)
+    ArgDat(id=1, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/heat3d/u280_project/heat3d.cpp/348:21, access_type=AccessType.OPS_READ, opt=True, dat_id=1, global_dat_id=-1, stencil_id=stencil3D_7pt)
+    ArgGbl(id=2, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/heat3d/u280_project/heat3d.cpp/349:21, access_type=AccessType.OPS_READ,ptr=&param_k, dim=1, type=float)
+    ArgIdx(id=3, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/heat3d/u280_project/heat3d.cpp/350:21)
 */
 inline void kernel_ops_krnl_heat3D_core(
         stencil_type& reg_0_0,

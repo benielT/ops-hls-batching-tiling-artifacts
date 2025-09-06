@@ -132,7 +132,7 @@ for params in "${parameter_sets[@]}"; do
 
     if [[ "${CXXFLAGS}" == *"-DPOWER_PROFILE"* ]]; then
         echo "Running HW mode with power profiling"
-            ${OPS_INSTALL_PATH}/../scripts/power_profile_hls.sh ${DEVICE_BDF} ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}_host ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}.xclbin -sizex="${sizex}" -sizey="${sizey}" -sizez="${sizez}" -iters="${iters}" -piter="${batch}"
+            ${OPS_INSTALL_PATH}/../scripts/power_profile_hls.sh ${DEVICE_BDF} ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}_host ${SCRIPT_DIR}/hls/build/${TARGET_MODE}/${APP_NAME}.xclbin -sizex="${sizex}" -sizey="${sizey}" -sizez="${sizez}" -iters="${iters}" -piter="${batch}" -bsize="${bsize}"
 
     else
         if [[ $TARGET_MODE == sw_emu || $TARGET_MODE == hw_emu ]]; then

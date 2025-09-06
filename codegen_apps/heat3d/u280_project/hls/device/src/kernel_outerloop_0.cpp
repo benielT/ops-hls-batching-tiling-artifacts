@@ -1,4 +1,4 @@
-// Auto-generated at 2025-08-16 01:02:52.515285 by ops-translator
+// Auto-generated at 2025-09-06 14:47:21.043055 by ops-translator
 #include <ops_hls_kernel_support.h>
 #include <kernel_outerloop_0.hpp>
 
