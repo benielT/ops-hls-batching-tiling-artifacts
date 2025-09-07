@@ -1,4 +1,4 @@
-// Auto-generated at 2025-06-09 09:27:01.312834 by ops-translator
+// Auto-generated at 2025-09-05 09:38:24.846002 by ops-translator
 
 #pragma once
 #include <ops_hls_kernel_support.h>
@@ -17,6 +17,7 @@ extern "C" void datamover_outerloop_0(
         const unsigned short gridSize_1,
         const unsigned short gridSize_2,
         const unsigned int outer_itr,
+        const unsigned short batch_size,
     //u
         ap_uint<mem_data_width>* arg0,
     //tzc1
@@ -38,7 +39,6 @@ extern "C" void datamover_outerloop_0(
     //w2
         ap_uint<mem_data_width>* arg9,
     //u
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg0_axis_out,
     //tzc1
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg1_axis_out,
@@ -53,19 +53,14 @@ extern "C" void datamover_outerloop_0(
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg4_axis_out,
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg4_axis_in,
     //w
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg5_axis_out,
     //v
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg6_axis_out,
     //u2
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg7_axis_in,
     //v2
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg8_axis_in,
     //w2
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg9_axis_in
     )
 ;

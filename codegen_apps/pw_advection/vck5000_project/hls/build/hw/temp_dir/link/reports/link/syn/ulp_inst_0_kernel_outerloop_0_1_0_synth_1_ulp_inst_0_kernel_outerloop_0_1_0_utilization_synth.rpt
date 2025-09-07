@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date         : Fri Jun  6 21:37:54 2025
-| Host         : acclhead1 running 64-bit Ubuntu 20.04.6 LTS
+| Date         : Fri Sep  5 10:05:33 2025
+| Host         : acclnode02 running 64-bit Ubuntu 20.04.6 LTS
 | Command      : report_utilization -file ulp_inst_0_kernel_outerloop_0_1_0_utilization_synth.rpt -pb ulp_inst_0_kernel_outerloop_0_1_0_utilization_synth.pb
 | Design       : ulp_inst_0_kernel_outerloop_0_1_0
 | Device       : xcvc1902-vsvd1760-2MP-e-S
@@ -32,17 +32,17 @@ Table of Contents
 +----------------------------+--------+-------+------------+-----------+-------+
 |          Site Type         |  Used  | Fixed | Prohibited | Available | Util% |
 +----------------------------+--------+-------+------------+-----------+-------+
-| Registers                  | 253437 |     0 |          0 |   1799680 | 14.08 |
-|   Register as Flip Flop    | 253437 |     0 |          0 |   1799680 | 14.08 |
+| Registers                  | 233970 |     0 |          0 |   1799680 | 13.00 |
+|   Register as Flip Flop    | 233970 |     0 |          0 |   1799680 | 13.00 |
 |   Register as Latch        |      0 |     0 |          0 |   1799680 |  0.00 |
-| CLB LUTs*                  |  64527 |     0 |          0 |    899840 |  7.17 |
-|   LUT as Logic             |  25091 |     0 |          0 |    899840 |  2.79 |
-|   LUT as Memory            |  39436 |     0 |          0 |    449920 |  8.77 |
+| CLB LUTs*                  |  58726 |     0 |          0 |    899840 |  6.53 |
+|   LUT as Logic             |  18126 |     0 |          0 |    899840 |  2.01 |
+|   LUT as Memory            |  40600 |     0 |          0 |    449920 |  9.02 |
 |     LUT as Distributed RAM |   5180 |     0 |            |           |       |
-|     LUT as Shift Register  |  34256 |     0 |            |           |       |
+|     LUT as Shift Register  |  35420 |     0 |            |           |       |
 |       Variable Length      |      0 |     0 |            |           |       |
 |       Fixed Length         |      0 |     0 |            |           |       |
-| LOOKAHEAD8                 |    562 |     0 |          0 |    112480 |  0.50 |
+| LOOKAHEAD8                 |    450 |     0 |          0 |    112480 |  0.40 |
 +----------------------------+--------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -53,8 +53,8 @@ Table of Contents
 +--------------------------+------+-------+------------+-----------+-------+
 |         Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +--------------------------+------+-------+------------+-----------+-------+
-| Block RAM Tile           |  304 |     0 |          0 |       967 | 31.44 |
-|   RAMB36E5               |  304 |     0 |          0 |       967 | 31.44 |
+| Block RAM Tile           |  560 |     0 |          0 |       967 | 57.91 |
+|   RAMB36E5               |  560 |     0 |          0 |       967 | 57.91 |
 |   RAMB18E5*              |    0 |     0 |          0 |      1934 |  0.00 |
 | Block RAM Imux registers |    0 |     0 |            |           |       |
 |   Pipelining             |    0 |       |            |           |       |
@@ -71,8 +71,8 @@ Table of Contents
 +--------------------+------+-------+------------+-----------+-------+
 |      Site Type     | Used | Fixed | Prohibited | Available | Util% |
 +--------------------+------+-------+------------+-----------+-------+
-| DSP Slices         | 1560 |     0 |          0 |      1968 | 79.27 |
-|   DSP58            |   24 |     0 |            |           |       |
+| DSP Slices         | 1561 |     0 |          0 |      1968 | 79.32 |
+|   DSP58            |   25 |     0 |            |           |       |
 |   DSPCPLX          |    0 |     0 |            |           |       |
 |   DSPFP32          | 1536 |     0 |            |           |       |
 |   DSP48E5          |    0 |     0 |            |           |       |
@@ -185,23 +185,23 @@ Table of Contents
 +--------------+--------+---------------------+
 |   Ref Name   |  Used  | Functional Category |
 +--------------+--------+---------------------+
-| FDRE         | 252608 |            Register |
-| SRL16E       |  34252 |                 CLB |
-| LUT3         |  24468 |                 CLB |
+| FDRE         | 233636 |            Register |
+| SRL16E       |  35416 |                 CLB |
 | RAMD32       |   9030 |                 CLB |
-| LUT5         |   5292 |                 CLB |
-| LUTCY2       |   3872 |                 CLB |
-| LUTCY1       |   3872 |                 CLB |
-| LUT4         |   2656 |                 CLB |
+| LUT3         |   7246 |                 CLB |
+| LUT6         |   4466 |                 CLB |
+| LUT5         |   4451 |                 CLB |
+| LUTCY2       |   2972 |                 CLB |
+| LUTCY1       |   2972 |                 CLB |
+| LUT4         |   2697 |                 CLB |
 | DSPFP32      |   1536 |          Arithmetic |
-| LUT2         |   1360 |                 CLB |
-| LUT6         |   1335 |                 CLB |
 | RAMS32       |   1330 |                 CLB |
-| FDSE         |    829 |            Register |
-| LOOKAHEAD8   |    562 |                 CLB |
-| RAMB36E5_INT |    304 |            BLOCKRAM |
-| LUT1         |    160 |                 CLB |
-| DSP58        |     24 |          Arithmetic |
+| LUT2         |    618 |                 CLB |
+| RAMB36E5_INT |    560 |            BLOCKRAM |
+| LOOKAHEAD8   |    450 |                 CLB |
+| FDSE         |    334 |            Register |
+| LUT1         |    168 |                 CLB |
+| DSP58        |     25 |          Arithmetic |
 | SRLC32E      |      4 |                 CLB |
 +--------------+--------+---------------------+
 

@@ -1,4 +1,4 @@
-// Auto-generated at 2025-06-09 09:27:01.137338 by ops-translator
+// Auto-generated at 2025-09-05 09:38:24.678459 by ops-translator
 
 #pragma once
 #include <ops_hls_kernel_support.h>
@@ -55,16 +55,16 @@ typedef ::hls::stream<widen_pw_advection_opt_kernel_8_dt> widen_stream_pw_advect
 typedef ::hls::stream<widen_pw_advection_opt_kernel_9_dt> widen_stream_pw_advection_opt_kernel_9_dt;
 
 /*
-    ArgDat(id=0, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/303:17, access_type=AccessType.OPS_READ, opt=True, dat_id=0, global_dat_id=0, stencil_id=S3D_27PT_STEN)
-    ArgDat(id=1, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/304:17, access_type=AccessType.OPS_READ, opt=True, dat_id=1, global_dat_id=1, stencil_id=S3D_27PT_STEN)
-    ArgDat(id=2, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/305:17, access_type=AccessType.OPS_READ, opt=True, dat_id=2, global_dat_id=2, stencil_id=S3D_27PT_STEN)
-    ArgDat(id=3, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/306:17, access_type=AccessType.OPS_WRITE, opt=True, dat_id=3, global_dat_id=3, stencil_id=S3D_000)
-    ArgDat(id=4, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/307:17, access_type=AccessType.OPS_WRITE, opt=True, dat_id=4, global_dat_id=4, stencil_id=S3D_000)
-    ArgDat(id=5, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/308:17, access_type=AccessType.OPS_WRITE, opt=True, dat_id=5, global_dat_id=5, stencil_id=S3D_000)
-    ArgDat(id=6, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/309:17, access_type=AccessType.OPS_RW, opt=True, dat_id=6, global_dat_id=6, stencil_id=S3D_000)
-    ArgDat(id=7, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/310:17, access_type=AccessType.OPS_RW, opt=True, dat_id=7, global_dat_id=7, stencil_id=S3D_000)
-    ArgDat(id=8, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/311:17, access_type=AccessType.OPS_RW, opt=True, dat_id=8, global_dat_id=8, stencil_id=S3D_000)
-    ArgDat(id=9, loc=/home/x_thileeb/repos/OPS_mine_vck5000/apps/c/pw_advection_fpga_experimental/pw_advect.cpp/312:17, access_type=AccessType.OPS_RW, opt=True, dat_id=9, global_dat_id=9, stencil_id=S3D_000)
+    ArgDat(id=0, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/331:17, access_type=AccessType.OPS_READ, opt=True, dat_id=0, global_dat_id=-1, stencil_id=S3D_27PT_STEN)
+    ArgDat(id=1, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/332:17, access_type=AccessType.OPS_READ, opt=True, dat_id=1, global_dat_id=-1, stencil_id=S3D_27PT_STEN)
+    ArgDat(id=2, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/333:17, access_type=AccessType.OPS_READ, opt=True, dat_id=2, global_dat_id=-1, stencil_id=S3D_27PT_STEN)
+    ArgDat(id=3, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/334:17, access_type=AccessType.OPS_WRITE, opt=True, dat_id=3, global_dat_id=-1, stencil_id=S3D_000)
+    ArgDat(id=4, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/335:17, access_type=AccessType.OPS_WRITE, opt=True, dat_id=4, global_dat_id=-1, stencil_id=S3D_000)
+    ArgDat(id=5, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/336:17, access_type=AccessType.OPS_WRITE, opt=True, dat_id=5, global_dat_id=-1, stencil_id=S3D_000)
+    ArgDat(id=6, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/337:17, access_type=AccessType.OPS_RW, opt=True, dat_id=6, global_dat_id=-1, stencil_id=S3D_27PT_STEN)
+    ArgDat(id=7, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/338:17, access_type=AccessType.OPS_RW, opt=True, dat_id=7, global_dat_id=-1, stencil_id=S3D_27PT_STEN)
+    ArgDat(id=8, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/339:17, access_type=AccessType.OPS_RW, opt=True, dat_id=8, global_dat_id=-1, stencil_id=S3D_27PT_STEN)
+    ArgDat(id=9, loc=/home/x_thileeb/repos/ops-hls-batching-tiling-artifacts/codegen_apps/pw_advection/vck5000_project/pw_advect.cpp/340:17, access_type=AccessType.OPS_RW, opt=True, dat_id=9, global_dat_id=-1, stencil_id=S3D_27PT_STEN)
 */
 inline void kernel_pw_advection_opt_kernel_core(
         const stencil_type& reg_0_0,
@@ -152,9 +152,113 @@ inline void kernel_pw_advection_opt_kernel_core(
         stencil_type& reg_4_0,
         stencil_type& reg_5_0,
         stencil_type& reg_6_0,
+        stencil_type& reg_6_1,
+        stencil_type& reg_6_2,
+        stencil_type& reg_6_3,
+        stencil_type& reg_6_4,
+        stencil_type& reg_6_5,
+        stencil_type& reg_6_6,
+        stencil_type& reg_6_7,
+        stencil_type& reg_6_8,
+        stencil_type& reg_6_9,
+        stencil_type& reg_6_10,
+        stencil_type& reg_6_11,
+        stencil_type& reg_6_12,
+        stencil_type& reg_6_13,
+        stencil_type& reg_6_14,
+        stencil_type& reg_6_15,
+        stencil_type& reg_6_16,
+        stencil_type& reg_6_17,
+        stencil_type& reg_6_18,
+        stencil_type& reg_6_19,
+        stencil_type& reg_6_20,
+        stencil_type& reg_6_21,
+        stencil_type& reg_6_22,
+        stencil_type& reg_6_23,
+        stencil_type& reg_6_24,
+        stencil_type& reg_6_25,
+        stencil_type& reg_6_26,
         stencil_type& reg_7_0,
+        stencil_type& reg_7_1,
+        stencil_type& reg_7_2,
+        stencil_type& reg_7_3,
+        stencil_type& reg_7_4,
+        stencil_type& reg_7_5,
+        stencil_type& reg_7_6,
+        stencil_type& reg_7_7,
+        stencil_type& reg_7_8,
+        stencil_type& reg_7_9,
+        stencil_type& reg_7_10,
+        stencil_type& reg_7_11,
+        stencil_type& reg_7_12,
+        stencil_type& reg_7_13,
+        stencil_type& reg_7_14,
+        stencil_type& reg_7_15,
+        stencil_type& reg_7_16,
+        stencil_type& reg_7_17,
+        stencil_type& reg_7_18,
+        stencil_type& reg_7_19,
+        stencil_type& reg_7_20,
+        stencil_type& reg_7_21,
+        stencil_type& reg_7_22,
+        stencil_type& reg_7_23,
+        stencil_type& reg_7_24,
+        stencil_type& reg_7_25,
+        stencil_type& reg_7_26,
         stencil_type& reg_8_0,
-        stencil_type& reg_9_0
+        stencil_type& reg_8_1,
+        stencil_type& reg_8_2,
+        stencil_type& reg_8_3,
+        stencil_type& reg_8_4,
+        stencil_type& reg_8_5,
+        stencil_type& reg_8_6,
+        stencil_type& reg_8_7,
+        stencil_type& reg_8_8,
+        stencil_type& reg_8_9,
+        stencil_type& reg_8_10,
+        stencil_type& reg_8_11,
+        stencil_type& reg_8_12,
+        stencil_type& reg_8_13,
+        stencil_type& reg_8_14,
+        stencil_type& reg_8_15,
+        stencil_type& reg_8_16,
+        stencil_type& reg_8_17,
+        stencil_type& reg_8_18,
+        stencil_type& reg_8_19,
+        stencil_type& reg_8_20,
+        stencil_type& reg_8_21,
+        stencil_type& reg_8_22,
+        stencil_type& reg_8_23,
+        stencil_type& reg_8_24,
+        stencil_type& reg_8_25,
+        stencil_type& reg_8_26,
+        stencil_type& reg_9_0,
+        stencil_type& reg_9_1,
+        stencil_type& reg_9_2,
+        stencil_type& reg_9_3,
+        stencil_type& reg_9_4,
+        stencil_type& reg_9_5,
+        stencil_type& reg_9_6,
+        stencil_type& reg_9_7,
+        stencil_type& reg_9_8,
+        stencil_type& reg_9_9,
+        stencil_type& reg_9_10,
+        stencil_type& reg_9_11,
+        stencil_type& reg_9_12,
+        stencil_type& reg_9_13,
+        stencil_type& reg_9_14,
+        stencil_type& reg_9_15,
+        stencil_type& reg_9_16,
+        stencil_type& reg_9_17,
+        stencil_type& reg_9_18,
+        stencil_type& reg_9_19,
+        stencil_type& reg_9_20,
+        stencil_type& reg_9_21,
+        stencil_type& reg_9_22,
+        stencil_type& reg_9_23,
+        stencil_type& reg_9_24,
+        stencil_type& reg_9_25,
+        stencil_type& reg_9_26
 )
 {
 #ifdef DEBUG_LOG
@@ -168,9 +272,9 @@ inline void kernel_pw_advection_opt_kernel_core(
     float su_tmp4 = reg_0_16 * (reg_1_13 + reg_1_14);
     float su_tmp5 = 1.0f * (su_tmp3 - su_tmp4);
     float su_tmp6 = reg_0_4 * (reg_2_4 + reg_2_5);
-    float su_tmp7 = reg_6_0 * su_tmp6;
+    float su_tmp7 = reg_6_13 * su_tmp6;
     float su_tmp8 = reg_0_22 * (reg_2_13 + reg_2_14);
-    float su_tmp9 = reg_7_0 * su_tmp8;
+    float su_tmp9 = reg_7_13 * su_tmp8;
     float su_tmp10 = su_tmp7 - su_tmp9;
     float su_tmp11 = su_tmp2 + su_tmp5;
     reg_3_0 = su_tmp10 + su_tmp11;
@@ -182,17 +286,17 @@ inline void kernel_pw_advection_opt_kernel_core(
     float sv_tmp4 = reg_1_14 * (reg_0_13 + reg_0_16);
     float sv_tmp5 = 2.0f * (sv_tmp3 - sv_tmp4);
     float sv_tmp6 = reg_1_4 * (reg_2_4 + reg_2_7);
-    float sv_tmp7 = reg_6_0 * sv_tmp6;
+    float sv_tmp7 = reg_6_13 * sv_tmp6;
     float sv_tmp8 = reg_1_22 * (reg_2_13 + reg_2_16);
-    float sv_tmp9 = reg_7_0  * sv_tmp8;
+    float sv_tmp9 = reg_7_13  * sv_tmp8;
     float sv_tmp10 = sv_tmp8 - sv_tmp9;
     float sv_tmp11 = sv_tmp2 + sv_tmp5;
     reg_4_0 = sv_tmp10 + sv_tmp11;
 
     float sw_tmp0 = reg_2_4 * (reg_2_13 + reg_2_4);
-    float sw_tmp1 = reg_8_0 * sw_tmp0;
+    float sw_tmp1 = reg_8_13 * sw_tmp0;
     float sw_tmp2 = reg_2_22 * (reg_2_13 + reg_2_22);
-    float sw_tmp3 = reg_9_0 * sw_tmp2;
+    float sw_tmp3 = reg_9_13 * sw_tmp2;
     float sw_tmp4 = sw_tmp1 - sw_tmp3;
     float sw_tmp5 = reg_2_12 * (reg_0_12 + reg_0_21);
     float sw_tmp6 = reg_2_14 * (reg_0_13 + reg_0_22);
@@ -289,9 +393,113 @@ inline void kernel_pw_advection_opt_kernel_core(
     printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_4_0: %f \n", __func__, reg_4_0);
     printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_5_0: %f \n", __func__, reg_5_0);
     printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_0: %f \n", __func__, reg_6_0);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_1: %f \n", __func__, reg_6_1);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_2: %f \n", __func__, reg_6_2);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_3: %f \n", __func__, reg_6_3);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_4: %f \n", __func__, reg_6_4);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_5: %f \n", __func__, reg_6_5);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_6: %f \n", __func__, reg_6_6);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_7: %f \n", __func__, reg_6_7);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_8: %f \n", __func__, reg_6_8);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_9: %f \n", __func__, reg_6_9);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_10: %f \n", __func__, reg_6_10);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_11: %f \n", __func__, reg_6_11);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_12: %f \n", __func__, reg_6_12);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_13: %f \n", __func__, reg_6_13);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_14: %f \n", __func__, reg_6_14);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_15: %f \n", __func__, reg_6_15);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_16: %f \n", __func__, reg_6_16);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_17: %f \n", __func__, reg_6_17);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_18: %f \n", __func__, reg_6_18);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_19: %f \n", __func__, reg_6_19);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_20: %f \n", __func__, reg_6_20);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_21: %f \n", __func__, reg_6_21);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_22: %f \n", __func__, reg_6_22);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_23: %f \n", __func__, reg_6_23);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_24: %f \n", __func__, reg_6_24);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_25: %f \n", __func__, reg_6_25);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_6_26: %f \n", __func__, reg_6_26);
     printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_0: %f \n", __func__, reg_7_0);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_1: %f \n", __func__, reg_7_1);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_2: %f \n", __func__, reg_7_2);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_3: %f \n", __func__, reg_7_3);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_4: %f \n", __func__, reg_7_4);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_5: %f \n", __func__, reg_7_5);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_6: %f \n", __func__, reg_7_6);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_7: %f \n", __func__, reg_7_7);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_8: %f \n", __func__, reg_7_8);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_9: %f \n", __func__, reg_7_9);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_10: %f \n", __func__, reg_7_10);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_11: %f \n", __func__, reg_7_11);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_12: %f \n", __func__, reg_7_12);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_13: %f \n", __func__, reg_7_13);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_14: %f \n", __func__, reg_7_14);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_15: %f \n", __func__, reg_7_15);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_16: %f \n", __func__, reg_7_16);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_17: %f \n", __func__, reg_7_17);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_18: %f \n", __func__, reg_7_18);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_19: %f \n", __func__, reg_7_19);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_20: %f \n", __func__, reg_7_20);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_21: %f \n", __func__, reg_7_21);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_22: %f \n", __func__, reg_7_22);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_23: %f \n", __func__, reg_7_23);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_24: %f \n", __func__, reg_7_24);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_25: %f \n", __func__, reg_7_25);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_7_26: %f \n", __func__, reg_7_26);
     printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_0: %f \n", __func__, reg_8_0);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_1: %f \n", __func__, reg_8_1);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_2: %f \n", __func__, reg_8_2);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_3: %f \n", __func__, reg_8_3);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_4: %f \n", __func__, reg_8_4);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_5: %f \n", __func__, reg_8_5);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_6: %f \n", __func__, reg_8_6);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_7: %f \n", __func__, reg_8_7);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_8: %f \n", __func__, reg_8_8);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_9: %f \n", __func__, reg_8_9);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_10: %f \n", __func__, reg_8_10);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_11: %f \n", __func__, reg_8_11);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_12: %f \n", __func__, reg_8_12);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_13: %f \n", __func__, reg_8_13);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_14: %f \n", __func__, reg_8_14);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_15: %f \n", __func__, reg_8_15);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_16: %f \n", __func__, reg_8_16);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_17: %f \n", __func__, reg_8_17);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_18: %f \n", __func__, reg_8_18);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_19: %f \n", __func__, reg_8_19);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_20: %f \n", __func__, reg_8_20);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_21: %f \n", __func__, reg_8_21);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_22: %f \n", __func__, reg_8_22);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_23: %f \n", __func__, reg_8_23);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_24: %f \n", __func__, reg_8_24);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_25: %f \n", __func__, reg_8_25);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_8_26: %f \n", __func__, reg_8_26);
     printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_0: %f \n", __func__, reg_9_0);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_1: %f \n", __func__, reg_9_1);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_2: %f \n", __func__, reg_9_2);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_3: %f \n", __func__, reg_9_3);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_4: %f \n", __func__, reg_9_4);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_5: %f \n", __func__, reg_9_5);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_6: %f \n", __func__, reg_9_6);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_7: %f \n", __func__, reg_9_7);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_8: %f \n", __func__, reg_9_8);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_9: %f \n", __func__, reg_9_9);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_10: %f \n", __func__, reg_9_10);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_11: %f \n", __func__, reg_9_11);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_12: %f \n", __func__, reg_9_12);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_13: %f \n", __func__, reg_9_13);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_14: %f \n", __func__, reg_9_14);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_15: %f \n", __func__, reg_9_15);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_16: %f \n", __func__, reg_9_16);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_17: %f \n", __func__, reg_9_17);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_18: %f \n", __func__, reg_9_18);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_19: %f \n", __func__, reg_9_19);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_20: %f \n", __func__, reg_9_20);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_21: %f \n", __func__, reg_9_21);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_22: %f \n", __func__, reg_9_22);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_23: %f \n", __func__, reg_9_23);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_24: %f \n", __func__, reg_9_24);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_25: %f \n", __func__, reg_9_25);
+    printf("[KERNEL_INTERNAL_CORE]|%s| write_val - reg_9_26: %f \n", __func__, reg_9_26);
 #endif
 
 #ifdef DEBUG_LOG
@@ -327,1311 +535,2133 @@ public:
         const unsigned short half_span_x = 1;
 
         ::ops::hls::StencilConfigCore stencilConfig = m_stencilConfig;
-    //read_origin_wide_diff_x: 1, read_origin_wide_diff: (1,1,1)
 
-    //  *** counters definitions ****
-        short i = -2;
-        short j = -1; 
-        short k = -1;
-        unsigned short plane_diff = stencilConfig.grid_size[0] * stencilConfig.grid_size[1] - 1;
-
-    //  *** stencil description and read & write point definitions  ****
-        /*
-        WindowBufferDiscriptor(widen_stencil=Stencil(id=-1, dim=3, stencil_ptr='read_stencil_widen', num_points=27, points=[Point(x=0, y=0, z=0), Point(x=1, y=0, z=0), Point(x=2, y=0, z=0), Point(x=0, y=1, z=0), Point(x=1, y=1, z=0), Point(x=2, y=1, z=0), Point(x=0, y=2, z=0), Point(x=1, y=2, z=0), Point(x=2, y=2, z=0), Point(x=0, y=0, z=1), Point(x=1, y=0, z=1), Point(x=2, y=0, z=1), Point(x=0, y=1, z=1), Point(x=1, y=1, z=1), Point(x=2, y=1, z=1), Point(x=0, y=2, z=1), Point(x=1, y=2, z=1), Point(x=2, y=2, z=1), Point(x=0, y=0, z=2), Point(x=1, y=0, z=2), Point(x=2, y=0, z=2), Point(x=0, y=1, z=2), Point(x=1, y=1, z=2), Point(x=2, y=1, z=2), Point(x=0, y=2, z=2), Point(x=1, y=2, z=2), Point(x=2, y=2, z=2)], base_point=Point(x=1, y=1, z=1), stencil_size=Point(x=3, y=3, z=3), d_m=Point(x=-0.75, y=1, z=1), d_p=Point(x=1.0, y=1, z=1), row_discriptors=[StencilRowDiscriptor(row_id=(0, 0), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=0, z=0), Point(x=1, y=0, z=0), Point(x=2, y=0, z=0)]), StencilRowDiscriptor(row_id=(1, 0), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=1, z=0), Point(x=1, y=1, z=0), Point(x=2, y=1, z=0)]), StencilRowDiscriptor(row_id=(2, 0), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=2, z=0), Point(x=1, y=2, z=0), Point(x=2, y=2, z=0)]), StencilRowDiscriptor(row_id=(0, 1), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=0, z=1), Point(x=1, y=0, z=1), Point(x=2, y=0, z=1)]), StencilRowDiscriptor(row_id=(1, 1), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=1, z=1), Point(x=1, y=1, z=1), Point(x=2, y=1, z=1)]), StencilRowDiscriptor(row_id=(2, 1), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=2, z=1), Point(x=1, y=2, z=1), Point(x=2, y=2, z=1)]), StencilRowDiscriptor(row_id=(0, 2), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=0, z=2), Point(x=1, y=0, z=2), Point(x=2, y=0, z=2)]), StencilRowDiscriptor(row_id=(1, 2), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=1, z=2), Point(x=1, y=1, z=2), Point(x=2, y=1, z=2)]), StencilRowDiscriptor(row_id=(2, 2), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=2, z=2), Point(x=1, y=2, z=2), Point(x=2, y=2, z=2)])], stride=[], read_origin_diff=Point(x=1, y=1, z=1)), window_buffers=[WindowBuffer(name='buf_r0_1_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=0), write_point=Point(x=2, y=0, z=0), is_read_write_aligned=False), WindowBuffer(name='buf_r1_2_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=0), write_point=Point(x=2, y=1, z=0), is_read_write_aligned=False), WindowBuffer(name='buf_p0_1', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=1), write_point=Point(x=2, y=2, z=0), is_read_write_aligned=False), WindowBuffer(name='buf_r0_1_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=1), write_point=Point(x=2, y=0, z=1), is_read_write_aligned=False), WindowBuffer(name='buf_r1_2_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=1), write_point=Point(x=2, y=1, z=1), is_read_write_aligned=False), WindowBuffer(name='buf_p1_2', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=2), write_point=Point(x=2, y=2, z=1), is_read_write_aligned=False), WindowBuffer(name='buf_r0_1_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=2), write_point=Point(x=2, y=0, z=2), is_read_write_aligned=False), WindowBuffer(name='buf_r1_2_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=2), write_point=Point(x=2, y=1, z=2), is_read_write_aligned=False)], chains=[(0, 1), (1, 2), (2, WindowBuffer(name='buf_r0_1_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=0), write_point=Point(x=2, y=0, z=0), is_read_write_aligned=False)), (3, 4), (4, 5), (5, WindowBuffer(name='buf_r1_2_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=0), write_point=Point(x=2, y=1, z=0), is_read_write_aligned=False)), (WindowBuffer(name='buf_r0_1_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=0), write_point=Point(x=2, y=0, z=0), is_read_write_aligned=False), 3), (6, 7), (7, 8), (8, WindowBuffer(name='buf_p0_1', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=1), write_point=Point(x=2, y=2, z=0), is_read_write_aligned=False)), (WindowBuffer(name='buf_r1_2_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=0), write_point=Point(x=2, y=1, z=0), is_read_write_aligned=False), 6), (9, 10), (10, 11), (11, WindowBuffer(name='buf_r0_1_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=1), write_point=Point(x=2, y=0, z=1), is_read_write_aligned=False)), (WindowBuffer(name='buf_p0_1', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=1), write_point=Point(x=2, y=2, z=0), is_read_write_aligned=False), 9), (12, 13), (13, 14), (14, WindowBuffer(name='buf_r1_2_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=1), write_point=Point(x=2, y=1, z=1), is_read_write_aligned=False)), (WindowBuffer(name='buf_r0_1_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=1), write_point=Point(x=2, y=0, z=1), is_read_write_aligned=False), 12), (15, 16), (16, 17), (17, WindowBuffer(name='buf_p1_2', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=2), write_point=Point(x=2, y=2, z=1), is_read_write_aligned=False)), (WindowBuffer(name='buf_r1_2_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=1), write_point=Point(x=2, y=1, z=1), is_read_write_aligned=False), 15), (18, 19), (19, 20), (20, WindowBuffer(name='buf_r0_1_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=2), write_point=Point(x=2, y=0, z=2), is_read_write_aligned=False)), (WindowBuffer(name='buf_p1_2', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=2), write_point=Point(x=2, y=2, z=1), is_read_write_aligned=False), 18), (21, 22), (22, 23), (23, WindowBuffer(name='buf_r1_2_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=2), write_point=Point(x=2, y=1, z=2), is_read_write_aligned=False)), (WindowBuffer(name='buf_r0_1_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=2), write_point=Point(x=2, y=0, z=2), is_read_write_aligned=False), 21), (24, 25), (25, 26), (26, 'read_val'), (WindowBuffer(name='buf_r1_2_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=2), write_point=Point(x=2, y=1, z=2), is_read_write_aligned=False), 24)], point_to_widen_map={Point(x=0, y=0, z=0): Point(x=0, y=0, z=0), Point(x=1, y=0, z=0): Point(x=1, y=0, z=0), Point(x=2, y=0, z=0): Point(x=2, y=0, z=0), Point(x=0, y=1, z=0): Point(x=0, y=1, z=0), Point(x=1, y=1, z=0): Point(x=1, y=1, z=0), Point(x=2, y=1, z=0): Point(x=2, y=1, z=0), Point(x=0, y=2, z=0): Point(x=0, y=2, z=0), Point(x=1, y=2, z=0): Point(x=1, y=2, z=0), Point(x=2, y=2, z=0): Point(x=2, y=2, z=0), Point(x=0, y=0, z=1): Point(x=0, y=0, z=1), Point(x=1, y=0, z=1): Point(x=1, y=0, z=1), Point(x=2, y=0, z=1): Point(x=2, y=0, z=1), Point(x=0, y=1, z=1): Point(x=0, y=1, z=1), Point(x=1, y=1, z=1): Point(x=1, y=1, z=1), Point(x=2, y=1, z=1): Point(x=2, y=1, z=1), Point(x=0, y=2, z=1): Point(x=0, y=2, z=1), Point(x=1, y=2, z=1): Point(x=1, y=2, z=1), Point(x=2, y=2, z=1): Point(x=2, y=2, z=1), Point(x=0, y=0, z=2): Point(x=0, y=0, z=2), Point(x=1, y=0, z=2): Point(x=1, y=0, z=2), Point(x=2, y=0, z=2): Point(x=2, y=0, z=2), Point(x=0, y=1, z=2): Point(x=0, y=1, z=2), Point(x=1, y=1, z=2): Point(x=1, y=1, z=2), Point(x=2, y=1, z=2): Point(x=2, y=1, z=2), Point(x=0, y=2, z=2): Point(x=0, y=2, z=2), Point(x=1, y=2, z=2): Point(x=1, y=2, z=2), Point(x=2, y=2, z=2): Point(x=2, y=2, z=2)})
-        */
-        // Stencil: S3D_27PT_STEN
-        //      |- point: (0,0,0)
-        //      |- point: (1,0,0)
-        //      |- point: (2,0,0)
-        //      |- point: (0,1,0)
-        //      |- point: (1,1,0)
-        //      |- point: (2,1,0)
-        //      |- point: (0,2,0)
-        //      |- point: (1,2,0)
-        //      |- point: (2,2,0)
-        //      |- point: (0,0,1)
-        //      |- point: (1,0,1)
-        //      |- point: (2,0,1)
-        //      |- point: (0,1,1)
-        //      |- point: (1,1,1)
-        //      |- point: (2,1,1)
-        //      |- point: (0,2,1)
-        //      |- point: (1,2,1)
-        //      |- point: (2,2,1)
-        //      |- point: (0,0,2)
-        //      |- point: (1,0,2)
-        //      |- point: (2,0,2)
-        //      |- point: (0,1,2)
-        //      |- point: (1,1,2)
-        //      |- point: (2,1,2)
-        //      |- point: (0,2,2)
-        //      |- point: (1,2,2)
-        //      `- point: (2,2,2)
-        // read point: (0,1,0), write point: (2,0,0)
-        unsigned short S3D_27PT_STEN_buf_r0_1_p0_rd = 0;
-        unsigned short S3D_27PT_STEN_buf_r0_1_p0_wr = 2;
-        // read point: (0,2,0), write point: (2,1,0)
-        unsigned short S3D_27PT_STEN_buf_r1_2_p0_rd = 0;
-        unsigned short S3D_27PT_STEN_buf_r1_2_p0_wr = 2;
-        unsigned short S3D_27PT_STEN_buf_p0_1_rd;
-
-        if (-2 * stencilConfig.grid_size[0] + -2 > 0)
-            S3D_27PT_STEN_buf_p0_1_rd = -2 * stencilConfig.grid_size[0] + -2;
-        else
-            S3D_27PT_STEN_buf_p0_1_rd = 0;
-
-        unsigned short S3D_27PT_STEN_buf_p0_1_wr;
-
-        if (2 * stencilConfig.grid_size[0] + 2 > 0)
-            S3D_27PT_STEN_buf_p0_1_wr = 2 * stencilConfig.grid_size[0] + 2;
-        else
-            S3D_27PT_STEN_buf_p0_1_wr = 0;
-        // read point: (0,1,1), write point: (2,0,1)
-        unsigned short S3D_27PT_STEN_buf_r0_1_p1_rd = 0;
-        unsigned short S3D_27PT_STEN_buf_r0_1_p1_wr = 2;
-        // read point: (0,2,1), write point: (2,1,1)
-        unsigned short S3D_27PT_STEN_buf_r1_2_p1_rd = 0;
-        unsigned short S3D_27PT_STEN_buf_r1_2_p1_wr = 2;
-        unsigned short S3D_27PT_STEN_buf_p1_2_rd;
-
-        if (-2 * stencilConfig.grid_size[0] + -2 > 0)
-            S3D_27PT_STEN_buf_p1_2_rd = -2 * stencilConfig.grid_size[0] + -2;
-        else
-            S3D_27PT_STEN_buf_p1_2_rd = 0;
-
-        unsigned short S3D_27PT_STEN_buf_p1_2_wr;
-
-        if (2 * stencilConfig.grid_size[0] + 2 > 0)
-            S3D_27PT_STEN_buf_p1_2_wr = 2 * stencilConfig.grid_size[0] + 2;
-        else
-            S3D_27PT_STEN_buf_p1_2_wr = 0;
-        // read point: (0,1,2), write point: (2,0,2)
-        unsigned short S3D_27PT_STEN_buf_r0_1_p2_rd = 0;
-        unsigned short S3D_27PT_STEN_buf_r0_1_p2_wr = 2;
-        // read point: (0,2,2), write point: (2,1,2)
-        unsigned short S3D_27PT_STEN_buf_r1_2_p2_rd = 0;
-        unsigned short S3D_27PT_STEN_buf_r1_2_p2_wr = 2;
-        // Stencil: S3D_000
-        //      `- point: (0,0,0)
-
-        #pragma HLS ARRAY_PARTITION variable = stencilConfig.lower_limit dim = 1 complete
-        #pragma HLS ARRAY_PARTITION variable = stencilConfig.upper_limit dim = 1 complete
-
-    //  *** iteration limit definition ****
-        unsigned int iter_limit = stencilConfig.outer_loop_limit * 
-                stencilConfig.grid_size[1] * stencilConfig.grid_size[0] + 1 * stencilConfig.grid_size[0] + 1;
-
-    //  *** data read write boundary definitions ****
-    /*        unsigned int arg0_read_lb_itr = 0 * stencilConfig.grid_size[0] * stencilConfig.grid_size[1];
-        unsigned int arg0_read_ub_itr = (0 + stencilConfig.grid_size[2]) * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
-        unsigned int arg1_read_lb_itr = 0 * stencilConfig.grid_size[0] * stencilConfig.grid_size[1];
-        unsigned int arg1_read_ub_itr = (0 + stencilConfig.grid_size[2]) * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
-        unsigned int arg2_read_lb_itr = 0 * stencilConfig.grid_size[0] * stencilConfig.grid_size[1];
-        unsigned int arg2_read_ub_itr = (0 + stencilConfig.grid_size[2]) * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
-        unsigned int arg6_read_lb_itr = 1 * stencilConfig.grid_size[0] * stencilConfig.grid_size[1];
-        unsigned int arg6_read_ub_itr = (1 + stencilConfig.grid_size[2]) * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
-        unsigned int arg7_read_lb_itr = 1 * stencilConfig.grid_size[0] * stencilConfig.grid_size[1];
-        unsigned int arg7_read_ub_itr = (1 + stencilConfig.grid_size[2]) * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
-        unsigned int arg8_read_lb_itr = 1 * stencilConfig.grid_size[0] * stencilConfig.grid_size[1];
-        unsigned int arg8_read_ub_itr = (1 + stencilConfig.grid_size[2]) * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
-        unsigned int arg9_read_lb_itr = 1 * stencilConfig.grid_size[0] * stencilConfig.grid_size[1];
-        unsigned int arg9_read_ub_itr = (1 + stencilConfig.grid_size[2]) * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
-*/
-
-        unsigned int read_lb_itr = 0;
-        unsigned int read_ub_itr = stencilConfig.grid_size[2] * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
-
-    //  *** Read & write widen temporaries ****
-    // arg0(u)
-        widen_pw_advection_opt_kernel_0_dt arg0_read_val = 0;
-    // arg1(v)
-        widen_pw_advection_opt_kernel_1_dt arg1_read_val = 0;
-    // arg2(w)
-        widen_pw_advection_opt_kernel_2_dt arg2_read_val = 0;
-    // arg3(u2)
-        widen_pw_advection_opt_kernel_3_dt arg3_update_val;
-    // arg4(v2)
-        widen_pw_advection_opt_kernel_4_dt arg4_update_val;
-    // arg5(w2)
-        widen_pw_advection_opt_kernel_5_dt arg5_update_val;
-    // arg6(tzc1)
-        widen_pw_advection_opt_kernel_6_dt arg6_read_val = 0;
-        widen_pw_advection_opt_kernel_6_dt arg6_update_val;
-    // arg7(tzc2)
-        widen_pw_advection_opt_kernel_7_dt arg7_read_val = 0;
-        widen_pw_advection_opt_kernel_7_dt arg7_update_val;
-    // arg8(tzd1)
-        widen_pw_advection_opt_kernel_8_dt arg8_read_val = 0;
-        widen_pw_advection_opt_kernel_8_dt arg8_update_val;
-    // arg9(tzd2)
-        widen_pw_advection_opt_kernel_9_dt arg9_read_val = 0;
-        widen_pw_advection_opt_kernel_9_dt arg9_update_val;
-    //  *** widen stencil values holder & window buffers ****
-
-        // arg0(u)
-        widen_pw_advection_opt_kernel_0_dt arg0_widenStencilValues[read_num_points_pw_advection_opt_kernel];
-        #pragma HLS ARRAY_PARTITION variable = arg0_widenStencilValues dim = 1 complete
-
-        widen_pw_advection_opt_kernel_0_dt arg0_buf_r0_1_p0[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg0_buf_r0_1_p0 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_0_dt arg0_buf_r1_2_p0[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg0_buf_r1_2_p0 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_0_dt arg0_buf_p0_1[max_depth];
-        #pragma HLS BIND_STORAGE variable = arg0_buf_p0_1 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_0_dt arg0_buf_r0_1_p1[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg0_buf_r0_1_p1 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_0_dt arg0_buf_r1_2_p1[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg0_buf_r1_2_p1 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_0_dt arg0_buf_p1_2[max_depth];
-        #pragma HLS BIND_STORAGE variable = arg0_buf_p1_2 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_0_dt arg0_buf_r0_1_p2[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg0_buf_r0_1_p2 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_0_dt arg0_buf_r1_2_p2[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg0_buf_r1_2_p2 type = ram_s2p latency=2
-
-        stencil_type arg0_rowArr_0_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_0_0 dim=1 complete
-        stencil_type arg0_rowArr_1_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_1_0 dim=1 complete
-        stencil_type arg0_rowArr_2_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_2_0 dim=1 complete
-        stencil_type arg0_rowArr_0_1[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_0_1 dim=1 complete
-        stencil_type arg0_rowArr_1_1[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_1_1 dim=1 complete
-        stencil_type arg0_rowArr_2_1[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_2_1 dim=1 complete
-        stencil_type arg0_rowArr_0_2[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_0_2 dim=1 complete
-        stencil_type arg0_rowArr_1_2[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_1_2 dim=1 complete
-        stencil_type arg0_rowArr_2_2[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_2_2 dim=1 complete
-
-        // arg1(v)
-        widen_pw_advection_opt_kernel_1_dt arg1_widenStencilValues[read_num_points_pw_advection_opt_kernel];
-        #pragma HLS ARRAY_PARTITION variable = arg1_widenStencilValues dim = 1 complete
-
-        widen_pw_advection_opt_kernel_1_dt arg1_buf_r0_1_p0[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg1_buf_r0_1_p0 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_1_dt arg1_buf_r1_2_p0[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg1_buf_r1_2_p0 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_1_dt arg1_buf_p0_1[max_depth];
-        #pragma HLS BIND_STORAGE variable = arg1_buf_p0_1 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_1_dt arg1_buf_r0_1_p1[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg1_buf_r0_1_p1 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_1_dt arg1_buf_r1_2_p1[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg1_buf_r1_2_p1 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_1_dt arg1_buf_p1_2[max_depth];
-        #pragma HLS BIND_STORAGE variable = arg1_buf_p1_2 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_1_dt arg1_buf_r0_1_p2[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg1_buf_r0_1_p2 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_1_dt arg1_buf_r1_2_p2[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg1_buf_r1_2_p2 type = ram_s2p latency=2
-
-        stencil_type arg1_rowArr_0_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_0_0 dim=1 complete
-        stencil_type arg1_rowArr_1_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_1_0 dim=1 complete
-        stencil_type arg1_rowArr_2_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_2_0 dim=1 complete
-        stencil_type arg1_rowArr_0_1[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_0_1 dim=1 complete
-        stencil_type arg1_rowArr_1_1[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_1_1 dim=1 complete
-        stencil_type arg1_rowArr_2_1[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_2_1 dim=1 complete
-        stencil_type arg1_rowArr_0_2[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_0_2 dim=1 complete
-        stencil_type arg1_rowArr_1_2[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_1_2 dim=1 complete
-        stencil_type arg1_rowArr_2_2[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_2_2 dim=1 complete
-
-        // arg2(w)
-        widen_pw_advection_opt_kernel_2_dt arg2_widenStencilValues[read_num_points_pw_advection_opt_kernel];
-        #pragma HLS ARRAY_PARTITION variable = arg2_widenStencilValues dim = 1 complete
-
-        widen_pw_advection_opt_kernel_2_dt arg2_buf_r0_1_p0[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg2_buf_r0_1_p0 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_2_dt arg2_buf_r1_2_p0[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg2_buf_r1_2_p0 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_2_dt arg2_buf_p0_1[max_depth];
-        #pragma HLS BIND_STORAGE variable = arg2_buf_p0_1 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_2_dt arg2_buf_r0_1_p1[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg2_buf_r0_1_p1 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_2_dt arg2_buf_r1_2_p1[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg2_buf_r1_2_p1 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_2_dt arg2_buf_p1_2[max_depth];
-        #pragma HLS BIND_STORAGE variable = arg2_buf_p1_2 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_2_dt arg2_buf_r0_1_p2[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg2_buf_r0_1_p2 type = ram_s2p latency=2
-        widen_pw_advection_opt_kernel_2_dt arg2_buf_r1_2_p2[line_buff_3d_depth];
-        #pragma HLS BIND_STORAGE variable = arg2_buf_r1_2_p2 type = ram_s2p latency=2
-
-        stencil_type arg2_rowArr_0_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_0_0 dim=1 complete
-        stencil_type arg2_rowArr_1_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_1_0 dim=1 complete
-        stencil_type arg2_rowArr_2_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_2_0 dim=1 complete
-        stencil_type arg2_rowArr_0_1[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_0_1 dim=1 complete
-        stencil_type arg2_rowArr_1_1[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_1_1 dim=1 complete
-        stencil_type arg2_rowArr_2_1[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_2_1 dim=1 complete
-        stencil_type arg2_rowArr_0_2[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_0_2 dim=1 complete
-        stencil_type arg2_rowArr_1_2[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_1_2 dim=1 complete
-        stencil_type arg2_rowArr_2_2[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_2_2 dim=1 complete
-
-        // arg6(tzc1)
-        widen_pw_advection_opt_kernel_6_dt arg6_widenStencilValues[read_num_points_pw_advection_opt_kernel];
-        #pragma HLS ARRAY_PARTITION variable = arg6_widenStencilValues dim = 1 complete
-
-        stencil_type arg6_rowArr_0_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_0_0 dim=1 complete
-
-        // arg7(tzc2)
-        widen_pw_advection_opt_kernel_7_dt arg7_widenStencilValues[read_num_points_pw_advection_opt_kernel];
-        #pragma HLS ARRAY_PARTITION variable = arg7_widenStencilValues dim = 1 complete
-
-        stencil_type arg7_rowArr_0_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_0_0 dim=1 complete
-
-        // arg8(tzd1)
-        widen_pw_advection_opt_kernel_8_dt arg8_widenStencilValues[read_num_points_pw_advection_opt_kernel];
-        #pragma HLS ARRAY_PARTITION variable = arg8_widenStencilValues dim = 1 complete
-
-        stencil_type arg8_rowArr_0_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_0_0 dim=1 complete
-
-        // arg9(tzd2)
-        widen_pw_advection_opt_kernel_9_dt arg9_widenStencilValues[read_num_points_pw_advection_opt_kernel];
-        #pragma HLS ARRAY_PARTITION variable = arg9_widenStencilValues dim = 1 complete
-
-        stencil_type arg9_rowArr_0_0[vector_factor + span_x];
-        #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_0_0 dim=1 complete
-
-        const short cond_x_val = stencilConfig.grid_size[0] - 1; 
-        const short cond_y_val = stencilConfig.grid_size[1] - 1;
-        const short cond_z_val = stencilConfig.outer_loop_limit - 1;
-
-        for (unsigned int itr = 0; itr < iter_limit; itr++)
+        for (unsigned bat = 0; bat < stencilConfig.batch_size; bat++)
         {
-        #pragma HLS PIPELINE II=1
-            unsigned int reg_itr = register_it(itr);
+        //read_origin_wide_diff_x: 1, read_origin_wide_diff: (1,1,1)
 
-            spc_temp_blocking_read:
+        //  *** counters definitions ****
+            short i = -2;
+            short j = -1; 
+            short k = -1;
+            unsigned short plane_diff = stencilConfig.grid_size[0] * stencilConfig.grid_size[1] - 1;
+
+        //  *** stencil description and read & write point definitions  ****
+            /*
+            WindowBufferDiscriptor(widen_stencil=Stencil(id=-1, dim=3, stencil_ptr='read_stencil_widen', num_points=27, points=[Point(x=0, y=0, z=0), Point(x=1, y=0, z=0), Point(x=2, y=0, z=0), Point(x=0, y=1, z=0), Point(x=1, y=1, z=0), Point(x=2, y=1, z=0), Point(x=0, y=2, z=0), Point(x=1, y=2, z=0), Point(x=2, y=2, z=0), Point(x=0, y=0, z=1), Point(x=1, y=0, z=1), Point(x=2, y=0, z=1), Point(x=0, y=1, z=1), Point(x=1, y=1, z=1), Point(x=2, y=1, z=1), Point(x=0, y=2, z=1), Point(x=1, y=2, z=1), Point(x=2, y=2, z=1), Point(x=0, y=0, z=2), Point(x=1, y=0, z=2), Point(x=2, y=0, z=2), Point(x=0, y=1, z=2), Point(x=1, y=1, z=2), Point(x=2, y=1, z=2), Point(x=0, y=2, z=2), Point(x=1, y=2, z=2), Point(x=2, y=2, z=2)], base_point=Point(x=1, y=1, z=1), stencil_size=Point(x=3, y=3, z=3), d_m=Point(x=-0.75, y=1, z=1), d_p=Point(x=1.0, y=1, z=1), row_discriptors=[StencilRowDiscriptor(row_id=(0, 0), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=0, z=0), Point(x=1, y=0, z=0), Point(x=2, y=0, z=0)]), StencilRowDiscriptor(row_id=(1, 0), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=1, z=0), Point(x=1, y=1, z=0), Point(x=2, y=1, z=0)]), StencilRowDiscriptor(row_id=(2, 0), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=2, z=0), Point(x=1, y=2, z=0), Point(x=2, y=2, z=0)]), StencilRowDiscriptor(row_id=(0, 1), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=0, z=1), Point(x=1, y=0, z=1), Point(x=2, y=0, z=1)]), StencilRowDiscriptor(row_id=(1, 1), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=1, z=1), Point(x=1, y=1, z=1), Point(x=2, y=1, z=1)]), StencilRowDiscriptor(row_id=(2, 1), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=2, z=1), Point(x=1, y=2, z=1), Point(x=2, y=2, z=1)]), StencilRowDiscriptor(row_id=(0, 2), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=0, z=2), Point(x=1, y=0, z=2), Point(x=2, y=0, z=2)]), StencilRowDiscriptor(row_id=(1, 2), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=1, z=2), Point(x=1, y=1, z=2), Point(x=2, y=1, z=2)]), StencilRowDiscriptor(row_id=(2, 2), base_point=Point(x=1, y=1, z=1), row_points=[Point(x=0, y=2, z=2), Point(x=1, y=2, z=2), Point(x=2, y=2, z=2)])], stride=[], read_origin_diff=Point(x=1, y=1, z=1)), window_buffers=[WindowBuffer(name='buf_r0_1_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=0), write_point=Point(x=2, y=0, z=0), is_read_write_aligned=False), WindowBuffer(name='buf_r1_2_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=0), write_point=Point(x=2, y=1, z=0), is_read_write_aligned=False), WindowBuffer(name='buf_p0_1', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=1), write_point=Point(x=2, y=2, z=0), is_read_write_aligned=False), WindowBuffer(name='buf_r0_1_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=1), write_point=Point(x=2, y=0, z=1), is_read_write_aligned=False), WindowBuffer(name='buf_r1_2_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=1), write_point=Point(x=2, y=1, z=1), is_read_write_aligned=False), WindowBuffer(name='buf_p1_2', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=2), write_point=Point(x=2, y=2, z=1), is_read_write_aligned=False), WindowBuffer(name='buf_r0_1_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=2), write_point=Point(x=2, y=0, z=2), is_read_write_aligned=False), WindowBuffer(name='buf_r1_2_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=2), write_point=Point(x=2, y=1, z=2), is_read_write_aligned=False)], chains=[(0, 1), (1, 2), (2, WindowBuffer(name='buf_r0_1_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=0), write_point=Point(x=2, y=0, z=0), is_read_write_aligned=False)), (3, 4), (4, 5), (5, WindowBuffer(name='buf_r1_2_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=0), write_point=Point(x=2, y=1, z=0), is_read_write_aligned=False)), (WindowBuffer(name='buf_r0_1_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=0), write_point=Point(x=2, y=0, z=0), is_read_write_aligned=False), 3), (6, 7), (7, 8), (8, WindowBuffer(name='buf_p0_1', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=1), write_point=Point(x=2, y=2, z=0), is_read_write_aligned=False)), (WindowBuffer(name='buf_r1_2_p0', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=0), write_point=Point(x=2, y=1, z=0), is_read_write_aligned=False), 6), (9, 10), (10, 11), (11, WindowBuffer(name='buf_r0_1_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=1), write_point=Point(x=2, y=0, z=1), is_read_write_aligned=False)), (WindowBuffer(name='buf_p0_1', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=1), write_point=Point(x=2, y=2, z=0), is_read_write_aligned=False), 9), (12, 13), (13, 14), (14, WindowBuffer(name='buf_r1_2_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=1), write_point=Point(x=2, y=1, z=1), is_read_write_aligned=False)), (WindowBuffer(name='buf_r0_1_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=1), write_point=Point(x=2, y=0, z=1), is_read_write_aligned=False), 12), (15, 16), (16, 17), (17, WindowBuffer(name='buf_p1_2', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=2), write_point=Point(x=2, y=2, z=1), is_read_write_aligned=False)), (WindowBuffer(name='buf_r1_2_p1', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=1), write_point=Point(x=2, y=1, z=1), is_read_write_aligned=False), 15), (18, 19), (19, 20), (20, WindowBuffer(name='buf_r0_1_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=2), write_point=Point(x=2, y=0, z=2), is_read_write_aligned=False)), (WindowBuffer(name='buf_p1_2', buffer_type=<BufferType.PLANE_BUFF: 1>, read_point=Point(x=0, y=0, z=2), write_point=Point(x=2, y=2, z=1), is_read_write_aligned=False), 18), (21, 22), (22, 23), (23, WindowBuffer(name='buf_r1_2_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=2), write_point=Point(x=2, y=1, z=2), is_read_write_aligned=False)), (WindowBuffer(name='buf_r0_1_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=1, z=2), write_point=Point(x=2, y=0, z=2), is_read_write_aligned=False), 21), (24, 25), (25, 26), (26, 'read_val'), (WindowBuffer(name='buf_r1_2_p2', buffer_type=<BufferType.LINE_BUFF: 0>, read_point=Point(x=0, y=2, z=2), write_point=Point(x=2, y=1, z=2), is_read_write_aligned=False), 24)], point_to_widen_map={Point(x=0, y=0, z=0): Point(x=0, y=0, z=0), Point(x=1, y=0, z=0): Point(x=1, y=0, z=0), Point(x=2, y=0, z=0): Point(x=2, y=0, z=0), Point(x=0, y=1, z=0): Point(x=0, y=1, z=0), Point(x=1, y=1, z=0): Point(x=1, y=1, z=0), Point(x=2, y=1, z=0): Point(x=2, y=1, z=0), Point(x=0, y=2, z=0): Point(x=0, y=2, z=0), Point(x=1, y=2, z=0): Point(x=1, y=2, z=0), Point(x=2, y=2, z=0): Point(x=2, y=2, z=0), Point(x=0, y=0, z=1): Point(x=0, y=0, z=1), Point(x=1, y=0, z=1): Point(x=1, y=0, z=1), Point(x=2, y=0, z=1): Point(x=2, y=0, z=1), Point(x=0, y=1, z=1): Point(x=0, y=1, z=1), Point(x=1, y=1, z=1): Point(x=1, y=1, z=1), Point(x=2, y=1, z=1): Point(x=2, y=1, z=1), Point(x=0, y=2, z=1): Point(x=0, y=2, z=1), Point(x=1, y=2, z=1): Point(x=1, y=2, z=1), Point(x=2, y=2, z=1): Point(x=2, y=2, z=1), Point(x=0, y=0, z=2): Point(x=0, y=0, z=2), Point(x=1, y=0, z=2): Point(x=1, y=0, z=2), Point(x=2, y=0, z=2): Point(x=2, y=0, z=2), Point(x=0, y=1, z=2): Point(x=0, y=1, z=2), Point(x=1, y=1, z=2): Point(x=1, y=1, z=2), Point(x=2, y=1, z=2): Point(x=2, y=1, z=2), Point(x=0, y=2, z=2): Point(x=0, y=2, z=2), Point(x=1, y=2, z=2): Point(x=1, y=2, z=2), Point(x=2, y=2, z=2): Point(x=2, y=2, z=2)})
+            */
+            // Stencil: S3D_27PT_STEN
+            //      |- point: (0,0,0)
+            //      |- point: (1,0,0)
+            //      |- point: (2,0,0)
+            //      |- point: (0,1,0)
+            //      |- point: (1,1,0)
+            //      |- point: (2,1,0)
+            //      |- point: (0,2,0)
+            //      |- point: (1,2,0)
+            //      |- point: (2,2,0)
+            //      |- point: (0,0,1)
+            //      |- point: (1,0,1)
+            //      |- point: (2,0,1)
+            //      |- point: (0,1,1)
+            //      |- point: (1,1,1)
+            //      |- point: (2,1,1)
+            //      |- point: (0,2,1)
+            //      |- point: (1,2,1)
+            //      |- point: (2,2,1)
+            //      |- point: (0,0,2)
+            //      |- point: (1,0,2)
+            //      |- point: (2,0,2)
+            //      |- point: (0,1,2)
+            //      |- point: (1,1,2)
+            //      |- point: (2,1,2)
+            //      |- point: (0,2,2)
+            //      |- point: (1,2,2)
+            //      `- point: (2,2,2)
+            // read point: (0,1,0), write point: (2,0,0)
+            unsigned short S3D_27PT_STEN_buf_r0_1_p0_rd = 0;
+            unsigned short S3D_27PT_STEN_buf_r0_1_p0_wr = 2;
+            // read point: (0,2,0), write point: (2,1,0)
+            unsigned short S3D_27PT_STEN_buf_r1_2_p0_rd = 0;
+            unsigned short S3D_27PT_STEN_buf_r1_2_p0_wr = 2;
+            unsigned short S3D_27PT_STEN_buf_p0_1_rd;
+
+            if (-2 * stencilConfig.grid_size[0] + -2 > 0)
+                S3D_27PT_STEN_buf_p0_1_rd = -2 * stencilConfig.grid_size[0] + -2;
+            else
+                S3D_27PT_STEN_buf_p0_1_rd = 0;
+
+            unsigned short S3D_27PT_STEN_buf_p0_1_wr;
+
+            if (2 * stencilConfig.grid_size[0] + 2 > 0)
+                S3D_27PT_STEN_buf_p0_1_wr = 2 * stencilConfig.grid_size[0] + 2;
+            else
+                S3D_27PT_STEN_buf_p0_1_wr = 0;
+            // read point: (0,1,1), write point: (2,0,1)
+            unsigned short S3D_27PT_STEN_buf_r0_1_p1_rd = 0;
+            unsigned short S3D_27PT_STEN_buf_r0_1_p1_wr = 2;
+            // read point: (0,2,1), write point: (2,1,1)
+            unsigned short S3D_27PT_STEN_buf_r1_2_p1_rd = 0;
+            unsigned short S3D_27PT_STEN_buf_r1_2_p1_wr = 2;
+            unsigned short S3D_27PT_STEN_buf_p1_2_rd;
+
+            if (-2 * stencilConfig.grid_size[0] + -2 > 0)
+                S3D_27PT_STEN_buf_p1_2_rd = -2 * stencilConfig.grid_size[0] + -2;
+            else
+                S3D_27PT_STEN_buf_p1_2_rd = 0;
+
+            unsigned short S3D_27PT_STEN_buf_p1_2_wr;
+
+            if (2 * stencilConfig.grid_size[0] + 2 > 0)
+                S3D_27PT_STEN_buf_p1_2_wr = 2 * stencilConfig.grid_size[0] + 2;
+            else
+                S3D_27PT_STEN_buf_p1_2_wr = 0;
+            // read point: (0,1,2), write point: (2,0,2)
+            unsigned short S3D_27PT_STEN_buf_r0_1_p2_rd = 0;
+            unsigned short S3D_27PT_STEN_buf_r0_1_p2_wr = 2;
+            // read point: (0,2,2), write point: (2,1,2)
+            unsigned short S3D_27PT_STEN_buf_r1_2_p2_rd = 0;
+            unsigned short S3D_27PT_STEN_buf_r1_2_p2_wr = 2;
+
+            #pragma HLS ARRAY_PARTITION variable = stencilConfig.lower_limit dim = 1 complete
+            #pragma HLS ARRAY_PARTITION variable = stencilConfig.upper_limit dim = 1 complete
+
+        //  *** iteration limit definition ****
+            unsigned int iter_limit = stencilConfig.outer_loop_limit * 
+                    stencilConfig.grid_size[1] * stencilConfig.grid_size[0] + 1 * stencilConfig.grid_size[0] + 1;
+
+        //  *** data read write boundary definitions ****
+            unsigned int S3D_27PT_STEN_read_lb_itr = 0 * stencilConfig.grid_size[0] * stencilConfig.grid_size[1];
+            unsigned int S3D_27PT_STEN_read_ub_itr = (0 + stencilConfig.grid_size[2]) * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
+
+        /*
+            unsigned int read_lb_itr = 0;
+            unsigned int read_ub_itr = stencilConfig.grid_size[2] * stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
+        */
+        //  *** Read & write widen temporaries ****
+        // arg0(u)
+            widen_pw_advection_opt_kernel_0_dt arg0_read_val = 0;
+        // arg1(v)
+            widen_pw_advection_opt_kernel_1_dt arg1_read_val = 0;
+        // arg2(w)
+            widen_pw_advection_opt_kernel_2_dt arg2_read_val = 0;
+        // arg3(u2)
+            widen_pw_advection_opt_kernel_3_dt arg3_update_val;
+        // arg4(v2)
+            widen_pw_advection_opt_kernel_4_dt arg4_update_val;
+        // arg5(w2)
+            widen_pw_advection_opt_kernel_5_dt arg5_update_val;
+        // arg6(tzc1)
+            widen_pw_advection_opt_kernel_6_dt arg6_read_val = 0;
+            widen_pw_advection_opt_kernel_6_dt arg6_update_val;
+        // arg7(tzc2)
+            widen_pw_advection_opt_kernel_7_dt arg7_read_val = 0;
+            widen_pw_advection_opt_kernel_7_dt arg7_update_val;
+        // arg8(tzd1)
+            widen_pw_advection_opt_kernel_8_dt arg8_read_val = 0;
+            widen_pw_advection_opt_kernel_8_dt arg8_update_val;
+        // arg9(tzd2)
+            widen_pw_advection_opt_kernel_9_dt arg9_read_val = 0;
+            widen_pw_advection_opt_kernel_9_dt arg9_update_val;
+        //  *** widen stencil values holder & window buffers ****
+
+            // arg0(u)
+            widen_pw_advection_opt_kernel_0_dt arg0_widenStencilValues[read_num_points_pw_advection_opt_kernel];
+            #pragma HLS ARRAY_PARTITION variable = arg0_widenStencilValues dim = 1 complete
+
+            widen_pw_advection_opt_kernel_0_dt arg0_buf_r0_1_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_r0_1_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_0_dt arg0_buf_r1_2_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_r1_2_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_0_dt arg0_buf_p0_1[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_p0_1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_0_dt arg0_buf_r0_1_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_r0_1_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_0_dt arg0_buf_r1_2_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_r1_2_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_0_dt arg0_buf_p1_2[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_p1_2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_0_dt arg0_buf_r0_1_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_r0_1_p2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_0_dt arg0_buf_r1_2_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_r1_2_p2 type = ram_s2p latency=2
+
+            stencil_type arg0_rowArr_0_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_0_0 dim=1 complete
+            stencil_type arg0_rowArr_1_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_1_0 dim=1 complete
+            stencil_type arg0_rowArr_2_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_2_0 dim=1 complete
+            stencil_type arg0_rowArr_0_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_0_1 dim=1 complete
+            stencil_type arg0_rowArr_1_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_1_1 dim=1 complete
+            stencil_type arg0_rowArr_2_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_2_1 dim=1 complete
+            stencil_type arg0_rowArr_0_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_0_2 dim=1 complete
+            stencil_type arg0_rowArr_1_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_1_2 dim=1 complete
+            stencil_type arg0_rowArr_2_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_2_2 dim=1 complete
+
+            // arg1(v)
+            widen_pw_advection_opt_kernel_1_dt arg1_widenStencilValues[read_num_points_pw_advection_opt_kernel];
+            #pragma HLS ARRAY_PARTITION variable = arg1_widenStencilValues dim = 1 complete
+
+            widen_pw_advection_opt_kernel_1_dt arg1_buf_r0_1_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg1_buf_r0_1_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_1_dt arg1_buf_r1_2_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg1_buf_r1_2_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_1_dt arg1_buf_p0_1[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg1_buf_p0_1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_1_dt arg1_buf_r0_1_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg1_buf_r0_1_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_1_dt arg1_buf_r1_2_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg1_buf_r1_2_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_1_dt arg1_buf_p1_2[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg1_buf_p1_2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_1_dt arg1_buf_r0_1_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg1_buf_r0_1_p2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_1_dt arg1_buf_r1_2_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg1_buf_r1_2_p2 type = ram_s2p latency=2
+
+            stencil_type arg1_rowArr_0_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_0_0 dim=1 complete
+            stencil_type arg1_rowArr_1_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_1_0 dim=1 complete
+            stencil_type arg1_rowArr_2_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_2_0 dim=1 complete
+            stencil_type arg1_rowArr_0_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_0_1 dim=1 complete
+            stencil_type arg1_rowArr_1_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_1_1 dim=1 complete
+            stencil_type arg1_rowArr_2_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_2_1 dim=1 complete
+            stencil_type arg1_rowArr_0_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_0_2 dim=1 complete
+            stencil_type arg1_rowArr_1_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_1_2 dim=1 complete
+            stencil_type arg1_rowArr_2_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg1_rowArr_2_2 dim=1 complete
+
+            // arg2(w)
+            widen_pw_advection_opt_kernel_2_dt arg2_widenStencilValues[read_num_points_pw_advection_opt_kernel];
+            #pragma HLS ARRAY_PARTITION variable = arg2_widenStencilValues dim = 1 complete
+
+            widen_pw_advection_opt_kernel_2_dt arg2_buf_r0_1_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg2_buf_r0_1_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_2_dt arg2_buf_r1_2_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg2_buf_r1_2_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_2_dt arg2_buf_p0_1[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg2_buf_p0_1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_2_dt arg2_buf_r0_1_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg2_buf_r0_1_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_2_dt arg2_buf_r1_2_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg2_buf_r1_2_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_2_dt arg2_buf_p1_2[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg2_buf_p1_2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_2_dt arg2_buf_r0_1_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg2_buf_r0_1_p2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_2_dt arg2_buf_r1_2_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg2_buf_r1_2_p2 type = ram_s2p latency=2
+
+            stencil_type arg2_rowArr_0_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_0_0 dim=1 complete
+            stencil_type arg2_rowArr_1_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_1_0 dim=1 complete
+            stencil_type arg2_rowArr_2_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_2_0 dim=1 complete
+            stencil_type arg2_rowArr_0_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_0_1 dim=1 complete
+            stencil_type arg2_rowArr_1_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_1_1 dim=1 complete
+            stencil_type arg2_rowArr_2_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_2_1 dim=1 complete
+            stencil_type arg2_rowArr_0_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_0_2 dim=1 complete
+            stencil_type arg2_rowArr_1_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_1_2 dim=1 complete
+            stencil_type arg2_rowArr_2_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg2_rowArr_2_2 dim=1 complete
+
+            // arg6(tzc1)
+            widen_pw_advection_opt_kernel_6_dt arg6_widenStencilValues[read_num_points_pw_advection_opt_kernel];
+            #pragma HLS ARRAY_PARTITION variable = arg6_widenStencilValues dim = 1 complete
+
+            widen_pw_advection_opt_kernel_6_dt arg6_buf_r0_1_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg6_buf_r0_1_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_6_dt arg6_buf_r1_2_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg6_buf_r1_2_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_6_dt arg6_buf_p0_1[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg6_buf_p0_1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_6_dt arg6_buf_r0_1_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg6_buf_r0_1_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_6_dt arg6_buf_r1_2_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg6_buf_r1_2_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_6_dt arg6_buf_p1_2[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg6_buf_p1_2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_6_dt arg6_buf_r0_1_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg6_buf_r0_1_p2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_6_dt arg6_buf_r1_2_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg6_buf_r1_2_p2 type = ram_s2p latency=2
+
+            stencil_type arg6_rowArr_0_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_0_0 dim=1 complete
+            stencil_type arg6_rowArr_1_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_1_0 dim=1 complete
+            stencil_type arg6_rowArr_2_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_2_0 dim=1 complete
+            stencil_type arg6_rowArr_0_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_0_1 dim=1 complete
+            stencil_type arg6_rowArr_1_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_1_1 dim=1 complete
+            stencil_type arg6_rowArr_2_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_2_1 dim=1 complete
+            stencil_type arg6_rowArr_0_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_0_2 dim=1 complete
+            stencil_type arg6_rowArr_1_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_1_2 dim=1 complete
+            stencil_type arg6_rowArr_2_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg6_rowArr_2_2 dim=1 complete
+
+            // arg7(tzc2)
+            widen_pw_advection_opt_kernel_7_dt arg7_widenStencilValues[read_num_points_pw_advection_opt_kernel];
+            #pragma HLS ARRAY_PARTITION variable = arg7_widenStencilValues dim = 1 complete
+
+            widen_pw_advection_opt_kernel_7_dt arg7_buf_r0_1_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg7_buf_r0_1_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_7_dt arg7_buf_r1_2_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg7_buf_r1_2_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_7_dt arg7_buf_p0_1[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg7_buf_p0_1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_7_dt arg7_buf_r0_1_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg7_buf_r0_1_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_7_dt arg7_buf_r1_2_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg7_buf_r1_2_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_7_dt arg7_buf_p1_2[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg7_buf_p1_2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_7_dt arg7_buf_r0_1_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg7_buf_r0_1_p2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_7_dt arg7_buf_r1_2_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg7_buf_r1_2_p2 type = ram_s2p latency=2
+
+            stencil_type arg7_rowArr_0_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_0_0 dim=1 complete
+            stencil_type arg7_rowArr_1_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_1_0 dim=1 complete
+            stencil_type arg7_rowArr_2_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_2_0 dim=1 complete
+            stencil_type arg7_rowArr_0_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_0_1 dim=1 complete
+            stencil_type arg7_rowArr_1_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_1_1 dim=1 complete
+            stencil_type arg7_rowArr_2_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_2_1 dim=1 complete
+            stencil_type arg7_rowArr_0_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_0_2 dim=1 complete
+            stencil_type arg7_rowArr_1_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_1_2 dim=1 complete
+            stencil_type arg7_rowArr_2_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg7_rowArr_2_2 dim=1 complete
+
+            // arg8(tzd1)
+            widen_pw_advection_opt_kernel_8_dt arg8_widenStencilValues[read_num_points_pw_advection_opt_kernel];
+            #pragma HLS ARRAY_PARTITION variable = arg8_widenStencilValues dim = 1 complete
+
+            widen_pw_advection_opt_kernel_8_dt arg8_buf_r0_1_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg8_buf_r0_1_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_8_dt arg8_buf_r1_2_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg8_buf_r1_2_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_8_dt arg8_buf_p0_1[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg8_buf_p0_1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_8_dt arg8_buf_r0_1_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg8_buf_r0_1_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_8_dt arg8_buf_r1_2_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg8_buf_r1_2_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_8_dt arg8_buf_p1_2[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg8_buf_p1_2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_8_dt arg8_buf_r0_1_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg8_buf_r0_1_p2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_8_dt arg8_buf_r1_2_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg8_buf_r1_2_p2 type = ram_s2p latency=2
+
+            stencil_type arg8_rowArr_0_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_0_0 dim=1 complete
+            stencil_type arg8_rowArr_1_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_1_0 dim=1 complete
+            stencil_type arg8_rowArr_2_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_2_0 dim=1 complete
+            stencil_type arg8_rowArr_0_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_0_1 dim=1 complete
+            stencil_type arg8_rowArr_1_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_1_1 dim=1 complete
+            stencil_type arg8_rowArr_2_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_2_1 dim=1 complete
+            stencil_type arg8_rowArr_0_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_0_2 dim=1 complete
+            stencil_type arg8_rowArr_1_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_1_2 dim=1 complete
+            stencil_type arg8_rowArr_2_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg8_rowArr_2_2 dim=1 complete
+
+            // arg9(tzd2)
+            widen_pw_advection_opt_kernel_9_dt arg9_widenStencilValues[read_num_points_pw_advection_opt_kernel];
+            #pragma HLS ARRAY_PARTITION variable = arg9_widenStencilValues dim = 1 complete
+
+            widen_pw_advection_opt_kernel_9_dt arg9_buf_r0_1_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg9_buf_r0_1_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_9_dt arg9_buf_r1_2_p0[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg9_buf_r1_2_p0 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_9_dt arg9_buf_p0_1[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg9_buf_p0_1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_9_dt arg9_buf_r0_1_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg9_buf_r0_1_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_9_dt arg9_buf_r1_2_p1[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg9_buf_r1_2_p1 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_9_dt arg9_buf_p1_2[max_depth];
+            #pragma HLS BIND_STORAGE variable = arg9_buf_p1_2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_9_dt arg9_buf_r0_1_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg9_buf_r0_1_p2 type = ram_s2p latency=2
+            widen_pw_advection_opt_kernel_9_dt arg9_buf_r1_2_p2[line_buff_3d_depth];
+            #pragma HLS BIND_STORAGE variable = arg9_buf_r1_2_p2 type = ram_s2p latency=2
+
+            stencil_type arg9_rowArr_0_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_0_0 dim=1 complete
+            stencil_type arg9_rowArr_1_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_1_0 dim=1 complete
+            stencil_type arg9_rowArr_2_0[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_2_0 dim=1 complete
+            stencil_type arg9_rowArr_0_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_0_1 dim=1 complete
+            stencil_type arg9_rowArr_1_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_1_1 dim=1 complete
+            stencil_type arg9_rowArr_2_1[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_2_1 dim=1 complete
+            stencil_type arg9_rowArr_0_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_0_2 dim=1 complete
+            stencil_type arg9_rowArr_1_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_1_2 dim=1 complete
+            stencil_type arg9_rowArr_2_2[vector_factor + span_x];
+            #pragma HLS ARRAY_PARTITION variable = arg9_rowArr_2_2 dim=1 complete
+
+            const short cond_x_val = stencilConfig.grid_size[0] - 1; 
+            const short cond_y_val = stencilConfig.grid_size[1] - 1;
+            const short cond_z_val = stencilConfig.outer_loop_limit - 1;
+
+            for (unsigned int itr = 0; itr < iter_limit; itr++)
             {
-                bool cond_x_terminate = (i == cond_x_val ? true : false); 
-                bool cond_y_terminate = (j == cond_y_val ? true : false);
-                bool cond_z_terminate = (k == cond_z_val ? true : false);
+            #pragma HLS PIPELINE II=1
+                unsigned int reg_itr = register_it(itr);
 
-#ifdef DEBUG_LOG
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] loop params before update i(%d), "\
-                    "j(%d), "\
-                    "k(%d), "\
-                    "S3D_27PT_STEN_buf_r0_1_p0_rd: %d, "\
-                    "S3D_27PT_STEN_buf_r0_1_p0_wr: %d, "\
-                    "S3D_27PT_STEN_buf_r1_2_p0_rd: %d, "\
-                    "S3D_27PT_STEN_buf_r1_2_p0_wr: %d, "\
-                    "S3D_27PT_STEN_buf_p0_1_rd: %d, "\
-                    "S3D_27PT_STEN_buf_p0_1_wr: %d, "\
-                    "S3D_27PT_STEN_buf_r0_1_p1_rd: %d, "\
-                    "S3D_27PT_STEN_buf_r0_1_p1_wr: %d, "\
-                    "S3D_27PT_STEN_buf_r1_2_p1_rd: %d, "\
-                    "S3D_27PT_STEN_buf_r1_2_p1_wr: %d, "\
-                    "S3D_27PT_STEN_buf_p1_2_rd: %d, "\
-                    "S3D_27PT_STEN_buf_p1_2_wr: %d, "\
-                    "S3D_27PT_STEN_buf_r0_1_p2_rd: %d, "\
-                    "S3D_27PT_STEN_buf_r0_1_p2_wr: %d, "\
-                    "S3D_27PT_STEN_buf_r1_2_p2_rd: %d, "\
-                    "S3D_27PT_STEN_buf_r1_2_p2_wr: %d, "\
-                    "reg_itr(%d)\n", m_PEId, i, 
-                    j,
-                    k,
-                    S3D_27PT_STEN_buf_r0_1_p0_rd, 
-                    S3D_27PT_STEN_buf_r0_1_p0_wr, 
-                    S3D_27PT_STEN_buf_r1_2_p0_rd, 
-                    S3D_27PT_STEN_buf_r1_2_p0_wr, 
-                    S3D_27PT_STEN_buf_p0_1_rd, 
-                    S3D_27PT_STEN_buf_p0_1_wr, 
-                    S3D_27PT_STEN_buf_r0_1_p1_rd, 
-                    S3D_27PT_STEN_buf_r0_1_p1_wr, 
-                    S3D_27PT_STEN_buf_r1_2_p1_rd, 
-                    S3D_27PT_STEN_buf_r1_2_p1_wr, 
-                    S3D_27PT_STEN_buf_p1_2_rd, 
-                    S3D_27PT_STEN_buf_p1_2_wr, 
-                    S3D_27PT_STEN_buf_r0_1_p2_rd, 
-                    S3D_27PT_STEN_buf_r0_1_p2_wr, 
-                    S3D_27PT_STEN_buf_r1_2_p2_rd, 
-                    S3D_27PT_STEN_buf_r1_2_p2_wr, 
-                    reg_itr);
-#endif
-                if (cond_x_terminate)
-                    i = 0;
-                else
-                    i++;
-                if (cond_x_terminate && cond_y_terminate)
-                    j = 0;
-                else if  (cond_x_terminate)
-                    j++;
-                if (cond_x_terminate && cond_y_terminate && cond_z_terminate)
-                    k = 0;
-                else if (cond_x_terminate && cond_y_terminate)
-                    k++;
-
-    /*                bool arg0_read_cond = (reg_itr < arg0_read_ub_itr) and (reg_itr >= arg0_read_lb_itr);
-                bool arg1_read_cond = (reg_itr < arg1_read_ub_itr) and (reg_itr >= arg1_read_lb_itr);
-                bool arg2_read_cond = (reg_itr < arg2_read_ub_itr) and (reg_itr >= arg2_read_lb_itr);
-                bool arg6_read_cond = (reg_itr < arg6_read_ub_itr) and (reg_itr >= arg6_read_lb_itr);
-                bool arg7_read_cond = (reg_itr < arg7_read_ub_itr) and (reg_itr >= arg7_read_lb_itr);
-                bool arg8_read_cond = (reg_itr < arg8_read_ub_itr) and (reg_itr >= arg8_read_lb_itr);
-                bool arg9_read_cond = (reg_itr < arg9_read_ub_itr) and (reg_itr >= arg9_read_lb_itr);
-*/
-                bool read_cond  =  (reg_itr < read_ub_itr) and (reg_itr >= read_lb_itr);
-
-                if (read_cond)
+                spc_temp_blocking_read:
                 {
+                    bool cond_x_terminate = (i == cond_x_val ? true : false); 
+                    bool cond_y_terminate = (j == cond_y_val ? true : false);
+                    bool cond_z_terminate = (k == cond_z_val ? true : false);
 
-                    arg0_read_val = arg0_rd_buffer.read();
+    #ifdef DEBUG_LOG
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] loop params before update i(%d), "\
+                        "j(%d), "\
+                        "k(%d), "\
+                        "S3D_27PT_STEN_buf_r0_1_p0_rd: %d, "\
+                        "S3D_27PT_STEN_buf_r0_1_p0_wr: %d, "\
+                        "S3D_27PT_STEN_buf_r1_2_p0_rd: %d, "\
+                        "S3D_27PT_STEN_buf_r1_2_p0_wr: %d, "\
+                        "S3D_27PT_STEN_buf_p0_1_rd: %d, "\
+                        "S3D_27PT_STEN_buf_p0_1_wr: %d, "\
+                        "S3D_27PT_STEN_buf_r0_1_p1_rd: %d, "\
+                        "S3D_27PT_STEN_buf_r0_1_p1_wr: %d, "\
+                        "S3D_27PT_STEN_buf_r1_2_p1_rd: %d, "\
+                        "S3D_27PT_STEN_buf_r1_2_p1_wr: %d, "\
+                        "S3D_27PT_STEN_buf_p1_2_rd: %d, "\
+                        "S3D_27PT_STEN_buf_p1_2_wr: %d, "\
+                        "S3D_27PT_STEN_buf_r0_1_p2_rd: %d, "\
+                        "S3D_27PT_STEN_buf_r0_1_p2_wr: %d, "\
+                        "S3D_27PT_STEN_buf_r1_2_p2_rd: %d, "\
+                        "S3D_27PT_STEN_buf_r1_2_p2_wr: %d, "\
+                        "reg_itr(%d)\n", m_PEId, i, 
+                        j,
+                        k,
+                        S3D_27PT_STEN_buf_r0_1_p0_rd, 
+                        S3D_27PT_STEN_buf_r0_1_p0_wr, 
+                        S3D_27PT_STEN_buf_r1_2_p0_rd, 
+                        S3D_27PT_STEN_buf_r1_2_p0_wr, 
+                        S3D_27PT_STEN_buf_p0_1_rd, 
+                        S3D_27PT_STEN_buf_p0_1_wr, 
+                        S3D_27PT_STEN_buf_r0_1_p1_rd, 
+                        S3D_27PT_STEN_buf_r0_1_p1_wr, 
+                        S3D_27PT_STEN_buf_r1_2_p1_rd, 
+                        S3D_27PT_STEN_buf_r1_2_p1_wr, 
+                        S3D_27PT_STEN_buf_p1_2_rd, 
+                        S3D_27PT_STEN_buf_p1_2_wr, 
+                        S3D_27PT_STEN_buf_r0_1_p2_rd, 
+                        S3D_27PT_STEN_buf_r0_1_p2_wr, 
+                        S3D_27PT_STEN_buf_r1_2_p2_rd, 
+                        S3D_27PT_STEN_buf_r1_2_p2_wr, 
+                        reg_itr);
+    #endif
+                    if (cond_x_terminate)
+                        i = 0;
+                    else
+                        i++;
+                    if (cond_x_terminate && cond_y_terminate)
+                        j = 0;
+                    else if  (cond_x_terminate)
+                        j++;
+                    if (cond_x_terminate && cond_y_terminate && cond_z_terminate)
+                        k = 0;
+                    else if (cond_x_terminate && cond_y_terminate)
+                        k++;
 
-                    arg1_read_val = arg1_rd_buffer.read();
+                    bool S3D_27PT_STEN_read_cond = (reg_itr < S3D_27PT_STEN_read_ub_itr) and (reg_itr >= S3D_27PT_STEN_read_lb_itr);
+                /*    bool read_cond  =  (reg_itr < read_ub_itr) and (reg_itr >= read_lb_itr); */
 
-                    arg2_read_val = arg2_rd_buffer.read();
+                    if (S3D_27PT_STEN_read_cond)
+                    {
+                        arg0_read_val = arg0_rd_buffer.read();
+                        arg1_read_val = arg1_rd_buffer.read();
+                        arg2_read_val = arg2_rd_buffer.read();
+                        arg6_read_val = arg6_rd_buffer.read();
+                        arg7_read_val = arg7_rd_buffer.read();
+                        arg8_read_val = arg8_rd_buffer.read();
+                        arg9_read_val = arg9_rd_buffer.read();
+                    }
 
-                    arg6_read_val = arg6_rd_buffer.read();
+                    /*if (read_cond)
+                    {
 
-                    arg7_read_val = arg7_rd_buffer.read();
+                        arg0_read_val = arg0_rd_buffer.read();
 
-                    arg8_read_val = arg8_rd_buffer.read();
+                        arg1_read_val = arg1_rd_buffer.read();
 
-                    arg9_read_val = arg9_rd_buffer.read();
-                }
+                        arg2_read_val = arg2_rd_buffer.read();
 
-                arg0_widenStencilValues[0] = arg0_widenStencilValues[1];                
-                arg0_widenStencilValues[1] = arg0_widenStencilValues[2];                
-                arg0_widenStencilValues[2] = arg0_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
-                arg0_widenStencilValues[3] = arg0_widenStencilValues[4];                
-                arg0_widenStencilValues[4] = arg0_widenStencilValues[5];                
-                arg0_widenStencilValues[5] = arg0_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
-                arg0_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg0_widenStencilValues[3];                
-                arg0_widenStencilValues[6] = arg0_widenStencilValues[7];                
-                arg0_widenStencilValues[7] = arg0_widenStencilValues[8];                
-                arg0_widenStencilValues[8] = arg0_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
-                arg0_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg0_widenStencilValues[6];                
-                arg0_widenStencilValues[9] = arg0_widenStencilValues[10];                
-                arg0_widenStencilValues[10] = arg0_widenStencilValues[11];                
-                arg0_widenStencilValues[11] = arg0_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
-                arg0_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg0_widenStencilValues[9];                
-                arg0_widenStencilValues[12] = arg0_widenStencilValues[13];                
-                arg0_widenStencilValues[13] = arg0_widenStencilValues[14];                
-                arg0_widenStencilValues[14] = arg0_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
-                arg0_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg0_widenStencilValues[12];                
-                arg0_widenStencilValues[15] = arg0_widenStencilValues[16];                
-                arg0_widenStencilValues[16] = arg0_widenStencilValues[17];                
-                arg0_widenStencilValues[17] = arg0_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
-                arg0_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg0_widenStencilValues[15];                
-                arg0_widenStencilValues[18] = arg0_widenStencilValues[19];                
-                arg0_widenStencilValues[19] = arg0_widenStencilValues[20];                
-                arg0_widenStencilValues[20] = arg0_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
-                arg0_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg0_widenStencilValues[18];                
-                arg0_widenStencilValues[21] = arg0_widenStencilValues[22];                
-                arg0_widenStencilValues[22] = arg0_widenStencilValues[23];                
-                arg0_widenStencilValues[23] = arg0_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
-                arg0_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg0_widenStencilValues[21];                
-                arg0_widenStencilValues[24] = arg0_widenStencilValues[25];                
-                arg0_widenStencilValues[25] = arg0_widenStencilValues[26];                
-                arg0_widenStencilValues[26] = arg0_read_val;                
-                arg0_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg0_widenStencilValues[24];                
-                arg1_widenStencilValues[0] = arg1_widenStencilValues[1];                
-                arg1_widenStencilValues[1] = arg1_widenStencilValues[2];                
-                arg1_widenStencilValues[2] = arg1_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
-                arg1_widenStencilValues[3] = arg1_widenStencilValues[4];                
-                arg1_widenStencilValues[4] = arg1_widenStencilValues[5];                
-                arg1_widenStencilValues[5] = arg1_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
-                arg1_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg1_widenStencilValues[3];                
-                arg1_widenStencilValues[6] = arg1_widenStencilValues[7];                
-                arg1_widenStencilValues[7] = arg1_widenStencilValues[8];                
-                arg1_widenStencilValues[8] = arg1_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
-                arg1_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg1_widenStencilValues[6];                
-                arg1_widenStencilValues[9] = arg1_widenStencilValues[10];                
-                arg1_widenStencilValues[10] = arg1_widenStencilValues[11];                
-                arg1_widenStencilValues[11] = arg1_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
-                arg1_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg1_widenStencilValues[9];                
-                arg1_widenStencilValues[12] = arg1_widenStencilValues[13];                
-                arg1_widenStencilValues[13] = arg1_widenStencilValues[14];                
-                arg1_widenStencilValues[14] = arg1_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
-                arg1_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg1_widenStencilValues[12];                
-                arg1_widenStencilValues[15] = arg1_widenStencilValues[16];                
-                arg1_widenStencilValues[16] = arg1_widenStencilValues[17];                
-                arg1_widenStencilValues[17] = arg1_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
-                arg1_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg1_widenStencilValues[15];                
-                arg1_widenStencilValues[18] = arg1_widenStencilValues[19];                
-                arg1_widenStencilValues[19] = arg1_widenStencilValues[20];                
-                arg1_widenStencilValues[20] = arg1_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
-                arg1_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg1_widenStencilValues[18];                
-                arg1_widenStencilValues[21] = arg1_widenStencilValues[22];                
-                arg1_widenStencilValues[22] = arg1_widenStencilValues[23];                
-                arg1_widenStencilValues[23] = arg1_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
-                arg1_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg1_widenStencilValues[21];                
-                arg1_widenStencilValues[24] = arg1_widenStencilValues[25];                
-                arg1_widenStencilValues[25] = arg1_widenStencilValues[26];                
-                arg1_widenStencilValues[26] = arg1_read_val;                
-                arg1_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg1_widenStencilValues[24];                
-                arg2_widenStencilValues[0] = arg2_widenStencilValues[1];                
-                arg2_widenStencilValues[1] = arg2_widenStencilValues[2];                
-                arg2_widenStencilValues[2] = arg2_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
-                arg2_widenStencilValues[3] = arg2_widenStencilValues[4];                
-                arg2_widenStencilValues[4] = arg2_widenStencilValues[5];                
-                arg2_widenStencilValues[5] = arg2_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
-                arg2_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg2_widenStencilValues[3];                
-                arg2_widenStencilValues[6] = arg2_widenStencilValues[7];                
-                arg2_widenStencilValues[7] = arg2_widenStencilValues[8];                
-                arg2_widenStencilValues[8] = arg2_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
-                arg2_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg2_widenStencilValues[6];                
-                arg2_widenStencilValues[9] = arg2_widenStencilValues[10];                
-                arg2_widenStencilValues[10] = arg2_widenStencilValues[11];                
-                arg2_widenStencilValues[11] = arg2_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
-                arg2_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg2_widenStencilValues[9];                
-                arg2_widenStencilValues[12] = arg2_widenStencilValues[13];                
-                arg2_widenStencilValues[13] = arg2_widenStencilValues[14];                
-                arg2_widenStencilValues[14] = arg2_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
-                arg2_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg2_widenStencilValues[12];                
-                arg2_widenStencilValues[15] = arg2_widenStencilValues[16];                
-                arg2_widenStencilValues[16] = arg2_widenStencilValues[17];                
-                arg2_widenStencilValues[17] = arg2_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
-                arg2_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg2_widenStencilValues[15];                
-                arg2_widenStencilValues[18] = arg2_widenStencilValues[19];                
-                arg2_widenStencilValues[19] = arg2_widenStencilValues[20];                
-                arg2_widenStencilValues[20] = arg2_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
-                arg2_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg2_widenStencilValues[18];                
-                arg2_widenStencilValues[21] = arg2_widenStencilValues[22];                
-                arg2_widenStencilValues[22] = arg2_widenStencilValues[23];                
-                arg2_widenStencilValues[23] = arg2_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
-                arg2_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg2_widenStencilValues[21];                
-                arg2_widenStencilValues[24] = arg2_widenStencilValues[25];                
-                arg2_widenStencilValues[25] = arg2_widenStencilValues[26];                
-                arg2_widenStencilValues[26] = arg2_read_val;                
-                arg2_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg2_widenStencilValues[24];                
-                arg6_widenStencilValues[0] = arg6_read_val;                
-                arg7_widenStencilValues[0] = arg7_read_val;                
-                arg8_widenStencilValues[0] = arg8_read_val;                
-                arg9_widenStencilValues[0] = arg9_read_val;
+                        arg6_read_val = arg6_rd_buffer.read();
 
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p0_rd = S3D_27PT_STEN_buf_r0_1_p0_rd >= (stencilConfig.grid_size[0] - 1);
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p0_wr = S3D_27PT_STEN_buf_r0_1_p0_wr >= (stencilConfig.grid_size[0] - 1);
+                        arg7_read_val = arg7_rd_buffer.read();
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p0_rd)
-                    S3D_27PT_STEN_buf_r0_1_p0_rd = 0;
-                else
-                    S3D_27PT_STEN_buf_r0_1_p0_rd++;
+                        arg8_read_val = arg8_rd_buffer.read();
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p0_wr)
-                    S3D_27PT_STEN_buf_r0_1_p0_wr = 0;
-                else
-                    S3D_27PT_STEN_buf_r0_1_p0_wr++;
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p0_rd = S3D_27PT_STEN_buf_r1_2_p0_rd >= (stencilConfig.grid_size[0] - 1);
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p0_wr = S3D_27PT_STEN_buf_r1_2_p0_wr >= (stencilConfig.grid_size[0] - 1);
+                        arg9_read_val = arg9_rd_buffer.read();
+                    }*/
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p0_rd)
-                    S3D_27PT_STEN_buf_r1_2_p0_rd = 0;
-                else
-                    S3D_27PT_STEN_buf_r1_2_p0_rd++;
+                    arg0_widenStencilValues[0] = arg0_widenStencilValues[1];                
+                    arg0_widenStencilValues[1] = arg0_widenStencilValues[2];                
+                    arg0_widenStencilValues[2] = arg0_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
+                    arg0_widenStencilValues[3] = arg0_widenStencilValues[4];                
+                    arg0_widenStencilValues[4] = arg0_widenStencilValues[5];                
+                    arg0_widenStencilValues[5] = arg0_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
+                    arg0_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg0_widenStencilValues[3];                
+                    arg0_widenStencilValues[6] = arg0_widenStencilValues[7];                
+                    arg0_widenStencilValues[7] = arg0_widenStencilValues[8];                
+                    arg0_widenStencilValues[8] = arg0_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
+                    arg0_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg0_widenStencilValues[6];                
+                    arg0_widenStencilValues[9] = arg0_widenStencilValues[10];                
+                    arg0_widenStencilValues[10] = arg0_widenStencilValues[11];                
+                    arg0_widenStencilValues[11] = arg0_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
+                    arg0_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg0_widenStencilValues[9];                
+                    arg0_widenStencilValues[12] = arg0_widenStencilValues[13];                
+                    arg0_widenStencilValues[13] = arg0_widenStencilValues[14];                
+                    arg0_widenStencilValues[14] = arg0_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
+                    arg0_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg0_widenStencilValues[12];                
+                    arg0_widenStencilValues[15] = arg0_widenStencilValues[16];                
+                    arg0_widenStencilValues[16] = arg0_widenStencilValues[17];                
+                    arg0_widenStencilValues[17] = arg0_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
+                    arg0_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg0_widenStencilValues[15];                
+                    arg0_widenStencilValues[18] = arg0_widenStencilValues[19];                
+                    arg0_widenStencilValues[19] = arg0_widenStencilValues[20];                
+                    arg0_widenStencilValues[20] = arg0_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
+                    arg0_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg0_widenStencilValues[18];                
+                    arg0_widenStencilValues[21] = arg0_widenStencilValues[22];                
+                    arg0_widenStencilValues[22] = arg0_widenStencilValues[23];                
+                    arg0_widenStencilValues[23] = arg0_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
+                    arg0_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg0_widenStencilValues[21];                
+                    arg0_widenStencilValues[24] = arg0_widenStencilValues[25];                
+                    arg0_widenStencilValues[25] = arg0_widenStencilValues[26];                
+                    arg0_widenStencilValues[26] = arg0_read_val;                
+                    arg0_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg0_widenStencilValues[24];                
+                    arg1_widenStencilValues[0] = arg1_widenStencilValues[1];                
+                    arg1_widenStencilValues[1] = arg1_widenStencilValues[2];                
+                    arg1_widenStencilValues[2] = arg1_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
+                    arg1_widenStencilValues[3] = arg1_widenStencilValues[4];                
+                    arg1_widenStencilValues[4] = arg1_widenStencilValues[5];                
+                    arg1_widenStencilValues[5] = arg1_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
+                    arg1_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg1_widenStencilValues[3];                
+                    arg1_widenStencilValues[6] = arg1_widenStencilValues[7];                
+                    arg1_widenStencilValues[7] = arg1_widenStencilValues[8];                
+                    arg1_widenStencilValues[8] = arg1_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
+                    arg1_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg1_widenStencilValues[6];                
+                    arg1_widenStencilValues[9] = arg1_widenStencilValues[10];                
+                    arg1_widenStencilValues[10] = arg1_widenStencilValues[11];                
+                    arg1_widenStencilValues[11] = arg1_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
+                    arg1_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg1_widenStencilValues[9];                
+                    arg1_widenStencilValues[12] = arg1_widenStencilValues[13];                
+                    arg1_widenStencilValues[13] = arg1_widenStencilValues[14];                
+                    arg1_widenStencilValues[14] = arg1_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
+                    arg1_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg1_widenStencilValues[12];                
+                    arg1_widenStencilValues[15] = arg1_widenStencilValues[16];                
+                    arg1_widenStencilValues[16] = arg1_widenStencilValues[17];                
+                    arg1_widenStencilValues[17] = arg1_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
+                    arg1_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg1_widenStencilValues[15];                
+                    arg1_widenStencilValues[18] = arg1_widenStencilValues[19];                
+                    arg1_widenStencilValues[19] = arg1_widenStencilValues[20];                
+                    arg1_widenStencilValues[20] = arg1_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
+                    arg1_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg1_widenStencilValues[18];                
+                    arg1_widenStencilValues[21] = arg1_widenStencilValues[22];                
+                    arg1_widenStencilValues[22] = arg1_widenStencilValues[23];                
+                    arg1_widenStencilValues[23] = arg1_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
+                    arg1_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg1_widenStencilValues[21];                
+                    arg1_widenStencilValues[24] = arg1_widenStencilValues[25];                
+                    arg1_widenStencilValues[25] = arg1_widenStencilValues[26];                
+                    arg1_widenStencilValues[26] = arg1_read_val;                
+                    arg1_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg1_widenStencilValues[24];                
+                    arg2_widenStencilValues[0] = arg2_widenStencilValues[1];                
+                    arg2_widenStencilValues[1] = arg2_widenStencilValues[2];                
+                    arg2_widenStencilValues[2] = arg2_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
+                    arg2_widenStencilValues[3] = arg2_widenStencilValues[4];                
+                    arg2_widenStencilValues[4] = arg2_widenStencilValues[5];                
+                    arg2_widenStencilValues[5] = arg2_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
+                    arg2_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg2_widenStencilValues[3];                
+                    arg2_widenStencilValues[6] = arg2_widenStencilValues[7];                
+                    arg2_widenStencilValues[7] = arg2_widenStencilValues[8];                
+                    arg2_widenStencilValues[8] = arg2_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
+                    arg2_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg2_widenStencilValues[6];                
+                    arg2_widenStencilValues[9] = arg2_widenStencilValues[10];                
+                    arg2_widenStencilValues[10] = arg2_widenStencilValues[11];                
+                    arg2_widenStencilValues[11] = arg2_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
+                    arg2_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg2_widenStencilValues[9];                
+                    arg2_widenStencilValues[12] = arg2_widenStencilValues[13];                
+                    arg2_widenStencilValues[13] = arg2_widenStencilValues[14];                
+                    arg2_widenStencilValues[14] = arg2_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
+                    arg2_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg2_widenStencilValues[12];                
+                    arg2_widenStencilValues[15] = arg2_widenStencilValues[16];                
+                    arg2_widenStencilValues[16] = arg2_widenStencilValues[17];                
+                    arg2_widenStencilValues[17] = arg2_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
+                    arg2_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg2_widenStencilValues[15];                
+                    arg2_widenStencilValues[18] = arg2_widenStencilValues[19];                
+                    arg2_widenStencilValues[19] = arg2_widenStencilValues[20];                
+                    arg2_widenStencilValues[20] = arg2_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
+                    arg2_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg2_widenStencilValues[18];                
+                    arg2_widenStencilValues[21] = arg2_widenStencilValues[22];                
+                    arg2_widenStencilValues[22] = arg2_widenStencilValues[23];                
+                    arg2_widenStencilValues[23] = arg2_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
+                    arg2_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg2_widenStencilValues[21];                
+                    arg2_widenStencilValues[24] = arg2_widenStencilValues[25];                
+                    arg2_widenStencilValues[25] = arg2_widenStencilValues[26];                
+                    arg2_widenStencilValues[26] = arg2_read_val;                
+                    arg2_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg2_widenStencilValues[24];                
+                    arg6_widenStencilValues[0] = arg6_widenStencilValues[1];                
+                    arg6_widenStencilValues[1] = arg6_widenStencilValues[2];                
+                    arg6_widenStencilValues[2] = arg6_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
+                    arg6_widenStencilValues[3] = arg6_widenStencilValues[4];                
+                    arg6_widenStencilValues[4] = arg6_widenStencilValues[5];                
+                    arg6_widenStencilValues[5] = arg6_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
+                    arg6_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg6_widenStencilValues[3];                
+                    arg6_widenStencilValues[6] = arg6_widenStencilValues[7];                
+                    arg6_widenStencilValues[7] = arg6_widenStencilValues[8];                
+                    arg6_widenStencilValues[8] = arg6_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
+                    arg6_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg6_widenStencilValues[6];                
+                    arg6_widenStencilValues[9] = arg6_widenStencilValues[10];                
+                    arg6_widenStencilValues[10] = arg6_widenStencilValues[11];                
+                    arg6_widenStencilValues[11] = arg6_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
+                    arg6_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg6_widenStencilValues[9];                
+                    arg6_widenStencilValues[12] = arg6_widenStencilValues[13];                
+                    arg6_widenStencilValues[13] = arg6_widenStencilValues[14];                
+                    arg6_widenStencilValues[14] = arg6_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
+                    arg6_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg6_widenStencilValues[12];                
+                    arg6_widenStencilValues[15] = arg6_widenStencilValues[16];                
+                    arg6_widenStencilValues[16] = arg6_widenStencilValues[17];                
+                    arg6_widenStencilValues[17] = arg6_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
+                    arg6_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg6_widenStencilValues[15];                
+                    arg6_widenStencilValues[18] = arg6_widenStencilValues[19];                
+                    arg6_widenStencilValues[19] = arg6_widenStencilValues[20];                
+                    arg6_widenStencilValues[20] = arg6_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
+                    arg6_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg6_widenStencilValues[18];                
+                    arg6_widenStencilValues[21] = arg6_widenStencilValues[22];                
+                    arg6_widenStencilValues[22] = arg6_widenStencilValues[23];                
+                    arg6_widenStencilValues[23] = arg6_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
+                    arg6_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg6_widenStencilValues[21];                
+                    arg6_widenStencilValues[24] = arg6_widenStencilValues[25];                
+                    arg6_widenStencilValues[25] = arg6_widenStencilValues[26];                
+                    arg6_widenStencilValues[26] = arg6_read_val;                
+                    arg6_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg6_widenStencilValues[24];                
+                    arg7_widenStencilValues[0] = arg7_widenStencilValues[1];                
+                    arg7_widenStencilValues[1] = arg7_widenStencilValues[2];                
+                    arg7_widenStencilValues[2] = arg7_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
+                    arg7_widenStencilValues[3] = arg7_widenStencilValues[4];                
+                    arg7_widenStencilValues[4] = arg7_widenStencilValues[5];                
+                    arg7_widenStencilValues[5] = arg7_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
+                    arg7_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg7_widenStencilValues[3];                
+                    arg7_widenStencilValues[6] = arg7_widenStencilValues[7];                
+                    arg7_widenStencilValues[7] = arg7_widenStencilValues[8];                
+                    arg7_widenStencilValues[8] = arg7_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
+                    arg7_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg7_widenStencilValues[6];                
+                    arg7_widenStencilValues[9] = arg7_widenStencilValues[10];                
+                    arg7_widenStencilValues[10] = arg7_widenStencilValues[11];                
+                    arg7_widenStencilValues[11] = arg7_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
+                    arg7_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg7_widenStencilValues[9];                
+                    arg7_widenStencilValues[12] = arg7_widenStencilValues[13];                
+                    arg7_widenStencilValues[13] = arg7_widenStencilValues[14];                
+                    arg7_widenStencilValues[14] = arg7_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
+                    arg7_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg7_widenStencilValues[12];                
+                    arg7_widenStencilValues[15] = arg7_widenStencilValues[16];                
+                    arg7_widenStencilValues[16] = arg7_widenStencilValues[17];                
+                    arg7_widenStencilValues[17] = arg7_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
+                    arg7_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg7_widenStencilValues[15];                
+                    arg7_widenStencilValues[18] = arg7_widenStencilValues[19];                
+                    arg7_widenStencilValues[19] = arg7_widenStencilValues[20];                
+                    arg7_widenStencilValues[20] = arg7_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
+                    arg7_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg7_widenStencilValues[18];                
+                    arg7_widenStencilValues[21] = arg7_widenStencilValues[22];                
+                    arg7_widenStencilValues[22] = arg7_widenStencilValues[23];                
+                    arg7_widenStencilValues[23] = arg7_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
+                    arg7_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg7_widenStencilValues[21];                
+                    arg7_widenStencilValues[24] = arg7_widenStencilValues[25];                
+                    arg7_widenStencilValues[25] = arg7_widenStencilValues[26];                
+                    arg7_widenStencilValues[26] = arg7_read_val;                
+                    arg7_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg7_widenStencilValues[24];                
+                    arg8_widenStencilValues[0] = arg8_widenStencilValues[1];                
+                    arg8_widenStencilValues[1] = arg8_widenStencilValues[2];                
+                    arg8_widenStencilValues[2] = arg8_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
+                    arg8_widenStencilValues[3] = arg8_widenStencilValues[4];                
+                    arg8_widenStencilValues[4] = arg8_widenStencilValues[5];                
+                    arg8_widenStencilValues[5] = arg8_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
+                    arg8_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg8_widenStencilValues[3];                
+                    arg8_widenStencilValues[6] = arg8_widenStencilValues[7];                
+                    arg8_widenStencilValues[7] = arg8_widenStencilValues[8];                
+                    arg8_widenStencilValues[8] = arg8_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
+                    arg8_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg8_widenStencilValues[6];                
+                    arg8_widenStencilValues[9] = arg8_widenStencilValues[10];                
+                    arg8_widenStencilValues[10] = arg8_widenStencilValues[11];                
+                    arg8_widenStencilValues[11] = arg8_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
+                    arg8_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg8_widenStencilValues[9];                
+                    arg8_widenStencilValues[12] = arg8_widenStencilValues[13];                
+                    arg8_widenStencilValues[13] = arg8_widenStencilValues[14];                
+                    arg8_widenStencilValues[14] = arg8_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
+                    arg8_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg8_widenStencilValues[12];                
+                    arg8_widenStencilValues[15] = arg8_widenStencilValues[16];                
+                    arg8_widenStencilValues[16] = arg8_widenStencilValues[17];                
+                    arg8_widenStencilValues[17] = arg8_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
+                    arg8_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg8_widenStencilValues[15];                
+                    arg8_widenStencilValues[18] = arg8_widenStencilValues[19];                
+                    arg8_widenStencilValues[19] = arg8_widenStencilValues[20];                
+                    arg8_widenStencilValues[20] = arg8_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
+                    arg8_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg8_widenStencilValues[18];                
+                    arg8_widenStencilValues[21] = arg8_widenStencilValues[22];                
+                    arg8_widenStencilValues[22] = arg8_widenStencilValues[23];                
+                    arg8_widenStencilValues[23] = arg8_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
+                    arg8_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg8_widenStencilValues[21];                
+                    arg8_widenStencilValues[24] = arg8_widenStencilValues[25];                
+                    arg8_widenStencilValues[25] = arg8_widenStencilValues[26];                
+                    arg8_widenStencilValues[26] = arg8_read_val;                
+                    arg8_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg8_widenStencilValues[24];                
+                    arg9_widenStencilValues[0] = arg9_widenStencilValues[1];                
+                    arg9_widenStencilValues[1] = arg9_widenStencilValues[2];                
+                    arg9_widenStencilValues[2] = arg9_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_wr];                
+                    arg9_widenStencilValues[3] = arg9_widenStencilValues[4];                
+                    arg9_widenStencilValues[4] = arg9_widenStencilValues[5];                
+                    arg9_widenStencilValues[5] = arg9_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_wr];                
+                    arg9_buf_r0_1_p0[S3D_27PT_STEN_buf_r0_1_p0_rd] = arg9_widenStencilValues[3];                
+                    arg9_widenStencilValues[6] = arg9_widenStencilValues[7];                
+                    arg9_widenStencilValues[7] = arg9_widenStencilValues[8];                
+                    arg9_widenStencilValues[8] = arg9_buf_p0_1[S3D_27PT_STEN_buf_p0_1_wr];                
+                    arg9_buf_r1_2_p0[S3D_27PT_STEN_buf_r1_2_p0_rd] = arg9_widenStencilValues[6];                
+                    arg9_widenStencilValues[9] = arg9_widenStencilValues[10];                
+                    arg9_widenStencilValues[10] = arg9_widenStencilValues[11];                
+                    arg9_widenStencilValues[11] = arg9_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_wr];                
+                    arg9_buf_p0_1[S3D_27PT_STEN_buf_p0_1_rd] = arg9_widenStencilValues[9];                
+                    arg9_widenStencilValues[12] = arg9_widenStencilValues[13];                
+                    arg9_widenStencilValues[13] = arg9_widenStencilValues[14];                
+                    arg9_widenStencilValues[14] = arg9_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_wr];                
+                    arg9_buf_r0_1_p1[S3D_27PT_STEN_buf_r0_1_p1_rd] = arg9_widenStencilValues[12];                
+                    arg9_widenStencilValues[15] = arg9_widenStencilValues[16];                
+                    arg9_widenStencilValues[16] = arg9_widenStencilValues[17];                
+                    arg9_widenStencilValues[17] = arg9_buf_p1_2[S3D_27PT_STEN_buf_p1_2_wr];                
+                    arg9_buf_r1_2_p1[S3D_27PT_STEN_buf_r1_2_p1_rd] = arg9_widenStencilValues[15];                
+                    arg9_widenStencilValues[18] = arg9_widenStencilValues[19];                
+                    arg9_widenStencilValues[19] = arg9_widenStencilValues[20];                
+                    arg9_widenStencilValues[20] = arg9_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_wr];                
+                    arg9_buf_p1_2[S3D_27PT_STEN_buf_p1_2_rd] = arg9_widenStencilValues[18];                
+                    arg9_widenStencilValues[21] = arg9_widenStencilValues[22];                
+                    arg9_widenStencilValues[22] = arg9_widenStencilValues[23];                
+                    arg9_widenStencilValues[23] = arg9_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_wr];                
+                    arg9_buf_r0_1_p2[S3D_27PT_STEN_buf_r0_1_p2_rd] = arg9_widenStencilValues[21];                
+                    arg9_widenStencilValues[24] = arg9_widenStencilValues[25];                
+                    arg9_widenStencilValues[25] = arg9_widenStencilValues[26];                
+                    arg9_widenStencilValues[26] = arg9_read_val;                
+                    arg9_buf_r1_2_p2[S3D_27PT_STEN_buf_r1_2_p2_rd] = arg9_widenStencilValues[24];
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p0_wr)
-                    S3D_27PT_STEN_buf_r1_2_p0_wr = 0;
-                else
-                    S3D_27PT_STEN_buf_r1_2_p0_wr++;
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_p0_1_rd = S3D_27PT_STEN_buf_p0_1_rd >= (plane_diff);
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_p0_1_wr = S3D_27PT_STEN_buf_p0_1_wr >= (plane_diff);
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p0_rd = S3D_27PT_STEN_buf_r0_1_p0_rd >= (stencilConfig.grid_size[0] - 1);
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p0_wr = S3D_27PT_STEN_buf_r0_1_p0_wr >= (stencilConfig.grid_size[0] - 1);
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_p0_1_rd)
-                    S3D_27PT_STEN_buf_p0_1_rd = 0;
-                else
-                    S3D_27PT_STEN_buf_p0_1_rd++;
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p0_rd)
+                        S3D_27PT_STEN_buf_r0_1_p0_rd = 0;
+                    else
+                        S3D_27PT_STEN_buf_r0_1_p0_rd++;
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_p0_1_wr)
-                    S3D_27PT_STEN_buf_p0_1_wr = 0;
-                else
-                    S3D_27PT_STEN_buf_p0_1_wr++;
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p1_rd = S3D_27PT_STEN_buf_r0_1_p1_rd >= (stencilConfig.grid_size[0] - 1);
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p1_wr = S3D_27PT_STEN_buf_r0_1_p1_wr >= (stencilConfig.grid_size[0] - 1);
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p0_wr)
+                        S3D_27PT_STEN_buf_r0_1_p0_wr = 0;
+                    else
+                        S3D_27PT_STEN_buf_r0_1_p0_wr++;
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p0_rd = S3D_27PT_STEN_buf_r1_2_p0_rd >= (stencilConfig.grid_size[0] - 1);
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p0_wr = S3D_27PT_STEN_buf_r1_2_p0_wr >= (stencilConfig.grid_size[0] - 1);
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p1_rd)
-                    S3D_27PT_STEN_buf_r0_1_p1_rd = 0;
-                else
-                    S3D_27PT_STEN_buf_r0_1_p1_rd++;
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p0_rd)
+                        S3D_27PT_STEN_buf_r1_2_p0_rd = 0;
+                    else
+                        S3D_27PT_STEN_buf_r1_2_p0_rd++;
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p1_wr)
-                    S3D_27PT_STEN_buf_r0_1_p1_wr = 0;
-                else
-                    S3D_27PT_STEN_buf_r0_1_p1_wr++;
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p1_rd = S3D_27PT_STEN_buf_r1_2_p1_rd >= (stencilConfig.grid_size[0] - 1);
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p1_wr = S3D_27PT_STEN_buf_r1_2_p1_wr >= (stencilConfig.grid_size[0] - 1);
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p0_wr)
+                        S3D_27PT_STEN_buf_r1_2_p0_wr = 0;
+                    else
+                        S3D_27PT_STEN_buf_r1_2_p0_wr++;
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_p0_1_rd = S3D_27PT_STEN_buf_p0_1_rd >= (plane_diff);
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_p0_1_wr = S3D_27PT_STEN_buf_p0_1_wr >= (plane_diff);
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p1_rd)
-                    S3D_27PT_STEN_buf_r1_2_p1_rd = 0;
-                else
-                    S3D_27PT_STEN_buf_r1_2_p1_rd++;
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_p0_1_rd)
+                        S3D_27PT_STEN_buf_p0_1_rd = 0;
+                    else
+                        S3D_27PT_STEN_buf_p0_1_rd++;
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p1_wr)
-                    S3D_27PT_STEN_buf_r1_2_p1_wr = 0;
-                else
-                    S3D_27PT_STEN_buf_r1_2_p1_wr++;
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_p1_2_rd = S3D_27PT_STEN_buf_p1_2_rd >= (plane_diff);
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_p1_2_wr = S3D_27PT_STEN_buf_p1_2_wr >= (plane_diff);
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_p0_1_wr)
+                        S3D_27PT_STEN_buf_p0_1_wr = 0;
+                    else
+                        S3D_27PT_STEN_buf_p0_1_wr++;
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p1_rd = S3D_27PT_STEN_buf_r0_1_p1_rd >= (stencilConfig.grid_size[0] - 1);
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p1_wr = S3D_27PT_STEN_buf_r0_1_p1_wr >= (stencilConfig.grid_size[0] - 1);
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_p1_2_rd)
-                    S3D_27PT_STEN_buf_p1_2_rd = 0;
-                else
-                    S3D_27PT_STEN_buf_p1_2_rd++;
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p1_rd)
+                        S3D_27PT_STEN_buf_r0_1_p1_rd = 0;
+                    else
+                        S3D_27PT_STEN_buf_r0_1_p1_rd++;
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_p1_2_wr)
-                    S3D_27PT_STEN_buf_p1_2_wr = 0;
-                else
-                    S3D_27PT_STEN_buf_p1_2_wr++;
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p2_rd = S3D_27PT_STEN_buf_r0_1_p2_rd >= (stencilConfig.grid_size[0] - 1);
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p2_wr = S3D_27PT_STEN_buf_r0_1_p2_wr >= (stencilConfig.grid_size[0] - 1);
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p1_wr)
+                        S3D_27PT_STEN_buf_r0_1_p1_wr = 0;
+                    else
+                        S3D_27PT_STEN_buf_r0_1_p1_wr++;
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p1_rd = S3D_27PT_STEN_buf_r1_2_p1_rd >= (stencilConfig.grid_size[0] - 1);
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p1_wr = S3D_27PT_STEN_buf_r1_2_p1_wr >= (stencilConfig.grid_size[0] - 1);
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p2_rd)
-                    S3D_27PT_STEN_buf_r0_1_p2_rd = 0;
-                else
-                    S3D_27PT_STEN_buf_r0_1_p2_rd++;
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p1_rd)
+                        S3D_27PT_STEN_buf_r1_2_p1_rd = 0;
+                    else
+                        S3D_27PT_STEN_buf_r1_2_p1_rd++;
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p2_wr)
-                    S3D_27PT_STEN_buf_r0_1_p2_wr = 0;
-                else
-                    S3D_27PT_STEN_buf_r0_1_p2_wr++;
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p2_rd = S3D_27PT_STEN_buf_r1_2_p2_rd >= (stencilConfig.grid_size[0] - 1);
-                bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p2_wr = S3D_27PT_STEN_buf_r1_2_p2_wr >= (stencilConfig.grid_size[0] - 1);
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p1_wr)
+                        S3D_27PT_STEN_buf_r1_2_p1_wr = 0;
+                    else
+                        S3D_27PT_STEN_buf_r1_2_p1_wr++;
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_p1_2_rd = S3D_27PT_STEN_buf_p1_2_rd >= (plane_diff);
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_p1_2_wr = S3D_27PT_STEN_buf_p1_2_wr >= (plane_diff);
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p2_rd)
-                    S3D_27PT_STEN_buf_r1_2_p2_rd = 0;
-                else
-                    S3D_27PT_STEN_buf_r1_2_p2_rd++;
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_p1_2_rd)
+                        S3D_27PT_STEN_buf_p1_2_rd = 0;
+                    else
+                        S3D_27PT_STEN_buf_p1_2_rd++;
 
-                if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p2_wr)
-                    S3D_27PT_STEN_buf_r1_2_p2_wr = 0;
-                else
-                    S3D_27PT_STEN_buf_r1_2_p2_wr++;
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_p1_2_wr)
+                        S3D_27PT_STEN_buf_p1_2_wr = 0;
+                    else
+                        S3D_27PT_STEN_buf_p1_2_wr++;
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p2_rd = S3D_27PT_STEN_buf_r0_1_p2_rd >= (stencilConfig.grid_size[0] - 1);
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p2_wr = S3D_27PT_STEN_buf_r0_1_p2_wr >= (stencilConfig.grid_size[0] - 1);
 
-#ifdef DEBUG_LOG
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] loop params after update i(%d), "\
-                                "j(%d), "\
-                                "k(%d), "\
-                                "S3D_27PT_STEN_buf_r0_1_p0_rd(%d), "\
-                                "S3D_27PT_STEN_buf_r0_1_p0_wr(%d), "\
-                                "S3D_27PT_STEN_buf_r1_2_p0_rd(%d), "\
-                                "S3D_27PT_STEN_buf_r1_2_p0_wr(%d), "\
-                                "S3D_27PT_STEN_buf_p0_1_rd(%d), "\
-                                "S3D_27PT_STEN_buf_p0_1_wr(%d), "\
-                                "S3D_27PT_STEN_buf_r0_1_p1_rd(%d), "\
-                                "S3D_27PT_STEN_buf_r0_1_p1_wr(%d), "\
-                                "S3D_27PT_STEN_buf_r1_2_p1_rd(%d), "\
-                                "S3D_27PT_STEN_buf_r1_2_p1_wr(%d), "\
-                                "S3D_27PT_STEN_buf_p1_2_rd(%d), "\
-                                "S3D_27PT_STEN_buf_p1_2_wr(%d), "\
-                                "S3D_27PT_STEN_buf_r0_1_p2_rd(%d), "\
-                                "S3D_27PT_STEN_buf_r0_1_p2_wr(%d), "\
-                                "S3D_27PT_STEN_buf_r1_2_p2_rd(%d), "\
-                                "S3D_27PT_STEN_buf_r1_2_p2_wr(%d), "\
-                                "reg_itr(%d)\n", m_PEId, i, 
-                                j,
-                                k,
-                                S3D_27PT_STEN_buf_r0_1_p0_rd, 
-                                S3D_27PT_STEN_buf_r0_1_p0_wr, 
-                                S3D_27PT_STEN_buf_r1_2_p0_rd, 
-                                S3D_27PT_STEN_buf_r1_2_p0_wr, 
-                                S3D_27PT_STEN_buf_p0_1_rd, 
-                                S3D_27PT_STEN_buf_p0_1_wr, 
-                                S3D_27PT_STEN_buf_r0_1_p1_rd, 
-                                S3D_27PT_STEN_buf_r0_1_p1_wr, 
-                                S3D_27PT_STEN_buf_r1_2_p1_rd, 
-                                S3D_27PT_STEN_buf_r1_2_p1_wr, 
-                                S3D_27PT_STEN_buf_p1_2_rd, 
-                                S3D_27PT_STEN_buf_p1_2_wr, 
-                                S3D_27PT_STEN_buf_r0_1_p2_rd, 
-                                S3D_27PT_STEN_buf_r0_1_p2_wr, 
-                                S3D_27PT_STEN_buf_r1_2_p2_rd, 
-                                S3D_27PT_STEN_buf_r1_2_p2_wr, 
-                                reg_itr);
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p2_rd)
+                        S3D_27PT_STEN_buf_r0_1_p2_rd = 0;
+                    else
+                        S3D_27PT_STEN_buf_r0_1_p2_rd++;
 
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] --------------------------------------------------------\n\n", m_PEId);
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r0_1_p2_wr)
+                        S3D_27PT_STEN_buf_r0_1_p2_wr = 0;
+                    else
+                        S3D_27PT_STEN_buf_r0_1_p2_wr++;
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p2_rd = S3D_27PT_STEN_buf_r1_2_p2_rd >= (stencilConfig.grid_size[0] - 1);
+                    bool cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p2_wr = S3D_27PT_STEN_buf_r1_2_p2_wr >= (stencilConfig.grid_size[0] - 1);
 
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg0: (", m_PEId);
-                for (int ri = 0; ri < vector_factor; ri++)
-                {
-                    ops::hls::DataConv tmpConverter;
-                    tmpConverter.i = arg0_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p2_rd)
+                        S3D_27PT_STEN_buf_r1_2_p2_rd = 0;
+                    else
+                        S3D_27PT_STEN_buf_r1_2_p2_rd++;
 
-                    printf("%f ", tmpConverter.f);
-                }
-                printf(")\n");
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg1: (", m_PEId);
-                for (int ri = 0; ri < vector_factor; ri++)
-                {
-                    ops::hls::DataConv tmpConverter;
-                    tmpConverter.i = arg1_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                    if (cond_end_of_line_buff_S3D_27PT_STEN_buf_r1_2_p2_wr)
+                        S3D_27PT_STEN_buf_r1_2_p2_wr = 0;
+                    else
+                        S3D_27PT_STEN_buf_r1_2_p2_wr++;
 
-                    printf("%f ", tmpConverter.f);
-                }
-                printf(")\n");
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg2: (", m_PEId);
-                for (int ri = 0; ri < vector_factor; ri++)
-                {
-                    ops::hls::DataConv tmpConverter;
-                    tmpConverter.i = arg2_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+    #ifdef DEBUG_LOG
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] loop params after update i(%d), "\
+                                    "j(%d), "\
+                                    "k(%d), "\
+                                    "S3D_27PT_STEN_buf_r0_1_p0_rd(%d), "\
+                                    "S3D_27PT_STEN_buf_r0_1_p0_wr(%d), "\
+                                    "S3D_27PT_STEN_buf_r1_2_p0_rd(%d), "\
+                                    "S3D_27PT_STEN_buf_r1_2_p0_wr(%d), "\
+                                    "S3D_27PT_STEN_buf_p0_1_rd(%d), "\
+                                    "S3D_27PT_STEN_buf_p0_1_wr(%d), "\
+                                    "S3D_27PT_STEN_buf_r0_1_p1_rd(%d), "\
+                                    "S3D_27PT_STEN_buf_r0_1_p1_wr(%d), "\
+                                    "S3D_27PT_STEN_buf_r1_2_p1_rd(%d), "\
+                                    "S3D_27PT_STEN_buf_r1_2_p1_wr(%d), "\
+                                    "S3D_27PT_STEN_buf_p1_2_rd(%d), "\
+                                    "S3D_27PT_STEN_buf_p1_2_wr(%d), "\
+                                    "S3D_27PT_STEN_buf_r0_1_p2_rd(%d), "\
+                                    "S3D_27PT_STEN_buf_r0_1_p2_wr(%d), "\
+                                    "S3D_27PT_STEN_buf_r1_2_p2_rd(%d), "\
+                                    "S3D_27PT_STEN_buf_r1_2_p2_wr(%d), "\
+                                    "reg_itr(%d)\n", m_PEId, i, 
+                                    j,
+                                    k,
+                                    S3D_27PT_STEN_buf_r0_1_p0_rd, 
+                                    S3D_27PT_STEN_buf_r0_1_p0_wr, 
+                                    S3D_27PT_STEN_buf_r1_2_p0_rd, 
+                                    S3D_27PT_STEN_buf_r1_2_p0_wr, 
+                                    S3D_27PT_STEN_buf_p0_1_rd, 
+                                    S3D_27PT_STEN_buf_p0_1_wr, 
+                                    S3D_27PT_STEN_buf_r0_1_p1_rd, 
+                                    S3D_27PT_STEN_buf_r0_1_p1_wr, 
+                                    S3D_27PT_STEN_buf_r1_2_p1_rd, 
+                                    S3D_27PT_STEN_buf_r1_2_p1_wr, 
+                                    S3D_27PT_STEN_buf_p1_2_rd, 
+                                    S3D_27PT_STEN_buf_p1_2_wr, 
+                                    S3D_27PT_STEN_buf_r0_1_p2_rd, 
+                                    S3D_27PT_STEN_buf_r0_1_p2_wr, 
+                                    S3D_27PT_STEN_buf_r1_2_p2_rd, 
+                                    S3D_27PT_STEN_buf_r1_2_p2_wr, 
+                                    reg_itr);
 
-                    printf("%f ", tmpConverter.f);
-                }
-                printf(")\n");
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg6: (", m_PEId);
-                for (int ri = 0; ri < vector_factor; ri++)
-                {
-                    ops::hls::DataConv tmpConverter;
-                    tmpConverter.i = arg6_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
-
-                    printf("%f ", tmpConverter.f);
-                }
-                printf(")\n");
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg7: (", m_PEId);
-                for (int ri = 0; ri < vector_factor; ri++)
-                {
-                    ops::hls::DataConv tmpConverter;
-                    tmpConverter.i = arg7_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
-
-                    printf("%f ", tmpConverter.f);
-                }
-                printf(")\n");
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg8: (", m_PEId);
-                for (int ri = 0; ri < vector_factor; ri++)
-                {
-                    ops::hls::DataConv tmpConverter;
-                    tmpConverter.i = arg8_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
-
-                    printf("%f ", tmpConverter.f);
-                }
-                printf(")\n");
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg9: (", m_PEId);
-                for (int ri = 0; ri < vector_factor; ri++)
-                {
-                    ops::hls::DataConv tmpConverter;
-                    tmpConverter.i = arg9_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
-
-                    printf("%f ", tmpConverter.f);
-                }
-                printf(")\n");
-#endif      
-            }
-
-            vec2arr: for (unsigned short x = 0; x < vector_factor; x++)
-            {
-#pragma HLS UNROLL factor=vector_factor
-                ops::hls::DataConv arg0_tmpConverter_0_0;
-                arg0_tmpConverter_0_0.i = arg0_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg0_rowArr_0_0[x + half_span_x] = arg0_tmpConverter_0_0.f; 
-                ops::hls::DataConv arg0_tmpConverter_1_0;
-                arg0_tmpConverter_1_0.i = arg0_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg0_rowArr_1_0[x + half_span_x] = arg0_tmpConverter_1_0.f; 
-                ops::hls::DataConv arg0_tmpConverter_2_0;
-                arg0_tmpConverter_2_0.i = arg0_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg0_rowArr_2_0[x + half_span_x] = arg0_tmpConverter_2_0.f; 
-                ops::hls::DataConv arg0_tmpConverter_0_1;
-                arg0_tmpConverter_0_1.i = arg0_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg0_rowArr_0_1[x + half_span_x] = arg0_tmpConverter_0_1.f; 
-                ops::hls::DataConv arg0_tmpConverter_1_1;
-                arg0_tmpConverter_1_1.i = arg0_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg0_rowArr_1_1[x + half_span_x] = arg0_tmpConverter_1_1.f; 
-                ops::hls::DataConv arg0_tmpConverter_2_1;
-                arg0_tmpConverter_2_1.i = arg0_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg0_rowArr_2_1[x + half_span_x] = arg0_tmpConverter_2_1.f; 
-                ops::hls::DataConv arg0_tmpConverter_0_2;
-                arg0_tmpConverter_0_2.i = arg0_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg0_rowArr_0_2[x + half_span_x] = arg0_tmpConverter_0_2.f; 
-                ops::hls::DataConv arg0_tmpConverter_1_2;
-                arg0_tmpConverter_1_2.i = arg0_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg0_rowArr_1_2[x + half_span_x] = arg0_tmpConverter_1_2.f; 
-                ops::hls::DataConv arg0_tmpConverter_2_2;
-                arg0_tmpConverter_2_2.i = arg0_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg0_rowArr_2_2[x + half_span_x] = arg0_tmpConverter_2_2.f; 
-                ops::hls::DataConv arg1_tmpConverter_0_0;
-                arg1_tmpConverter_0_0.i = arg1_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg1_rowArr_0_0[x + half_span_x] = arg1_tmpConverter_0_0.f; 
-                ops::hls::DataConv arg1_tmpConverter_1_0;
-                arg1_tmpConverter_1_0.i = arg1_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg1_rowArr_1_0[x + half_span_x] = arg1_tmpConverter_1_0.f; 
-                ops::hls::DataConv arg1_tmpConverter_2_0;
-                arg1_tmpConverter_2_0.i = arg1_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg1_rowArr_2_0[x + half_span_x] = arg1_tmpConverter_2_0.f; 
-                ops::hls::DataConv arg1_tmpConverter_0_1;
-                arg1_tmpConverter_0_1.i = arg1_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg1_rowArr_0_1[x + half_span_x] = arg1_tmpConverter_0_1.f; 
-                ops::hls::DataConv arg1_tmpConverter_1_1;
-                arg1_tmpConverter_1_1.i = arg1_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg1_rowArr_1_1[x + half_span_x] = arg1_tmpConverter_1_1.f; 
-                ops::hls::DataConv arg1_tmpConverter_2_1;
-                arg1_tmpConverter_2_1.i = arg1_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg1_rowArr_2_1[x + half_span_x] = arg1_tmpConverter_2_1.f; 
-                ops::hls::DataConv arg1_tmpConverter_0_2;
-                arg1_tmpConverter_0_2.i = arg1_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg1_rowArr_0_2[x + half_span_x] = arg1_tmpConverter_0_2.f; 
-                ops::hls::DataConv arg1_tmpConverter_1_2;
-                arg1_tmpConverter_1_2.i = arg1_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg1_rowArr_1_2[x + half_span_x] = arg1_tmpConverter_1_2.f; 
-                ops::hls::DataConv arg1_tmpConverter_2_2;
-                arg1_tmpConverter_2_2.i = arg1_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg1_rowArr_2_2[x + half_span_x] = arg1_tmpConverter_2_2.f; 
-                ops::hls::DataConv arg2_tmpConverter_0_0;
-                arg2_tmpConverter_0_0.i = arg2_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg2_rowArr_0_0[x + half_span_x] = arg2_tmpConverter_0_0.f; 
-                ops::hls::DataConv arg2_tmpConverter_1_0;
-                arg2_tmpConverter_1_0.i = arg2_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg2_rowArr_1_0[x + half_span_x] = arg2_tmpConverter_1_0.f; 
-                ops::hls::DataConv arg2_tmpConverter_2_0;
-                arg2_tmpConverter_2_0.i = arg2_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg2_rowArr_2_0[x + half_span_x] = arg2_tmpConverter_2_0.f; 
-                ops::hls::DataConv arg2_tmpConverter_0_1;
-                arg2_tmpConverter_0_1.i = arg2_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg2_rowArr_0_1[x + half_span_x] = arg2_tmpConverter_0_1.f; 
-                ops::hls::DataConv arg2_tmpConverter_1_1;
-                arg2_tmpConverter_1_1.i = arg2_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg2_rowArr_1_1[x + half_span_x] = arg2_tmpConverter_1_1.f; 
-                ops::hls::DataConv arg2_tmpConverter_2_1;
-                arg2_tmpConverter_2_1.i = arg2_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg2_rowArr_2_1[x + half_span_x] = arg2_tmpConverter_2_1.f; 
-                ops::hls::DataConv arg2_tmpConverter_0_2;
-                arg2_tmpConverter_0_2.i = arg2_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg2_rowArr_0_2[x + half_span_x] = arg2_tmpConverter_0_2.f; 
-                ops::hls::DataConv arg2_tmpConverter_1_2;
-                arg2_tmpConverter_1_2.i = arg2_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg2_rowArr_1_2[x + half_span_x] = arg2_tmpConverter_1_2.f; 
-                ops::hls::DataConv arg2_tmpConverter_2_2;
-                arg2_tmpConverter_2_2.i = arg2_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg2_rowArr_2_2[x + half_span_x] = arg2_tmpConverter_2_2.f; 
-                ops::hls::DataConv arg6_tmpConverter_0_0;
-                arg6_tmpConverter_0_0.i = arg6_widenStencilValues[0].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg6_rowArr_0_0[x + half_span_x] = arg6_tmpConverter_0_0.f; 
-                ops::hls::DataConv arg7_tmpConverter_0_0;
-                arg7_tmpConverter_0_0.i = arg7_widenStencilValues[0].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg7_rowArr_0_0[x + half_span_x] = arg7_tmpConverter_0_0.f; 
-                ops::hls::DataConv arg8_tmpConverter_0_0;
-                arg8_tmpConverter_0_0.i = arg8_widenStencilValues[0].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg8_rowArr_0_0[x + half_span_x] = arg8_tmpConverter_0_0.f; 
-                ops::hls::DataConv arg9_tmpConverter_0_0;
-                arg9_tmpConverter_0_0.i = arg9_widenStencilValues[0].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
-                arg9_rowArr_0_0[x + half_span_x] = arg9_tmpConverter_0_0.f; 
-
-            }
-            vec2arr_rest:
-            {
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg0_tmpConverter_0_0_0_7;
-                arg0_tmpConverter_0_0_0_7.i = arg0_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg0_rowArr_0_0[0] = arg0_tmpConverter_0_0_0_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg0_tmpConverter_2_0_0_0;
-                arg0_tmpConverter_2_0_0_0.i = arg0_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg0_rowArr_0_0[9] = arg0_tmpConverter_2_0_0_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg0_tmpConverter_0_1_0_7;
-                arg0_tmpConverter_0_1_0_7.i = arg0_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg0_rowArr_1_0[0] = arg0_tmpConverter_0_1_0_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg0_tmpConverter_2_1_0_0;
-                arg0_tmpConverter_2_1_0_0.i = arg0_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg0_rowArr_1_0[9] = arg0_tmpConverter_2_1_0_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg0_tmpConverter_0_2_0_7;
-                arg0_tmpConverter_0_2_0_7.i = arg0_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg0_rowArr_2_0[0] = arg0_tmpConverter_0_2_0_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg0_tmpConverter_2_2_0_0;
-                arg0_tmpConverter_2_2_0_0.i = arg0_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg0_rowArr_2_0[9] = arg0_tmpConverter_2_2_0_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg0_tmpConverter_0_0_1_7;
-                arg0_tmpConverter_0_0_1_7.i = arg0_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg0_rowArr_0_1[0] = arg0_tmpConverter_0_0_1_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg0_tmpConverter_2_0_1_0;
-                arg0_tmpConverter_2_0_1_0.i = arg0_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg0_rowArr_0_1[9] = arg0_tmpConverter_2_0_1_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg0_tmpConverter_0_1_1_7;
-                arg0_tmpConverter_0_1_1_7.i = arg0_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg0_rowArr_1_1[0] = arg0_tmpConverter_0_1_1_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg0_tmpConverter_2_1_1_0;
-                arg0_tmpConverter_2_1_1_0.i = arg0_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg0_rowArr_1_1[9] = arg0_tmpConverter_2_1_1_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg0_tmpConverter_0_2_1_7;
-                arg0_tmpConverter_0_2_1_7.i = arg0_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg0_rowArr_2_1[0] = arg0_tmpConverter_0_2_1_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg0_tmpConverter_2_2_1_0;
-                arg0_tmpConverter_2_2_1_0.i = arg0_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg0_rowArr_2_1[9] = arg0_tmpConverter_2_2_1_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg0_tmpConverter_0_0_2_7;
-                arg0_tmpConverter_0_0_2_7.i = arg0_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg0_rowArr_0_2[0] = arg0_tmpConverter_0_0_2_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg0_tmpConverter_2_0_2_0;
-                arg0_tmpConverter_2_0_2_0.i = arg0_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg0_rowArr_0_2[9] = arg0_tmpConverter_2_0_2_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg0_tmpConverter_0_1_2_7;
-                arg0_tmpConverter_0_1_2_7.i = arg0_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg0_rowArr_1_2[0] = arg0_tmpConverter_0_1_2_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg0_tmpConverter_2_1_2_0;
-                arg0_tmpConverter_2_1_2_0.i = arg0_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg0_rowArr_1_2[9] = arg0_tmpConverter_2_1_2_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg0_tmpConverter_0_2_2_7;
-                arg0_tmpConverter_0_2_2_7.i = arg0_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg0_rowArr_2_2[0] = arg0_tmpConverter_0_2_2_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg0_tmpConverter_2_2_2_0;
-                arg0_tmpConverter_2_2_2_0.i = arg0_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg0_rowArr_2_2[9] = arg0_tmpConverter_2_2_2_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg1_tmpConverter_0_0_0_7;
-                arg1_tmpConverter_0_0_0_7.i = arg1_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg1_rowArr_0_0[0] = arg1_tmpConverter_0_0_0_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg1_tmpConverter_2_0_0_0;
-                arg1_tmpConverter_2_0_0_0.i = arg1_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg1_rowArr_0_0[9] = arg1_tmpConverter_2_0_0_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg1_tmpConverter_0_1_0_7;
-                arg1_tmpConverter_0_1_0_7.i = arg1_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg1_rowArr_1_0[0] = arg1_tmpConverter_0_1_0_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg1_tmpConverter_2_1_0_0;
-                arg1_tmpConverter_2_1_0_0.i = arg1_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg1_rowArr_1_0[9] = arg1_tmpConverter_2_1_0_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg1_tmpConverter_0_2_0_7;
-                arg1_tmpConverter_0_2_0_7.i = arg1_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg1_rowArr_2_0[0] = arg1_tmpConverter_0_2_0_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg1_tmpConverter_2_2_0_0;
-                arg1_tmpConverter_2_2_0_0.i = arg1_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg1_rowArr_2_0[9] = arg1_tmpConverter_2_2_0_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg1_tmpConverter_0_0_1_7;
-                arg1_tmpConverter_0_0_1_7.i = arg1_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg1_rowArr_0_1[0] = arg1_tmpConverter_0_0_1_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg1_tmpConverter_2_0_1_0;
-                arg1_tmpConverter_2_0_1_0.i = arg1_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg1_rowArr_0_1[9] = arg1_tmpConverter_2_0_1_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg1_tmpConverter_0_1_1_7;
-                arg1_tmpConverter_0_1_1_7.i = arg1_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg1_rowArr_1_1[0] = arg1_tmpConverter_0_1_1_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg1_tmpConverter_2_1_1_0;
-                arg1_tmpConverter_2_1_1_0.i = arg1_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg1_rowArr_1_1[9] = arg1_tmpConverter_2_1_1_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg1_tmpConverter_0_2_1_7;
-                arg1_tmpConverter_0_2_1_7.i = arg1_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg1_rowArr_2_1[0] = arg1_tmpConverter_0_2_1_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg1_tmpConverter_2_2_1_0;
-                arg1_tmpConverter_2_2_1_0.i = arg1_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg1_rowArr_2_1[9] = arg1_tmpConverter_2_2_1_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg1_tmpConverter_0_0_2_7;
-                arg1_tmpConverter_0_0_2_7.i = arg1_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg1_rowArr_0_2[0] = arg1_tmpConverter_0_0_2_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg1_tmpConverter_2_0_2_0;
-                arg1_tmpConverter_2_0_2_0.i = arg1_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg1_rowArr_0_2[9] = arg1_tmpConverter_2_0_2_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg1_tmpConverter_0_1_2_7;
-                arg1_tmpConverter_0_1_2_7.i = arg1_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg1_rowArr_1_2[0] = arg1_tmpConverter_0_1_2_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg1_tmpConverter_2_1_2_0;
-                arg1_tmpConverter_2_1_2_0.i = arg1_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg1_rowArr_1_2[9] = arg1_tmpConverter_2_1_2_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg1_tmpConverter_0_2_2_7;
-                arg1_tmpConverter_0_2_2_7.i = arg1_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg1_rowArr_2_2[0] = arg1_tmpConverter_0_2_2_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg1_tmpConverter_2_2_2_0;
-                arg1_tmpConverter_2_2_2_0.i = arg1_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg1_rowArr_2_2[9] = arg1_tmpConverter_2_2_2_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg2_tmpConverter_0_0_0_7;
-                arg2_tmpConverter_0_0_0_7.i = arg2_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg2_rowArr_0_0[0] = arg2_tmpConverter_0_0_0_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg2_tmpConverter_2_0_0_0;
-                arg2_tmpConverter_2_0_0_0.i = arg2_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg2_rowArr_0_0[9] = arg2_tmpConverter_2_0_0_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg2_tmpConverter_0_1_0_7;
-                arg2_tmpConverter_0_1_0_7.i = arg2_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg2_rowArr_1_0[0] = arg2_tmpConverter_0_1_0_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg2_tmpConverter_2_1_0_0;
-                arg2_tmpConverter_2_1_0_0.i = arg2_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg2_rowArr_1_0[9] = arg2_tmpConverter_2_1_0_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg2_tmpConverter_0_2_0_7;
-                arg2_tmpConverter_0_2_0_7.i = arg2_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg2_rowArr_2_0[0] = arg2_tmpConverter_0_2_0_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg2_tmpConverter_2_2_0_0;
-                arg2_tmpConverter_2_2_0_0.i = arg2_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg2_rowArr_2_0[9] = arg2_tmpConverter_2_2_0_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg2_tmpConverter_0_0_1_7;
-                arg2_tmpConverter_0_0_1_7.i = arg2_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg2_rowArr_0_1[0] = arg2_tmpConverter_0_0_1_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg2_tmpConverter_2_0_1_0;
-                arg2_tmpConverter_2_0_1_0.i = arg2_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg2_rowArr_0_1[9] = arg2_tmpConverter_2_0_1_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg2_tmpConverter_0_1_1_7;
-                arg2_tmpConverter_0_1_1_7.i = arg2_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg2_rowArr_1_1[0] = arg2_tmpConverter_0_1_1_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg2_tmpConverter_2_1_1_0;
-                arg2_tmpConverter_2_1_1_0.i = arg2_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg2_rowArr_1_1[9] = arg2_tmpConverter_2_1_1_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg2_tmpConverter_0_2_1_7;
-                arg2_tmpConverter_0_2_1_7.i = arg2_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg2_rowArr_2_1[0] = arg2_tmpConverter_0_2_1_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg2_tmpConverter_2_2_1_0;
-                arg2_tmpConverter_2_2_1_0.i = arg2_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg2_rowArr_2_1[9] = arg2_tmpConverter_2_2_1_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg2_tmpConverter_0_0_2_7;
-                arg2_tmpConverter_0_0_2_7.i = arg2_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg2_rowArr_0_2[0] = arg2_tmpConverter_0_0_2_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg2_tmpConverter_2_0_2_0;
-                arg2_tmpConverter_2_0_2_0.i = arg2_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg2_rowArr_0_2[9] = arg2_tmpConverter_2_0_2_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg2_tmpConverter_0_1_2_7;
-                arg2_tmpConverter_0_1_2_7.i = arg2_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg2_rowArr_1_2[0] = arg2_tmpConverter_0_1_2_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg2_tmpConverter_2_1_2_0;
-                arg2_tmpConverter_2_1_2_0.i = arg2_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg2_rowArr_1_2[9] = arg2_tmpConverter_2_1_2_0.f;
-                //diff = -1
-                // access_idx = 0
-                ops::hls::DataConv arg2_tmpConverter_0_2_2_7;
-                arg2_tmpConverter_0_2_2_7.i = arg2_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
-                arg2_rowArr_2_2[0] = arg2_tmpConverter_0_2_2_7.f;
-                //diff = 1
-                // access_idx = 9
-                ops::hls::DataConv arg2_tmpConverter_2_2_2_0;
-                arg2_tmpConverter_2_2_2_0.i = arg2_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
-                arg2_rowArr_2_2[9] = arg2_tmpConverter_2_2_2_0.f;
-            }
-
-            process: for (unsigned short x = 0; x < vector_factor; x++)
-            {
-#pragma HLS UNROLL factor=vector_factor
-                short index = (i << shift_bits) + x;
-                bool neg_cond = register_it(             
-                        (index < stencilConfig.lower_limit[0]) 
-                        || (index >= stencilConfig.upper_limit[0])
-                        || (j < stencilConfig.lower_limit[1]) 
-                        || (j >= stencilConfig.upper_limit[1])
-                        || (k < stencilConfig.lower_limit[2]) 
-                        || (k >= stencilConfig.upper_limit[2])
-                );
-
-#ifdef DEBUG_LOG
-                printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] index=(%d, %d, %d), lowerbound=(%d, %d, %d), upperbound=(%d, %d, %d), neg_cond=%d\n", m_PEId, index, j, k,
-                            stencilConfig.lower_limit[0], stencilConfig.lower_limit[1], stencilConfig.lower_limit[2], 
-                            stencilConfig.upper_limit[0], stencilConfig.upper_limit[1], stencilConfig.upper_limit[2], neg_cond);
-
-#endif
-
-                stencil_type arg3_result;
-
-                stencil_type arg4_result;
-
-                stencil_type arg5_result;
-
-                kernel_pw_advection_opt_kernel_core(
-                        arg0_rowArr_0_0[x + 0],
-                        arg0_rowArr_0_0[x + 1],
-                        arg0_rowArr_0_0[x + 2],
-                        arg0_rowArr_1_0[x + 0],
-                        arg0_rowArr_1_0[x + 1],
-                        arg0_rowArr_1_0[x + 2],
-                        arg0_rowArr_2_0[x + 0],
-                        arg0_rowArr_2_0[x + 1],
-                        arg0_rowArr_2_0[x + 2],
-                        arg0_rowArr_0_1[x + 0],
-                        arg0_rowArr_0_1[x + 1],
-                        arg0_rowArr_0_1[x + 2],
-                        arg0_rowArr_1_1[x + 0],
-                        arg0_rowArr_1_1[x + 1],
-                        arg0_rowArr_1_1[x + 2],
-                        arg0_rowArr_2_1[x + 0],
-                        arg0_rowArr_2_1[x + 1],
-                        arg0_rowArr_2_1[x + 2],
-                        arg0_rowArr_0_2[x + 0],
-                        arg0_rowArr_0_2[x + 1],
-                        arg0_rowArr_0_2[x + 2],
-                        arg0_rowArr_1_2[x + 0],
-                        arg0_rowArr_1_2[x + 1],
-                        arg0_rowArr_1_2[x + 2],
-                        arg0_rowArr_2_2[x + 0],
-                        arg0_rowArr_2_2[x + 1],
-                        arg0_rowArr_2_2[x + 2],
-                        arg1_rowArr_0_0[x + 0],
-                        arg1_rowArr_0_0[x + 1],
-                        arg1_rowArr_0_0[x + 2],
-                        arg1_rowArr_1_0[x + 0],
-                        arg1_rowArr_1_0[x + 1],
-                        arg1_rowArr_1_0[x + 2],
-                        arg1_rowArr_2_0[x + 0],
-                        arg1_rowArr_2_0[x + 1],
-                        arg1_rowArr_2_0[x + 2],
-                        arg1_rowArr_0_1[x + 0],
-                        arg1_rowArr_0_1[x + 1],
-                        arg1_rowArr_0_1[x + 2],
-                        arg1_rowArr_1_1[x + 0],
-                        arg1_rowArr_1_1[x + 1],
-                        arg1_rowArr_1_1[x + 2],
-                        arg1_rowArr_2_1[x + 0],
-                        arg1_rowArr_2_1[x + 1],
-                        arg1_rowArr_2_1[x + 2],
-                        arg1_rowArr_0_2[x + 0],
-                        arg1_rowArr_0_2[x + 1],
-                        arg1_rowArr_0_2[x + 2],
-                        arg1_rowArr_1_2[x + 0],
-                        arg1_rowArr_1_2[x + 1],
-                        arg1_rowArr_1_2[x + 2],
-                        arg1_rowArr_2_2[x + 0],
-                        arg1_rowArr_2_2[x + 1],
-                        arg1_rowArr_2_2[x + 2],
-                        arg2_rowArr_0_0[x + 0],
-                        arg2_rowArr_0_0[x + 1],
-                        arg2_rowArr_0_0[x + 2],
-                        arg2_rowArr_1_0[x + 0],
-                        arg2_rowArr_1_0[x + 1],
-                        arg2_rowArr_1_0[x + 2],
-                        arg2_rowArr_2_0[x + 0],
-                        arg2_rowArr_2_0[x + 1],
-                        arg2_rowArr_2_0[x + 2],
-                        arg2_rowArr_0_1[x + 0],
-                        arg2_rowArr_0_1[x + 1],
-                        arg2_rowArr_0_1[x + 2],
-                        arg2_rowArr_1_1[x + 0],
-                        arg2_rowArr_1_1[x + 1],
-                        arg2_rowArr_1_1[x + 2],
-                        arg2_rowArr_2_1[x + 0],
-                        arg2_rowArr_2_1[x + 1],
-                        arg2_rowArr_2_1[x + 2],
-                        arg2_rowArr_0_2[x + 0],
-                        arg2_rowArr_0_2[x + 1],
-                        arg2_rowArr_0_2[x + 2],
-                        arg2_rowArr_1_2[x + 0],
-                        arg2_rowArr_1_2[x + 1],
-                        arg2_rowArr_1_2[x + 2],
-                        arg2_rowArr_2_2[x + 0],
-                        arg2_rowArr_2_2[x + 1],
-                        arg2_rowArr_2_2[x + 2],
-                        arg3_result,
-                        arg4_result,
-                        arg5_result,
-                        arg6_rowArr_0_0[x + 1],
-                        arg7_rowArr_0_0[x + 1],
-                        arg8_rowArr_0_0[x + 1],
-                        arg9_rowArr_0_0[x + 1]
-                );
-
-                ops::hls::DataConv arg3_tmpConvWrite;
-                ops::hls::DataConv arg4_tmpConvWrite;
-                ops::hls::DataConv arg5_tmpConvWrite;
-                ops::hls::DataConv arg6_tmpConvWrite;
-                ops::hls::DataConv arg7_tmpConvWrite;
-                ops::hls::DataConv arg8_tmpConvWrite;
-                ops::hls::DataConv arg9_tmpConvWrite;
-
-                if (not neg_cond)
-                {
-                    arg3_tmpConvWrite.f = arg3_result;
-                    arg4_tmpConvWrite.f = arg4_result;
-                    arg5_tmpConvWrite.f = arg5_result;
-                }
-                else
-                {
-
-    // [3, 4, 5, 0, 1, 2, 6, 7, 8, 9]
-            //dat_id: 3, dat: u2, swap_id: 0, swap_dat: u
-                    arg3_tmpConvWrite.f = arg0_rowArr_1_1[x + 1];
-            //dat_id: 4, dat: v2, swap_id: 1, swap_dat: v
-                    arg4_tmpConvWrite.f = arg1_rowArr_1_1[x + 1];
-            //dat_id: 5, dat: w2, swap_id: 2, swap_dat: w
-                    arg5_tmpConvWrite.f = arg2_rowArr_1_1[x + 1];
-                }
-            // *** rw convertions ***
-                arg6_tmpConvWrite.f = arg6_rowArr_0_0[x + 1];
-                arg7_tmpConvWrite.f = arg7_rowArr_0_0[x + 1];
-                arg8_tmpConvWrite.f = arg8_rowArr_0_0[x + 1];
-                arg9_tmpConvWrite.f = arg9_rowArr_0_0[x + 1];
-
-                arg3_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg3_tmpConvWrite.i;
-                arg4_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg4_tmpConvWrite.i;
-                arg5_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg5_tmpConvWrite.i;
-                arg6_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg6_tmpConvWrite.i;
-                arg7_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg7_tmpConvWrite.i;
-                arg8_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg8_tmpConvWrite.i;
-                arg9_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg9_tmpConvWrite.i;
-
-            }
-
-            write:
-            {
-                bool cond_write = (k >= 0);
-
-                if (cond_write)
-                {
-#ifdef DEBUG_LOG
                     printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] --------------------------------------------------------\n\n", m_PEId);
 
-                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg3: (", m_PEId);
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg0: (", m_PEId);
                     for (int ri = 0; ri < vector_factor; ri++)
                     {
                         ops::hls::DataConv tmpConverter;
-                        tmpConverter.i = arg3_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                        tmpConverter.i = arg0_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
-                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg4: (", m_PEId);
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg1: (", m_PEId);
                     for (int ri = 0; ri < vector_factor; ri++)
                     {
                         ops::hls::DataConv tmpConverter;
-                        tmpConverter.i = arg4_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                        tmpConverter.i = arg1_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
-                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg5: (", m_PEId);
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg2: (", m_PEId);
                     for (int ri = 0; ri < vector_factor; ri++)
                     {
                         ops::hls::DataConv tmpConverter;
-                        tmpConverter.i = arg5_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                        tmpConverter.i = arg2_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
-                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg6: (", m_PEId);
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg6: (", m_PEId);
                     for (int ri = 0; ri < vector_factor; ri++)
                     {
                         ops::hls::DataConv tmpConverter;
-                        tmpConverter.i = arg6_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                        tmpConverter.i = arg6_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
-                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg7: (", m_PEId);
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg7: (", m_PEId);
                     for (int ri = 0; ri < vector_factor; ri++)
                     {
                         ops::hls::DataConv tmpConverter;
-                        tmpConverter.i = arg7_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                        tmpConverter.i = arg7_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
-                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg8: (", m_PEId);
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg8: (", m_PEId);
                     for (int ri = 0; ri < vector_factor; ri++)
                     {
                         ops::hls::DataConv tmpConverter;
-                        tmpConverter.i = arg8_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                        tmpConverter.i = arg8_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
-                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg9: (", m_PEId);
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] read values arg9: (", m_PEId);
                     for (int ri = 0; ri < vector_factor; ri++)
                     {
                         ops::hls::DataConv tmpConverter;
-                        tmpConverter.i = arg9_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                        tmpConverter.i = arg9_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
-#endif
-                    arg3_wr_buffer <<  arg3_update_val;
-                    arg4_wr_buffer <<  arg4_update_val;
-                    arg5_wr_buffer <<  arg5_update_val;
-                    arg6_wr_buffer <<  arg6_update_val;
-                    arg7_wr_buffer <<  arg7_update_val;
-                    arg8_wr_buffer <<  arg8_update_val;
-                    arg9_wr_buffer <<  arg9_update_val;
+    #endif      
+                }
+
+                vec2arr: for (unsigned short x = 0; x < vector_factor; x++)
+                {
+    #pragma HLS UNROLL factor=vector_factor
+                    ops::hls::DataConv arg0_tmpConverter_0_0;
+                    arg0_tmpConverter_0_0.i = arg0_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg0_rowArr_0_0[x + half_span_x] = arg0_tmpConverter_0_0.f; 
+                    ops::hls::DataConv arg0_tmpConverter_1_0;
+                    arg0_tmpConverter_1_0.i = arg0_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg0_rowArr_1_0[x + half_span_x] = arg0_tmpConverter_1_0.f; 
+                    ops::hls::DataConv arg0_tmpConverter_2_0;
+                    arg0_tmpConverter_2_0.i = arg0_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg0_rowArr_2_0[x + half_span_x] = arg0_tmpConverter_2_0.f; 
+                    ops::hls::DataConv arg0_tmpConverter_0_1;
+                    arg0_tmpConverter_0_1.i = arg0_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg0_rowArr_0_1[x + half_span_x] = arg0_tmpConverter_0_1.f; 
+                    ops::hls::DataConv arg0_tmpConverter_1_1;
+                    arg0_tmpConverter_1_1.i = arg0_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg0_rowArr_1_1[x + half_span_x] = arg0_tmpConverter_1_1.f; 
+                    ops::hls::DataConv arg0_tmpConverter_2_1;
+                    arg0_tmpConverter_2_1.i = arg0_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg0_rowArr_2_1[x + half_span_x] = arg0_tmpConverter_2_1.f; 
+                    ops::hls::DataConv arg0_tmpConverter_0_2;
+                    arg0_tmpConverter_0_2.i = arg0_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg0_rowArr_0_2[x + half_span_x] = arg0_tmpConverter_0_2.f; 
+                    ops::hls::DataConv arg0_tmpConverter_1_2;
+                    arg0_tmpConverter_1_2.i = arg0_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg0_rowArr_1_2[x + half_span_x] = arg0_tmpConverter_1_2.f; 
+                    ops::hls::DataConv arg0_tmpConverter_2_2;
+                    arg0_tmpConverter_2_2.i = arg0_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg0_rowArr_2_2[x + half_span_x] = arg0_tmpConverter_2_2.f; 
+                    ops::hls::DataConv arg1_tmpConverter_0_0;
+                    arg1_tmpConverter_0_0.i = arg1_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg1_rowArr_0_0[x + half_span_x] = arg1_tmpConverter_0_0.f; 
+                    ops::hls::DataConv arg1_tmpConverter_1_0;
+                    arg1_tmpConverter_1_0.i = arg1_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg1_rowArr_1_0[x + half_span_x] = arg1_tmpConverter_1_0.f; 
+                    ops::hls::DataConv arg1_tmpConverter_2_0;
+                    arg1_tmpConverter_2_0.i = arg1_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg1_rowArr_2_0[x + half_span_x] = arg1_tmpConverter_2_0.f; 
+                    ops::hls::DataConv arg1_tmpConverter_0_1;
+                    arg1_tmpConverter_0_1.i = arg1_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg1_rowArr_0_1[x + half_span_x] = arg1_tmpConverter_0_1.f; 
+                    ops::hls::DataConv arg1_tmpConverter_1_1;
+                    arg1_tmpConverter_1_1.i = arg1_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg1_rowArr_1_1[x + half_span_x] = arg1_tmpConverter_1_1.f; 
+                    ops::hls::DataConv arg1_tmpConverter_2_1;
+                    arg1_tmpConverter_2_1.i = arg1_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg1_rowArr_2_1[x + half_span_x] = arg1_tmpConverter_2_1.f; 
+                    ops::hls::DataConv arg1_tmpConverter_0_2;
+                    arg1_tmpConverter_0_2.i = arg1_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg1_rowArr_0_2[x + half_span_x] = arg1_tmpConverter_0_2.f; 
+                    ops::hls::DataConv arg1_tmpConverter_1_2;
+                    arg1_tmpConverter_1_2.i = arg1_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg1_rowArr_1_2[x + half_span_x] = arg1_tmpConverter_1_2.f; 
+                    ops::hls::DataConv arg1_tmpConverter_2_2;
+                    arg1_tmpConverter_2_2.i = arg1_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg1_rowArr_2_2[x + half_span_x] = arg1_tmpConverter_2_2.f; 
+                    ops::hls::DataConv arg2_tmpConverter_0_0;
+                    arg2_tmpConverter_0_0.i = arg2_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg2_rowArr_0_0[x + half_span_x] = arg2_tmpConverter_0_0.f; 
+                    ops::hls::DataConv arg2_tmpConverter_1_0;
+                    arg2_tmpConverter_1_0.i = arg2_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg2_rowArr_1_0[x + half_span_x] = arg2_tmpConverter_1_0.f; 
+                    ops::hls::DataConv arg2_tmpConverter_2_0;
+                    arg2_tmpConverter_2_0.i = arg2_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg2_rowArr_2_0[x + half_span_x] = arg2_tmpConverter_2_0.f; 
+                    ops::hls::DataConv arg2_tmpConverter_0_1;
+                    arg2_tmpConverter_0_1.i = arg2_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg2_rowArr_0_1[x + half_span_x] = arg2_tmpConverter_0_1.f; 
+                    ops::hls::DataConv arg2_tmpConverter_1_1;
+                    arg2_tmpConverter_1_1.i = arg2_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg2_rowArr_1_1[x + half_span_x] = arg2_tmpConverter_1_1.f; 
+                    ops::hls::DataConv arg2_tmpConverter_2_1;
+                    arg2_tmpConverter_2_1.i = arg2_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg2_rowArr_2_1[x + half_span_x] = arg2_tmpConverter_2_1.f; 
+                    ops::hls::DataConv arg2_tmpConverter_0_2;
+                    arg2_tmpConverter_0_2.i = arg2_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg2_rowArr_0_2[x + half_span_x] = arg2_tmpConverter_0_2.f; 
+                    ops::hls::DataConv arg2_tmpConverter_1_2;
+                    arg2_tmpConverter_1_2.i = arg2_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg2_rowArr_1_2[x + half_span_x] = arg2_tmpConverter_1_2.f; 
+                    ops::hls::DataConv arg2_tmpConverter_2_2;
+                    arg2_tmpConverter_2_2.i = arg2_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg2_rowArr_2_2[x + half_span_x] = arg2_tmpConverter_2_2.f; 
+                    ops::hls::DataConv arg6_tmpConverter_0_0;
+                    arg6_tmpConverter_0_0.i = arg6_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg6_rowArr_0_0[x + half_span_x] = arg6_tmpConverter_0_0.f; 
+                    ops::hls::DataConv arg6_tmpConverter_1_0;
+                    arg6_tmpConverter_1_0.i = arg6_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg6_rowArr_1_0[x + half_span_x] = arg6_tmpConverter_1_0.f; 
+                    ops::hls::DataConv arg6_tmpConverter_2_0;
+                    arg6_tmpConverter_2_0.i = arg6_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg6_rowArr_2_0[x + half_span_x] = arg6_tmpConverter_2_0.f; 
+                    ops::hls::DataConv arg6_tmpConverter_0_1;
+                    arg6_tmpConverter_0_1.i = arg6_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg6_rowArr_0_1[x + half_span_x] = arg6_tmpConverter_0_1.f; 
+                    ops::hls::DataConv arg6_tmpConverter_1_1;
+                    arg6_tmpConverter_1_1.i = arg6_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg6_rowArr_1_1[x + half_span_x] = arg6_tmpConverter_1_1.f; 
+                    ops::hls::DataConv arg6_tmpConverter_2_1;
+                    arg6_tmpConverter_2_1.i = arg6_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg6_rowArr_2_1[x + half_span_x] = arg6_tmpConverter_2_1.f; 
+                    ops::hls::DataConv arg6_tmpConverter_0_2;
+                    arg6_tmpConverter_0_2.i = arg6_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg6_rowArr_0_2[x + half_span_x] = arg6_tmpConverter_0_2.f; 
+                    ops::hls::DataConv arg6_tmpConverter_1_2;
+                    arg6_tmpConverter_1_2.i = arg6_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg6_rowArr_1_2[x + half_span_x] = arg6_tmpConverter_1_2.f; 
+                    ops::hls::DataConv arg6_tmpConverter_2_2;
+                    arg6_tmpConverter_2_2.i = arg6_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg6_rowArr_2_2[x + half_span_x] = arg6_tmpConverter_2_2.f; 
+                    ops::hls::DataConv arg7_tmpConverter_0_0;
+                    arg7_tmpConverter_0_0.i = arg7_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg7_rowArr_0_0[x + half_span_x] = arg7_tmpConverter_0_0.f; 
+                    ops::hls::DataConv arg7_tmpConverter_1_0;
+                    arg7_tmpConverter_1_0.i = arg7_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg7_rowArr_1_0[x + half_span_x] = arg7_tmpConverter_1_0.f; 
+                    ops::hls::DataConv arg7_tmpConverter_2_0;
+                    arg7_tmpConverter_2_0.i = arg7_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg7_rowArr_2_0[x + half_span_x] = arg7_tmpConverter_2_0.f; 
+                    ops::hls::DataConv arg7_tmpConverter_0_1;
+                    arg7_tmpConverter_0_1.i = arg7_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg7_rowArr_0_1[x + half_span_x] = arg7_tmpConverter_0_1.f; 
+                    ops::hls::DataConv arg7_tmpConverter_1_1;
+                    arg7_tmpConverter_1_1.i = arg7_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg7_rowArr_1_1[x + half_span_x] = arg7_tmpConverter_1_1.f; 
+                    ops::hls::DataConv arg7_tmpConverter_2_1;
+                    arg7_tmpConverter_2_1.i = arg7_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg7_rowArr_2_1[x + half_span_x] = arg7_tmpConverter_2_1.f; 
+                    ops::hls::DataConv arg7_tmpConverter_0_2;
+                    arg7_tmpConverter_0_2.i = arg7_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg7_rowArr_0_2[x + half_span_x] = arg7_tmpConverter_0_2.f; 
+                    ops::hls::DataConv arg7_tmpConverter_1_2;
+                    arg7_tmpConverter_1_2.i = arg7_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg7_rowArr_1_2[x + half_span_x] = arg7_tmpConverter_1_2.f; 
+                    ops::hls::DataConv arg7_tmpConverter_2_2;
+                    arg7_tmpConverter_2_2.i = arg7_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg7_rowArr_2_2[x + half_span_x] = arg7_tmpConverter_2_2.f; 
+                    ops::hls::DataConv arg8_tmpConverter_0_0;
+                    arg8_tmpConverter_0_0.i = arg8_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg8_rowArr_0_0[x + half_span_x] = arg8_tmpConverter_0_0.f; 
+                    ops::hls::DataConv arg8_tmpConverter_1_0;
+                    arg8_tmpConverter_1_0.i = arg8_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg8_rowArr_1_0[x + half_span_x] = arg8_tmpConverter_1_0.f; 
+                    ops::hls::DataConv arg8_tmpConverter_2_0;
+                    arg8_tmpConverter_2_0.i = arg8_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg8_rowArr_2_0[x + half_span_x] = arg8_tmpConverter_2_0.f; 
+                    ops::hls::DataConv arg8_tmpConverter_0_1;
+                    arg8_tmpConverter_0_1.i = arg8_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg8_rowArr_0_1[x + half_span_x] = arg8_tmpConverter_0_1.f; 
+                    ops::hls::DataConv arg8_tmpConverter_1_1;
+                    arg8_tmpConverter_1_1.i = arg8_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg8_rowArr_1_1[x + half_span_x] = arg8_tmpConverter_1_1.f; 
+                    ops::hls::DataConv arg8_tmpConverter_2_1;
+                    arg8_tmpConverter_2_1.i = arg8_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg8_rowArr_2_1[x + half_span_x] = arg8_tmpConverter_2_1.f; 
+                    ops::hls::DataConv arg8_tmpConverter_0_2;
+                    arg8_tmpConverter_0_2.i = arg8_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg8_rowArr_0_2[x + half_span_x] = arg8_tmpConverter_0_2.f; 
+                    ops::hls::DataConv arg8_tmpConverter_1_2;
+                    arg8_tmpConverter_1_2.i = arg8_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg8_rowArr_1_2[x + half_span_x] = arg8_tmpConverter_1_2.f; 
+                    ops::hls::DataConv arg8_tmpConverter_2_2;
+                    arg8_tmpConverter_2_2.i = arg8_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg8_rowArr_2_2[x + half_span_x] = arg8_tmpConverter_2_2.f; 
+                    ops::hls::DataConv arg9_tmpConverter_0_0;
+                    arg9_tmpConverter_0_0.i = arg9_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg9_rowArr_0_0[x + half_span_x] = arg9_tmpConverter_0_0.f; 
+                    ops::hls::DataConv arg9_tmpConverter_1_0;
+                    arg9_tmpConverter_1_0.i = arg9_widenStencilValues[4].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg9_rowArr_1_0[x + half_span_x] = arg9_tmpConverter_1_0.f; 
+                    ops::hls::DataConv arg9_tmpConverter_2_0;
+                    arg9_tmpConverter_2_0.i = arg9_widenStencilValues[7].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg9_rowArr_2_0[x + half_span_x] = arg9_tmpConverter_2_0.f; 
+                    ops::hls::DataConv arg9_tmpConverter_0_1;
+                    arg9_tmpConverter_0_1.i = arg9_widenStencilValues[10].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg9_rowArr_0_1[x + half_span_x] = arg9_tmpConverter_0_1.f; 
+                    ops::hls::DataConv arg9_tmpConverter_1_1;
+                    arg9_tmpConverter_1_1.i = arg9_widenStencilValues[13].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg9_rowArr_1_1[x + half_span_x] = arg9_tmpConverter_1_1.f; 
+                    ops::hls::DataConv arg9_tmpConverter_2_1;
+                    arg9_tmpConverter_2_1.i = arg9_widenStencilValues[16].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg9_rowArr_2_1[x + half_span_x] = arg9_tmpConverter_2_1.f; 
+                    ops::hls::DataConv arg9_tmpConverter_0_2;
+                    arg9_tmpConverter_0_2.i = arg9_widenStencilValues[19].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg9_rowArr_0_2[x + half_span_x] = arg9_tmpConverter_0_2.f; 
+                    ops::hls::DataConv arg9_tmpConverter_1_2;
+                    arg9_tmpConverter_1_2.i = arg9_widenStencilValues[22].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg9_rowArr_1_2[x + half_span_x] = arg9_tmpConverter_1_2.f; 
+                    ops::hls::DataConv arg9_tmpConverter_2_2;
+                    arg9_tmpConverter_2_2.i = arg9_widenStencilValues[25].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
+                    arg9_rowArr_2_2[x + half_span_x] = arg9_tmpConverter_2_2.f; 
+
+                }
+                vec2arr_rest:
+                {
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg0_tmpConverter_0_0_0_7;
+                    arg0_tmpConverter_0_0_0_7.i = arg0_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg0_rowArr_0_0[0] = arg0_tmpConverter_0_0_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg0_tmpConverter_2_0_0_0;
+                    arg0_tmpConverter_2_0_0_0.i = arg0_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg0_rowArr_0_0[9] = arg0_tmpConverter_2_0_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg0_tmpConverter_0_1_0_7;
+                    arg0_tmpConverter_0_1_0_7.i = arg0_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg0_rowArr_1_0[0] = arg0_tmpConverter_0_1_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg0_tmpConverter_2_1_0_0;
+                    arg0_tmpConverter_2_1_0_0.i = arg0_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg0_rowArr_1_0[9] = arg0_tmpConverter_2_1_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg0_tmpConverter_0_2_0_7;
+                    arg0_tmpConverter_0_2_0_7.i = arg0_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg0_rowArr_2_0[0] = arg0_tmpConverter_0_2_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg0_tmpConverter_2_2_0_0;
+                    arg0_tmpConverter_2_2_0_0.i = arg0_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg0_rowArr_2_0[9] = arg0_tmpConverter_2_2_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg0_tmpConverter_0_0_1_7;
+                    arg0_tmpConverter_0_0_1_7.i = arg0_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg0_rowArr_0_1[0] = arg0_tmpConverter_0_0_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg0_tmpConverter_2_0_1_0;
+                    arg0_tmpConverter_2_0_1_0.i = arg0_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg0_rowArr_0_1[9] = arg0_tmpConverter_2_0_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg0_tmpConverter_0_1_1_7;
+                    arg0_tmpConverter_0_1_1_7.i = arg0_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg0_rowArr_1_1[0] = arg0_tmpConverter_0_1_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg0_tmpConverter_2_1_1_0;
+                    arg0_tmpConverter_2_1_1_0.i = arg0_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg0_rowArr_1_1[9] = arg0_tmpConverter_2_1_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg0_tmpConverter_0_2_1_7;
+                    arg0_tmpConverter_0_2_1_7.i = arg0_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg0_rowArr_2_1[0] = arg0_tmpConverter_0_2_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg0_tmpConverter_2_2_1_0;
+                    arg0_tmpConverter_2_2_1_0.i = arg0_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg0_rowArr_2_1[9] = arg0_tmpConverter_2_2_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg0_tmpConverter_0_0_2_7;
+                    arg0_tmpConverter_0_0_2_7.i = arg0_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg0_rowArr_0_2[0] = arg0_tmpConverter_0_0_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg0_tmpConverter_2_0_2_0;
+                    arg0_tmpConverter_2_0_2_0.i = arg0_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg0_rowArr_0_2[9] = arg0_tmpConverter_2_0_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg0_tmpConverter_0_1_2_7;
+                    arg0_tmpConverter_0_1_2_7.i = arg0_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg0_rowArr_1_2[0] = arg0_tmpConverter_0_1_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg0_tmpConverter_2_1_2_0;
+                    arg0_tmpConverter_2_1_2_0.i = arg0_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg0_rowArr_1_2[9] = arg0_tmpConverter_2_1_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg0_tmpConverter_0_2_2_7;
+                    arg0_tmpConverter_0_2_2_7.i = arg0_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg0_rowArr_2_2[0] = arg0_tmpConverter_0_2_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg0_tmpConverter_2_2_2_0;
+                    arg0_tmpConverter_2_2_2_0.i = arg0_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg0_rowArr_2_2[9] = arg0_tmpConverter_2_2_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg1_tmpConverter_0_0_0_7;
+                    arg1_tmpConverter_0_0_0_7.i = arg1_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg1_rowArr_0_0[0] = arg1_tmpConverter_0_0_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg1_tmpConverter_2_0_0_0;
+                    arg1_tmpConverter_2_0_0_0.i = arg1_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg1_rowArr_0_0[9] = arg1_tmpConverter_2_0_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg1_tmpConverter_0_1_0_7;
+                    arg1_tmpConverter_0_1_0_7.i = arg1_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg1_rowArr_1_0[0] = arg1_tmpConverter_0_1_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg1_tmpConverter_2_1_0_0;
+                    arg1_tmpConverter_2_1_0_0.i = arg1_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg1_rowArr_1_0[9] = arg1_tmpConverter_2_1_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg1_tmpConverter_0_2_0_7;
+                    arg1_tmpConverter_0_2_0_7.i = arg1_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg1_rowArr_2_0[0] = arg1_tmpConverter_0_2_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg1_tmpConverter_2_2_0_0;
+                    arg1_tmpConverter_2_2_0_0.i = arg1_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg1_rowArr_2_0[9] = arg1_tmpConverter_2_2_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg1_tmpConverter_0_0_1_7;
+                    arg1_tmpConverter_0_0_1_7.i = arg1_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg1_rowArr_0_1[0] = arg1_tmpConverter_0_0_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg1_tmpConverter_2_0_1_0;
+                    arg1_tmpConverter_2_0_1_0.i = arg1_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg1_rowArr_0_1[9] = arg1_tmpConverter_2_0_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg1_tmpConverter_0_1_1_7;
+                    arg1_tmpConverter_0_1_1_7.i = arg1_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg1_rowArr_1_1[0] = arg1_tmpConverter_0_1_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg1_tmpConverter_2_1_1_0;
+                    arg1_tmpConverter_2_1_1_0.i = arg1_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg1_rowArr_1_1[9] = arg1_tmpConverter_2_1_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg1_tmpConverter_0_2_1_7;
+                    arg1_tmpConverter_0_2_1_7.i = arg1_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg1_rowArr_2_1[0] = arg1_tmpConverter_0_2_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg1_tmpConverter_2_2_1_0;
+                    arg1_tmpConverter_2_2_1_0.i = arg1_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg1_rowArr_2_1[9] = arg1_tmpConverter_2_2_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg1_tmpConverter_0_0_2_7;
+                    arg1_tmpConverter_0_0_2_7.i = arg1_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg1_rowArr_0_2[0] = arg1_tmpConverter_0_0_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg1_tmpConverter_2_0_2_0;
+                    arg1_tmpConverter_2_0_2_0.i = arg1_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg1_rowArr_0_2[9] = arg1_tmpConverter_2_0_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg1_tmpConverter_0_1_2_7;
+                    arg1_tmpConverter_0_1_2_7.i = arg1_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg1_rowArr_1_2[0] = arg1_tmpConverter_0_1_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg1_tmpConverter_2_1_2_0;
+                    arg1_tmpConverter_2_1_2_0.i = arg1_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg1_rowArr_1_2[9] = arg1_tmpConverter_2_1_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg1_tmpConverter_0_2_2_7;
+                    arg1_tmpConverter_0_2_2_7.i = arg1_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg1_rowArr_2_2[0] = arg1_tmpConverter_0_2_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg1_tmpConverter_2_2_2_0;
+                    arg1_tmpConverter_2_2_2_0.i = arg1_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg1_rowArr_2_2[9] = arg1_tmpConverter_2_2_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg2_tmpConverter_0_0_0_7;
+                    arg2_tmpConverter_0_0_0_7.i = arg2_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg2_rowArr_0_0[0] = arg2_tmpConverter_0_0_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg2_tmpConverter_2_0_0_0;
+                    arg2_tmpConverter_2_0_0_0.i = arg2_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg2_rowArr_0_0[9] = arg2_tmpConverter_2_0_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg2_tmpConverter_0_1_0_7;
+                    arg2_tmpConverter_0_1_0_7.i = arg2_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg2_rowArr_1_0[0] = arg2_tmpConverter_0_1_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg2_tmpConverter_2_1_0_0;
+                    arg2_tmpConverter_2_1_0_0.i = arg2_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg2_rowArr_1_0[9] = arg2_tmpConverter_2_1_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg2_tmpConverter_0_2_0_7;
+                    arg2_tmpConverter_0_2_0_7.i = arg2_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg2_rowArr_2_0[0] = arg2_tmpConverter_0_2_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg2_tmpConverter_2_2_0_0;
+                    arg2_tmpConverter_2_2_0_0.i = arg2_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg2_rowArr_2_0[9] = arg2_tmpConverter_2_2_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg2_tmpConverter_0_0_1_7;
+                    arg2_tmpConverter_0_0_1_7.i = arg2_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg2_rowArr_0_1[0] = arg2_tmpConverter_0_0_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg2_tmpConverter_2_0_1_0;
+                    arg2_tmpConverter_2_0_1_0.i = arg2_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg2_rowArr_0_1[9] = arg2_tmpConverter_2_0_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg2_tmpConverter_0_1_1_7;
+                    arg2_tmpConverter_0_1_1_7.i = arg2_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg2_rowArr_1_1[0] = arg2_tmpConverter_0_1_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg2_tmpConverter_2_1_1_0;
+                    arg2_tmpConverter_2_1_1_0.i = arg2_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg2_rowArr_1_1[9] = arg2_tmpConverter_2_1_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg2_tmpConverter_0_2_1_7;
+                    arg2_tmpConverter_0_2_1_7.i = arg2_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg2_rowArr_2_1[0] = arg2_tmpConverter_0_2_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg2_tmpConverter_2_2_1_0;
+                    arg2_tmpConverter_2_2_1_0.i = arg2_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg2_rowArr_2_1[9] = arg2_tmpConverter_2_2_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg2_tmpConverter_0_0_2_7;
+                    arg2_tmpConverter_0_0_2_7.i = arg2_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg2_rowArr_0_2[0] = arg2_tmpConverter_0_0_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg2_tmpConverter_2_0_2_0;
+                    arg2_tmpConverter_2_0_2_0.i = arg2_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg2_rowArr_0_2[9] = arg2_tmpConverter_2_0_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg2_tmpConverter_0_1_2_7;
+                    arg2_tmpConverter_0_1_2_7.i = arg2_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg2_rowArr_1_2[0] = arg2_tmpConverter_0_1_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg2_tmpConverter_2_1_2_0;
+                    arg2_tmpConverter_2_1_2_0.i = arg2_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg2_rowArr_1_2[9] = arg2_tmpConverter_2_1_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg2_tmpConverter_0_2_2_7;
+                    arg2_tmpConverter_0_2_2_7.i = arg2_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg2_rowArr_2_2[0] = arg2_tmpConverter_0_2_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg2_tmpConverter_2_2_2_0;
+                    arg2_tmpConverter_2_2_2_0.i = arg2_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg2_rowArr_2_2[9] = arg2_tmpConverter_2_2_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg6_tmpConverter_0_0_0_7;
+                    arg6_tmpConverter_0_0_0_7.i = arg6_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg6_rowArr_0_0[0] = arg6_tmpConverter_0_0_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg6_tmpConverter_2_0_0_0;
+                    arg6_tmpConverter_2_0_0_0.i = arg6_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg6_rowArr_0_0[9] = arg6_tmpConverter_2_0_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg6_tmpConverter_0_1_0_7;
+                    arg6_tmpConverter_0_1_0_7.i = arg6_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg6_rowArr_1_0[0] = arg6_tmpConverter_0_1_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg6_tmpConverter_2_1_0_0;
+                    arg6_tmpConverter_2_1_0_0.i = arg6_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg6_rowArr_1_0[9] = arg6_tmpConverter_2_1_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg6_tmpConverter_0_2_0_7;
+                    arg6_tmpConverter_0_2_0_7.i = arg6_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg6_rowArr_2_0[0] = arg6_tmpConverter_0_2_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg6_tmpConverter_2_2_0_0;
+                    arg6_tmpConverter_2_2_0_0.i = arg6_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg6_rowArr_2_0[9] = arg6_tmpConverter_2_2_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg6_tmpConverter_0_0_1_7;
+                    arg6_tmpConverter_0_0_1_7.i = arg6_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg6_rowArr_0_1[0] = arg6_tmpConverter_0_0_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg6_tmpConverter_2_0_1_0;
+                    arg6_tmpConverter_2_0_1_0.i = arg6_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg6_rowArr_0_1[9] = arg6_tmpConverter_2_0_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg6_tmpConverter_0_1_1_7;
+                    arg6_tmpConverter_0_1_1_7.i = arg6_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg6_rowArr_1_1[0] = arg6_tmpConverter_0_1_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg6_tmpConverter_2_1_1_0;
+                    arg6_tmpConverter_2_1_1_0.i = arg6_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg6_rowArr_1_1[9] = arg6_tmpConverter_2_1_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg6_tmpConverter_0_2_1_7;
+                    arg6_tmpConverter_0_2_1_7.i = arg6_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg6_rowArr_2_1[0] = arg6_tmpConverter_0_2_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg6_tmpConverter_2_2_1_0;
+                    arg6_tmpConverter_2_2_1_0.i = arg6_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg6_rowArr_2_1[9] = arg6_tmpConverter_2_2_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg6_tmpConverter_0_0_2_7;
+                    arg6_tmpConverter_0_0_2_7.i = arg6_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg6_rowArr_0_2[0] = arg6_tmpConverter_0_0_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg6_tmpConverter_2_0_2_0;
+                    arg6_tmpConverter_2_0_2_0.i = arg6_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg6_rowArr_0_2[9] = arg6_tmpConverter_2_0_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg6_tmpConverter_0_1_2_7;
+                    arg6_tmpConverter_0_1_2_7.i = arg6_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg6_rowArr_1_2[0] = arg6_tmpConverter_0_1_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg6_tmpConverter_2_1_2_0;
+                    arg6_tmpConverter_2_1_2_0.i = arg6_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg6_rowArr_1_2[9] = arg6_tmpConverter_2_1_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg6_tmpConverter_0_2_2_7;
+                    arg6_tmpConverter_0_2_2_7.i = arg6_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg6_rowArr_2_2[0] = arg6_tmpConverter_0_2_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg6_tmpConverter_2_2_2_0;
+                    arg6_tmpConverter_2_2_2_0.i = arg6_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg6_rowArr_2_2[9] = arg6_tmpConverter_2_2_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg7_tmpConverter_0_0_0_7;
+                    arg7_tmpConverter_0_0_0_7.i = arg7_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg7_rowArr_0_0[0] = arg7_tmpConverter_0_0_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg7_tmpConverter_2_0_0_0;
+                    arg7_tmpConverter_2_0_0_0.i = arg7_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg7_rowArr_0_0[9] = arg7_tmpConverter_2_0_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg7_tmpConverter_0_1_0_7;
+                    arg7_tmpConverter_0_1_0_7.i = arg7_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg7_rowArr_1_0[0] = arg7_tmpConverter_0_1_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg7_tmpConverter_2_1_0_0;
+                    arg7_tmpConverter_2_1_0_0.i = arg7_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg7_rowArr_1_0[9] = arg7_tmpConverter_2_1_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg7_tmpConverter_0_2_0_7;
+                    arg7_tmpConverter_0_2_0_7.i = arg7_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg7_rowArr_2_0[0] = arg7_tmpConverter_0_2_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg7_tmpConverter_2_2_0_0;
+                    arg7_tmpConverter_2_2_0_0.i = arg7_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg7_rowArr_2_0[9] = arg7_tmpConverter_2_2_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg7_tmpConverter_0_0_1_7;
+                    arg7_tmpConverter_0_0_1_7.i = arg7_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg7_rowArr_0_1[0] = arg7_tmpConverter_0_0_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg7_tmpConverter_2_0_1_0;
+                    arg7_tmpConverter_2_0_1_0.i = arg7_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg7_rowArr_0_1[9] = arg7_tmpConverter_2_0_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg7_tmpConverter_0_1_1_7;
+                    arg7_tmpConverter_0_1_1_7.i = arg7_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg7_rowArr_1_1[0] = arg7_tmpConverter_0_1_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg7_tmpConverter_2_1_1_0;
+                    arg7_tmpConverter_2_1_1_0.i = arg7_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg7_rowArr_1_1[9] = arg7_tmpConverter_2_1_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg7_tmpConverter_0_2_1_7;
+                    arg7_tmpConverter_0_2_1_7.i = arg7_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg7_rowArr_2_1[0] = arg7_tmpConverter_0_2_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg7_tmpConverter_2_2_1_0;
+                    arg7_tmpConverter_2_2_1_0.i = arg7_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg7_rowArr_2_1[9] = arg7_tmpConverter_2_2_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg7_tmpConverter_0_0_2_7;
+                    arg7_tmpConverter_0_0_2_7.i = arg7_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg7_rowArr_0_2[0] = arg7_tmpConverter_0_0_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg7_tmpConverter_2_0_2_0;
+                    arg7_tmpConverter_2_0_2_0.i = arg7_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg7_rowArr_0_2[9] = arg7_tmpConverter_2_0_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg7_tmpConverter_0_1_2_7;
+                    arg7_tmpConverter_0_1_2_7.i = arg7_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg7_rowArr_1_2[0] = arg7_tmpConverter_0_1_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg7_tmpConverter_2_1_2_0;
+                    arg7_tmpConverter_2_1_2_0.i = arg7_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg7_rowArr_1_2[9] = arg7_tmpConverter_2_1_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg7_tmpConverter_0_2_2_7;
+                    arg7_tmpConverter_0_2_2_7.i = arg7_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg7_rowArr_2_2[0] = arg7_tmpConverter_0_2_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg7_tmpConverter_2_2_2_0;
+                    arg7_tmpConverter_2_2_2_0.i = arg7_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg7_rowArr_2_2[9] = arg7_tmpConverter_2_2_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg8_tmpConverter_0_0_0_7;
+                    arg8_tmpConverter_0_0_0_7.i = arg8_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg8_rowArr_0_0[0] = arg8_tmpConverter_0_0_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg8_tmpConverter_2_0_0_0;
+                    arg8_tmpConverter_2_0_0_0.i = arg8_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg8_rowArr_0_0[9] = arg8_tmpConverter_2_0_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg8_tmpConverter_0_1_0_7;
+                    arg8_tmpConverter_0_1_0_7.i = arg8_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg8_rowArr_1_0[0] = arg8_tmpConverter_0_1_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg8_tmpConverter_2_1_0_0;
+                    arg8_tmpConverter_2_1_0_0.i = arg8_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg8_rowArr_1_0[9] = arg8_tmpConverter_2_1_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg8_tmpConverter_0_2_0_7;
+                    arg8_tmpConverter_0_2_0_7.i = arg8_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg8_rowArr_2_0[0] = arg8_tmpConverter_0_2_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg8_tmpConverter_2_2_0_0;
+                    arg8_tmpConverter_2_2_0_0.i = arg8_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg8_rowArr_2_0[9] = arg8_tmpConverter_2_2_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg8_tmpConverter_0_0_1_7;
+                    arg8_tmpConverter_0_0_1_7.i = arg8_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg8_rowArr_0_1[0] = arg8_tmpConverter_0_0_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg8_tmpConverter_2_0_1_0;
+                    arg8_tmpConverter_2_0_1_0.i = arg8_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg8_rowArr_0_1[9] = arg8_tmpConverter_2_0_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg8_tmpConverter_0_1_1_7;
+                    arg8_tmpConverter_0_1_1_7.i = arg8_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg8_rowArr_1_1[0] = arg8_tmpConverter_0_1_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg8_tmpConverter_2_1_1_0;
+                    arg8_tmpConverter_2_1_1_0.i = arg8_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg8_rowArr_1_1[9] = arg8_tmpConverter_2_1_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg8_tmpConverter_0_2_1_7;
+                    arg8_tmpConverter_0_2_1_7.i = arg8_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg8_rowArr_2_1[0] = arg8_tmpConverter_0_2_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg8_tmpConverter_2_2_1_0;
+                    arg8_tmpConverter_2_2_1_0.i = arg8_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg8_rowArr_2_1[9] = arg8_tmpConverter_2_2_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg8_tmpConverter_0_0_2_7;
+                    arg8_tmpConverter_0_0_2_7.i = arg8_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg8_rowArr_0_2[0] = arg8_tmpConverter_0_0_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg8_tmpConverter_2_0_2_0;
+                    arg8_tmpConverter_2_0_2_0.i = arg8_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg8_rowArr_0_2[9] = arg8_tmpConverter_2_0_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg8_tmpConverter_0_1_2_7;
+                    arg8_tmpConverter_0_1_2_7.i = arg8_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg8_rowArr_1_2[0] = arg8_tmpConverter_0_1_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg8_tmpConverter_2_1_2_0;
+                    arg8_tmpConverter_2_1_2_0.i = arg8_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg8_rowArr_1_2[9] = arg8_tmpConverter_2_1_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg8_tmpConverter_0_2_2_7;
+                    arg8_tmpConverter_0_2_2_7.i = arg8_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg8_rowArr_2_2[0] = arg8_tmpConverter_0_2_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg8_tmpConverter_2_2_2_0;
+                    arg8_tmpConverter_2_2_2_0.i = arg8_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg8_rowArr_2_2[9] = arg8_tmpConverter_2_2_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg9_tmpConverter_0_0_0_7;
+                    arg9_tmpConverter_0_0_0_7.i = arg9_widenStencilValues[0].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg9_rowArr_0_0[0] = arg9_tmpConverter_0_0_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg9_tmpConverter_2_0_0_0;
+                    arg9_tmpConverter_2_0_0_0.i = arg9_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg9_rowArr_0_0[9] = arg9_tmpConverter_2_0_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg9_tmpConverter_0_1_0_7;
+                    arg9_tmpConverter_0_1_0_7.i = arg9_widenStencilValues[3].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg9_rowArr_1_0[0] = arg9_tmpConverter_0_1_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg9_tmpConverter_2_1_0_0;
+                    arg9_tmpConverter_2_1_0_0.i = arg9_widenStencilValues[5].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg9_rowArr_1_0[9] = arg9_tmpConverter_2_1_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg9_tmpConverter_0_2_0_7;
+                    arg9_tmpConverter_0_2_0_7.i = arg9_widenStencilValues[6].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg9_rowArr_2_0[0] = arg9_tmpConverter_0_2_0_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg9_tmpConverter_2_2_0_0;
+                    arg9_tmpConverter_2_2_0_0.i = arg9_widenStencilValues[8].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg9_rowArr_2_0[9] = arg9_tmpConverter_2_2_0_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg9_tmpConverter_0_0_1_7;
+                    arg9_tmpConverter_0_0_1_7.i = arg9_widenStencilValues[9].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg9_rowArr_0_1[0] = arg9_tmpConverter_0_0_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg9_tmpConverter_2_0_1_0;
+                    arg9_tmpConverter_2_0_1_0.i = arg9_widenStencilValues[11].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg9_rowArr_0_1[9] = arg9_tmpConverter_2_0_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg9_tmpConverter_0_1_1_7;
+                    arg9_tmpConverter_0_1_1_7.i = arg9_widenStencilValues[12].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg9_rowArr_1_1[0] = arg9_tmpConverter_0_1_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg9_tmpConverter_2_1_1_0;
+                    arg9_tmpConverter_2_1_1_0.i = arg9_widenStencilValues[14].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg9_rowArr_1_1[9] = arg9_tmpConverter_2_1_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg9_tmpConverter_0_2_1_7;
+                    arg9_tmpConverter_0_2_1_7.i = arg9_widenStencilValues[15].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg9_rowArr_2_1[0] = arg9_tmpConverter_0_2_1_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg9_tmpConverter_2_2_1_0;
+                    arg9_tmpConverter_2_2_1_0.i = arg9_widenStencilValues[17].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg9_rowArr_2_1[9] = arg9_tmpConverter_2_2_1_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg9_tmpConverter_0_0_2_7;
+                    arg9_tmpConverter_0_0_2_7.i = arg9_widenStencilValues[18].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg9_rowArr_0_2[0] = arg9_tmpConverter_0_0_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg9_tmpConverter_2_0_2_0;
+                    arg9_tmpConverter_2_0_2_0.i = arg9_widenStencilValues[20].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg9_rowArr_0_2[9] = arg9_tmpConverter_2_0_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg9_tmpConverter_0_1_2_7;
+                    arg9_tmpConverter_0_1_2_7.i = arg9_widenStencilValues[21].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg9_rowArr_1_2[0] = arg9_tmpConverter_0_1_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg9_tmpConverter_2_1_2_0;
+                    arg9_tmpConverter_2_1_2_0.i = arg9_widenStencilValues[23].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg9_rowArr_1_2[9] = arg9_tmpConverter_2_1_2_0.f;
+                    //diff = -1
+                    // access_idx = 0
+                    ops::hls::DataConv arg9_tmpConverter_0_2_2_7;
+                    arg9_tmpConverter_0_2_2_7.i = arg9_widenStencilValues[24].range(s_datatype_size * (7 + 1) - 1, s_datatype_size * 7);
+                    arg9_rowArr_2_2[0] = arg9_tmpConverter_0_2_2_7.f;
+                    //diff = 1
+                    // access_idx = 9
+                    ops::hls::DataConv arg9_tmpConverter_2_2_2_0;
+                    arg9_tmpConverter_2_2_2_0.i = arg9_widenStencilValues[26].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
+                    arg9_rowArr_2_2[9] = arg9_tmpConverter_2_2_2_0.f;
+                }
+
+                process: for (unsigned short x = 0; x < vector_factor; x++)
+                {
+    #pragma HLS UNROLL factor=vector_factor
+                    short index = (i << shift_bits) + x;
+                    bool neg_cond = register_it(             
+                            (index < stencilConfig.lower_limit[0]) 
+                            || (index >= stencilConfig.upper_limit[0])
+                            || (j < stencilConfig.lower_limit[1]) 
+                            || (j >= stencilConfig.upper_limit[1])
+                            || (k < stencilConfig.lower_limit[2]) 
+                            || (k >= stencilConfig.upper_limit[2])
+                    );
+
+    #ifdef DEBUG_LOG
+                    printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] index=(%d, %d, %d), lowerbound=(%d, %d, %d), upperbound=(%d, %d, %d), neg_cond=%d\n", m_PEId, index, j, k,
+                                stencilConfig.lower_limit[0], stencilConfig.lower_limit[1], stencilConfig.lower_limit[2], 
+                                stencilConfig.upper_limit[0], stencilConfig.upper_limit[1], stencilConfig.upper_limit[2], neg_cond);
+
+    #endif
+
+                    stencil_type arg3_result;
+
+                    stencil_type arg4_result;
+
+                    stencil_type arg5_result;
+
+                    kernel_pw_advection_opt_kernel_core(
+                            arg0_rowArr_0_0[x + 0],
+                            arg0_rowArr_0_0[x + 1],
+                            arg0_rowArr_0_0[x + 2],
+                            arg0_rowArr_1_0[x + 0],
+                            arg0_rowArr_1_0[x + 1],
+                            arg0_rowArr_1_0[x + 2],
+                            arg0_rowArr_2_0[x + 0],
+                            arg0_rowArr_2_0[x + 1],
+                            arg0_rowArr_2_0[x + 2],
+                            arg0_rowArr_0_1[x + 0],
+                            arg0_rowArr_0_1[x + 1],
+                            arg0_rowArr_0_1[x + 2],
+                            arg0_rowArr_1_1[x + 0],
+                            arg0_rowArr_1_1[x + 1],
+                            arg0_rowArr_1_1[x + 2],
+                            arg0_rowArr_2_1[x + 0],
+                            arg0_rowArr_2_1[x + 1],
+                            arg0_rowArr_2_1[x + 2],
+                            arg0_rowArr_0_2[x + 0],
+                            arg0_rowArr_0_2[x + 1],
+                            arg0_rowArr_0_2[x + 2],
+                            arg0_rowArr_1_2[x + 0],
+                            arg0_rowArr_1_2[x + 1],
+                            arg0_rowArr_1_2[x + 2],
+                            arg0_rowArr_2_2[x + 0],
+                            arg0_rowArr_2_2[x + 1],
+                            arg0_rowArr_2_2[x + 2],
+                            arg1_rowArr_0_0[x + 0],
+                            arg1_rowArr_0_0[x + 1],
+                            arg1_rowArr_0_0[x + 2],
+                            arg1_rowArr_1_0[x + 0],
+                            arg1_rowArr_1_0[x + 1],
+                            arg1_rowArr_1_0[x + 2],
+                            arg1_rowArr_2_0[x + 0],
+                            arg1_rowArr_2_0[x + 1],
+                            arg1_rowArr_2_0[x + 2],
+                            arg1_rowArr_0_1[x + 0],
+                            arg1_rowArr_0_1[x + 1],
+                            arg1_rowArr_0_1[x + 2],
+                            arg1_rowArr_1_1[x + 0],
+                            arg1_rowArr_1_1[x + 1],
+                            arg1_rowArr_1_1[x + 2],
+                            arg1_rowArr_2_1[x + 0],
+                            arg1_rowArr_2_1[x + 1],
+                            arg1_rowArr_2_1[x + 2],
+                            arg1_rowArr_0_2[x + 0],
+                            arg1_rowArr_0_2[x + 1],
+                            arg1_rowArr_0_2[x + 2],
+                            arg1_rowArr_1_2[x + 0],
+                            arg1_rowArr_1_2[x + 1],
+                            arg1_rowArr_1_2[x + 2],
+                            arg1_rowArr_2_2[x + 0],
+                            arg1_rowArr_2_2[x + 1],
+                            arg1_rowArr_2_2[x + 2],
+                            arg2_rowArr_0_0[x + 0],
+                            arg2_rowArr_0_0[x + 1],
+                            arg2_rowArr_0_0[x + 2],
+                            arg2_rowArr_1_0[x + 0],
+                            arg2_rowArr_1_0[x + 1],
+                            arg2_rowArr_1_0[x + 2],
+                            arg2_rowArr_2_0[x + 0],
+                            arg2_rowArr_2_0[x + 1],
+                            arg2_rowArr_2_0[x + 2],
+                            arg2_rowArr_0_1[x + 0],
+                            arg2_rowArr_0_1[x + 1],
+                            arg2_rowArr_0_1[x + 2],
+                            arg2_rowArr_1_1[x + 0],
+                            arg2_rowArr_1_1[x + 1],
+                            arg2_rowArr_1_1[x + 2],
+                            arg2_rowArr_2_1[x + 0],
+                            arg2_rowArr_2_1[x + 1],
+                            arg2_rowArr_2_1[x + 2],
+                            arg2_rowArr_0_2[x + 0],
+                            arg2_rowArr_0_2[x + 1],
+                            arg2_rowArr_0_2[x + 2],
+                            arg2_rowArr_1_2[x + 0],
+                            arg2_rowArr_1_2[x + 1],
+                            arg2_rowArr_1_2[x + 2],
+                            arg2_rowArr_2_2[x + 0],
+                            arg2_rowArr_2_2[x + 1],
+                            arg2_rowArr_2_2[x + 2],
+                            arg3_result,
+                            arg4_result,
+                            arg5_result,
+                            arg6_rowArr_0_0[x + 0],
+                            arg6_rowArr_0_0[x + 1],
+                            arg6_rowArr_0_0[x + 2],
+                            arg6_rowArr_1_0[x + 0],
+                            arg6_rowArr_1_0[x + 1],
+                            arg6_rowArr_1_0[x + 2],
+                            arg6_rowArr_2_0[x + 0],
+                            arg6_rowArr_2_0[x + 1],
+                            arg6_rowArr_2_0[x + 2],
+                            arg6_rowArr_0_1[x + 0],
+                            arg6_rowArr_0_1[x + 1],
+                            arg6_rowArr_0_1[x + 2],
+                            arg6_rowArr_1_1[x + 0],
+                            arg6_rowArr_1_1[x + 1],
+                            arg6_rowArr_1_1[x + 2],
+                            arg6_rowArr_2_1[x + 0],
+                            arg6_rowArr_2_1[x + 1],
+                            arg6_rowArr_2_1[x + 2],
+                            arg6_rowArr_0_2[x + 0],
+                            arg6_rowArr_0_2[x + 1],
+                            arg6_rowArr_0_2[x + 2],
+                            arg6_rowArr_1_2[x + 0],
+                            arg6_rowArr_1_2[x + 1],
+                            arg6_rowArr_1_2[x + 2],
+                            arg6_rowArr_2_2[x + 0],
+                            arg6_rowArr_2_2[x + 1],
+                            arg6_rowArr_2_2[x + 2],
+                            arg7_rowArr_0_0[x + 0],
+                            arg7_rowArr_0_0[x + 1],
+                            arg7_rowArr_0_0[x + 2],
+                            arg7_rowArr_1_0[x + 0],
+                            arg7_rowArr_1_0[x + 1],
+                            arg7_rowArr_1_0[x + 2],
+                            arg7_rowArr_2_0[x + 0],
+                            arg7_rowArr_2_0[x + 1],
+                            arg7_rowArr_2_0[x + 2],
+                            arg7_rowArr_0_1[x + 0],
+                            arg7_rowArr_0_1[x + 1],
+                            arg7_rowArr_0_1[x + 2],
+                            arg7_rowArr_1_1[x + 0],
+                            arg7_rowArr_1_1[x + 1],
+                            arg7_rowArr_1_1[x + 2],
+                            arg7_rowArr_2_1[x + 0],
+                            arg7_rowArr_2_1[x + 1],
+                            arg7_rowArr_2_1[x + 2],
+                            arg7_rowArr_0_2[x + 0],
+                            arg7_rowArr_0_2[x + 1],
+                            arg7_rowArr_0_2[x + 2],
+                            arg7_rowArr_1_2[x + 0],
+                            arg7_rowArr_1_2[x + 1],
+                            arg7_rowArr_1_2[x + 2],
+                            arg7_rowArr_2_2[x + 0],
+                            arg7_rowArr_2_2[x + 1],
+                            arg7_rowArr_2_2[x + 2],
+                            arg8_rowArr_0_0[x + 0],
+                            arg8_rowArr_0_0[x + 1],
+                            arg8_rowArr_0_0[x + 2],
+                            arg8_rowArr_1_0[x + 0],
+                            arg8_rowArr_1_0[x + 1],
+                            arg8_rowArr_1_0[x + 2],
+                            arg8_rowArr_2_0[x + 0],
+                            arg8_rowArr_2_0[x + 1],
+                            arg8_rowArr_2_0[x + 2],
+                            arg8_rowArr_0_1[x + 0],
+                            arg8_rowArr_0_1[x + 1],
+                            arg8_rowArr_0_1[x + 2],
+                            arg8_rowArr_1_1[x + 0],
+                            arg8_rowArr_1_1[x + 1],
+                            arg8_rowArr_1_1[x + 2],
+                            arg8_rowArr_2_1[x + 0],
+                            arg8_rowArr_2_1[x + 1],
+                            arg8_rowArr_2_1[x + 2],
+                            arg8_rowArr_0_2[x + 0],
+                            arg8_rowArr_0_2[x + 1],
+                            arg8_rowArr_0_2[x + 2],
+                            arg8_rowArr_1_2[x + 0],
+                            arg8_rowArr_1_2[x + 1],
+                            arg8_rowArr_1_2[x + 2],
+                            arg8_rowArr_2_2[x + 0],
+                            arg8_rowArr_2_2[x + 1],
+                            arg8_rowArr_2_2[x + 2],
+                            arg9_rowArr_0_0[x + 0],
+                            arg9_rowArr_0_0[x + 1],
+                            arg9_rowArr_0_0[x + 2],
+                            arg9_rowArr_1_0[x + 0],
+                            arg9_rowArr_1_0[x + 1],
+                            arg9_rowArr_1_0[x + 2],
+                            arg9_rowArr_2_0[x + 0],
+                            arg9_rowArr_2_0[x + 1],
+                            arg9_rowArr_2_0[x + 2],
+                            arg9_rowArr_0_1[x + 0],
+                            arg9_rowArr_0_1[x + 1],
+                            arg9_rowArr_0_1[x + 2],
+                            arg9_rowArr_1_1[x + 0],
+                            arg9_rowArr_1_1[x + 1],
+                            arg9_rowArr_1_1[x + 2],
+                            arg9_rowArr_2_1[x + 0],
+                            arg9_rowArr_2_1[x + 1],
+                            arg9_rowArr_2_1[x + 2],
+                            arg9_rowArr_0_2[x + 0],
+                            arg9_rowArr_0_2[x + 1],
+                            arg9_rowArr_0_2[x + 2],
+                            arg9_rowArr_1_2[x + 0],
+                            arg9_rowArr_1_2[x + 1],
+                            arg9_rowArr_1_2[x + 2],
+                            arg9_rowArr_2_2[x + 0],
+                            arg9_rowArr_2_2[x + 1],
+                            arg9_rowArr_2_2[x + 2]
+                    );
+
+                    ops::hls::DataConv arg3_tmpConvWrite;
+                    ops::hls::DataConv arg4_tmpConvWrite;
+                    ops::hls::DataConv arg5_tmpConvWrite;
+                    ops::hls::DataConv arg6_tmpConvWrite;
+                    ops::hls::DataConv arg7_tmpConvWrite;
+                    ops::hls::DataConv arg8_tmpConvWrite;
+                    ops::hls::DataConv arg9_tmpConvWrite;
+
+                    if (not neg_cond)
+                    {
+                        arg3_tmpConvWrite.f = arg3_result;
+                        arg4_tmpConvWrite.f = arg4_result;
+                        arg5_tmpConvWrite.f = arg5_result;
+                    }
+                    else
+                    {
+
+        // [3, 4, 5, 0, 1, 2, 6, 7, 8, 9]
+                //dat_id: 3, dat: u2, swap_id: 0, swap_dat: u
+                        arg3_tmpConvWrite.f = arg0_rowArr_1_1[x + 1];
+                //dat_id: 4, dat: v2, swap_id: 1, swap_dat: v
+                        arg4_tmpConvWrite.f = arg1_rowArr_1_1[x + 1];
+                //dat_id: 5, dat: w2, swap_id: 2, swap_dat: w
+                        arg5_tmpConvWrite.f = arg2_rowArr_1_1[x + 1];
+                    }
+                // *** rw convertions ***
+                    arg6_tmpConvWrite.f = arg6_rowArr_1_1[x + 1];
+                    arg7_tmpConvWrite.f = arg7_rowArr_1_1[x + 1];
+                    arg8_tmpConvWrite.f = arg8_rowArr_1_1[x + 1];
+                    arg9_tmpConvWrite.f = arg9_rowArr_1_1[x + 1];
+
+                    arg3_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg3_tmpConvWrite.i;
+                    arg4_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg4_tmpConvWrite.i;
+                    arg5_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg5_tmpConvWrite.i;
+                    arg6_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg6_tmpConvWrite.i;
+                    arg7_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg7_tmpConvWrite.i;
+                    arg8_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg8_tmpConvWrite.i;
+                    arg9_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg9_tmpConvWrite.i;
+
+                }
+
+                write:
+                {
+                    bool cond_write = (k >= 0);
+
+                    if (cond_write)
+                    {
+    #ifdef DEBUG_LOG
+                        printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] --------------------------------------------------------\n\n", m_PEId);
+
+                        printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg3: (", m_PEId);
+                        for (int ri = 0; ri < vector_factor; ri++)
+                        {
+                            ops::hls::DataConv tmpConverter;
+                            tmpConverter.i = arg3_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                            printf("%f ", tmpConverter.f);
+                        }
+                        printf(")\n");
+                        printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg4: (", m_PEId);
+                        for (int ri = 0; ri < vector_factor; ri++)
+                        {
+                            ops::hls::DataConv tmpConverter;
+                            tmpConverter.i = arg4_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                            printf("%f ", tmpConverter.f);
+                        }
+                        printf(")\n");
+                        printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg5: (", m_PEId);
+                        for (int ri = 0; ri < vector_factor; ri++)
+                        {
+                            ops::hls::DataConv tmpConverter;
+                            tmpConverter.i = arg5_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                            printf("%f ", tmpConverter.f);
+                        }
+                        printf(")\n");
+                        printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg6: (", m_PEId);
+                        for (int ri = 0; ri < vector_factor; ri++)
+                        {
+                            ops::hls::DataConv tmpConverter;
+                            tmpConverter.i = arg6_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                            printf("%f ", tmpConverter.f);
+                        }
+                        printf(")\n");
+                        printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg7: (", m_PEId);
+                        for (int ri = 0; ri < vector_factor; ri++)
+                        {
+                            ops::hls::DataConv tmpConverter;
+                            tmpConverter.i = arg7_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                            printf("%f ", tmpConverter.f);
+                        }
+                        printf(")\n");
+                        printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg8: (", m_PEId);
+                        for (int ri = 0; ri < vector_factor; ri++)
+                        {
+                            ops::hls::DataConv tmpConverter;
+                            tmpConverter.i = arg8_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                            printf("%f ", tmpConverter.f);
+                        }
+                        printf(")\n");
+                        printf("[DEBUG][INTERNAL][pw_advection_opt_kernel_PE_%d] wirte values arg9: (", m_PEId);
+                        for (int ri = 0; ri < vector_factor; ri++)
+                        {
+                            ops::hls::DataConv tmpConverter;
+                            tmpConverter.i = arg9_update_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
+                            printf("%f ", tmpConverter.f);
+                        }
+                        printf(")\n");
+    #endif
+                        arg3_wr_buffer <<  arg3_update_val;
+                        arg4_wr_buffer <<  arg4_update_val;
+                        arg5_wr_buffer <<  arg5_update_val;
+                        arg6_wr_buffer <<  arg6_update_val;
+                        arg7_wr_buffer <<  arg7_update_val;
+                        arg8_wr_buffer <<  arg8_update_val;
+                        arg9_wr_buffer <<  arg9_update_val;
+                    }
                 }
             }
         }

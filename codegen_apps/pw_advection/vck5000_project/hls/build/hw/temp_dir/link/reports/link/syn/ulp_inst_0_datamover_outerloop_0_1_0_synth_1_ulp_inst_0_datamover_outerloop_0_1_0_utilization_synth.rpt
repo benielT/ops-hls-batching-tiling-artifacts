@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (lin64) Build 3526262 Mon Apr 18 15:47:01 MDT 2022
-| Date         : Fri Jun  6 21:33:09 2025
-| Host         : acclhead1 running 64-bit Ubuntu 20.04.6 LTS
+| Date         : Fri Sep  5 10:00:01 2025
+| Host         : acclnode02 running 64-bit Ubuntu 20.04.6 LTS
 | Command      : report_utilization -file ulp_inst_0_datamover_outerloop_0_1_0_utilization_synth.rpt -pb ulp_inst_0_datamover_outerloop_0_1_0_utilization_synth.pb
 | Design       : ulp_inst_0_datamover_outerloop_0_1_0
 | Device       : xcvc1902-vsvd1760-2MP-e-S
@@ -29,21 +29,21 @@ Table of Contents
 1. Netlist Logic
 ----------------
 
-+----------------------------+-------+-------+------------+-----------+-------+
-|          Site Type         |  Used | Fixed | Prohibited | Available | Util% |
-+----------------------------+-------+-------+------------+-----------+-------+
-| Registers                  | 81595 |     0 |          0 |   1799680 |  4.53 |
-|   Register as Flip Flop    | 81595 |     0 |          0 |   1799680 |  4.53 |
-|   Register as Latch        |     0 |     0 |          0 |   1799680 |  0.00 |
-| CLB LUTs*                  | 39368 |     0 |          0 |    899840 |  4.38 |
-|   LUT as Logic             | 30664 |     0 |          0 |    899840 |  3.41 |
-|   LUT as Memory            |  8704 |     0 |          0 |    449920 |  1.93 |
-|     LUT as Distributed RAM |     0 |     0 |            |           |       |
-|     LUT as Shift Register  |  8704 |     0 |            |           |       |
-|       Variable Length      |     0 |     0 |            |           |       |
-|       Fixed Length         |     0 |     0 |            |           |       |
-| LOOKAHEAD8                 |   735 |     0 |          0 |    112480 |  0.65 |
-+----------------------------+-------+-------+------------+-----------+-------+
++----------------------------+--------+-------+------------+-----------+-------+
+|          Site Type         |  Used  | Fixed | Prohibited | Available | Util% |
++----------------------------+--------+-------+------------+-----------+-------+
+| Registers                  | 108815 |     0 |          0 |   1799680 |  6.05 |
+|   Register as Flip Flop    | 108815 |     0 |          0 |   1799680 |  6.05 |
+|   Register as Latch        |      0 |     0 |          0 |   1799680 |  0.00 |
+| CLB LUTs*                  |  52318 |     0 |          0 |    899840 |  5.81 |
+|   LUT as Logic             |  39590 |     0 |          0 |    899840 |  4.40 |
+|   LUT as Memory            |  12728 |     0 |          0 |    449920 |  2.83 |
+|     LUT as Distributed RAM |      0 |     0 |            |           |       |
+|     LUT as Shift Register  |  12728 |     0 |            |           |       |
+|       Variable Length      |      0 |     0 |            |           |       |
+|       Fixed Length         |      0 |     0 |            |           |       |
+| LOOKAHEAD8                 |    949 |     0 |          0 |    112480 |  0.84 |
++----------------------------+--------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
 
@@ -53,8 +53,8 @@ Table of Contents
 +--------------------------+------+-------+------------+-----------+-------+
 |         Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +--------------------------+------+-------+------------+-----------+-------+
-| Block RAM Tile           |  123 |     0 |          0 |       967 | 12.72 |
-|   RAMB36E5               |  118 |     0 |          0 |       967 | 12.20 |
+| Block RAM Tile           |  155 |     0 |          0 |       967 | 16.03 |
+|   RAMB36E5               |  150 |     0 |          0 |       967 | 15.51 |
 |   RAMB18E5*              |   10 |     0 |          0 |      1934 |  0.52 |
 | Block RAM Imux registers |    0 |     0 |            |           |       |
 |   Pipelining             |    0 |       |            |           |       |
@@ -71,8 +71,8 @@ Table of Contents
 +--------------------+------+-------+------------+-----------+-------+
 |      Site Type     | Used | Fixed | Prohibited | Available | Util% |
 +--------------------+------+-------+------------+-----------+-------+
-| DSP Slices         |    3 |     0 |          0 |      1968 |  0.15 |
-|   DSP58            |    3 |     0 |            |           |       |
+| DSP Slices         |    5 |     0 |          0 |      1968 |  0.25 |
+|   DSP58            |    5 |     0 |            |           |       |
 |   DSPCPLX          |    0 |     0 |            |           |       |
 |   DSPFP32          |    0 |     0 |            |           |       |
 |   DSP48E5          |    0 |     0 |            |           |       |
@@ -182,26 +182,26 @@ Table of Contents
 9. Primitives
 -------------
 
-+--------------+-------+---------------------+
-|   Ref Name   |  Used | Functional Category |
-+--------------+-------+---------------------+
-| FDRE         | 81308 |            Register |
-| LUT4         | 18349 |                 CLB |
-| LUT3         | 15876 |                 CLB |
-| LUTCY2       |  5238 |                 CLB |
-| LUTCY1       |  5238 |                 CLB |
-| SRL16E       |  4384 |                 CLB |
-| SRLC32E      |  4320 |                 CLB |
-| LUT5         |  3878 |                 CLB |
-| LUT6         |  3159 |                 CLB |
-| LUT2         |  1166 |                 CLB |
-| LOOKAHEAD8   |   735 |                 CLB |
-| LUT1         |   362 |                 CLB |
-| FDSE         |   287 |            Register |
-| RAMB36E5_INT |   118 |            BLOCKRAM |
-| RAMB18E5_INT |    10 |            BLOCKRAM |
-| DSP58        |     3 |          Arithmetic |
-+--------------+-------+---------------------+
++--------------+--------+---------------------+
+|   Ref Name   |  Used  | Functional Category |
++--------------+--------+---------------------+
+| FDRE         | 108394 |            Register |
+| LUT4         |  23120 |                 CLB |
+| LUT3         |  21735 |                 CLB |
+| SRL16E       |   7328 |                 CLB |
+| LUTCY2       |   6744 |                 CLB |
+| LUTCY1       |   6744 |                 CLB |
+| SRLC32E      |   5400 |                 CLB |
+| LUT5         |   5206 |                 CLB |
+| LUT6         |   3790 |                 CLB |
+| LUT2         |   1407 |                 CLB |
+| LOOKAHEAD8   |    949 |                 CLB |
+| LUT1         |    491 |                 CLB |
+| FDSE         |    421 |            Register |
+| RAMB36E5_INT |    150 |            BLOCKRAM |
+| RAMB18E5_INT |     10 |            BLOCKRAM |
+| DSP58        |      5 |          Arithmetic |
++--------------+--------+---------------------+
 
 
 10. Black Boxes

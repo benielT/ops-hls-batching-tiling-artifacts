@@ -1,5 +1,5 @@
 
-// Auto-generated at 2025-06-09 09:27:01.326887 by ops-translator
+// Auto-generated at 2025-09-05 09:38:24.858563 by ops-translator
 /*
 * Open source copyright declaration based on BSD open source template:
 * http://www.opensource.org/licenses/bsd-license.php
@@ -41,6 +41,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <fstream>
 
 // OPS header file
 // #define OPS_SOA
@@ -94,6 +95,7 @@ int main(int argc, const char** argv)
 //   int non_copy = 0;
 
   int batches = 1;
+  int batch_size = 1;
 
   const char* pch;
   printf(" argc = %d\n",argc);
@@ -122,12 +124,30 @@ int main(int argc, const char** argv)
     // if(pch != NULL) {
     //   non_copy = 1; continue;
     // }
+#ifdef BATCHING
+        pch = strstr(argv[n], "-bsize=");
+        if(pch != NULL) {
+            batch_size = atoi ( argv[n] + 7 );
+            if(batch_size < 1) {
+                std::cerr << "Batch size must be greater than 0" << std::endl;
+                exit(-1);
+            }
+            continue;
+        }
+#endif
     pch = strstr(argv[n], "-batch=");
     if(pch != NULL) {
       batches = atoi ( argv[n] + 7 ); continue;
     }
   }
-
+#ifdef BATCHING
+    if(batches % batch_size != 0) {
+        std::cerr << "Batch size must divide the number of batches evenly" << std::endl;
+        exit(-1);
+    }
+    batches /= batch_size;
+    std::cout << "Batching enabled, number of batches: " << batches << ", batch size: " << batch_size << std::endl;
+#endif
 #ifdef PROFILE
 	double init_runtime[batches];
 	double main_loop_runtime[batches];
@@ -151,7 +171,11 @@ int main(int argc, const char** argv)
   for (unsigned int bat=0; bat < batches; bat++)
   {
      std::string name = std::string("batch_") + std::to_string(bat);
+#ifndef BATCHING
      blocks[bat] = ops_hls_decl_block(3, name.c_str());
+#else
+     blocks[bat] = ops_hls_decl_block_batch(3, name.c_str(), batch_size);
+#endif
   }
   printf(" HERE \n");
   
@@ -238,7 +262,11 @@ int main(int argc, const char** argv)
 
 //   double ct0, ct1, et0, et1;
 //   ops_timers(&ct0, &et0);
-
+#ifndef OPS_FPGA
+  #ifdef BATCHING
+      ops_par_loop_blocks_all(batch_size);
+  #endif
+#endif
 //   ops_par_loop_blocks_all(batches);
 	
     printf(" HERE 5\n");
@@ -287,11 +315,9 @@ int main(int argc, const char** argv)
 #endif
         isl_0(n_iter, internal_range, u[bat], tzc1[bat], tzc2[bat], tzd1[bat], tzd2[bat], w[bat], v[bat], u2[bat], v2[bat], w2[bat]); 
 #ifdef PROFILE
-        auto main_loop_end_clk_point = std::chrono::high_resolution_clock::now();
     #ifndef OPS_FPGA
+        auto main_loop_end_clk_point = std::chrono::high_resolution_clock::now();
         main_loop_runtime[bat] = std::chrono::duration<double, std::micro>(main_loop_end_clk_point - main_loop_start_clk_point).count();
-    #else
-        main_loop_runtime[bat] = ops_hls_get_execution_runtime<std::chrono::microseconds>(std::string("isl_0"));
     #endif
 #endif
     }
@@ -331,8 +357,17 @@ int main(int argc, const char** argv)
 
 	for (unsigned int bat = 0; bat < batches; bat++)
 	{
+    #ifdef OPS_FPGA
+        main_loop_runtime[bat] = ops_hls_get_execution_runtime<std::chrono::microseconds>(std::string("isl_0"), bat);
+    #endif
+
+        main_loop_runtime[bat] /= batch_size;
+        init_runtime[bat] /= batch_size;
+
         fstream << logical_size_x << "," << logical_size_y << "," << logical_size_z << "," << n_iter << "," << 1 << "," << bat << "," << init_runtime[bat] \
                 << "," << main_loop_runtime[bat] << "," << main_loop_runtime[bat] + init_runtime[bat] << std::endl;
+
+        std::cout << "[WARNING] The runtime is averaged over the batch size of " << batch_size << std::endl;
 
 		std::cout << "run: "<< bat << "| total runtime: " << main_loop_runtime[bat] + init_runtime[bat] << "(us)" << std::endl;
 		std::cout << "     |--> init runtime: " << init_runtime[bat] << "(us)" << std::endl;
@@ -384,6 +419,8 @@ int main(int argc, const char** argv)
 	std::cout << "Standard Deviation total: " << total_std << std::endl;
 	std::cout << "======================================================" << std::endl;
 
+    fstream << "args: " << "-sizex=" << logical_size_x << " -sizey=" << logical_size_y << " -sizez=" << logical_size_z << " -iters=" << n_iter << " -batch=" << batches << " -bsize=" << batch_size << std::endl;
+   
     fstream.close();
 
     if (fstream.good()) { // Check if operations were successful after closing

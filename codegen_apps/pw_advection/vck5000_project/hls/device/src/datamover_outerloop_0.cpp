@@ -1,4 +1,4 @@
-// Auto-generated at 2025-06-09 09:27:01.314368 by ops-translator
+// Auto-generated at 2025-09-05 09:38:24.848684 by ops-translator
 #include <datamover_outerloop_0.hpp>
 static void datamover_outerloop_0_dataflow_region_read(
         const unsigned int num_pkts,
@@ -89,6 +89,22 @@ static void datamover_outerloop_0_dataflow_region_write(
         hls::stream<ap_axiu<axis_data_width, 0, 0, 0>>& arg8_axis_in,
         hls::stream<ap_axiu<axis_data_width, 0, 0, 0>>& arg9_axis_in)
 {
+    static ::hls::stream<ap_uint<mem_data_width>> arg1_write_mem_strm;
+    #pragma HLS STREAM variable = arg1_write_mem_strm
+    static ::hls::stream<ap_uint<axis_data_width>> arg1_write_reduced_mem_strm;
+    #pragma HLS STREAM variable = arg1_write_reduced_mem_strm
+    static ::hls::stream<ap_uint<mem_data_width>> arg2_write_mem_strm;
+    #pragma HLS STREAM variable = arg2_write_mem_strm
+    static ::hls::stream<ap_uint<axis_data_width>> arg2_write_reduced_mem_strm;
+    #pragma HLS STREAM variable = arg2_write_reduced_mem_strm
+    static ::hls::stream<ap_uint<mem_data_width>> arg3_write_mem_strm;
+    #pragma HLS STREAM variable = arg3_write_mem_strm
+    static ::hls::stream<ap_uint<axis_data_width>> arg3_write_reduced_mem_strm;
+    #pragma HLS STREAM variable = arg3_write_reduced_mem_strm
+    static ::hls::stream<ap_uint<mem_data_width>> arg4_write_mem_strm;
+    #pragma HLS STREAM variable = arg4_write_mem_strm
+    static ::hls::stream<ap_uint<axis_data_width>> arg4_write_reduced_mem_strm;
+    #pragma HLS STREAM variable = arg4_write_reduced_mem_strm
     static ::hls::stream<ap_uint<mem_data_width>> arg7_write_mem_strm;
     #pragma HLS STREAM variable = arg7_write_mem_strm
     static ::hls::stream<ap_uint<axis_data_width>> arg7_write_reduced_mem_strm;
@@ -103,13 +119,13 @@ static void datamover_outerloop_0_dataflow_region_write(
     #pragma HLS STREAM variable = arg9_write_reduced_mem_strm
 
 #pragma HLS DATAFLOW
-    ops::hls::axisTerminate<axis_data_width>(arg1_axis_in, num_pkts);
+    ops::hls::axis2stream<axis_data_width>(arg1_axis_in, arg1_write_reduced_mem_strm, num_pkts);
     
-    ops::hls::axisTerminate<axis_data_width>(arg2_axis_in, num_pkts);
+    ops::hls::axis2stream<axis_data_width>(arg2_axis_in, arg2_write_reduced_mem_strm, num_pkts);
     
-    ops::hls::axisTerminate<axis_data_width>(arg3_axis_in, num_pkts);
+    ops::hls::axis2stream<axis_data_width>(arg3_axis_in, arg3_write_reduced_mem_strm, num_pkts);
     
-    ops::hls::axisTerminate<axis_data_width>(arg4_axis_in, num_pkts);
+    ops::hls::axis2stream<axis_data_width>(arg4_axis_in, arg4_write_reduced_mem_strm, num_pkts);
     
     ops::hls::axis2stream<axis_data_width>(arg7_axis_in, arg7_write_reduced_mem_strm, num_pkts);
     
@@ -117,9 +133,17 @@ static void datamover_outerloop_0_dataflow_region_write(
     
     ops::hls::axis2stream<axis_data_width>(arg9_axis_in, arg9_write_reduced_mem_strm, num_pkts);
     
+    ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg1_write_reduced_mem_strm, arg1_write_mem_strm, memconfig.total_xblocks);
+    ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg2_write_reduced_mem_strm, arg2_write_mem_strm, memconfig.total_xblocks);
+    ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg3_write_reduced_mem_strm, arg3_write_mem_strm, memconfig.total_xblocks);
+    ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg4_write_reduced_mem_strm, arg4_write_mem_strm, memconfig.total_xblocks);
     ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg7_write_reduced_mem_strm, arg7_write_mem_strm, memconfig.total_xblocks);
     ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg8_write_reduced_mem_strm, arg8_write_mem_strm, memconfig.total_xblocks);
     ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg9_write_reduced_mem_strm, arg9_write_mem_strm, memconfig.total_xblocks);
+    ops::hls::stream2mem<mem_data_width, 32, 2>(arg1, arg1_write_mem_strm, memconfig.total_xblocks);
+    ops::hls::stream2mem<mem_data_width, 32, 2>(arg2, arg2_write_mem_strm, memconfig.total_xblocks);
+    ops::hls::stream2mem<mem_data_width, 32, 2>(arg3, arg3_write_mem_strm, memconfig.total_xblocks);
+    ops::hls::stream2mem<mem_data_width, 32, 2>(arg4, arg4_write_mem_strm, memconfig.total_xblocks);
     ops::hls::stream2mem<mem_data_width, 32, 2>(arg7, arg7_write_mem_strm, memconfig.total_xblocks);
     ops::hls::stream2mem<mem_data_width, 32, 2>(arg8, arg8_write_mem_strm, memconfig.total_xblocks);
     ops::hls::stream2mem<mem_data_width, 32, 2>(arg9, arg9_write_mem_strm, memconfig.total_xblocks);
@@ -162,18 +186,34 @@ static void datamover_outerloop_0_dataflow_read_write_dataflow_region(
     #pragma HLS STREAM variable = arg1_read_mem_strm
     static ::hls::stream<ap_uint<axis_data_width>> arg1_read_reduced_mem_strm;
     #pragma HLS STREAM variable = arg1_read_reduced_mem_strm
+    static ::hls::stream<ap_uint<mem_data_width>> arg1_write_mem_strm;
+    #pragma HLS STREAM variable = arg1_write_mem_strm
+    static ::hls::stream<ap_uint<axis_data_width>> arg1_write_reduced_mem_strm;
+    #pragma HLS STREAM variable = arg1_write_reduced_mem_strm
     static ::hls::stream<ap_uint<mem_data_width>> arg2_read_mem_strm;
     #pragma HLS STREAM variable = arg2_read_mem_strm
     static ::hls::stream<ap_uint<axis_data_width>> arg2_read_reduced_mem_strm;
     #pragma HLS STREAM variable = arg2_read_reduced_mem_strm
+    static ::hls::stream<ap_uint<mem_data_width>> arg2_write_mem_strm;
+    #pragma HLS STREAM variable = arg2_write_mem_strm
+    static ::hls::stream<ap_uint<axis_data_width>> arg2_write_reduced_mem_strm;
+    #pragma HLS STREAM variable = arg2_write_reduced_mem_strm
     static ::hls::stream<ap_uint<mem_data_width>> arg3_read_mem_strm;
     #pragma HLS STREAM variable = arg3_read_mem_strm
     static ::hls::stream<ap_uint<axis_data_width>> arg3_read_reduced_mem_strm;
     #pragma HLS STREAM variable = arg3_read_reduced_mem_strm
+    static ::hls::stream<ap_uint<mem_data_width>> arg3_write_mem_strm;
+    #pragma HLS STREAM variable = arg3_write_mem_strm
+    static ::hls::stream<ap_uint<axis_data_width>> arg3_write_reduced_mem_strm;
+    #pragma HLS STREAM variable = arg3_write_reduced_mem_strm
     static ::hls::stream<ap_uint<mem_data_width>> arg4_read_mem_strm;
     #pragma HLS STREAM variable = arg4_read_mem_strm
     static ::hls::stream<ap_uint<axis_data_width>> arg4_read_reduced_mem_strm;
     #pragma HLS STREAM variable = arg4_read_reduced_mem_strm
+    static ::hls::stream<ap_uint<mem_data_width>> arg4_write_mem_strm;
+    #pragma HLS STREAM variable = arg4_write_mem_strm
+    static ::hls::stream<ap_uint<axis_data_width>> arg4_write_reduced_mem_strm;
+    #pragma HLS STREAM variable = arg4_write_reduced_mem_strm
     static ::hls::stream<ap_uint<mem_data_width>> arg5_read_mem_strm;
     #pragma HLS STREAM variable = arg5_read_mem_strm
     static ::hls::stream<ap_uint<axis_data_width>> arg5_read_reduced_mem_strm;
@@ -217,13 +257,13 @@ static void datamover_outerloop_0_dataflow_read_write_dataflow_region(
         ops::hls::stream2axis<axis_data_width>(arg4_read_reduced_mem_strm, arg4_axis_out, num_pkts);
         ops::hls::stream2axis<axis_data_width>(arg5_read_reduced_mem_strm, arg5_axis_out, num_pkts);
         ops::hls::stream2axis<axis_data_width>(arg6_read_reduced_mem_strm, arg6_axis_out, num_pkts);
-        ops::hls::axisTerminate<axis_data_width>(arg1_axis_in, num_pkts);
+        ops::hls::axis2stream<axis_data_width>(arg1_axis_in, arg1_write_reduced_mem_strm, num_pkts);
     
-        ops::hls::axisTerminate<axis_data_width>(arg2_axis_in, num_pkts);
+        ops::hls::axis2stream<axis_data_width>(arg2_axis_in, arg2_write_reduced_mem_strm, num_pkts);
     
-        ops::hls::axisTerminate<axis_data_width>(arg3_axis_in, num_pkts);
+        ops::hls::axis2stream<axis_data_width>(arg3_axis_in, arg3_write_reduced_mem_strm, num_pkts);
     
-        ops::hls::axisTerminate<axis_data_width>(arg4_axis_in, num_pkts);
+        ops::hls::axis2stream<axis_data_width>(arg4_axis_in, arg4_write_reduced_mem_strm, num_pkts);
     
         ops::hls::axis2stream<axis_data_width>(arg7_axis_in, arg7_write_reduced_mem_strm, num_pkts);
     
@@ -231,9 +271,17 @@ static void datamover_outerloop_0_dataflow_read_write_dataflow_region(
     
         ops::hls::axis2stream<axis_data_width>(arg9_axis_in, arg9_write_reduced_mem_strm, num_pkts);
     
+        ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg1_write_reduced_mem_strm, arg1_write_mem_strm, memconfig.total_xblocks);
+        ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg2_write_reduced_mem_strm, arg2_write_mem_strm, memconfig.total_xblocks);
+        ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg3_write_reduced_mem_strm, arg3_write_mem_strm, memconfig.total_xblocks);
+        ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg4_write_reduced_mem_strm, arg4_write_mem_strm, memconfig.total_xblocks);
         ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg7_write_reduced_mem_strm, arg7_write_mem_strm, memconfig.total_xblocks);
         ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg8_write_reduced_mem_strm, arg8_write_mem_strm, memconfig.total_xblocks);
         ops::hls::stream2streamStepup<axis_data_width, mem_data_width>(arg9_write_reduced_mem_strm, arg9_write_mem_strm, memconfig.total_xblocks);
+        ops::hls::stream2mem<mem_data_width, 32, 2>(arg1, arg1_write_mem_strm, memconfig.total_xblocks);
+        ops::hls::stream2mem<mem_data_width, 32, 2>(arg2, arg2_write_mem_strm, memconfig.total_xblocks);
+        ops::hls::stream2mem<mem_data_width, 32, 2>(arg3, arg3_write_mem_strm, memconfig.total_xblocks);
+        ops::hls::stream2mem<mem_data_width, 32, 2>(arg4, arg4_write_mem_strm, memconfig.total_xblocks);
         ops::hls::stream2mem<mem_data_width, 32, 2>(arg7, arg7_write_mem_strm, memconfig.total_xblocks);
         ops::hls::stream2mem<mem_data_width, 32, 2>(arg8, arg8_write_mem_strm, memconfig.total_xblocks);
         ops::hls::stream2mem<mem_data_width, 32, 2>(arg9, arg9_write_mem_strm, memconfig.total_xblocks);
@@ -434,6 +482,7 @@ extern "C" void datamover_outerloop_0(
         const unsigned short gridSize_1,
         const unsigned short gridSize_2,
         const unsigned int outer_itr,
+        const unsigned short batch_size,
     //u
         ap_uint<mem_data_width>* arg0,
     //tzc1
@@ -455,7 +504,6 @@ extern "C" void datamover_outerloop_0(
     //w2
         ap_uint<mem_data_width>* arg9,
     //u
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg0_axis_out,
     //tzc1
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg1_axis_out,
@@ -470,19 +518,14 @@ extern "C" void datamover_outerloop_0(
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg4_axis_out,
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg4_axis_in,
     //w
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg5_axis_out,
     //v
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg6_axis_out,
     //u2
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg7_axis_in,
     //v2
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg8_axis_in,
     //w2
-
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg9_axis_in
     )
 
@@ -499,6 +542,8 @@ extern "C" void datamover_outerloop_0(
     #pragma HLS INTERFACE s_axilite port = gridSize_1 bundle = control
     #pragma HLS INTERFACE s_axilite port = gridSize_2 bundle = control
     #pragma HLS INTERFACE s_axilite port = outer_itr bundle = control
+    #pragma HLS INTERFACE s_axilite port = batch_size bundle = control
+
  
     #pragma HLS INTERFACE mode=m_axi bundle=gmem0 depth=4096 max_read_burst_length=16 max_write_burst_length=16 \
             num_read_outstanding=4 num_write_outstanding=4 \
@@ -588,9 +633,14 @@ extern "C" void datamover_outerloop_0(
 
     constexpr unsigned int num_of_pkts_per_bytes = mem_data_width / axis_data_width;
     ops::hls::MemConfig config;
-    ops::hls::genMemConfig<mem_data_width, axis_data_width, data_width>(read_gridSize, range, config);
+    ops::hls::genMemConfig<mem_data_width, axis_data_width, data_width>(read_gridSize, range, config, batch_size);
     const unsigned int num_beats = config.total_xblocks;
-    const unsigned int num_pkts = num_of_pkts_per_bytes * config.total_xblocks;
+    const unsigned int num_pkts = num_of_pkts_per_bytes * num_beats;
+
+#ifdef DEBUG_LOG
+    printf("[KERNEL_DEBUG]|%s| REALIZED numbers: batch_size: %d, num_beats: %d, num_pkts: %d,\n", __func__,
+            batch_size, num_beats, num_pkts);
+#endif 
         datamover_outerloop_0_dataflow_read_write(
                 outer_itr,
                 num_pkts,

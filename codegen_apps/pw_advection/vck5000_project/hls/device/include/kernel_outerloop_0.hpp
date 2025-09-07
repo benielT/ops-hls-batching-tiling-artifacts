@@ -1,4 +1,4 @@
-// Auto-generated at 2025-06-09 09:27:01.316396 by ops-translator
+// Auto-generated at 2025-09-05 09:38:24.850829 by ops-translator
 #pragma once
 #include "PE_pw_advection_opt_kernel.hpp"
 
@@ -21,6 +21,7 @@ extern "C" void kernel_outerloop_0(
         const unsigned short stencilConfig_upper_limit_1,
         const unsigned short stencilConfig_upper_limit_2,
         const unsigned short stencilConfig_outer_loop_limit,
+        const unsigned short stencilConfig_batch_size,
     //u
         hls::stream <ap_axiu<axis_data_width, 0, 0, 0>>& arg0_axis_in,
     //tzc1

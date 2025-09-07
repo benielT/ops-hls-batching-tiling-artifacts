@@ -1,4 +1,4 @@
-// Auto-generated at 2025-06-09 09:27:01.318088 by ops-translator
+// Auto-generated at 2025-09-05 09:38:24.852244 by ops-translator
 #include <ops_hls_kernel_support.h>
 #include <kernel_outerloop_0.hpp>
 
@@ -131,6 +131,7 @@ extern "C" void kernel_outerloop_0(
         const unsigned short stencilConfig_upper_limit_1,
         const unsigned short stencilConfig_upper_limit_2,
         const unsigned short stencilConfig_outer_loop_limit,
+        const unsigned short stencilConfig_batch_size,
     //u
         hls::stream <ap_axiu<axis_data_width, 0, 0, 0>>& arg0_axis_in,
     //tzc1
@@ -172,6 +173,7 @@ extern "C" void kernel_outerloop_0(
     #pragma HLS INTERFACE s_axilite port = stencilConfig_upper_limit_1 bundle = control
     #pragma HLS INTERFACE s_axilite port = stencilConfig_upper_limit_2 bundle = control
     #pragma HLS INTERFACE s_axilite port = stencilConfig_outer_loop_limit bundle = control
+    #pragma HLS INTERFACE s_axilite port = stencilConfig_batch_size bundle = control
 
     
 
@@ -208,8 +210,12 @@ extern "C" void kernel_outerloop_0(
     stencilConfig.upper_limit[2] = stencilConfig_upper_limit_2;
     stencilConfig.total_itr = stencilConfig_total_itr;
     stencilConfig.outer_loop_limit = stencilConfig_outer_loop_limit;
+    stencilConfig.batch_size = stencilConfig_batch_size;
 
-    unsigned int total_bytes = stencilConfig_total_itr * vector_factor * sizeof(stencil_type);
+    unsigned int tmp1 = stencilConfig_batch_size * vector_factor;
+    unsigned int tmp2 = stencilConfig_total_itr * sizeof(stencil_type);
+    unsigned int total_bytes = tmp1 * tmp2;
+    
 
 #ifdef DEBUG_LOG
     printf("[KERNEL_DEBUG]|%s| Starting outerloop_0 kernel TOP \n", __func__);
