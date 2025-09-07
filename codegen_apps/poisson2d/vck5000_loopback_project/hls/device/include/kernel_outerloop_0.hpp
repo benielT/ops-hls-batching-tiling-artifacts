@@ -1,4 +1,4 @@
-// Auto-generated at 2025-07-29 02:54:46.647244 by ops-translator
+// Auto-generated at 2025-09-04 19:08:30.192411 by ops-translator
 #pragma once
 #include "PE_poisson_kernel_stencil.hpp"
 
@@ -18,6 +18,7 @@ extern "C" void kernel_outerloop_0(
         const unsigned short stencilConfig_upper_limit_0,
         const unsigned short stencilConfig_upper_limit_1,
         const unsigned short stencilConfig_outer_loop_limit,
+        const unsigned short stencilConfig_batch_size,
     //u
         hls::stream <ap_axiu<axis_data_width, 0, 0, 0>>& arg0_axis_in,
     //u2
