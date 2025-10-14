@@ -43,33 +43,38 @@ The code-generated HLS applications are organized into separate projects based o
 
 <pre> codegen_apps/ 
     ├── README.md 
-    ├── app_1/
-    │   ├── u280_project/ 
-    │   │   ├── hls/ 
-    │   │   │   ├── build/hw/
-    │   │   │   │   ├── temp_dir/
-    │   │   │   │   │  ....
-    │   │   │   │   ├── app_1_host
-    │   │   │   │   ├── app_1.xclbin
-    │   │   │   ├── device/
-    │   │   │   │   ├── include/
-    │   │   │   │   └── src/
-    │   │   │   ├── host/
-    │   │   │   │   ├── kernel_wrappers/
-    │   │   │   │   └── xrt.cfg
-    │   │   │   └── profile_data/hw
-    │   │   ├── app_1.cpp 
-    │   │   │ ....
-    │   │   ├── config_u280.json
-    │   │   ├── Makefile 
-    │   │   └── run_script_hls.sh 
-    │   └── vck5000_project/
-    ├── app_2/
-    │  .... </pre>
+    ├── batching/
+    │   ├── app_1/
+    │   │   ├── u280_project/ 
+    │   │   │   ├── hls/ 
+    │   │   │   │   ├── build/hw/
+    │   │   │   │   │   ├── temp_dir/
+    │   │   │   │   │   │  ....
+    │   │   │   │   │   ├── app_1_host
+    │   │   │   │   │   ├── app_1.xclbin
+    │   │   │   │   ├── device/
+    │   │   │   │   │   ├── include/
+    │   │   │   │   │   └── src/
+    │   │   │   │   ├── host/
+    │   │   │   │   │   ├── kernel_wrappers/
+    │   │   │   │   │   └── xrt.cfg
+    │   │   │   │   └── profile_data/hw
+    │   │   │   ├── app_1.cpp 
+    │   │   │   │ ....
+    │   │   │   ├── config_u280.json
+    │   │   │   ├── Makefile 
+    │   │   │   └── run_script_hls.sh 
+    │   │   └── vck5000_project/
+    │   ├── app_2/
+    ├── tiling/
+    │   ├── app_1/
+    │   │   ├── u280_project/
+    │         ....
+   .... </pre>
 
 Most of the HLS codegen applications have u280_project, vck5000_project separated out in order to maintain the OPS HLS configuration separately and maintain reproducability, with the underlying OPS code being exactly the same. 
 
-Inside each project, for example [poisson2d/u280_project](./poisson2d/u280_project/), contains OPS and related CPP source files can be found in the first directory level. Then the code-generated source files can be found inside [hls/device](./poisson2d/u280_project/hls/device/) and [hls/host](./poisson2d/u280_project/hls/host/) folders. The HLS hardware build artifacts can be found inside [hls/build](./poisson2d/u280_project/hls/build/). Finally, the profile data artifacts can be found inside [hls/profile_data](./poisson2d/u280_project/hls/profile_data/).
+Inside each project, for example [batching/poisson2d/u280_loopback_project](./batching/poisson2d/u280_loopback_project/), contains OPS and related CPP source files can be found in the first directory level. Then the code-generated source files can be found inside [hls/device](./batching/poisson2d/u280_loopback_project/hls/device/) and [hls/host](./batching/poisson2d/u280_loopback_project/hls/host/) folders. The HLS hardware build artifacts can be found inside [hls/build](./batching/poisson2d/u280_loopback_project/hls/build/). Finally, the profile data artifacts can be found inside [hls/profile_data](./batching/poisson2d/u280_loopback_project/hls/profile_data/).
 
 ### Pre-generated data artifacts
 
