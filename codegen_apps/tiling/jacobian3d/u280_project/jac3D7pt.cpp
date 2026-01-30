@@ -292,7 +292,7 @@ int main(int argc, const char **argv)
         auto u_raw = (float*)ops_dat_get_raw_pointer(u[bat], 0, S3D_00, OPS_HOST);
         auto u2_raw = (float*)ops_dat_get_raw_pointer(u2[bat], 0, S3D_00, OPS_HOST);
 
-        // printGrid3D(u_raw, u[bat].originalProperty, "test");
+        //printGrid3D(u_raw, u[bat].originalProperty, "u before calc test");
 
         if(verify(u_raw, u_cpu[bat], size, d_m, d_p, full_range, batch_size))
             std::cout << "[BATCH - " << bat << "] verification of u after initiation" << "[PASSED]" << std::endl;
@@ -358,6 +358,9 @@ int main(int argc, const char **argv)
 
 		// printGrid3D<float>(u_raw, u[bat].originalProperty, "u after computation");
 		// printGrid3D<float>(u_cpu[bat], u[bat].originalProperty, "u_Acpu after computation");
+
+        // printGrid3D<float>(u2_raw, u[bat].originalProperty, "u after computation");
+		// printGrid3D<float>(u2_cpu[bat], u[bat].originalProperty, "u_Acpu after computation");
 
         // if(verify(u_raw, u_cpu[bat], size, d_m, d_p, full_range))
         //     std::cout << "[BATCH - " << bat << "] verification of u after calculation" << "[PASSED]" << std::endl;
