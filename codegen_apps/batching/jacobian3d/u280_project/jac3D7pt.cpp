@@ -66,6 +66,12 @@ extern const unsigned short mem_vector_factor;
     exit(-1);
     #endif  
 #endif
+
+#ifdef VERIFICATION
+constexpr bool is_verification_enabled = true;
+#else
+constexpr bool is_verification_enabled = false;
+#endif
 /******************************************************************************
 * Main program
 *******************************************************************************/
@@ -201,7 +207,7 @@ int main(int argc, const char **argv)
     ops_dat u2[batches];
     ops_dat f[batches];
     ops_dat ref[batches];
-#ifdef VERIFICATION
+// #ifdef VERIFICATION
     float* u_cpu[batches];
     float* u2_cpu[batches];
     float* f_cpu[batches];
@@ -214,7 +220,7 @@ int main(int argc, const char **argv)
     #else
     int grid_size_x = size[0] - d_m[0] + d_p[0];
     #endif
-#endif
+// #endif
 
     // Allocation
     for (unsigned int bat = 0; bat < batches; bat++)
@@ -227,16 +233,18 @@ int main(int argc, const char **argv)
         f[bat] = ops_decl_dat(blocks[bat], 1, size, base, d_m, d_p, temp, "float", name.c_str());
         name = std::string("ref_") + std::to_string(bat);
         ref[bat] = ops_decl_dat(blocks[bat], 1, size, base, d_m, d_p, temp, "float", name.c_str());
-#ifdef VERIFICATION
-        u_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * grid_size_z * batch_size);
-        u2_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * grid_size_z * batch_size);
-        f_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * grid_size_z * batch_size);
-        ref_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * grid_size_z * batch_size);
-#endif
+
+        if (is_verification_enabled) {
+            u_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * grid_size_z * batch_size);
+            u2_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * grid_size_z * batch_size);
+            f_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * grid_size_z * batch_size);
+            ref_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * grid_size_z * batch_size);
+        }
     }
 
     ops_partition("");
 
+    int outer_range[] = {d_m[0], grid_size_x, d_m[1], size[1] + d_p[1],  d_m[2], size[2] + d_p[2]};
     int full_range[] = {d_m[0], size[0] + d_p[0], d_m[1], size[1] + d_p[1],  d_m[2], size[2] + d_p[2]};
     int internal_range[] = {0, size[0], 0, size[1], 0, size[2]};
 
@@ -255,17 +263,19 @@ int main(int argc, const char **argv)
 #ifdef PROFILE
         auto init_start_clk_point =  std::chrono::high_resolution_clock::now();
 #endif
-#ifdef VERIFICATION
+        if (is_verification_enabled) {
+        // initialise_grid(u_cpu[bat], size, d_m, d_p, full_range, batch_size);
+        zero_init(u_cpu[bat], size, d_m, d_p, outer_range, batch_size);
         initialise_grid(u_cpu[bat], size, d_m, d_p, full_range, batch_size);
         // printGrid2D(u_cpu[bat], u[bat].originalProperty, "u_CPU after init");
         copy_grid(u2_cpu[bat], u_cpu[bat], size, d_m, d_p, full_range, batch_size);
 
         ops_dat_fetch_data(u[bat], 0, (char*)u_cpu[bat]);
 
-        ops_par_loop(kernel_copy, "kernel_update", blocks[bat], 3, full_range, 
+        ops_par_loop(kernel_copy, "kernel_update", blocks[bat], 3, outer_range, 
             ops_arg_dat(u[bat], 1, S3D_00, "float", OPS_READ),
             ops_arg_dat(u2[bat], 1, S3D_00, "float", OPS_WRITE));
-#else
+        } else {
         ops_par_loop(kernel_populate, "kernel_populate", blocks[bat], 3, full_range,
                 ops_arg_dat(u[bat], 1, S3D_00, "float", OPS_WRITE));
 
@@ -275,7 +285,7 @@ int main(int argc, const char **argv)
         ops_par_loop(kernel_copy, "kernel_update", blocks[bat], 3, full_range, 
                 ops_arg_dat(u[bat], 1, S3D_00, "float", OPS_READ),
                 ops_arg_dat(u2[bat], 1, S3D_00, "float", OPS_WRITE));
-#endif
+        }
 #ifdef PROFILE
         auto init_end_clk_point = std::chrono::high_resolution_clock::now();
         init_runtime[bat] = std::chrono::duration<double, std::micro> (init_end_clk_point - init_start_clk_point).count();
@@ -285,7 +295,8 @@ int main(int argc, const char **argv)
         auto u_raw = (float*)ops_dat_get_raw_pointer(u[bat], 0, S3D_00, OPS_HOST);
         auto u2_raw = (float*)ops_dat_get_raw_pointer(u2[bat], 0, S3D_00, OPS_HOST);
 
-        // printGrid3D(u_raw, u[bat].originalProperty, "test");
+        // printGrid3D(u_raw, u[bat].originalProperty, "u before calc test");
+        // printGrid3D(u_cpu[bat], u[bat].originalProperty, "u_Acpu before calc");
 
         if(verify(u_raw, u_cpu[bat], size, d_m, d_p, full_range, batch_size))
             std::cout << "[BATCH - " << bat << "] verification of u after initiation" << "[PASSED]" << std::endl;
@@ -311,7 +322,7 @@ int main(int argc, const char **argv)
 #endif
         for (int iter = 0; iter < iter_max; iter++)
         {
-            ops_par_loop(jac3D_kernel_stencil, "jac2D_kernel_stencil", blocks[bat], 3, internal_range,
+            ops_par_loop(jac3D_kernel_stencil, "jac3D_kernel_stencil", blocks[bat], 3, internal_range,
                     ops_arg_dat(u[bat], 1, S3D_7PT, "float", OPS_READ),
                     ops_arg_dat(u2[bat], 1, S3D_00, "float", OPS_WRITE));
             
@@ -352,12 +363,15 @@ int main(int argc, const char **argv)
 		// printGrid3D<float>(u_raw, u[bat].originalProperty, "u after computation");
 		// printGrid3D<float>(u_cpu[bat], u[bat].originalProperty, "u_Acpu after computation");
 
+        // printGrid3D<float>(u2_raw, u[bat].originalProperty, "u2 after computation");
+		// printGrid3D<float>(u2_cpu[bat], u[bat].originalProperty, "u2_Acpu after computation");
+
         // if(verify(u_raw, u_cpu[bat], size, d_m, d_p, full_range))
         //     std::cout << "[BATCH - " << bat << "] verification of u after calculation" << "[PASSED]" << std::endl;
         // else
         //     std::cout << "[BATCH - " << bat << "] verification of u after calculation" << "[FAILED]" << std::endl;
 
-        if(verify(u2_raw, u2_cpu[bat], size, d_m, d_p, full_range, batch_size))
+        if(verify(u_raw, u_cpu[bat], size, d_m, d_p, full_range, batch_size))
             std::cout << "[BATCH - " << bat << "] verification of u2 after calculation" << "[PASSED]" << std::endl;
         else
             std::cout << "[BATCH - " << bat << "] verification of u2 after calculation" << "[FAILED]" << std::endl;
