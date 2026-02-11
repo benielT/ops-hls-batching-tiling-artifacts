@@ -244,6 +244,7 @@ int main(int argc, const char **argv)
 
     ops_partition("");
 
+    int outer_range[] = {d_m[0], grid_size_x, d_m[1], size[1] + d_p[1],  d_m[2], size[2] + d_p[2]};
     int full_range[] = {d_m[0], size[0] + d_p[0], d_m[1], size[1] + d_p[1],  d_m[2], size[2] + d_p[2]};
     int internal_range[] = {0, size[0], 0, size[1], 0, size[2]};
 
@@ -263,7 +264,9 @@ int main(int argc, const char **argv)
         auto init_start_clk_point =  std::chrono::high_resolution_clock::now();
 #endif
         if (is_verification_enabled) {
-        initialise_grid(u_cpu[bat], size, d_m, d_p, full_range, batch_size);
+        // initialise_grid(u_cpu[bat], size, d_m, d_p, full_range, batch_size);
+        zero_init(u_cpu[bat], size, d_m, d_p, outer_range, batch_size);
+        initialise_grid_test(u_cpu[bat], size, d_m, d_p, full_range, batch_size);
         // printGrid2D(u_cpu[bat], u[bat].originalProperty, "u_CPU after init");
         copy_grid(u2_cpu[bat], u_cpu[bat], size, d_m, d_p, full_range, batch_size);
 
@@ -292,7 +295,8 @@ int main(int argc, const char **argv)
         auto u_raw = (float*)ops_dat_get_raw_pointer(u[bat], 0, S3D_00, OPS_HOST);
         auto u2_raw = (float*)ops_dat_get_raw_pointer(u2[bat], 0, S3D_00, OPS_HOST);
 
-        //printGrid3D(u_raw, u[bat].originalProperty, "u before calc test");
+        // printGrid3D(u_raw, u[bat].originalProperty, "u before calc test");
+        // printGrid3D(u_cpu[bat], u[bat].originalProperty, "u_Acpu before calc");
 
         if(verify(u_raw, u_cpu[bat], size, d_m, d_p, full_range, batch_size))
             std::cout << "[BATCH - " << bat << "] verification of u after initiation" << "[PASSED]" << std::endl;
@@ -318,7 +322,7 @@ int main(int argc, const char **argv)
 #endif
         for (int iter = 0; iter < iter_max; iter++)
         {
-            ops_par_loop(jac3D_kernel_stencil, "jac2D_kernel_stencil", blocks[bat], 3, internal_range,
+            ops_par_loop(jac3D_kernel_stencil_test, "jac3D_kernel_stencil_test", blocks[bat], 3, internal_range,
                     ops_arg_dat(u[bat], 1, S3D_7PT, "float", OPS_READ),
                     ops_arg_dat(u2[bat], 1, S3D_00, "float", OPS_WRITE));
             
@@ -352,22 +356,22 @@ int main(int argc, const char **argv)
 
         for (int iter = 0; iter < iter_max; iter++)
         {
-            stencil_computation(u_cpu[bat], u2_cpu[bat], size, d_m, d_p, internal_range, batch_size);
+            stencil_computation_test(u_cpu[bat], u2_cpu[bat], size, d_m, d_p, internal_range, batch_size);
             copy_grid(u_cpu[bat], u2_cpu[bat], size, d_m, d_p, internal_range, batch_size);
         }
 
 		// printGrid3D<float>(u_raw, u[bat].originalProperty, "u after computation");
 		// printGrid3D<float>(u_cpu[bat], u[bat].originalProperty, "u_Acpu after computation");
 
-        // printGrid3D<float>(u2_raw, u[bat].originalProperty, "u after computation");
-		// printGrid3D<float>(u2_cpu[bat], u[bat].originalProperty, "u_Acpu after computation");
+        // printGrid3D<float>(u2_raw, u[bat].originalProperty, "u2 after computation");
+		// printGrid3D<float>(u2_cpu[bat], u[bat].originalProperty, "u2_Acpu after computation");
 
         // if(verify(u_raw, u_cpu[bat], size, d_m, d_p, full_range))
         //     std::cout << "[BATCH - " << bat << "] verification of u after calculation" << "[PASSED]" << std::endl;
         // else
         //     std::cout << "[BATCH - " << bat << "] verification of u after calculation" << "[FAILED]" << std::endl;
 
-        if(verify(u2_raw, u2_cpu[bat], size, d_m, d_p, full_range, batch_size))
+        if(verify(u_raw, u_cpu[bat], size, d_m, d_p, full_range, batch_size))
             std::cout << "[BATCH - " << bat << "] verification of u2 after calculation" << "[PASSED]" << std::endl;
         else
             std::cout << "[BATCH - " << bat << "] verification of u2 after calculation" << "[FAILED]" << std::endl;
