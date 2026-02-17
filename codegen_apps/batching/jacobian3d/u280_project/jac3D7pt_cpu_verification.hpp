@@ -64,7 +64,7 @@ void initialise_grid(stencil_type* u, int size[3], int d_m[3], int d_p[3], int r
                 for (int i = range[0] - d_m[0]; i < range[1] - d_m[0]; i++)
                 {
                     int index = k * grid_size_y * grid_size_x + j * grid_size_x + i;
-                    if(i == 0 || j == 0 || k == 0 || i == actual_size_x -1  || j==grid_size_y-1 || k==grid_size_y-1)
+                    if(i == 0 || j == 0 || k == 0 || i == actual_size_x -1  || j==grid_size_y-1 || k==grid_size_z-1)
                     {
                         float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                         u[offset + index] = r;
@@ -73,6 +73,64 @@ void initialise_grid(stencil_type* u, int size[3], int d_m[3], int d_p[3], int r
                     {
                         u[offset + index] = 0;
                     }
+                }
+            }
+        }
+    }
+}
+
+void initialise_grid_test(stencil_type* u, int size[3], int d_m[3], int d_p[3], int range[6], int batch_size)
+{
+    int grid_size_z = size[2] - d_m[2] + d_p[2];
+    int grid_size_y = size[1] - d_m[1] + d_p[1];
+#ifdef OPS_FPGA
+    int grid_size_x = ((size[0] - d_m[0] + d_p[0] + mem_vector_factor - 1) / mem_vector_factor) * mem_vector_factor;
+#else
+    int grid_size_x = size[0] - d_m[0] + d_p[0];
+#endif
+    int actual_size_x = size[0] - d_m[0] + d_p[0];
+
+    for (int bat = 0; bat < batch_size; bat++)
+    {
+        int offset = bat * grid_size_x * grid_size_y * grid_size_z;
+
+        for (int k = range[4] - d_m[2]; k < range[5] - d_m[2]; k++)
+        {
+            for (int j = range[2] - d_m[1]; j < range[3] -d_m[1]; j++)
+            {
+                for (int i = range[0] - d_m[0]; i < range[1] - d_m[0]; i++)
+                {
+                    int index = k * grid_size_y * grid_size_x + j * grid_size_x + i;
+                    u[offset + index] = index;
+                }
+            }
+        }
+    }
+}
+
+void zero_init(stencil_type* u, int size[3], int d_m[3], int d_p[3], int range[6], int batch_size)
+{
+    int grid_size_z = size[2] - d_m[2] + d_p[2];
+    int grid_size_y = size[1] - d_m[1] + d_p[1];
+#ifdef OPS_FPGA
+    int grid_size_x = ((size[0] - d_m[0] + d_p[0] + mem_vector_factor - 1) / mem_vector_factor) * mem_vector_factor;
+#else
+    int grid_size_x = size[0] - d_m[0] + d_p[0];
+#endif
+    int actual_size_x = size[0] - d_m[0] + d_p[0];
+
+    for (int bat = 0; bat < batch_size; bat++)
+    {
+        int offset = bat * grid_size_x * grid_size_y * grid_size_z;
+
+        for (int k = range[4] - d_m[2]; k < range[5] - d_m[2]; k++)
+        {
+            for (int j = range[2] - d_m[1]; j < range[3] -d_m[1]; j++)
+            {
+                for (int i = range[0] - d_m[0]; i < range[1] - d_m[0]; i++)
+                {
+                    int index = k * grid_size_y * grid_size_x + j * grid_size_x + i;
+                    u[offset + index] = 0;
                 }
             }
         }
@@ -101,19 +159,70 @@ void stencil_computation(stencil_type* u, stencil_type* u2, int size[3], int d_m
                 for (int i = range[0] - d_m[0]; i < range[1] - d_m[0]; i++)
                 {
                     int index = k * grid_size_y * grid_size_x + j * grid_size_x + i + offset;
-                    if(i == 0 || j == 0 || k == 0 || i == actual_size_x -1  || j==grid_size_y-1 || k==grid_size_y-1)
+                    if(i == 0 || j == 0 || k == 0 || i == actual_size_x -1  || j==grid_size_y-1 || k==grid_size_z-1)
                     {
                     u2[index] = u[index];
                     } 
                     else 
                     {
-                        u2[index] = u[(k+1)* grid_size_x * grid_size_y + (j)*grid_size_x + (i)] * (0.02f) + \
-                                    u[(k)* grid_size_x * grid_size_y + (j+1)*grid_size_x + (i)] * (0.04f) + \
-                                    u[(k)* grid_size_x * grid_size_y + (j)*grid_size_x + (i-1)] * (0.05f) + \
-                                    u[(k)* grid_size_x * grid_size_y + (j)*grid_size_x + (i)] * (0.79f) + \
-                                    u[(k)* grid_size_x * grid_size_y + (j)*grid_size_x + (i+1)] * (0.06f) + \
-                                    u[(k)* grid_size_x * grid_size_y + (j-1)*grid_size_x + (i)] * (0.03f) + \
-                                    u[(k-1)* grid_size_x * grid_size_y + (j)*grid_size_x + (i)] * (0.01f);
+                        // float tmp1 = u(0,0,1) * (0.02f);
+                        // float tmp2 = u(0,1,0) * (0.04f);
+                        // float tmp3 = u(-1,0,0) * (0.05f);
+                        // float tmp4 = u(0,0,0) * (0.79f);
+                        // float tmp5 = u(1,0,0) * (0.06f);
+                        // float tmp6 = u(0,-1,0) * (0.03f);
+                        // float tmp7 = u(0,0,-1) * (0.01f);
+                        // float tmp8 = tmp1 + tmp2;
+                        // float tmp9 = tmp3 + tmp4;
+                        // float tmp10 = tmp5 + tmp6;
+                        // float tmp11 = tmp7 + tmp8;
+                        // float tmp12 = tmp9 + tmp10;
+                        // u2(0,0,0) = tmp11 + tmp12;
+                        u2[index] = u[offset + (k+1)* grid_size_x * grid_size_y + (j)*grid_size_x + (i)] * (0.02f) + 
+                                    u[offset + (k)* grid_size_x * grid_size_y + (j+1)*grid_size_x + (i)] * (0.04f) + 
+                                    u[offset + (k)* grid_size_x * grid_size_y + (j)*grid_size_x + (i-1)] * (0.05f) + 
+                                    u[offset + (k)* grid_size_x * grid_size_y + (j)*grid_size_x + (i)] * (0.79f) + 
+                                    u[offset + (k)* grid_size_x * grid_size_y + (j)*grid_size_x + (i+1)] * (0.06f) + 
+                                    u[offset + (k)* grid_size_x * grid_size_y + (j-1)*grid_size_x + (i)] * (0.03f) + 
+                                    u[offset + (k-1)* grid_size_x * grid_size_y + (j)*grid_size_x + (i)] * (0.01f);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void stencil_computation_test(stencil_type* u, stencil_type* u2, int size[3], int d_m[3], int d_p[3], int range[6], int batch_size)
+{
+    int grid_size_z = size[2] - d_m[2] + d_p[2];
+    int grid_size_y = size[1] - d_m[1] + d_p[1];
+#ifdef OPS_FPGA
+    int grid_size_x = ((size[0] - d_m[0] + d_p[0] + mem_vector_factor - 1) / mem_vector_factor) * mem_vector_factor;
+#else
+    int grid_size_x = size[0] - d_m[0] + d_p[0];
+#endif
+    int actual_size_x = size[0] - d_m[0] + d_p[0];
+
+    for (int bat = 0; bat < batch_size; bat++)
+    {
+        int offset = bat * grid_size_x * grid_size_y * grid_size_z;
+
+        for (int k = range[4] - d_m[2]; k < range[5] - d_m[2]; k++)
+        {
+            for (int j = range[2] - d_m[1]; j < range[3] -d_m[1]; j++)
+            {
+                for (int i = range[0] - d_m[0]; i < range[1] - d_m[0]; i++)
+                {
+                    int index = k * grid_size_y * grid_size_x + j * grid_size_x + i + offset;
+                    if(i == 0 || j == 0 || k == 0 || i == actual_size_x -1  || j==grid_size_y-1 || k==grid_size_z-1)
+                    {
+                    u2[index] = u[index];
+                    } 
+                    else 
+                    {
+                        u2[index] = u[index] + 1;
+                        // printf("i: %d, j:%d, k:%d, old u: %f, new u: %f \n",i,j,k,u[index], u2[index]);
+                        
                     }
                 }
             }
@@ -176,15 +285,15 @@ bool verify(stencil_type * grid_data1, stencil_type *  grid_data2, int size[2], 
                 for (int i = range[0] - d_m[0]; i < range[1] - d_m[0]; i++)
                 {
                     int index = k * grid_size_y * grid_size_x + j * grid_size_x + i + offset;
-                    if(i == 0 || j == 0 || k == 0 || i == actual_size_x -1  || j==grid_size_y-1 || k==grid_size_y-1)
+
+                    // printf("[VERIFICATION] i: %d, j: %d, k:% d,index: %d, grid_data1: %f, grid_data2: %f\n",i,j,k, index, grid_data1[index], grid_data2[index]);
+                    if (fabs(grid_data1[index] - grid_data2[index])/(fabs(grid_data1[index]) + fabs(grid_data2[index])) > EPSILON)
                     {
-                        if (fabs(grid_data1[index] - grid_data2[index])/(fabs(grid_data1[index]) + fabs(grid_data2[index])) > EPSILON)
-                        {
-                            std::cerr << "[ERROR] value Mismatch index: (" << i << ", " << j << ", " << k << "), grid_data1: "
-                                    << grid_data1[index] << ", and grid_data2: " << grid_data2[index] << std::endl;
-                            passed = false;
-                        }
+                        std::cerr << "[ERROR] value Mismatch index: (" << i << ", " << j << ", " << k << "), grid_data1: "
+                                << grid_data1[index] << ", and grid_data2: " << grid_data2[index] << std::endl;
+                        passed = false;
                     }
+
                 }
             }
         }

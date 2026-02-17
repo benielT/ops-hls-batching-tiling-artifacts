@@ -1,5 +1,5 @@
 
-// Auto-generated at 2025-08-19 21:26:11.505318 by ops-translator
+// Auto-generated at 2026-02-17 15:22:45.110881 by ops-translator
 
 /*
 * Open source copyright declaration based on BSD open source template:
@@ -405,10 +405,11 @@ gridProp.grid_size_x = gridProp.act_size_x;
         if ((p % (power_iter/10)) == 0)
             std::cout << "Power profiling iter: " << p << " of " << power_iter << std::endl;
 #endif
-#ifdef OPS_FPGA
-#endif 
+// #ifdef OPS_FPGA
+		int outer_iter = calcParam[bat].N;
+// #endif 
 // #ifndef OPS_FPGA
-		isl0(calcParam[bat].N, interior_range, dat_current[bat], dat_a[bat], dat_b[bat], dat_c[bat], dat_next[bat]);
+		isl0(outer_iter, interior_range, dat_current[bat], dat_a[bat], dat_b[bat], dat_c[bat], dat_next[bat]);
 // #else
 //         ops_iter_par_loop("ops_iter_par_loop_0", calcParam[bat].N,
 // 			ops_par_loop(ops_krnl_blackscholes, "blackscholes_1", grid1D[bat], 1, interior_range,

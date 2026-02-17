@@ -28,6 +28,11 @@ void jac3D_kernel_stencil(const ACC<float> &u,
     u2(0,0,0) = tmp11 + tmp12;
 }
 
+void jac3D_kernel_stencil_test(const ACC<float> &u,
+                            ACC<float> &u2) {
+    u2(0,0,0) = u(0,0,0) + 1;
+}
+
 void kernel_copy(const ACC<float> &u2, ACC<float> &u) {
   u(0,0,0) = u2(0,0,0);
 }

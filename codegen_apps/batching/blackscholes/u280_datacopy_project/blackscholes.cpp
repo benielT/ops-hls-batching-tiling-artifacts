@@ -406,11 +406,12 @@ gridProp.grid_size_x = gridProp.act_size_x;
         if ((p % (power_iter/10)) == 0)
             std::cout << "Power profiling iter: " << p << " of " << power_iter << std::endl;
 #endif
-#ifdef OPS_FPGA
-        #pragma ISL "isl0" calcParam[bat].N
-#endif 
+// #ifdef OPS_FPGA
+		int outer_iter = calcParam[bat].N;
+        #pragma ISL "isl0" outer_iter
+// #endif 
 // #ifndef OPS_FPGA
-		for (int iter = 0 ; iter < calcParam[bat].N; iter++)
+		for (int iter = 0 ; iter < outer_iter; iter++)
 		{
 			ops_par_loop(ops_krnl_blackscholes, "blackscholes_1", grid1D[bat], 1, interior_range,
 					ops_arg_dat(dat_next[bat], 1, S1D_1pt, "float", OPS_WRITE),

@@ -20,7 +20,7 @@ DEVICE_BDF=0000:c1:00.1
 
 # Hardcoded parameter sets (sizex, sizey, iters, batch)
 if [[ "${CXXFLAGS}" == *"-DPOWER_PROFILE"* ]]; then
-    @echo "Power profiling enabled"
+    echo "Power profiling enabled"
     if [[ "${TARGET_MODE}" == "hw" ]]; then
         if [[ "${PLATFORM}" == *"u280"* ]]; then
             parameter_sets=(
