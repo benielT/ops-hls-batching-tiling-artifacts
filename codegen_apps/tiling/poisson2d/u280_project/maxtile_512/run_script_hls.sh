@@ -193,7 +193,7 @@ else
     else
         if [[ "${PLATFORM}" == *"u280"* ]]; then
             parameter_sets=(
-                "130,2,162,1,512"
+                "130,8,162,1,512"
                 # "50,50,162,4,128"
                 # Add more parameter sets here as needed
             )
