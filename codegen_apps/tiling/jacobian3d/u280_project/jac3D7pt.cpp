@@ -266,6 +266,7 @@ int main(int argc, const char **argv)
         if (is_verification_enabled) {
         // initialise_grid(u_cpu[bat], size, d_m, d_p, full_range, batch_size);
         zero_init(u_cpu[bat], size, d_m, d_p, outer_range, batch_size);
+        // initialise_grid_test(u_cpu[bat], size, d_m, d_p, full_range, batch_size); // SWITCH FOR VALUE TEST
         initialise_grid(u_cpu[bat], size, d_m, d_p, full_range, batch_size);
         // printGrid2D(u_cpu[bat], u[bat].originalProperty, "u_CPU after init");
         copy_grid(u2_cpu[bat], u_cpu[bat], size, d_m, d_p, full_range, batch_size);
@@ -322,6 +323,9 @@ int main(int argc, const char **argv)
 #endif
         for (int iter = 0; iter < iter_max; iter++)
         {
+            // ops_par_loop(jac3D_kernel_stencil_test, "jac3D_kernel_stencil_test", blocks[bat], 3, internal_range,
+            //         ops_arg_dat(u[bat], 1, S3D_7PT, "float", OPS_READ),
+            //         ops_arg_dat(u2[bat], 1, S3D_00, "float", OPS_WRITE)); // SWITCH FOR VALUE TEST
             ops_par_loop(jac3D_kernel_stencil, "jac3D_kernel_stencil", blocks[bat], 3, internal_range,
                     ops_arg_dat(u[bat], 1, S3D_7PT, "float", OPS_READ),
                     ops_arg_dat(u2[bat], 1, S3D_00, "float", OPS_WRITE));
@@ -356,6 +360,7 @@ int main(int argc, const char **argv)
 
         for (int iter = 0; iter < iter_max; iter++)
         {
+            // stencil_computation_test(u_cpu[bat], u2_cpu[bat], size, d_m, d_p, internal_range, batch_size); // SWITCH FOR VALUE TEST
             stencil_computation(u_cpu[bat], u2_cpu[bat], size, d_m, d_p, internal_range, batch_size);
             copy_grid(u_cpu[bat], u2_cpu[bat], size, d_m, d_p, internal_range, batch_size);
         }
