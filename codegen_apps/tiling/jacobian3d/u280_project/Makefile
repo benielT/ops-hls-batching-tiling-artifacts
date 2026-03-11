@@ -13,7 +13,7 @@ include $(OPS_INSTALL_PATH)/../makefiles/Makefile.hdf5
 
 PLATFORM=xilinx_u280_gen3x16_xdma_1_202211_1
 HLS_TARGET_MODE=hw
-HLS_JOBS=64
+HLS_JOBS=100
 include $(OPS_INSTALL_PATH)/../makefiles/Makefile_hls.mk
 
 HEADERS=jac3D7pt_kernel.h
@@ -43,7 +43,7 @@ CXXFLAGS += -DPROFILE
 
 ########  VERIFICATION OPTIONS  ######
 #Enable if wanted to verify
-CXXFLAGS += -DVERIFICATION
+# CXXFLAGS += -DVERIFICATION
 
 ######## ASYN_DISPATCH OPTION ########
 #Enable if wanted to use asynchronous dispatch
@@ -63,6 +63,8 @@ VPP_FLAGS += -DOPS_TILING -DOPS_MAXTILESIZE_X=$(TILE_SIZE_X) -DOPS_MAXTILESIZE_Y
 #Enable if wanted to debug
 #CXXFLAGS += -DDEBUG_LOG
 #VPP_FLAGS += -DDEBUG_LOG
+# CXXFLAGS += -g
+# VPP_FLAGS += -g
 
 #include $(OPS_INSTALL_PATH)/../makefiles/Makefile.c_app_legacy
 include $(OPS_INSTALL_PATH)/../makefiles/Makefile.c_app
