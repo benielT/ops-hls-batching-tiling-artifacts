@@ -1,0 +1,44 @@
+# Ignore emu directories
+tapa/build/tapa_sw_emu
+tapa/build/tapa_hw_emu
+tapa/build/hw_emu
+
+# Ignore text and log files globally by default
+*.txt
+*.out
+*.log
+
+# Ignore vitis build, runtime tempraries
+_x
+.Xil
+--temp_dir*
+vitis_analyzer*
+
+# Ignore emporary profile derivative
+perf_profile.csv
+
+# Ignore emulation configuration 
+emconfig.json
+
+# Ignore everything inside temp_dir to filter out heavy artifacts...
+tapa/build/hw/temp_dir/**/*
+tapa/build/hw/tapa_work_dir/**/*
+
+# ...BUT force Git to track the directory structures...
+!tapa/build/hw/temp_dir/**/
+
+# ...AND whitelist the specific database, report, and log extensions needed by Vitis Analyzer
+!tapa/build/hw/temp_dir/**/*.xml
+!tapa/build/hw/temp_dir/**/*.rpt
+!tapa/build/hw/temp_dir/**/*.pb
+!tapa/build/hw/temp_dir/**/*.pb3
+!tapa/build/hw/temp_dir/**/*.xtxt
+!tapa/build/hw/temp_dir/**/*.json
+!tapa/build/hw/temp_dir/**/*.rtd
+!tapa/build/hw/temp_dir/**/*.xutil
+!tapa/build/hw/temp_dir/**/*.rpx
+!tapa/build/hw/temp_dir/**/*.rpv
+!tapa/build/hw/temp_dir/**/*.html
+!tapa/build/hw/temp_dir/**/*.info
+!tapa/build/hw/temp_dir/**/*.log
+!tapa/build/hw/temp_dir/**/*.txt
