@@ -1,5 +1,5 @@
 
-// Auto-generated at 2026-02-17 15:39:15.695525 by ops-translator
+// Auto-generated at 2026-07-24 21:57:56.292422 by ops-translator
 
 /*
 * Open source copyright declaration based on BSD open source template:
@@ -61,7 +61,16 @@
 #include "ops_lib_core.h"
 #include <ops_seq_v2.h>
 #include <ops_hls_rt_support.h>
+
+#if defined(TAPA_SW_EMU)
+#include <tapa.h>
+#endif
+
+#ifdef OPS_TAPA
+#include <tapa_kernels.hpp>
+#else
 #include <hls_kernels.hpp>
+#endif
 #include "blackscholes_kernels.h"
 /* ops_par_loop declarations */
 
@@ -86,11 +95,15 @@ extern const unsigned short mem_vector_factor;
     #endif  
 #endif
 
-int main(int argc, const char **argv)
+int main(int argc, char **argv)
 {
+#if defined(TAPA_SW_EMU) || defined(TAPA_HW_EMU)
+    std::cout << "Running TAPA host mode" << std::endl;
+#else
     // OPS initialisation
 	ops_init_backend(argc, argv);
 
+#endif
 
 	GridParameter gridProp;
 	gridProp.logical_size_x = 180;
@@ -263,11 +276,11 @@ gridProp.grid_size_x = gridProp.act_size_x;
 	int d_m[] = {-1};
 	int d_p[] = {1};
 
-	ops::hls::Grid<stencil_type> dat_current[gridProp.batch]; // = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  current, "float",  "dat_current", mem_vector_factor);
-	ops::hls::Grid<stencil_type> dat_next[gridProp.batch];// = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  next, "float",  "dat_next", mem_vector_factor);
-	ops::hls::Grid<stencil_type> dat_a[gridProp.batch]; // = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  a,  "float",  "dat_a", mem_vector_factor);
-	ops::hls::Grid<stencil_type> dat_b[gridProp.batch]; // = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  b,  "float",  "dat_b", mem_vector_factor);
-	ops::hls::Grid<stencil_type> dat_c[gridProp.batch]; // = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  c,  "float",  "dat_c", mem_vector_factor);
+	ops::hls::Grid<stencil_type> dat_current[gridProp.batch]; // = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  current, "float",  "dat_current", vector_factor, mem_vector_factor, total_PEs);
+	ops::hls::Grid<stencil_type> dat_next[gridProp.batch];// = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  next, "float",  "dat_next", vector_factor, mem_vector_factor, total_PEs);
+	ops::hls::Grid<stencil_type> dat_a[gridProp.batch]; // = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  a,  "float",  "dat_a", vector_factor, mem_vector_factor, total_PEs);
+	ops::hls::Grid<stencil_type> dat_b[gridProp.batch]; // = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  b,  "float",  "dat_b", vector_factor, mem_vector_factor, total_PEs);
+	ops::hls::Grid<stencil_type> dat_c[gridProp.batch]; // = ops_hls_decl_dat(grid1D,  1,  size,  base,  d_m,  d_p,  c,  "float",  "dat_c", vector_factor, mem_vector_factor, total_PEs);
 
 #ifdef VERIFICATION
     float * grid_u1_cpu[gridProp.batch]; // = (float*) aligned_alloc(4096, data_size_bytes);
@@ -280,15 +293,15 @@ gridProp.grid_size_x = gridProp.act_size_x;
 		float *a = nullptr, *b = nullptr, *c = nullptr;
 
 		std::string name = std::string("current_") + std::to_string(bat);
-		dat_current[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  current, "float",  name.c_str(), mem_vector_factor);
+		dat_current[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  current, "float",  name.c_str(), vector_factor, mem_vector_factor, total_PEs);
 		name = std::string("next_") + std::to_string(bat);
-		dat_next[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  next, "float",  name.c_str(), mem_vector_factor);
+		dat_next[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  next, "float",  name.c_str(), vector_factor, mem_vector_factor, total_PEs);
 		name = std::string("a_") + std::to_string(bat);
-		dat_a[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  a,  "float",  name.c_str(), mem_vector_factor);
+		dat_a[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  a,  "float",  name.c_str(), vector_factor, mem_vector_factor, total_PEs);
 		name = std::string("b_") + std::to_string(bat);
-		dat_b[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  a,  "float",  name.c_str(), mem_vector_factor);
+		dat_b[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  a,  "float",  name.c_str(), vector_factor, mem_vector_factor, total_PEs);
 		name = std::string("x_") + std::to_string(bat);
-		dat_c[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  a,  "float",  name.c_str(), mem_vector_factor);
+		dat_c[bat] = ops_hls_decl_dat(grid1D[bat],  1,  size,  base,  d_m,  d_p,  a,  "float",  name.c_str(), vector_factor, mem_vector_factor, total_PEs);
 #ifdef VERIFICATION
 		grid_u1_cpu[bat] = (float*) aligned_alloc(4096, data_size_bytes);
 		grid_u2_cpu[bat] = (float*) aligned_alloc(4096, data_size_bytes);

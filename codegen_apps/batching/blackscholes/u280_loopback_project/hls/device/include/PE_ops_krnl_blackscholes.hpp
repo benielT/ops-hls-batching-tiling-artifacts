@@ -1,8 +1,10 @@
-// Auto-generated at 2025-08-15 13:02:33.592411 by ops-translator
+// Auto-generated at 2026-07-24 21:57:55.859016 by ops-translator
 
-#pragma once
+#ifndef __LOOP_PE_OPS_KRNL_BLACKSCHOLES__
+#define __LOOP_PE_OPS_KRNL_BLACKSCHOLES__
 #include <ops_hls_kernel_support.h>
-#include "common_config.hpp"
+
+#include "../../common/include/common_config.hpp"
 
 static constexpr unsigned short read_num_points_ops_krnl_blackscholes = 3;
 static constexpr unsigned short read_stencil_size_ops_krnl_blackscholes = 3;
@@ -12,21 +14,21 @@ static constexpr unsigned short write_num_points_ops_krnl_blackscholes = 1;
 static constexpr unsigned short write_stencil_size_ops_krnl_blackscholes = 1;
 static constexpr unsigned short write_stencil_dim_ops_krnl_blackscholes = 1;
 
-static constexpr unsigned short vector_factor_ops_krnl_blackscholes_0 = vector_factor * 1;
-static constexpr unsigned short axis_data_width_l_ops_krnl_blackscholes_0 = vector_factor_ops_krnl_blackscholes_0 * data_width;
-typedef ap_uint<axis_data_width_l_ops_krnl_blackscholes_0> widen_ops_krnl_blackscholes_0_dt;
-static constexpr unsigned short vector_factor_ops_krnl_blackscholes_1 = vector_factor * 1;
-static constexpr unsigned short axis_data_width_l_ops_krnl_blackscholes_1 = vector_factor_ops_krnl_blackscholes_1 * data_width;
-typedef ap_uint<axis_data_width_l_ops_krnl_blackscholes_1> widen_ops_krnl_blackscholes_1_dt;
-static constexpr unsigned short vector_factor_ops_krnl_blackscholes_2 = vector_factor * 1;
-static constexpr unsigned short axis_data_width_l_ops_krnl_blackscholes_2 = vector_factor_ops_krnl_blackscholes_2 * data_width;
-typedef ap_uint<axis_data_width_l_ops_krnl_blackscholes_2> widen_ops_krnl_blackscholes_2_dt;
-static constexpr unsigned short vector_factor_ops_krnl_blackscholes_3 = vector_factor * 1;
-static constexpr unsigned short axis_data_width_l_ops_krnl_blackscholes_3 = vector_factor_ops_krnl_blackscholes_3 * data_width;
-typedef ap_uint<axis_data_width_l_ops_krnl_blackscholes_3> widen_ops_krnl_blackscholes_3_dt;
-static constexpr unsigned short vector_factor_ops_krnl_blackscholes_4 = vector_factor * 1;
-static constexpr unsigned short axis_data_width_l_ops_krnl_blackscholes_4 = vector_factor_ops_krnl_blackscholes_4 * data_width;
-typedef ap_uint<axis_data_width_l_ops_krnl_blackscholes_4> widen_ops_krnl_blackscholes_4_dt;
+static constexpr unsigned short vector_factor_ops_krnl_blackscholes_0 = (vector_factor ) * 1;
+static constexpr unsigned short axis_data_width_ops_krnl_blackscholes_0 = (vector_factor_ops_krnl_blackscholes_0 * data_width);
+typedef ap_uint<axis_data_width_ops_krnl_blackscholes_0> widen_ops_krnl_blackscholes_0_dt;
+static constexpr unsigned short vector_factor_ops_krnl_blackscholes_1 = (vector_factor ) * 1;
+static constexpr unsigned short axis_data_width_ops_krnl_blackscholes_1 = (vector_factor_ops_krnl_blackscholes_1 * data_width);
+typedef ap_uint<axis_data_width_ops_krnl_blackscholes_1> widen_ops_krnl_blackscholes_1_dt;
+static constexpr unsigned short vector_factor_ops_krnl_blackscholes_2 = (vector_factor ) * 1;
+static constexpr unsigned short axis_data_width_ops_krnl_blackscholes_2 = (vector_factor_ops_krnl_blackscholes_2 * data_width);
+typedef ap_uint<axis_data_width_ops_krnl_blackscholes_2> widen_ops_krnl_blackscholes_2_dt;
+static constexpr unsigned short vector_factor_ops_krnl_blackscholes_3 = (vector_factor ) * 1;
+static constexpr unsigned short axis_data_width_ops_krnl_blackscholes_3 = (vector_factor_ops_krnl_blackscholes_3 * data_width);
+typedef ap_uint<axis_data_width_ops_krnl_blackscholes_3> widen_ops_krnl_blackscholes_3_dt;
+static constexpr unsigned short vector_factor_ops_krnl_blackscholes_4 = (vector_factor ) * 1;
+static constexpr unsigned short axis_data_width_ops_krnl_blackscholes_4 = (vector_factor_ops_krnl_blackscholes_4 * data_width);
+typedef ap_uint<axis_data_width_ops_krnl_blackscholes_4> widen_ops_krnl_blackscholes_4_dt;
 
 typedef ::hls::stream<widen_ops_krnl_blackscholes_0_dt> widen_stream_ops_krnl_blackscholes_0_dt;
 typedef ::hls::stream<widen_ops_krnl_blackscholes_1_dt> widen_stream_ops_krnl_blackscholes_1_dt;
@@ -35,11 +37,11 @@ typedef ::hls::stream<widen_ops_krnl_blackscholes_3_dt> widen_stream_ops_krnl_bl
 typedef ::hls::stream<widen_ops_krnl_blackscholes_4_dt> widen_stream_ops_krnl_blackscholes_4_dt;
 
 /*
-    ArgDat(id=0, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/blackscholes/u280_project/blackscholes.cpp/415:6, access_type=AccessType.OPS_WRITE, opt=True, dat_id=0, global_dat_id=-1, stencil_id=S1D_1pt)
-    ArgDat(id=1, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/blackscholes/u280_project/blackscholes.cpp/416:6, access_type=AccessType.OPS_READ, opt=True, dat_id=1, global_dat_id=-1, stencil_id=S1D_3pt)
-    ArgDat(id=2, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/blackscholes/u280_project/blackscholes.cpp/417:6, access_type=AccessType.OPS_RW, opt=True, dat_id=2, global_dat_id=-1, stencil_id=S1D_1pt)
-    ArgDat(id=3, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/blackscholes/u280_project/blackscholes.cpp/418:6, access_type=AccessType.OPS_RW, opt=True, dat_id=3, global_dat_id=-1, stencil_id=S1D_1pt)
-    ArgDat(id=4, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/blackscholes/u280_project/blackscholes.cpp/419:6, access_type=AccessType.OPS_RW, opt=True, dat_id=4, global_dat_id=-1, stencil_id=S1D_1pt)
+    ArgDat(id=0, loc=/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/u280_loopback_project/blackscholes.cpp/416:6, access_type=AccessType.OPS_WRITE, opt=True, dat_id=0, global_dat_id=-1, stencil_id=S1D_1pt)
+    ArgDat(id=1, loc=/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/u280_loopback_project/blackscholes.cpp/417:6, access_type=AccessType.OPS_READ, opt=True, dat_id=1, global_dat_id=-1, stencil_id=S1D_3pt)
+    ArgDat(id=2, loc=/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/u280_loopback_project/blackscholes.cpp/418:6, access_type=AccessType.OPS_RW, opt=True, dat_id=2, global_dat_id=-1, stencil_id=S1D_1pt)
+    ArgDat(id=3, loc=/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/u280_loopback_project/blackscholes.cpp/419:6, access_type=AccessType.OPS_RW, opt=True, dat_id=3, global_dat_id=-1, stencil_id=S1D_1pt)
+    ArgDat(id=4, loc=/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/u280_loopback_project/blackscholes.cpp/420:6, access_type=AccessType.OPS_RW, opt=True, dat_id=4, global_dat_id=-1, stencil_id=S1D_1pt)
 */
 inline void kernel_ops_krnl_blackscholes_core(
         stencil_type& reg_0_0,
@@ -90,15 +92,26 @@ public:
             widen_stream_ops_krnl_blackscholes_4_dt& arg4_wr_buffer
         )
     {
+        unsigned short bat = 0;
+        //::ops::hls::StencilConfigCore stencilConfig = m_stencilConfig;
+        #pragma HLS ARRAY_PARTITION variable = m_stencilConfig.lower_limit dim = 1 complete
+        #pragma HLS ARRAY_PARTITION variable = m_stencilConfig.upper_limit dim = 1 complete
+        #pragma HLS ARRAY_PARTITION variable = m_stencilConfig.grid_size dim = 1 complete
+        // const unsigned short peId = m_PEId;
+
         const unsigned short span_x = 2;
         const unsigned short half_span_x = 1;
 
-        ::ops::hls::StencilConfigCore stencilConfig = m_stencilConfig;
+        //const unsigned short lower_limit_x = m_stencilConfig.lower_limit[0];
+        //const unsigned short lower_limit_y = m_stencilConfig.lower_limit[1];
+        //const unsigned short lower_limit_z = m_stencilConfig.lower_limit[2];
+        //const unsigned short upper_limit_x = m_stencilConfig.upper_limit[0];
+        //const unsigned short upper_limit_y = m_stencilConfig.upper_limit[1];
+        //const unsigned short upper_limit_z = m_stencilConfig.upper_limit[2];
 
-        for (unsigned bat = 0; bat < stencilConfig.batch_size; bat++)
+        while(bat < m_stencilConfig.batch_size)
         {
-        //read_origin_wide_diff_x: 1, read_origin_wide_diff: (1,0,0)
-
+            //read_origin_wide_diff_x: 1, read_origin_wide_diff: (1,0,0)
         //  *** counters definitions ****
             short i = -2;
 
@@ -113,21 +126,16 @@ public:
             // Stencil: S1D_1pt
             //      `- point: (0,0,0)
 
-            #pragma HLS ARRAY_PARTITION variable = stencilConfig.lower_limit dim = 1 complete
-            #pragma HLS ARRAY_PARTITION variable = stencilConfig.upper_limit dim = 1 complete
-
         //  *** iteration limit definition ****
-            unsigned int iter_limit = stencilConfig.outer_loop_limit;
+            unsigned int iter_limit = m_stencilConfig.outer_loop_limit;
 
         //  *** data read write boundary definitions ****
             unsigned int S1D_3pt_read_lb_itr = 0;
-            unsigned int S1D_3pt_read_ub_itr = 0 + stencilConfig.grid_size[0];
-            unsigned int S1D_1pt_read_lb_itr = 1;
-            unsigned int S1D_1pt_read_ub_itr = 1 + stencilConfig.grid_size[0];
-
+            unsigned int S1D_3pt_read_ub_itr = m_stencilConfig.grid_size[0];            unsigned int S1D_1pt_read_lb_itr = 1;
+            unsigned int S1D_1pt_read_ub_itr = 1 + m_stencilConfig.grid_size[0];        
         /*
             unsigned int read_lb_itr = 0;
-            unsigned int read_ub_itr = stencilConfig.grid_size[0];
+            unsigned int read_ub_itr = m_stencilConfig.grid_size[0];
         */
         //  *** Read & write widen temporaries ****
         // arg0(dat_next)
@@ -143,6 +151,7 @@ public:
         // arg4(dat_c)
             widen_ops_krnl_blackscholes_4_dt arg4_read_val = 0;
             widen_ops_krnl_blackscholes_4_dt arg4_update_val;
+        // 2
         //  *** widen stencil values holder & window buffers ****
 
             // arg1(dat_current)
@@ -173,7 +182,18 @@ public:
             stencil_type arg4_rowArr_0_0[vector_factor + span_x];
             #pragma HLS ARRAY_PARTITION variable = arg4_rowArr_0_0 dim=1 complete
 
-            const short cond_x_val = stencilConfig.grid_size[0] - 1; 
+            const short cond_x_val = m_stencilConfig.grid_size[0] - 1; 
+
+#ifdef DEBUG_LOG
+             printf("[DEBUG][INTERNAL][%s:%d] initial values, "\
+                "grid_size_x(%d), "\
+                "iter_limit(%d), m_stencilConfig.outer_loop_limit:%d \n",
+                __func__,m_PEId,
+                m_stencilConfig.grid_size[0],
+
+                iter_limit, m_stencilConfig.outer_loop_limit);
+#endif
+            bat++;
 
             for (unsigned int itr = 0; itr < iter_limit; itr++)
             {
@@ -186,7 +206,7 @@ public:
 
     #ifdef DEBUG_LOG
                     printf("[DEBUG][INTERNAL][ops_krnl_blackscholes_PE_%d] loop params before update i(%d), "\
-                        "reg_itr(%d)\n", m_PEId, i, 
+                        "reg_itr(%d)\n", m_PEId,  i, 
                         reg_itr);
     #endif
                     if (cond_x_terminate)
@@ -212,13 +232,9 @@ public:
 
                     /*if (read_cond)
                     {
-
                         arg1_read_val = arg1_rd_buffer.read();
-
                         arg2_read_val = arg2_rd_buffer.read();
-
                         arg3_read_val = arg3_rd_buffer.read();
-
                         arg4_read_val = arg4_rd_buffer.read();
                     }*/
 
@@ -230,8 +246,8 @@ public:
                     arg4_widenStencilValues[0] = arg4_read_val;
 
     #ifdef DEBUG_LOG
-                    printf("[DEBUG][INTERNAL][ops_krnl_blackscholes_PE_%d] loop params after update i(%d), "\
-                                    "reg_itr(%d)\n", m_PEId, i, 
+                    printf("[DEBUG][INTERNAL][ops_krnl_blackscholes_PE_%d] loop params after update i: %d, "\
+                                    "reg_itr: %d\n", m_PEId, i, 
                                     reg_itr);
 
                     printf("[DEBUG][INTERNAL][ops_krnl_blackscholes_PE_%d] --------------------------------------------------------\n\n", m_PEId);
@@ -241,7 +257,6 @@ public:
                     {
                         ops::hls::DataConv tmpConverter;
                         tmpConverter.i = arg1_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
-
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
@@ -250,7 +265,6 @@ public:
                     {
                         ops::hls::DataConv tmpConverter;
                         tmpConverter.i = arg2_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
-
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
@@ -259,7 +273,6 @@ public:
                     {
                         ops::hls::DataConv tmpConverter;
                         tmpConverter.i = arg3_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
-
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
@@ -268,7 +281,6 @@ public:
                     {
                         ops::hls::DataConv tmpConverter;
                         tmpConverter.i = arg4_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
-
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
@@ -277,7 +289,7 @@ public:
 
                 vec2arr: for (unsigned short x = 0; x < vector_factor; x++)
                 {
-    #pragma HLS UNROLL factor=vector_factor
+                #pragma HLS UNROLL factor=vector_factor
                     ops::hls::DataConv arg1_tmpConverter_0_0;
                     arg1_tmpConverter_0_0.i = arg1_widenStencilValues[1].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
                     arg1_rowArr_0_0[x + half_span_x] = arg1_tmpConverter_0_0.f; 
@@ -305,19 +317,19 @@ public:
                     arg1_tmpConverter_2_0_0_0.i = arg1_widenStencilValues[2].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
                     arg1_rowArr_0_0[9] = arg1_tmpConverter_2_0_0_0.f;
                 }
-
                 process: for (unsigned short x = 0; x < vector_factor; x++)
                 {
     #pragma HLS UNROLL factor=vector_factor
                     short index = (i << shift_bits) + x;
-                    bool neg_cond = register_it(             
-                            (index < stencilConfig.lower_limit[0]) 
-                            || (index >= stencilConfig.upper_limit[0])
+                    bool neg_cond = register_it(     
+                            (index < m_stencilConfig.lower_limit[0])
+                            || (index >= m_stencilConfig.upper_limit[0])
                     );
 
     #ifdef DEBUG_LOG
                     printf("[DEBUG][INTERNAL][ops_krnl_blackscholes_PE_%d] index=(%d), lowerbound=(%d), upperbound=(%d), neg_cond=%d\n", m_PEId, index,
-                                stencilConfig.lower_limit[0], stencilConfig.upper_limit[0], neg_cond);
+                                m_stencilConfig.lower_limit[0], m_stencilConfig.upper_limit[0], 
+                                neg_cond);
 
     #endif
                     stencil_type arg0_result;
@@ -359,7 +371,6 @@ public:
                     arg4_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg4_tmpConvWrite.i;
 
                 }
-
                 write:
                 {
                     bool cond_write = (i >= 0);
@@ -410,34 +421,41 @@ public:
                 }
             }
         }
-    } 
+    }
 };
 
-void kernel_ops_krnl_blackscholes_PE(const short& PEId, const ops::hls::StencilConfigCore& stencilConfig,
+static void kernel_ops_krnl_blackscholes_PE(
+    const unsigned short& PEId_offset,
+    const unsigned short& PEId_i,
+    const ops::hls::StencilConfigCore& stencilConfig,
             //dat_next
-    widen_stream_ops_krnl_blackscholes_0_dt& arg0_wr_buffer,        
+            widen_stream_ops_krnl_blackscholes_0_dt& arg0_wr_buffer,
             //dat_current
-    widen_stream_ops_krnl_blackscholes_1_dt& arg1_rd_buffer,
+            widen_stream_ops_krnl_blackscholes_1_dt& arg1_rd_buffer,
             //dat_a
-    widen_stream_ops_krnl_blackscholes_2_dt& arg2_rd_buffer,
-    widen_stream_ops_krnl_blackscholes_2_dt& arg2_wr_buffer,
+            widen_stream_ops_krnl_blackscholes_2_dt& arg2_rd_buffer,
+            widen_stream_ops_krnl_blackscholes_2_dt& arg2_wr_buffer,
             //dat_b
-    widen_stream_ops_krnl_blackscholes_3_dt& arg3_rd_buffer,
-    widen_stream_ops_krnl_blackscholes_3_dt& arg3_wr_buffer,
+            widen_stream_ops_krnl_blackscholes_3_dt& arg3_rd_buffer,
+            widen_stream_ops_krnl_blackscholes_3_dt& arg3_wr_buffer,
             //dat_c
-    widen_stream_ops_krnl_blackscholes_4_dt& arg4_rd_buffer,
-    widen_stream_ops_krnl_blackscholes_4_dt& arg4_wr_buffer
+            widen_stream_ops_krnl_blackscholes_4_dt& arg4_rd_buffer,
+            widen_stream_ops_krnl_blackscholes_4_dt& arg4_wr_buffer
 )
 {
+
     Stencil_ops_krnl_blackscholes stencil;
 
+    short PEId = PEId_offset * iter_par_factor + PEId_i;
+
 #ifdef DEBUG_LOG
-    printf("[KERNEL_DEBUG]|%s| stencil config gridSize: %d (xblocks), %d, %d\n", __func__, stencilConfig.grid_size[0], stencilConfig.grid_size[1], stencilConfig.grid_size[2]);
+    printf("[KERNEL_DEBUG][%d]|%s| stencil config gridSize: %d (xblocks), %d, %d\n", PEId, __func__, stencilConfig.grid_size[0], stencilConfig.grid_size[1], stencilConfig.grid_size[2]);
 #endif
+
     stencil.setConfig(PEId, stencilConfig);
 
 #ifdef DEBUG_LOG
-    printf("[KERNEL_DEBUG]|%s| starting stencil kernel PE\n", __func__);
+    printf("[KERNEL_DEBUG][%d]|%s| starting stencil kernel PE\n", PEId, __func__);
 #endif
 
     stencil.stencilRun(
@@ -453,6 +471,8 @@ void kernel_ops_krnl_blackscholes_PE(const short& PEId, const ops::hls::StencilC
 );
 
 #ifdef DEBUG_LOG
-    printf("[KERNEL_DEBUG]|%s| Ending stencil kernel PE\n", __func__);
+    printf("[KERNEL_DEBUG][%d]|%s| Ending stencil kernel PE\n", PEId, __func__);
 #endif
 } 
+
+#endif // __LOOP_PE_OPS_KRNL_BLACKSCHOLES__

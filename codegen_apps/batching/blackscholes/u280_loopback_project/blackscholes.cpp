@@ -70,7 +70,7 @@ extern const unsigned short mem_vector_factor;
     #endif  
 #endif
 
-int main(int argc, const char **argv)
+int main(int argc, char **argv)
 {
     // OPS initialisation
     ops_init(argc,argv,1);

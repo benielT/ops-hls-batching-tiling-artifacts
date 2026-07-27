@@ -40,7 +40,7 @@ TARGETS=hls
 #Enable if wanted to profile
 CXXFLAGS += -DPROFILE
 #Enable if wanted to power_profile
-# CXXFLAGS += -DPOWER_PROFILE
+#CXXFLAGS += -DPOWER_PROFILE
 
 ########  VERIIFICATION OPTIONS  ######
 #Enable if wanted to verify

@@ -1,4 +1,4 @@
-// Auto-generated at 2025-08-15 13:02:33.408266 by ops-translator
+// Auto-generated at 2026-07-24 21:57:55.452105 by ops-translator
 
 #pragma once
 
@@ -8,11 +8,6 @@
 #include <stdio.h>
 
 #include <ops_hls_rt_support.h>
-
-typedef float stencil_type;
-constexpr unsigned short vector_factor = 8;
-constexpr unsigned short mem_vector_factor = 16;
-constexpr unsigned int iter_par_factor = 22;
 
 // user kernel files
 #include "ops_krnl_zero_init_kernel.hpp"
