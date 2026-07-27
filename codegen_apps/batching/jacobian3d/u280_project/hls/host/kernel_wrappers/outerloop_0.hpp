@@ -1,7 +1,9 @@
-// Auto-generated at 2025-09-06 21:18:49.545567 by ops-translator
+// Auto-generated at 2026-07-24 21:23:47.243315 by ops-translator
 
 #pragma once 
 #include <ops_hls_rt_support.h>
+#include "../../common/include/common_config.hpp"
+
 
 class KernelWrapper_outerloop_0 : public ops::hls::Kernel
 {
@@ -32,16 +34,65 @@ public:
         auto read_stencilConfig = getStencilConfig(arg0.originalProperty, range, vector_factor, mem_vector_factor, read_stencil_d_m, read_stencil_d_p);
         ops::hls::AccessRange read_range;
         getAdjustedRange(arg0.originalProperty, range, read_range, read_stencil_d_m, read_stencil_d_p);
-
+#ifdef OPS_TILING
+        ops::hls::SizeType original_gridSize_copy = {arg0.originalProperty.grid_size[0], arg0.originalProperty.grid_size[1], arg0.originalProperty.grid_size[2]};
+        ops::hls::AccessRange read_range_copy;
+        read_range_copy.start[0] = read_range.start[0];
+        read_range_copy.start[1] = read_range.start[1];
+        read_range_copy.start[2] = read_range.start[2];
+        read_range_copy.end[0] = read_range.end[0];
+        read_range_copy.end[1] = read_range.end[1];
+        read_range_copy.end[2] = read_range.end[2];
+        read_range_copy.dim = read_range.dim;
+        ops::hls::SizeType2d tile_size = {m_fpga->getOPSTileSizeX(),  m_fpga->getOPSTileSizeY()};
+        ops::hls::SizeType2d overlap_size = {get_overlap_size<3, 9, 1, mem_vector_factor>(), 
+get_overlap_size<3, 9, 1, 1>()};
+        ops::hls::SizeType2d tile_count;
+        ops::hls::SizeType2d effective_tile_size;
+        ops::hls::SizeType2d last_tile_size;
+        unsigned int total_xblocks_widen;
+        unsigned short last_tile_upper_limit_x;
+    #ifdef DEBUG_LOG
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| TILE PARAMETERS BEFORE TILE METADATA GENERATION" << std::endl;
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| original_gridSize_copy: (" 
+                  << original_gridSize_copy[0] << ", " << original_gridSize_copy[1] << ", " << original_gridSize_copy[2] << ")\n";
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| read_range_copy: ( start: (" 
+                  << read_range_copy.start[0] << ", " << read_range_copy.start[1] << ", " << read_range_copy.start[2] << "), end: ("
+                  << read_range_copy.end[0] << ", " << read_range_copy.end[1] << ", " << read_range_copy.end[2] << "), dim: " << read_range_copy.dim << ")\n";
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| tile_size: (" 
+                  << tile_size[0] << ", " << tile_size[1] << ")\n";
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| overlap_size: (" 
+                  << overlap_size[0] << ", " << overlap_size[1] << ")\n";
+    #endif
+        ops::hls::genTileMetadata<mem_data_width, data_width, 2>(original_gridSize_copy, read_range_copy, tile_size, overlap_size,
+                effective_tile_size, last_tile_size, tile_count, last_tile_upper_limit_x, total_xblocks_widen);
+        // kernel tile sizes need to be adusted according to the axis_data_width
+        ops::hls::SizeType2d kernel_tile_size = {tile_size[0] * num_of_pkts_per_beat, tile_size[1]};
+        ops::hls::SizeType2d kernel_last_tile_size = {last_tile_size[0] * num_of_pkts_per_beat, last_tile_size[1]};
+    #ifdef DEBUG_LOG
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| TILE PARAMETERS AFTER TILE METADATA GENERATION" << std::endl;
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| effective_tile_size: (" 
+                  << effective_tile_size[0] << ", " << effective_tile_size[1] << ")\n";
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| last_tile_size: (" 
+                  << last_tile_size[0] << ", " << last_tile_size[1] << ")\n";
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| tile_count: (" 
+                  << tile_count[0] << ", " << tile_count[1] << ")\n";
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| total_xblocks_widen: " 
+                  << total_xblocks_widen << "\n";
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| kernel_tile_size: (" 
+                  << kernel_tile_size[0] << ", " << kernel_tile_size[1] << ")\n";
+        std::cout << "[DEBUG][KERNEL_WRAPPER]|" << __func__ << "| kernel_last_tile_size: (" 
+                  << kernel_last_tile_size[0] << ", " << kernel_last_tile_size[1] << ")\n";
+    #endif
+#endif
 #ifdef DEBUG_LOG
         printAccessRange(range, "common access range");
         printGridProp(arg0.originalProperty, "arg0_originalGridProp");
         printStencilConfig(read_stencilConfig, "read_stencilConfig");
 #endif
 
-		unsigned int total_iter_par_factor = iter_par_factor * 3;
+		unsigned int total_iter_par_factor = 27;
 		unsigned int adjusted_outer_iter = (outer_iter + total_iter_par_factor - 1) / total_iter_par_factor;
-
         int narg = 0;
          
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, (unsigned short)0));
@@ -51,14 +102,27 @@ public:
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.grid_size[2]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.dim));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.total_itr));
+#ifndef OPS_TILING
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.lower_limit[0]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.lower_limit[1]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.lower_limit[2]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.upper_limit[0]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.upper_limit[1]));
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.upper_limit[2]));
+#endif
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.outer_loop_limit));
+#ifndef OPS_TILING
         OCL_CHECK(err, err = m_kernel_0.setArg(narg++, read_stencilConfig.batch_size));
+#else
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, kernel_tile_size[0]));
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, kernel_tile_size[1]));
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, kernel_last_tile_size[0]));
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, kernel_last_tile_size[1]));
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, tile_count[0]));
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, tile_count[1]));
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, total_xblocks_widen));
+        OCL_CHECK(err, err = m_kernel_0.setArg(narg++, last_tile_upper_limit_x));
+#endif
         narg = 0; 
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, (unsigned short)1));
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, adjusted_outer_iter));
@@ -67,14 +131,27 @@ public:
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.grid_size[2]));
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.dim));
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.total_itr));
+#ifndef OPS_TILING
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.lower_limit[0]));
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.lower_limit[1]));
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.lower_limit[2]));
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.upper_limit[0]));
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.upper_limit[1]));
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.upper_limit[2]));
+#endif
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.outer_loop_limit));
+#ifndef OPS_TILING
         OCL_CHECK(err, err = m_kernel_1.setArg(narg++, read_stencilConfig.batch_size));
+#else
+        OCL_CHECK(err, err = m_kernel_1.setArg(narg++, kernel_tile_size[0]));
+        OCL_CHECK(err, err = m_kernel_1.setArg(narg++, kernel_tile_size[1]));
+        OCL_CHECK(err, err = m_kernel_1.setArg(narg++, kernel_last_tile_size[0]));
+        OCL_CHECK(err, err = m_kernel_1.setArg(narg++, kernel_last_tile_size[1]));
+        OCL_CHECK(err, err = m_kernel_1.setArg(narg++, tile_count[0]));
+        OCL_CHECK(err, err = m_kernel_1.setArg(narg++, tile_count[1]));
+        OCL_CHECK(err, err = m_kernel_1.setArg(narg++, total_xblocks_widen));
+        OCL_CHECK(err, err = m_kernel_1.setArg(narg++, last_tile_upper_limit_x));
+#endif
         narg = 0; 
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, (unsigned short)2));
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, adjusted_outer_iter));
@@ -83,14 +160,27 @@ public:
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.grid_size[2]));
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.dim));
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.total_itr));
+#ifndef OPS_TILING
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.lower_limit[0]));
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.lower_limit[1]));
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.lower_limit[2]));
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.upper_limit[0]));
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.upper_limit[1]));
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.upper_limit[2]));
+#endif
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.outer_loop_limit));
+#ifndef OPS_TILING
         OCL_CHECK(err, err = m_kernel_2.setArg(narg++, read_stencilConfig.batch_size));
+#else
+        OCL_CHECK(err, err = m_kernel_2.setArg(narg++, kernel_tile_size[0]));
+        OCL_CHECK(err, err = m_kernel_2.setArg(narg++, kernel_tile_size[1]));
+        OCL_CHECK(err, err = m_kernel_2.setArg(narg++, kernel_last_tile_size[0]));
+        OCL_CHECK(err, err = m_kernel_2.setArg(narg++, kernel_last_tile_size[1]));
+        OCL_CHECK(err, err = m_kernel_2.setArg(narg++, tile_count[0]));
+        OCL_CHECK(err, err = m_kernel_2.setArg(narg++, tile_count[1]));
+        OCL_CHECK(err, err = m_kernel_2.setArg(narg++, total_xblocks_widen));
+        OCL_CHECK(err, err = m_kernel_2.setArg(narg++, last_tile_upper_limit_x));
+#endif
 
 #ifndef OPS_HLS_NO_LOOPBACK
         bool loopback_enbl = true;
@@ -98,7 +188,7 @@ public:
         bool loopback_enbl = false;
 #endif 
         narg = 0;
-        OCL_CHECK(err, err = m_datamover.setArg(narg++, loopback_enbl));
+    
         OCL_CHECK(err, err = m_datamover.setArg(narg++, read_range.start[0]));
         OCL_CHECK(err, err = m_datamover.setArg(narg++, read_range.end[0]));
         OCL_CHECK(err, err = m_datamover.setArg(narg++, read_range.start[1]));
@@ -110,9 +200,34 @@ public:
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.originalProperty.grid_size[2]));
  
         OCL_CHECK(err, err = m_datamover.setArg(narg++, adjusted_outer_iter));
-        OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.originalProperty.batch_size));    
+#ifndef OPS_TILING
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.originalProperty.batch_size)); 
+#else
+   
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, tile_size[0]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, tile_size[1]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, overlap_size[0]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, overlap_size[1]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, effective_tile_size[0]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, effective_tile_size[1]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, last_tile_size[0]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, last_tile_size[1]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, tile_count[0]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, tile_count[1]));
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, total_xblocks_widen));
+#endif
+#ifdef OPS_TILING
+    printf("Tiles per grid: %d \n", arg0.alt_banks);
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.deviceBuffer[0]));
+#else
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg0.deviceBuffer));
+#endif
+#ifdef OPS_TILING
+    printf("Tiles per grid: %d \n", arg0.alt_banks);
+        OCL_CHECK(err, err = m_datamover.setArg(narg++, arg1.deviceBuffer[0]));
+#else
         OCL_CHECK(err, err = m_datamover.setArg(narg++, arg1.deviceBuffer));
+#endif
 
         std::vector<cl::Event> h2d_events;
         cl::Event event_h2d_arg0 = arg0.set_as_arg();
@@ -132,10 +247,11 @@ public:
         activeEvents.insert(activeEvents.end(), arg0.activeEvents.begin(), arg0.activeEvents.end());
         activeEvents.insert(activeEvents.end(), arg1.activeEvents.begin(), arg1.activeEvents.end());
 
-        OCL_CHECK(err, err = m_fpga->getCommandQueue().enqueueTask(m_datamover, &activeEvents, &event_datamover));
+    // enque in backward order
         OCL_CHECK(err, err = m_fpga->getCommandQueue().enqueueTask(m_kernel_0, &activeEvents, &event_kernel_0));
         OCL_CHECK(err, err = m_fpga->getCommandQueue().enqueueTask(m_kernel_1, &activeEvents, &event_kernel_1));
         OCL_CHECK(err, err = m_fpga->getCommandQueue().enqueueTask(m_kernel_2, &activeEvents, &event_kernel_2));
+        OCL_CHECK(err, err = m_fpga->getCommandQueue().enqueueTask(m_datamover, &activeEvents, &event_datamover));
 
 
 #ifdef PROFILE
@@ -196,6 +312,7 @@ public:
     }
 private:
     std::string m_kernelName;
+
     std::string m_datamoverName;
     cl::Kernel m_kernel_0;
     cl::Kernel m_kernel_1;
@@ -208,13 +325,14 @@ void isl0(int outer_iter, int* ops_range,
             ops::hls::Grid<float>& arg1
 )
 {
-    static  KernelWrapper_outerloop_0 kernelWrapper_inst;
     ops::hls::AccessRange range;
     opsRange2hlsRange(3, ops_range, range, arg0.originalProperty);
+    static  KernelWrapper_outerloop_0 kernelWrapper_inst;
     sendGrid(arg0);
     
     kernelWrapper_inst.run(range, outer_iter,
             arg0,
             arg1
     );
+
 }

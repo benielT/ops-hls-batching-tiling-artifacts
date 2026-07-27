@@ -75,7 +75,7 @@ constexpr bool is_verification_enabled = false;
 /******************************************************************************
 * Main program
 *******************************************************************************/
-int main(int argc, const char **argv)
+int main(int argc, char **argv)
 {
   /**-------------------------- Initialisation --------------------------**/
 
