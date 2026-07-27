@@ -1,12 +1,12 @@
-// Auto-generated at 2025-08-20 00:23:44.014257 by ops-translator
+// Auto-generated at 2026-07-24 21:22:44.408739 by ops-translator
+
 
 #pragma once
 #include <ops_hls_kernel_support.h>
-#include "common_config.hpp"
+#include "../../common/include/common_config.hpp"
 
 
 extern "C" void datamover_outerloop_0(
-        const bool is_loopback,
         const unsigned short range_start_0,
         const unsigned short range_end_0,
         const unsigned short range_start_1,
@@ -19,9 +19,10 @@ extern "C" void datamover_outerloop_0(
         ap_uint<mem_data_width>* arg0,
     //u2
         ap_uint<mem_data_width>* arg1,
-    //u
+        //u
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg0_axis_out,
     //u2
         hls::stream <ap_axiu<axis_data_width,0,0,0>>& arg1_axis_in
+
     )
 ;

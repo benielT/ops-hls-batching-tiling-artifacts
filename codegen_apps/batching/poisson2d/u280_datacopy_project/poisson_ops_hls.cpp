@@ -1,5 +1,5 @@
 
-// Auto-generated at 2025-08-20 00:23:44.025343 by ops-translator
+// Auto-generated at 2026-07-24 21:22:44.446208 by ops-translator
 /*
 * Open source copyright declaration based on BSD open source template:
 * http://www.opensource.org/licenses/bsd-license.php
@@ -56,7 +56,16 @@ extern const unsigned short mem_vector_factor;
 #include "user_types.h"
 #include <ops_seq_v2.h>
 #include <ops_hls_rt_support.h>
+
+#if defined(TAPA_SW_EMU)
+#include <tapa.h>
+#endif
+
+#ifdef OPS_TAPA
+#include <tapa_kernels.hpp>
+#else
 #include <hls_kernels.hpp>
+#endif
 #include "poisson_kernel.h"
 /* ops_par_loop declarations */
 
@@ -82,13 +91,17 @@ void ops_par_loop_poisson_kernel_initialguess(ops::hls::Block, int, int*, ops::h
 /******************************************************************************
 * Main program
 *******************************************************************************/
-int main(int argc, const char **argv)
+int main(int argc, char **argv)
 {
   /**-------------------------- Initialisation --------------------------**/
 
+#if defined(TAPA_SW_EMU) || defined(TAPA_HW_EMU)
+    std::cout << "Running TAPA host mode" << std::endl;
+#else
     // OPS initialisation
 	ops_init_backend(argc, argv);
 
+#endif
 
 
     //Mesh
@@ -236,13 +249,13 @@ int main(int argc, const char **argv)
     for (unsigned int bat = 0; bat < batches; bat++)
     {
         std::string name = std::string("u_") + std::to_string(bat);
-        u[bat] = ops_hls_decl_dat(blocks[bat],  1,  size,  base,  d_m,  d_p,  temp,  "float",  name.c_str(), mem_vector_factor);
+        u[bat] = ops_hls_decl_dat(blocks[bat],  1,  size,  base,  d_m,  d_p,  temp,  "float",  name.c_str(), vector_factor, mem_vector_factor, total_PEs);
         name = std::string("u2_") + std::to_string(bat);
-        u2[bat] = ops_hls_decl_dat(blocks[bat],  1,  size,  base,  d_m,  d_p,  temp,  "float",  name.c_str(), mem_vector_factor);
+        u2[bat] = ops_hls_decl_dat(blocks[bat],  1,  size,  base,  d_m,  d_p,  temp,  "float",  name.c_str(), vector_factor, mem_vector_factor, total_PEs);
         name = std::string("f_") + std::to_string(bat);
-        f[bat] = ops_hls_decl_dat(blocks[bat],  1,  size,  base,  d_m,  d_p,  temp,  "float",  name.c_str(), mem_vector_factor);
+        f[bat] = ops_hls_decl_dat(blocks[bat],  1,  size,  base,  d_m,  d_p,  temp,  "float",  name.c_str(), vector_factor, mem_vector_factor, total_PEs);
         name = std::string("ref_") + std::to_string(bat);
-        ref[bat] = ops_hls_decl_dat(blocks[bat],  1,  size,  base,  d_m,  d_p,  temp,  "float",  name.c_str(), mem_vector_factor);
+        ref[bat] = ops_hls_decl_dat(blocks[bat],  1,  size,  base,  d_m,  d_p,  temp,  "float",  name.c_str(), vector_factor, mem_vector_factor, total_PEs);
 #ifdef VERIFICATION
         u_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * batch_size);
         u2_cpu[bat] = (float*)malloc(sizeof(float) * grid_size_x * grid_size_y * batch_size);

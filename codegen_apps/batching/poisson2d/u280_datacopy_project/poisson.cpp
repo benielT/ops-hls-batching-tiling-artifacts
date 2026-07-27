@@ -70,7 +70,7 @@ extern const unsigned short mem_vector_factor;
 /******************************************************************************
 * Main program
 *******************************************************************************/
-int main(int argc, const char **argv)
+int main(int argc, char **argv)
 {
   /**-------------------------- Initialisation --------------------------**/
 

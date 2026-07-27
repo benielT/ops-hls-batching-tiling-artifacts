@@ -1,8 +1,10 @@
-// Auto-generated at 2025-08-20 00:23:43.858439 by ops-translator
+// Auto-generated at 2026-07-24 21:22:44.030065 by ops-translator
 
-#pragma once
+#ifndef __LOOP_PE_POISSON_KERNEL_STENCIL__
+#define __LOOP_PE_POISSON_KERNEL_STENCIL__
 #include <ops_hls_kernel_support.h>
-#include "common_config.hpp"
+
+#include "../../common/include/common_config.hpp"
 
 static constexpr unsigned short read_num_points_poisson_kernel_stencil = 5;
 static constexpr unsigned short read_stencil_size_poisson_kernel_stencil = 3;
@@ -12,19 +14,19 @@ static constexpr unsigned short write_num_points_poisson_kernel_stencil = 1;
 static constexpr unsigned short write_stencil_size_poisson_kernel_stencil = 1;
 static constexpr unsigned short write_stencil_dim_poisson_kernel_stencil = 2;
 
-static constexpr unsigned short vector_factor_poisson_kernel_stencil_0 = vector_factor * 1;
-static constexpr unsigned short axis_data_width_l_poisson_kernel_stencil_0 = vector_factor_poisson_kernel_stencil_0 * data_width;
-typedef ap_uint<axis_data_width_l_poisson_kernel_stencil_0> widen_poisson_kernel_stencil_0_dt;
-static constexpr unsigned short vector_factor_poisson_kernel_stencil_1 = vector_factor * 1;
-static constexpr unsigned short axis_data_width_l_poisson_kernel_stencil_1 = vector_factor_poisson_kernel_stencil_1 * data_width;
-typedef ap_uint<axis_data_width_l_poisson_kernel_stencil_1> widen_poisson_kernel_stencil_1_dt;
+static constexpr unsigned short vector_factor_poisson_kernel_stencil_0 = (vector_factor ) * 1;
+static constexpr unsigned short axis_data_width_poisson_kernel_stencil_0 = (vector_factor_poisson_kernel_stencil_0 * data_width);
+typedef ap_uint<axis_data_width_poisson_kernel_stencil_0> widen_poisson_kernel_stencil_0_dt;
+static constexpr unsigned short vector_factor_poisson_kernel_stencil_1 = (vector_factor ) * 1;
+static constexpr unsigned short axis_data_width_poisson_kernel_stencil_1 = (vector_factor_poisson_kernel_stencil_1 * data_width);
+typedef ap_uint<axis_data_width_poisson_kernel_stencil_1> widen_poisson_kernel_stencil_1_dt;
 
 typedef ::hls::stream<widen_poisson_kernel_stencil_0_dt> widen_stream_poisson_kernel_stencil_0_dt;
 typedef ::hls::stream<widen_poisson_kernel_stencil_1_dt> widen_stream_poisson_kernel_stencil_1_dt;
 
 /*
-    ArgDat(id=0, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/poisson2d/u280_datacopy_project/poisson.cpp/334:21, access_type=AccessType.OPS_READ, opt=True, dat_id=0, global_dat_id=-1, stencil_id=S2D_00_P10_M10_0P1_0M1)
-    ArgDat(id=1, loc=/home/x_thileeb/repos/ops-hls-pact25-artifact/codegen_apps/poisson2d/u280_datacopy_project/poisson.cpp/335:21, access_type=AccessType.OPS_WRITE, opt=True, dat_id=1, global_dat_id=-1, stencil_id=S2D_00)
+    ArgDat(id=0, loc=/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_datacopy_project/poisson.cpp/334:21, access_type=AccessType.OPS_READ, opt=True, dat_id=0, global_dat_id=-1, stencil_id=S2D_00_P10_M10_0P1_0M1)
+    ArgDat(id=1, loc=/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_datacopy_project/poisson.cpp/335:21, access_type=AccessType.OPS_WRITE, opt=True, dat_id=1, global_dat_id=-1, stencil_id=S2D_00)
 */
 inline void kernel_poisson_kernel_stencil_core(
         const stencil_type& reg_0_0,
@@ -72,15 +74,26 @@ public:
             widen_stream_poisson_kernel_stencil_1_dt& arg1_wr_buffer
         )
     {
+        unsigned short bat = 0;
+        //::ops::hls::StencilConfigCore stencilConfig = m_stencilConfig;
+        #pragma HLS ARRAY_PARTITION variable = m_stencilConfig.lower_limit dim = 1 complete
+        #pragma HLS ARRAY_PARTITION variable = m_stencilConfig.upper_limit dim = 1 complete
+        #pragma HLS ARRAY_PARTITION variable = m_stencilConfig.grid_size dim = 1 complete
+        // const unsigned short peId = m_PEId;
+
         const unsigned short span_x = 2;
         const unsigned short half_span_x = 1;
 
-        ::ops::hls::StencilConfigCore stencilConfig = m_stencilConfig;
+        //const unsigned short lower_limit_x = m_stencilConfig.lower_limit[0];
+        //const unsigned short lower_limit_y = m_stencilConfig.lower_limit[1];
+        //const unsigned short lower_limit_z = m_stencilConfig.lower_limit[2];
+        //const unsigned short upper_limit_x = m_stencilConfig.upper_limit[0];
+        //const unsigned short upper_limit_y = m_stencilConfig.upper_limit[1];
+        //const unsigned short upper_limit_z = m_stencilConfig.upper_limit[2];
 
-        for (unsigned bat = 0; bat < stencilConfig.batch_size; bat++)
+        while(bat < m_stencilConfig.batch_size)
         {
-        //read_origin_wide_diff_x: 0, read_origin_wide_diff: (0,1,0)
-
+            //read_origin_wide_diff_x: 0, read_origin_wide_diff: (0,1,0)
         //  *** counters definitions ****
             short i = -1;
             short j = -1; 
@@ -102,35 +115,37 @@ public:
             unsigned short S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd = 0;
             unsigned short S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr = 1;
 
-            #pragma HLS ARRAY_PARTITION variable = stencilConfig.lower_limit dim = 1 complete
-            #pragma HLS ARRAY_PARTITION variable = stencilConfig.upper_limit dim = 1 complete
-
         //  *** iteration limit definition ****
-            unsigned int iter_limit = stencilConfig.outer_loop_limit * stencilConfig.grid_size[0];
+            unsigned int iter_limit = m_stencilConfig.outer_loop_limit * m_stencilConfig.grid_size[0];
 
         //  *** data read write boundary definitions ****
-            unsigned int S2D_00_P10_M10_0P1_0M1_read_lb_itr = 0 * stencilConfig.grid_size[0];
-            unsigned int S2D_00_P10_M10_0P1_0M1_read_ub_itr = (0 + stencilConfig.grid_size[1]) * stencilConfig.grid_size[0];
+            unsigned int S2D_00_P10_M10_0P1_0M1_read_lb_itr = 0;
+            unsigned int S2D_00_P10_M10_0P1_0M1_read_ub_itr = m_stencilConfig.grid_size[1] * m_stencilConfig.grid_size[0];
 
         /*
             unsigned int read_lb_itr = 0;
-            unsigned int read_ub_itr = stencilConfig.grid_size[1] * stencilConfig.grid_size[0];
+            unsigned int read_ub_itr = m_stencilConfig.grid_size[1] * m_stencilConfig.grid_size[0];
         */
         //  *** Read & write widen temporaries ****
         // arg0(u)
             widen_poisson_kernel_stencil_0_dt arg0_read_val = 0;
         // arg1(u2)
             widen_poisson_kernel_stencil_1_dt arg1_update_val;
+        // 2
         //  *** widen stencil values holder & window buffers ****
 
             // arg0(u)
             widen_poisson_kernel_stencil_0_dt arg0_widenStencilValues[read_num_points_poisson_kernel_stencil];
             #pragma HLS ARRAY_PARTITION variable = arg0_widenStencilValues dim = 1 complete
-
-            widen_poisson_kernel_stencil_0_dt arg0_buf_r0_1_p0[max_depth];
-            #pragma HLS BIND_STORAGE variable = arg0_buf_r0_1_p0 type = ram_s2p latency=2
-            widen_poisson_kernel_stencil_0_dt arg0_buf_r1_2_p0[max_depth];
-            #pragma HLS BIND_STORAGE variable = arg0_buf_r1_2_p0 type = ram_s2p latency=2
+            // Max grid_size: (300, 300)
+            widen_poisson_kernel_stencil_0_dt arg0_buf_r0_1_p0[38];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_r0_1_p0 type=ram_s2p impl=URAM latency=2
+                    // curr SIS_id = 0
+                    // next SIS_id = 1
+            widen_poisson_kernel_stencil_0_dt arg0_buf_r1_2_p0[38];
+            #pragma HLS BIND_STORAGE variable = arg0_buf_r1_2_p0 type=ram_s2p impl=BRAM latency=2
+                    // curr SIS_id = 1
+                    // next SIS_id = 0
 
             stencil_type arg0_rowArr_0_0[vector_factor + span_x];
             #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_0_0 dim=1 complete
@@ -139,8 +154,19 @@ public:
             stencil_type arg0_rowArr_2_0[vector_factor + span_x];
             #pragma HLS ARRAY_PARTITION variable = arg0_rowArr_2_0 dim=1 complete
 
-            const short cond_x_val = stencilConfig.grid_size[0] - 1; 
-            const short cond_y_val = stencilConfig.outer_loop_limit - 1;
+            const short cond_x_val = m_stencilConfig.grid_size[0] - 1; 
+            const short cond_y_val = m_stencilConfig.outer_loop_limit - 1;
+
+#ifdef DEBUG_LOG
+             printf("[DEBUG][INTERNAL][%s:%d] initial values, "\
+                "grid_size_x(%d), grid_size_y(%d), "\
+                "iter_limit(%d), m_stencilConfig.outer_loop_limit:%d \n",
+                __func__,m_PEId,
+                 m_stencilConfig.grid_size[0],  m_stencilConfig.grid_size[1],
+
+                iter_limit, m_stencilConfig.outer_loop_limit);
+#endif
+            bat++;
 
             for (unsigned int itr = 0; itr < iter_limit; itr++)
             {
@@ -156,15 +182,15 @@ public:
                     printf("[DEBUG][INTERNAL][poisson_kernel_stencil_PE_%d] loop params before update i(%d), "\
                         "j(%d), "\
                         "S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd: %d, "\
-                        "S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr: %d, "\
                         "S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd: %d, "\
-                        "S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr: %d, "\
-                        "reg_itr(%d)\n", m_PEId, i, 
+                        "S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd_cont_buf_len: %d, "\
+                        "S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd_cont_buf_len: %d, "\
+                        "reg_itr(%d)\n", m_PEId,  i, 
                         j,
                         S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd, 
-                        S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr, 
                         S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd, 
-                        S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr, 
+                        (m_stencilConfig.grid_size[0] - 1), 
+                        (m_stencilConfig.grid_size[0] - 1), 
                         reg_itr);
     #endif
                     if (cond_x_terminate)
@@ -186,7 +212,6 @@ public:
 
                     /*if (read_cond)
                     {
-
                         arg0_read_val = arg0_rd_buffer.read();
                     }*/
 
@@ -198,8 +223,8 @@ public:
                     arg0_widenStencilValues[4] = arg0_read_val;                
                     arg0_buf_r1_2_p0[S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd] = arg0_widenStencilValues[4];
 
-                    bool cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd = S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd >= (stencilConfig.grid_size[0] - 1);
-                    bool cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr = S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr >= (stencilConfig.grid_size[0] - 1);
+                    bool cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd = S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd >= (m_stencilConfig.grid_size[0] - 1);
+                    bool cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr = S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr >= (m_stencilConfig.grid_size[0] - 1);
 
                     if (cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd)
                         S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd = 0;
@@ -210,8 +235,9 @@ public:
                         S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr = 0;
                     else
                         S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr++;
-                    bool cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd = S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd >= (stencilConfig.grid_size[0] - 1);
-                    bool cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr = S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr >= (stencilConfig.grid_size[0] - 1);
+
+                    bool cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd = S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd >= (m_stencilConfig.grid_size[0] - 1);
+                    bool cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr = S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr >= (m_stencilConfig.grid_size[0] - 1);
 
                     if (cond_end_of_line_buff_S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd)
                         S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd = 0;
@@ -224,18 +250,18 @@ public:
                         S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr++;
 
     #ifdef DEBUG_LOG
-                    printf("[DEBUG][INTERNAL][poisson_kernel_stencil_PE_%d] loop params after update i(%d), "\
-                                    "j(%d), "\
+                    printf("[DEBUG][INTERNAL][poisson_kernel_stencil_PE_%d] loop params after update i: %d, "\
+                                    "j: %d, "\
                                     "S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd(%d), "\
-                                    "S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr(%d), "\
                                     "S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd(%d), "\
-                                    "S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr(%d), "\
-                                    "reg_itr(%d)\n", m_PEId, i, 
+                                    "(m_stencilConfig.grid_size[0] - 1): %d, "\
+                                    "(m_stencilConfig.grid_size[0] - 1): %d, "\
+                                    "reg_itr: %d\n", m_PEId, i, 
                                     j,
-                                    S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd, 
-                                    S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_wr, 
-                                    S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd, 
-                                    S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_wr, 
+                                    S2D_00_P10_M10_0P1_0M1_buf_r0_1_p0_rd,  
+                                    S2D_00_P10_M10_0P1_0M1_buf_r1_2_p0_rd,  
+                                    (m_stencilConfig.grid_size[0] - 1),  
+                                    (m_stencilConfig.grid_size[0] - 1),  
                                     reg_itr);
 
                     printf("[DEBUG][INTERNAL][poisson_kernel_stencil_PE_%d] --------------------------------------------------------\n\n", m_PEId);
@@ -245,7 +271,6 @@ public:
                     {
                         ops::hls::DataConv tmpConverter;
                         tmpConverter.i = arg0_read_val.range((ri + 1)*s_datatype_size - 1, ri * s_datatype_size);
-
                         printf("%f ", tmpConverter.f);
                     }
                     printf(")\n");
@@ -254,7 +279,7 @@ public:
 
                 vec2arr: for (unsigned short x = 0; x < vector_factor; x++)
                 {
-    #pragma HLS UNROLL factor=vector_factor
+                #pragma HLS UNROLL factor=vector_factor
                     ops::hls::DataConv arg0_tmpConverter_0_0;
                     arg0_tmpConverter_0_0.i = arg0_widenStencilValues[0].range(s_datatype_size * (x + 1) - 1, x * s_datatype_size);
                     arg0_rowArr_0_0[x + half_span_x] = arg0_tmpConverter_0_0.f; 
@@ -279,21 +304,21 @@ public:
                     arg0_tmpConverter_2_1_0_0.i = arg0_widenStencilValues[3].range(s_datatype_size * (0 + 1) - 1, s_datatype_size * 0);
                     arg0_rowArr_1_0[9] = arg0_tmpConverter_2_1_0_0.f;
                 }
-
                 process: for (unsigned short x = 0; x < vector_factor; x++)
                 {
     #pragma HLS UNROLL factor=vector_factor
                     short index = (i << shift_bits) + x;
-                    bool neg_cond = register_it(             
-                            (index < stencilConfig.lower_limit[0]) 
-                            || (index >= stencilConfig.upper_limit[0])
-                            || (j < stencilConfig.lower_limit[1]) 
-                            || (j >= stencilConfig.upper_limit[1])
+                    bool neg_cond = register_it(     
+                            (index < m_stencilConfig.lower_limit[0])
+                            || (index >= m_stencilConfig.upper_limit[0])
+                            || (j < m_stencilConfig.lower_limit[1]) 
+                            || (j >= m_stencilConfig.upper_limit[1])
                     );
 
     #ifdef DEBUG_LOG
                     printf("[DEBUG][INTERNAL][poisson_kernel_stencil_PE_%d] index=(%d, %d), lowerbound=(%d, %d), upperbound=(%d, %d), neg_cond=%d\n", m_PEId, index, j,
-                                stencilConfig.lower_limit[0], stencilConfig.lower_limit[1], stencilConfig.upper_limit[0], stencilConfig.upper_limit[1], neg_cond);
+                                m_stencilConfig.lower_limit[0], m_stencilConfig.lower_limit[1], m_stencilConfig.upper_limit[0], m_stencilConfig.upper_limit[1], 
+                                neg_cond);
     #endif
 
                     stencil_type arg1_result;
@@ -325,7 +350,6 @@ public:
                     arg1_update_val.range(s_datatype_size * (x + 1) - 1, x * s_datatype_size) = arg1_tmpConvWrite.i;
 
                 }
-
                 write:
                 {
                     bool cond_write = (j >= 0);
@@ -349,25 +373,32 @@ public:
                 }
             }
         }
-    } 
+    }
 };
 
-void kernel_poisson_kernel_stencil_PE(const short& PEId, const ops::hls::StencilConfigCore& stencilConfig,
+static void kernel_poisson_kernel_stencil_PE(
+    const unsigned short& PEId_offset,
+    const unsigned short& PEId_i,
+    const ops::hls::StencilConfigCore& stencilConfig,
             //u
-    widen_stream_poisson_kernel_stencil_0_dt& arg0_rd_buffer,
+            widen_stream_poisson_kernel_stencil_0_dt& arg0_rd_buffer,
             //u2
-    widen_stream_poisson_kernel_stencil_1_dt& arg1_wr_buffer        
+            widen_stream_poisson_kernel_stencil_1_dt& arg1_wr_buffer
 )
 {
+
     Stencil_poisson_kernel_stencil stencil;
 
+    short PEId = PEId_offset * iter_par_factor + PEId_i;
+
 #ifdef DEBUG_LOG
-    printf("[KERNEL_DEBUG]|%s| stencil config gridSize: %d (xblocks), %d, %d\n", __func__, stencilConfig.grid_size[0], stencilConfig.grid_size[1], stencilConfig.grid_size[2]);
+    printf("[KERNEL_DEBUG][%d]|%s| stencil config gridSize: %d (xblocks), %d, %d\n", PEId, __func__, stencilConfig.grid_size[0], stencilConfig.grid_size[1], stencilConfig.grid_size[2]);
 #endif
+
     stencil.setConfig(PEId, stencilConfig);
 
 #ifdef DEBUG_LOG
-    printf("[KERNEL_DEBUG]|%s| starting stencil kernel PE\n", __func__);
+    printf("[KERNEL_DEBUG][%d]|%s| starting stencil kernel PE\n", PEId, __func__);
 #endif
 
     stencil.stencilRun(
@@ -377,6 +408,8 @@ void kernel_poisson_kernel_stencil_PE(const short& PEId, const ops::hls::Stencil
 );
 
 #ifdef DEBUG_LOG
-    printf("[KERNEL_DEBUG]|%s| Ending stencil kernel PE\n", __func__);
+    printf("[KERNEL_DEBUG][%d]|%s| Ending stencil kernel PE\n", PEId, __func__);
 #endif
 } 
+
+#endif // __LOOP_PE_POISSON_KERNEL_STENCIL__
