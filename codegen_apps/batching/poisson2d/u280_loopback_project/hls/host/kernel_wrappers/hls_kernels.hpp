@@ -1,4 +1,4 @@
-// Auto-generated at 2025-08-16 01:05:42.086737 by ops-translator
+// Auto-generated at 2026-07-24 21:23:19.927715 by ops-translator
 
 #pragma once
 
@@ -15,11 +15,6 @@ extern float dy_2;
 extern float dx_2;
 extern float dx_2_plus_dy_2_mult_2;
 extern float dx_2_dy_2;
-
-typedef float stencil_type;
-constexpr unsigned short vector_factor = 8;
-constexpr unsigned short mem_vector_factor = 16;
-constexpr unsigned int iter_par_factor = 27;
 
 // user kernel files
 #include "poisson_kernel_populate_kernel.hpp"

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-| Date         : Sat Aug 16 02:08:41 2025
+| Date         : Fri Jul 24 22:28:20 2026
 | Host         : acclnode01 running 64-bit Ubuntu 20.04.6 LTS
 | Command      : report_utilization -file full_util_synthed.rpt -pb full_util_synthed.pb
 | Design       : level0_wrapper
@@ -36,17 +36,17 @@ Table of Contents
 +----------------------------+---------+--------+------------+-----------+-------+
 |          Site Type         |   Used  |  Fixed | Prohibited | Available | Util% |
 +----------------------------+---------+--------+------------+-----------+-------+
-| CLB LUTs*                  |  934993 | 121446 |          0 |   1303680 | 71.72 |
-|   LUT as Logic             |  821190 | 114225 |          0 |   1303680 | 62.99 |
-|   LUT as Memory            |  113803 |   7221 |          0 |    600960 | 18.94 |
+| CLB LUTs*                  |  935101 | 121446 |          0 |   1303680 | 71.73 |
+|   LUT as Logic             |  821463 | 114225 |          0 |   1303680 | 63.01 |
+|   LUT as Memory            |  113638 |   7221 |          0 |    600960 | 18.91 |
 |     LUT as Distributed RAM |   18966 |   5006 |            |           |       |
-|     LUT as Shift Register  |   94837 |   2215 |            |           |       |
-| CLB Registers              | 1362733 | 136086 |          0 |   2607360 | 52.26 |
-|   Register as Flip Flop    | 1362729 | 136082 |          0 |   2607360 | 52.26 |
+|     LUT as Shift Register  |   94672 |   2215 |            |           |       |
+| CLB Registers              | 1363923 | 136086 |          0 |   2607360 | 52.31 |
+|   Register as Flip Flop    | 1363919 | 136082 |          0 |   2607360 | 52.31 |
 |   Register as Latch        |       0 |      0 |          0 |   2607360 |  0.00 |
 |   Register as AND/OR       |       4 |      4 |          0 |   2607360 | <0.01 |
-| CARRY8                     |   33668 |    946 |          0 |    162960 | 20.66 |
-| F7 Muxes                   |    3662 |   1683 |          0 |    651840 |  0.56 |
+| CARRY8                     |   33666 |    946 |          0 |    162960 | 20.66 |
+| F7 Muxes                   |    3668 |   1683 |          0 |    651840 |  0.56 |
 | F8 Muxes                   |     497 |    446 |          0 |    325920 |  0.15 |
 | F9 Muxes                   |       0 |      0 |          0 |    162960 |  0.00 |
 +----------------------------+---------+--------+------------+-----------+-------+
@@ -69,7 +69,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 398     |          Yes |           - |          Set |
 | 3542    |          Yes |           - |        Reset |
 | 13820   |          Yes |         Set |            - |
-| 1344969 |          Yes |       Reset |            - |
+| 1346159 |          Yes |       Reset |            - |
 +---------+--------------+-------------+--------------+
 
 
@@ -79,12 +79,12 @@ Warning! LUT value is adjusted to account for LUT combining.
 +-------------------+------+-------+------------+-----------+-------+
 |     Site Type     | Used | Fixed | Prohibited | Available | Util% |
 +-------------------+------+-------+------------+-----------+-------+
-| Block RAM Tile    | 1147 |     0 |          0 |      2016 | 56.89 |
-|   RAMB36/FIFO*    | 1142 |   193 |          0 |      2016 | 56.65 |
-|     RAMB36E2 only | 1142 |       |            |           |       |
+| Block RAM Tile    |  823 |     0 |          0 |      2016 | 40.82 |
+|   RAMB36/FIFO*    |  818 |   193 |          0 |      2016 | 40.58 |
+|     RAMB36E2 only |  818 |       |            |           |       |
 |   RAMB18          |   10 |     5 |          0 |      4032 |  0.25 |
 |     RAMB18E2 only |   10 |       |            |           |       |
-| URAM              |    0 |     0 |          0 |       960 |  0.00 |
+| URAM              |  324 |     0 |          0 |       960 | 33.75 |
 +-------------------+------+-------+------------+-----------+-------+
 * Note: Each Block RAM Tile only has one FIFO logic available and therefore can accommodate only one FIFO36E2 or one FIFO18E2. However, if a FIFO18E2 occupies a Block RAM Tile, that tile can still accommodate a RAMB18E2
 
@@ -95,8 +95,8 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------------+------+-------+------------+-----------+-------+
 |    Site Type   | Used | Fixed | Prohibited | Available | Util% |
 +----------------+------+-------+------------+-----------+-------+
-| DSPs           | 5356 |     4 |          0 |      9024 | 59.35 |
-|   DSP48E2 only | 5356 |       |            |           |       |
+| DSPs           | 5359 |     4 |          0 |      9024 | 59.39 |
+|   DSP48E2 only | 5359 |       |            |           |       |
 +----------------+------+-------+------------+-----------+-------+
 
 
@@ -184,26 +184,27 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------------------+---------+---------------------+
 |       Ref Name       |   Used  | Functional Category |
 +----------------------+---------+---------------------+
-| FDRE                 | 1344969 |            Register |
-| LUT3                 |  292416 |                 CLB |
-| LUT5                 |  226553 |                 CLB |
-| LUT4                 |  189143 |                 CLB |
-| LUT6                 |  183671 |                 CLB |
-| LUT2                 |  115692 |                 CLB |
+| FDRE                 | 1346159 |            Register |
+| LUT3                 |  293122 |                 CLB |
+| LUT5                 |  226583 |                 CLB |
+| LUT4                 |  188985 |                 CLB |
+| LUT6                 |  183717 |                 CLB |
+| LUT2                 |  115671 |                 CLB |
 | SRL16E               |   91546 |                 CLB |
-| CARRY8               |   33668 |                 CLB |
+| CARRY8               |   33666 |                 CLB |
 | RAMD32               |   31308 |                 CLB |
-| LUT1                 |   15933 |                 CLB |
+| LUT1                 |   15932 |                 CLB |
 | FDSE                 |   13820 |            Register |
-| DSP48E2              |    5356 |          Arithmetic |
+| DSP48E2              |    5359 |          Arithmetic |
 | RAMS32               |    4538 |                 CLB |
-| MUXF7                |    3662 |                 CLB |
+| MUXF7                |    3668 |                 CLB |
 | FDCE                 |    3542 |            Register |
-| SRLC32E              |    3277 |                 CLB |
-| RAMB36E2             |    1142 |            BLOCKRAM |
+| SRLC32E              |    3112 |                 CLB |
+| RAMB36E2             |     818 |            BLOCKRAM |
 | RAMD64E              |     528 |                 CLB |
 | MUXF8                |     497 |                 CLB |
 | FDPE                 |     398 |            Register |
+| URAM288              |     324 |            BLOCKRAM |
 | RAMS64E              |      40 |                 CLB |
 | BUFG_GT              |      22 |               Clock |
 | BUFG_GT_SYNC         |      17 |               Clock |
@@ -243,168 +244,169 @@ Warning! LUT value is adjusted to account for LUT combining.
 10. Instantiated Netlists
 -------------------------
 
-+----------------------------------------------------+------+
-|                      Ref Name                      | Used |
-+----------------------------------------------------+------+
-| xsdbm                                              |    1 |
-| ulp_xbar_3                                         |    1 |
-| ulp_xbar_2                                         |    1 |
-| ulp_xbar_1                                         |    1 |
-| ulp_xbar_0                                         |    1 |
-| ulp_ulp_ucs_0                                      |    1 |
-| ulp_ulp_cmp_0                                      |    1 |
-| ulp_s00_regslice_17                                |    1 |
-| ulp_s00_regslice_16                                |    1 |
-| ulp_s00_regslice_15                                |    1 |
-| ulp_regslice_control_userpf_2                      |    1 |
-| ulp_regslice_control_userpf_1                      |    1 |
-| ulp_regslice_control_userpf_0                      |    1 |
-| ulp_proc_sys_reset_kernel_slr2_0                   |    1 |
-| ulp_proc_sys_reset_kernel_slr1_0                   |    1 |
-| ulp_proc_sys_reset_kernel_slr0_0                   |    1 |
-| ulp_proc_sys_reset_kernel2_slr2_0                  |    1 |
-| ulp_proc_sys_reset_kernel2_slr1_0                  |    1 |
-| ulp_proc_sys_reset_kernel2_slr0_0                  |    1 |
-| ulp_proc_sys_reset_freerun_slr2_0                  |    1 |
-| ulp_proc_sys_reset_freerun_slr1_0                  |    1 |
-| ulp_proc_sys_reset_freerun_slr0_0                  |    1 |
-| ulp_proc_sys_reset_ctrl_slr2_0                     |    1 |
-| ulp_proc_sys_reset_ctrl_slr1_0                     |    1 |
-| ulp_proc_sys_reset_ctrl_slr0_0                     |    1 |
-| ulp_m02_regslice_0                                 |    1 |
-| ulp_m01_regslice_5                                 |    1 |
-| ulp_m01_regslice_4                                 |    1 |
-| ulp_m01_regslice_3                                 |    1 |
-| ulp_m00_regslice_5                                 |    1 |
-| ulp_m00_regslice_4                                 |    1 |
-| ulp_m00_regslice_3                                 |    1 |
-| ulp_kernel_outerloop_0_3_0                         |    1 |
-| ulp_kernel_outerloop_0_2_0                         |    1 |
-| ulp_kernel_outerloop_0_1_0                         |    1 |
-| ulp_ii_level0_wire_0                               |    1 |
-| ulp_hmss_0_0                                       |    1 |
-| ulp_datamover_outerloop_0_1_0                      |    1 |
-| ulp_buffer_kernel_outerloop_0_3_arg1_axis_out_0    |    1 |
-| ulp_buffer_kernel_outerloop_0_2_arg1_axis_out_0    |    1 |
-| ulp_buffer_kernel_outerloop_0_1_arg1_axis_out_0    |    1 |
-| ulp_buffer_datamover_outerloop_0_1_arg0_axis_out_0 |    1 |
-| ulp_axi_vip_data_0                                 |    1 |
-| ulp_axi_vip_ctrl_userpf_2                          |    1 |
-| ulp_axi_vip_ctrl_userpf_1                          |    1 |
-| ulp_axi_vip_ctrl_userpf_0                          |    1 |
-| ulp_axi_gpio_null_2                                |    1 |
-| ulp_axi_gpio_null_1                                |    1 |
-| ulp_axi_gpio_null_0                                |    1 |
-| ulp_auto_cc_6                                      |    1 |
-| ulp_auto_cc_5                                      |    1 |
-| ulp_auto_cc_4                                      |    1 |
-| ulp_auto_cc_3                                      |    1 |
-| ulp_auto_cc_2                                      |    1 |
-| ulp_auto_cc_1                                      |    1 |
-| ulp_auto_cc_0                                      |    1 |
-| ulp                                                |    1 |
-| level0_ii_level0_pipe_0                            |    1 |
-| blp_wrapper                                        |    1 |
-| bd_85ad_vip_S02_0                                  |    1 |
-| bd_85ad_vip_S01_0                                  |    1 |
-| bd_85ad_vip_S00_0                                  |    1 |
-| bd_85ad_slice2_1_0                                 |    1 |
-| bd_85ad_slice1_0_0                                 |    1 |
-| bd_85ad_slice0_2_0                                 |    1 |
-| bd_85ad_interconnect2_1_0                          |    1 |
-| bd_85ad_interconnect1_0_0                          |    1 |
-| bd_85ad_interconnect0_2_0                          |    1 |
-| bd_85ad_init_reduce_0                              |    1 |
-| bd_85ad_hbm_reset_sync_SLR2_0                      |    1 |
-| bd_85ad_hbm_reset_sync_SLR0_0                      |    1 |
-| bd_85ad_hbm_inst_0                                 |    1 |
-| bd_85ad_axi_apb_bridge_inst_0                      |    1 |
-| bd_7cf0_bsip_0                                     |    1 |
-| bd_7cf0_bs_switch_1_0                              |    1 |
-| bd_7cf0_axi_jtag_0                                 |    1 |
-| bd_58f6_xsdbm_0                                    |    1 |
-| bd_58f6_lut_buffer_0                               |    1 |
-| bd_22c0_xbar_1                                     |    1 |
-| bd_22c0_xbar_0                                     |    1 |
-| bd_22c0_psreset_kernel_01_0                        |    1 |
-| bd_22c0_psreset_kernel_00_0                        |    1 |
-| bd_22c0_psreset_hbm_0                              |    1 |
-| bd_22c0_psreset_aclk_freerun_0                     |    1 |
-| bd_22c0_gpio_ucs_control_status_0                  |    1 |
-| bd_22c0_gpio_gapping_demand_0                      |    1 |
-| bd_22c0_gapping_demand_update_0                    |    1 |
-| bd_22c0_gapping_demand_toggle_0                    |    1 |
-| bd_22c0_frequency_counter_aclk_kernel_01_0         |    1 |
-| bd_22c0_frequency_counter_aclk_kernel_00_0         |    1 |
-| bd_22c0_frequency_counter_aclk_hbm_0               |    1 |
-| bd_22c0_frequency_counter_aclk_0                   |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr2_4_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr2_3_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr2_2_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr2_1_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr1_4_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr1_3_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr1_2_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr1_1_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr0_4_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr0_3_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr0_2_0               |    1 |
-| bd_22c0_fanout_aresetn_pcie_slr0_1_0               |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr2_4_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr2_3_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr2_2_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr2_1_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr1_4_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr1_3_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr1_2_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr1_1_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr0_4_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr0_3_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr0_2_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_01_slr0_1_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr2_4_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr2_3_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr2_2_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr2_1_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr1_4_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr1_3_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr1_2_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr1_1_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr0_4_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr0_3_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr0_2_0          |    1 |
-| bd_22c0_fanout_aresetn_kernel_00_slr0_1_0          |    1 |
-| bd_22c0_fanout_aresetn_hbm_0                       |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr2_4_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr2_3_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr2_2_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr2_1_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr1_4_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr1_3_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr1_2_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr1_1_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr0_4_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr0_3_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr0_2_0               |    1 |
-| bd_22c0_fanout_aresetn_ctrl_slr0_1_0               |    1 |
-| bd_22c0_clock_throttling_avg_0                     |    1 |
-| bd_22c0_clock_throttling_aclk_kernel_01_0          |    1 |
-| bd_22c0_clock_throttling_aclk_kernel_00_0          |    1 |
-| bd_22c0_clock_shutdown_latch_0                     |    1 |
-| bd_22c0_clkwiz_hbm_0                               |    1 |
-| bd_22c0_clkwiz_aclk_kernel_01_0                    |    1 |
-| bd_22c0_clkwiz_aclk_kernel_00_0                    |    1 |
-| bd_22c0_clk_hbm_adapt_0                            |    1 |
-| bd_22c0_build_info_0                               |    1 |
-| bd_22c0_auto_cc_0                                  |    1 |
-| bd_22c0_aclk_kernel_01_cont_adapt_0                |    1 |
-| bd_22c0_aclk_kernel_01_adapt_0                     |    1 |
-| bd_22c0_aclk_kernel_00_cont_adapt_0                |    1 |
-| bd_22c0_aclk_kernel_00_adapt_0                     |    1 |
-| bd_097b_user_debug_hub_0                           |    1 |
-| bd_097b_user_debug_bridge_0                        |    1 |
-| bd_097b_build_info_0                               |    1 |
-+----------------------------------------------------+------+
++------------------------------------------------------+------+
+|                       Ref Name                       | Used |
++------------------------------------------------------+------+
+| xsdbm                                                |    1 |
+| ulp_xbar_3                                           |    1 |
+| ulp_xbar_2                                           |    1 |
+| ulp_xbar_1                                           |    1 |
+| ulp_xbar_0                                           |    1 |
+| ulp_ulp_ucs_0                                        |    1 |
+| ulp_ulp_cmp_0                                        |    1 |
+| ulp_s00_regslice_17                                  |    1 |
+| ulp_s00_regslice_16                                  |    1 |
+| ulp_s00_regslice_15                                  |    1 |
+| ulp_repeater_outerloop_0_1_0                         |    1 |
+| ulp_regslice_control_userpf_2                        |    1 |
+| ulp_regslice_control_userpf_1                        |    1 |
+| ulp_regslice_control_userpf_0                        |    1 |
+| ulp_proc_sys_reset_kernel_slr2_0                     |    1 |
+| ulp_proc_sys_reset_kernel_slr1_0                     |    1 |
+| ulp_proc_sys_reset_kernel_slr0_0                     |    1 |
+| ulp_proc_sys_reset_kernel2_slr2_0                    |    1 |
+| ulp_proc_sys_reset_kernel2_slr1_0                    |    1 |
+| ulp_proc_sys_reset_kernel2_slr0_0                    |    1 |
+| ulp_proc_sys_reset_freerun_slr2_0                    |    1 |
+| ulp_proc_sys_reset_freerun_slr1_0                    |    1 |
+| ulp_proc_sys_reset_freerun_slr0_0                    |    1 |
+| ulp_proc_sys_reset_ctrl_slr2_0                       |    1 |
+| ulp_proc_sys_reset_ctrl_slr1_0                       |    1 |
+| ulp_proc_sys_reset_ctrl_slr0_0                       |    1 |
+| ulp_m02_regslice_0                                   |    1 |
+| ulp_m01_regslice_5                                   |    1 |
+| ulp_m01_regslice_4                                   |    1 |
+| ulp_m01_regslice_3                                   |    1 |
+| ulp_m00_regslice_5                                   |    1 |
+| ulp_m00_regslice_4                                   |    1 |
+| ulp_m00_regslice_3                                   |    1 |
+| ulp_kernel_outerloop_inst_0_3_0                      |    1 |
+| ulp_kernel_outerloop_inst_0_2_0                      |    1 |
+| ulp_kernel_outerloop_inst_0_1_0                      |    1 |
+| ulp_ii_level0_wire_0                                 |    1 |
+| ulp_hmss_0_0                                         |    1 |
+| ulp_datamover_outerloop_0_1_0                        |    1 |
+| ulp_buffer_repeater_outerloop_0_1_arg1_axis_out_0    |    1 |
+| ulp_buffer_kernel_outerloop_inst_0_2_arg1_axis_out_0 |    1 |
+| ulp_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0 |    1 |
+| ulp_buffer_datamover_outerloop_0_1_arg0_axis_out_0   |    1 |
+| ulp_axi_vip_data_0                                   |    1 |
+| ulp_axi_vip_ctrl_userpf_2                            |    1 |
+| ulp_axi_vip_ctrl_userpf_1                            |    1 |
+| ulp_axi_vip_ctrl_userpf_0                            |    1 |
+| ulp_axi_gpio_null_2                                  |    1 |
+| ulp_axi_gpio_null_1                                  |    1 |
+| ulp_axi_gpio_null_0                                  |    1 |
+| ulp_auto_cc_6                                        |    1 |
+| ulp_auto_cc_5                                        |    1 |
+| ulp_auto_cc_4                                        |    1 |
+| ulp_auto_cc_3                                        |    1 |
+| ulp_auto_cc_2                                        |    1 |
+| ulp_auto_cc_1                                        |    1 |
+| ulp_auto_cc_0                                        |    1 |
+| ulp                                                  |    1 |
+| level0_ii_level0_pipe_0                              |    1 |
+| blp_wrapper                                          |    1 |
+| bd_85ad_vip_S02_0                                    |    1 |
+| bd_85ad_vip_S01_0                                    |    1 |
+| bd_85ad_vip_S00_0                                    |    1 |
+| bd_85ad_slice2_1_0                                   |    1 |
+| bd_85ad_slice1_0_0                                   |    1 |
+| bd_85ad_slice0_2_0                                   |    1 |
+| bd_85ad_interconnect2_1_0                            |    1 |
+| bd_85ad_interconnect1_0_0                            |    1 |
+| bd_85ad_interconnect0_2_0                            |    1 |
+| bd_85ad_init_reduce_0                                |    1 |
+| bd_85ad_hbm_reset_sync_SLR2_0                        |    1 |
+| bd_85ad_hbm_reset_sync_SLR0_0                        |    1 |
+| bd_85ad_hbm_inst_0                                   |    1 |
+| bd_85ad_axi_apb_bridge_inst_0                        |    1 |
+| bd_7cf0_bsip_0                                       |    1 |
+| bd_7cf0_bs_switch_1_0                                |    1 |
+| bd_7cf0_axi_jtag_0                                   |    1 |
+| bd_58f6_xsdbm_0                                      |    1 |
+| bd_58f6_lut_buffer_0                                 |    1 |
+| bd_22c0_xbar_1                                       |    1 |
+| bd_22c0_xbar_0                                       |    1 |
+| bd_22c0_psreset_kernel_01_0                          |    1 |
+| bd_22c0_psreset_kernel_00_0                          |    1 |
+| bd_22c0_psreset_hbm_0                                |    1 |
+| bd_22c0_psreset_aclk_freerun_0                       |    1 |
+| bd_22c0_gpio_ucs_control_status_0                    |    1 |
+| bd_22c0_gpio_gapping_demand_0                        |    1 |
+| bd_22c0_gapping_demand_update_0                      |    1 |
+| bd_22c0_gapping_demand_toggle_0                      |    1 |
+| bd_22c0_frequency_counter_aclk_kernel_01_0           |    1 |
+| bd_22c0_frequency_counter_aclk_kernel_00_0           |    1 |
+| bd_22c0_frequency_counter_aclk_hbm_0                 |    1 |
+| bd_22c0_frequency_counter_aclk_0                     |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr2_4_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr2_3_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr2_2_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr2_1_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr1_4_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr1_3_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr1_2_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr1_1_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr0_4_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr0_3_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr0_2_0                 |    1 |
+| bd_22c0_fanout_aresetn_pcie_slr0_1_0                 |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr2_4_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr2_3_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr2_2_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr2_1_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr1_4_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr1_3_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr1_2_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr1_1_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr0_4_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr0_3_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr0_2_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_01_slr0_1_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr2_4_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr2_3_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr2_2_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr2_1_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr1_4_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr1_3_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr1_2_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr1_1_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr0_4_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr0_3_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr0_2_0            |    1 |
+| bd_22c0_fanout_aresetn_kernel_00_slr0_1_0            |    1 |
+| bd_22c0_fanout_aresetn_hbm_0                         |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr2_4_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr2_3_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr2_2_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr2_1_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr1_4_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr1_3_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr1_2_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr1_1_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr0_4_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr0_3_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr0_2_0                 |    1 |
+| bd_22c0_fanout_aresetn_ctrl_slr0_1_0                 |    1 |
+| bd_22c0_clock_throttling_avg_0                       |    1 |
+| bd_22c0_clock_throttling_aclk_kernel_01_0            |    1 |
+| bd_22c0_clock_throttling_aclk_kernel_00_0            |    1 |
+| bd_22c0_clock_shutdown_latch_0                       |    1 |
+| bd_22c0_clkwiz_hbm_0                                 |    1 |
+| bd_22c0_clkwiz_aclk_kernel_01_0                      |    1 |
+| bd_22c0_clkwiz_aclk_kernel_00_0                      |    1 |
+| bd_22c0_clk_hbm_adapt_0                              |    1 |
+| bd_22c0_build_info_0                                 |    1 |
+| bd_22c0_auto_cc_0                                    |    1 |
+| bd_22c0_aclk_kernel_01_cont_adapt_0                  |    1 |
+| bd_22c0_aclk_kernel_01_adapt_0                       |    1 |
+| bd_22c0_aclk_kernel_00_cont_adapt_0                  |    1 |
+| bd_22c0_aclk_kernel_00_adapt_0                       |    1 |
+| bd_097b_user_debug_hub_0                             |    1 |
+| bd_097b_user_debug_bridge_0                          |    1 |
+| bd_097b_build_info_0                                 |    1 |
++------------------------------------------------------+------+
 
 
 11. SLR Connectivity
