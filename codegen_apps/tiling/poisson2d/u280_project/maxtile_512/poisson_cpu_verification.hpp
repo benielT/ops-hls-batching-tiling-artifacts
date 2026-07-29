@@ -166,21 +166,39 @@ void poisson_kernel_stencil_cpu(stencil_type* u, stencil_type* f, stencil_type* 
             }
         }
     }
-//     for (int j = range[2] - d_m[1]; j < range[3] -d_m[1]; j++)
-//     {
-//         for (int i = range[0] - d_m[0]; i < range[1] - d_m[0]; i++)
-//         {
-//             int index = j * grid_size_x + i;
+}
 
-// //            u2[index] = ((u[index - 1] + u[index + 1]) * dy * dy
-// //                    + (u[index - grid_size_x] + u[index + grid_size_x]) * dx * dx
-// //                    - f[index]) / dx_2_plus_dy_2_mult_2;
-//             u2[index] = ((u[index - 1] + u[index + 1] + u[index + grid_size_x] + u[index - grid_size_x]) * 0.125  + (0.5 * u[index]));
+void poisson_kernel_stencil_cpu_test(stencil_type* u, stencil_type* f, stencil_type* u2, int size[2], int d_m[2], int d_p[2], int range[4], int batch_size)
+{
+    int grid_size_y = size[1] - d_m[1] + d_p[1];
+#ifdef OPS_FPGA
+    int grid_size_x = ((size[0] - d_m[0] + d_p[0] + mem_vector_factor - 1) / mem_vector_factor) * mem_vector_factor;
+#else
+    int grid_size_x = size[0] - d_m[0] + d_p[0];
+#endif
+    int actual_size_x = size[0] - d_m[0] + d_p[0];
 
-// //             printf("Verification:- i: %d, j: %d, index: %d, dx: %f, dy: %f, u2(0,0): %f, f: %f, u1(-1, -1): %f, u(-1,0): %f, u(0,0): %f, u(0,1): %f, u(1,1): %f\n",
-// //                 i, j, index, dx, dy, u2[index], f[index], u[index - grid_size_x], u[index - 1], u[index], u[index + 1], u[index + grid_size_x]);
-//         }
-//     }
+    for (int bat = 0; bat < batch_size; bat++)
+    {
+        int offset = bat * grid_size_x * grid_size_y;
+
+        for (int j = range[2] - d_m[1]; j < range[3] -d_m[1]; j++)
+        {
+            for (int i = range[0] - d_m[0]; i < range[1] - d_m[0]; i++)
+            {
+                int index = j * grid_size_x + i + offset;
+
+                if(i == 0 || j == 0 || i == actual_size_x -1  || j==grid_size_y-1)
+                {
+                    u2[index] = u[index];
+                } 
+                else 
+                {
+                    u2[index] = u[index] + 1;
+                }
+            }
+        }
+    }
 }
 
 void poisson_kernel_update_cpu(stencil_type* u2, stencil_type* u, int size[2], int d_m[2], int d_p[2], int range[4], int batch_size)
