@@ -1,0 +1,258 @@
+
+
+================================================================
+== Vitis HLS Report for 'kernel_poisson_kernel_stencil_PE_20'
+================================================================
+* Date:           Sun Jul 26 03:00:51 2026
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        kernel_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: versal
+* Target device:  xcvc1902-vsvd1760-2MP-e-S
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.307 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------+------------+---------+---------+----------+----------+-----+-----+---------+
+        |                       |            |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |        Instance       |   Module   |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +-----------------------+------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_stencilRun_fu_174  |stencilRun  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +-----------------------+------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+---------+--------+-----+
+|       Name      | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++-----------------+---------+------+---------+--------+-----+
+|DSP              |        -|     -|        -|       -|    -|
+|Expression       |        -|     -|        0|       2|    -|
+|FIFO             |        -|     -|        -|       -|    -|
+|Instance         |        8|    34|     6706|    4472|    4|
+|Memory           |        -|     -|        -|       -|    -|
+|Multiplexer      |        -|     -|        -|      42|    -|
+|Register         |        -|     -|      133|       -|    -|
++-----------------+---------+------+---------+--------+-----+
+|Total            |        8|    34|     6839|    4516|    4|
++-----------------+---------+------+---------+--------+-----+
+|Available        |     1934|  1968|  1799680|  899840|  463|
++-----------------+---------+------+---------+--------+-----+
+|Utilization (%)  |       ~0|     1|       ~0|      ~0|   ~0|
++-----------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +-----------------------+------------+---------+----+------+------+-----+
+    |        Instance       |   Module   | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +-----------------------+------------+---------+----+------+------+-----+
+    |grp_stencilRun_fu_174  |stencilRun  |        8|  34|  6706|  4472|    4|
+    +-----------------------+------------+---------+----+------+------+-----+
+    |Total                  |            |        8|  34|  6706|  4472|    4|
+    +-----------------------+------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------------------+----+-----------+-----+-----------+
+    |                    Name                   | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                                  |   2|          3|    1|          3|
+    |ap_done                                    |   2|          2|    1|          2|
+    |arg0_arg1_streams_20_read                  |   2|          2|    1|          2|
+    |arg0_arg1_streams_21_write                 |   2|          2|    1|          2|
+    |real_start                                 |   2|          2|    1|          2|
+    |stencilConfig_batch_size_blk_n             |   2|          2|    1|          2|
+    |stencilConfig_batch_size_c527_blk_n        |   2|          2|    1|          2|
+    |stencilConfig_grid_size_0_blk_n            |   2|          2|    1|          2|
+    |stencilConfig_grid_size_0_c149_blk_n       |   2|          2|    1|          2|
+    |stencilConfig_grid_size_1_blk_n            |   2|          2|    1|          2|
+    |stencilConfig_grid_size_1_c203_blk_n       |   2|          2|    1|          2|
+    |stencilConfig_lower_limit_0_blk_n          |   2|          2|    1|          2|
+    |stencilConfig_lower_limit_0_c257_blk_n     |   2|          2|    1|          2|
+    |stencilConfig_lower_limit_1_blk_n          |   2|          2|    1|          2|
+    |stencilConfig_lower_limit_1_c311_blk_n     |   2|          2|    1|          2|
+    |stencilConfig_outer_loop_limit_blk_n       |   2|          2|    1|          2|
+    |stencilConfig_outer_loop_limit_c473_blk_n  |   2|          2|    1|          2|
+    |stencilConfig_upper_limit_0_blk_n          |   2|          2|    1|          2|
+    |stencilConfig_upper_limit_0_c365_blk_n     |   2|          2|    1|          2|
+    |stencilConfig_upper_limit_1_blk_n          |   2|          2|    1|          2|
+    |stencilConfig_upper_limit_1_c419_blk_n     |   2|          2|    1|          2|
+    +-------------------------------------------+----+-----------+-----+-----------+
+    |Total                                      |  42|         43|   21|         43|
+    +-------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------+----+----+-----+-----------+
+    |                       Name                       | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                         |   2|   0|    2|          0|
+    |ap_done_reg                                       |   1|   0|    1|          0|
+    |grp_stencilRun_fu_174_ap_start_reg                |   1|   0|    1|          0|
+    |start_once_reg                                    |   1|   0|    1|          0|
+    |stencil_m_stencilConfig_batch_size_reg_198        |  16|   0|   16|          0|
+    |stencil_m_stencilConfig_grid_size_42_reg_228      |  16|   0|   16|          0|
+    |stencil_m_stencilConfig_grid_size_reg_233         |  16|   0|   16|          0|
+    |stencil_m_stencilConfig_lower_limit_42_reg_218    |  16|   0|   16|          0|
+    |stencil_m_stencilConfig_lower_limit_reg_223       |  16|   0|   16|          0|
+    |stencil_m_stencilConfig_outer_loop_limit_reg_203  |  16|   0|   16|          0|
+    |stencil_m_stencilConfig_upper_limit_42_reg_208    |  16|   0|   16|          0|
+    |stencil_m_stencilConfig_upper_limit_reg_213       |  16|   0|   16|          0|
+    +--------------------------------------------------+----+----+-----+-----------+
+    |Total                                             | 133|   0|  133|          0|
+    +--------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+|                      RTL Ports                     | Dir | Bits|  Protocol  |            Source Object            |    C Type    |
++----------------------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+|ap_clk                                              |   in|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|ap_rst                                              |   in|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|ap_start                                            |   in|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|start_full_n                                        |   in|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|ap_done                                             |  out|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|ap_continue                                         |   in|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|ap_idle                                             |  out|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|ap_ready                                            |  out|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|start_out                                           |  out|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|start_write                                         |  out|    1|  ap_ctrl_hs|  kernel_poisson_kernel_stencil_PE.20|  return value|
+|stencilConfig_grid_size_0_dout                      |   in|   16|     ap_fifo|            stencilConfig_grid_size_0|       pointer|
+|stencilConfig_grid_size_0_num_data_valid            |   in|    2|     ap_fifo|            stencilConfig_grid_size_0|       pointer|
+|stencilConfig_grid_size_0_fifo_cap                  |   in|    2|     ap_fifo|            stencilConfig_grid_size_0|       pointer|
+|stencilConfig_grid_size_0_empty_n                   |   in|    1|     ap_fifo|            stencilConfig_grid_size_0|       pointer|
+|stencilConfig_grid_size_0_read                      |  out|    1|     ap_fifo|            stencilConfig_grid_size_0|       pointer|
+|stencilConfig_grid_size_1_dout                      |   in|   16|     ap_fifo|            stencilConfig_grid_size_1|       pointer|
+|stencilConfig_grid_size_1_num_data_valid            |   in|    2|     ap_fifo|            stencilConfig_grid_size_1|       pointer|
+|stencilConfig_grid_size_1_fifo_cap                  |   in|    2|     ap_fifo|            stencilConfig_grid_size_1|       pointer|
+|stencilConfig_grid_size_1_empty_n                   |   in|    1|     ap_fifo|            stencilConfig_grid_size_1|       pointer|
+|stencilConfig_grid_size_1_read                      |  out|    1|     ap_fifo|            stencilConfig_grid_size_1|       pointer|
+|stencilConfig_lower_limit_0_dout                    |   in|   16|     ap_fifo|          stencilConfig_lower_limit_0|       pointer|
+|stencilConfig_lower_limit_0_num_data_valid          |   in|    2|     ap_fifo|          stencilConfig_lower_limit_0|       pointer|
+|stencilConfig_lower_limit_0_fifo_cap                |   in|    2|     ap_fifo|          stencilConfig_lower_limit_0|       pointer|
+|stencilConfig_lower_limit_0_empty_n                 |   in|    1|     ap_fifo|          stencilConfig_lower_limit_0|       pointer|
+|stencilConfig_lower_limit_0_read                    |  out|    1|     ap_fifo|          stencilConfig_lower_limit_0|       pointer|
+|stencilConfig_lower_limit_1_dout                    |   in|   16|     ap_fifo|          stencilConfig_lower_limit_1|       pointer|
+|stencilConfig_lower_limit_1_num_data_valid          |   in|    2|     ap_fifo|          stencilConfig_lower_limit_1|       pointer|
+|stencilConfig_lower_limit_1_fifo_cap                |   in|    2|     ap_fifo|          stencilConfig_lower_limit_1|       pointer|
+|stencilConfig_lower_limit_1_empty_n                 |   in|    1|     ap_fifo|          stencilConfig_lower_limit_1|       pointer|
+|stencilConfig_lower_limit_1_read                    |  out|    1|     ap_fifo|          stencilConfig_lower_limit_1|       pointer|
+|stencilConfig_upper_limit_0_dout                    |   in|   16|     ap_fifo|          stencilConfig_upper_limit_0|       pointer|
+|stencilConfig_upper_limit_0_num_data_valid          |   in|    2|     ap_fifo|          stencilConfig_upper_limit_0|       pointer|
+|stencilConfig_upper_limit_0_fifo_cap                |   in|    2|     ap_fifo|          stencilConfig_upper_limit_0|       pointer|
+|stencilConfig_upper_limit_0_empty_n                 |   in|    1|     ap_fifo|          stencilConfig_upper_limit_0|       pointer|
+|stencilConfig_upper_limit_0_read                    |  out|    1|     ap_fifo|          stencilConfig_upper_limit_0|       pointer|
+|stencilConfig_upper_limit_1_dout                    |   in|   16|     ap_fifo|          stencilConfig_upper_limit_1|       pointer|
+|stencilConfig_upper_limit_1_num_data_valid          |   in|    2|     ap_fifo|          stencilConfig_upper_limit_1|       pointer|
+|stencilConfig_upper_limit_1_fifo_cap                |   in|    2|     ap_fifo|          stencilConfig_upper_limit_1|       pointer|
+|stencilConfig_upper_limit_1_empty_n                 |   in|    1|     ap_fifo|          stencilConfig_upper_limit_1|       pointer|
+|stencilConfig_upper_limit_1_read                    |  out|    1|     ap_fifo|          stencilConfig_upper_limit_1|       pointer|
+|stencilConfig_outer_loop_limit_dout                 |   in|   16|     ap_fifo|       stencilConfig_outer_loop_limit|       pointer|
+|stencilConfig_outer_loop_limit_num_data_valid       |   in|    2|     ap_fifo|       stencilConfig_outer_loop_limit|       pointer|
+|stencilConfig_outer_loop_limit_fifo_cap             |   in|    2|     ap_fifo|       stencilConfig_outer_loop_limit|       pointer|
+|stencilConfig_outer_loop_limit_empty_n              |   in|    1|     ap_fifo|       stencilConfig_outer_loop_limit|       pointer|
+|stencilConfig_outer_loop_limit_read                 |  out|    1|     ap_fifo|       stencilConfig_outer_loop_limit|       pointer|
+|stencilConfig_batch_size_dout                       |   in|   16|     ap_fifo|             stencilConfig_batch_size|       pointer|
+|stencilConfig_batch_size_num_data_valid             |   in|    2|     ap_fifo|             stencilConfig_batch_size|       pointer|
+|stencilConfig_batch_size_fifo_cap                   |   in|    2|     ap_fifo|             stencilConfig_batch_size|       pointer|
+|stencilConfig_batch_size_empty_n                    |   in|    1|     ap_fifo|             stencilConfig_batch_size|       pointer|
+|stencilConfig_batch_size_read                       |  out|    1|     ap_fifo|             stencilConfig_batch_size|       pointer|
+|arg0_arg1_streams_20_dout                           |   in|  256|     ap_fifo|                 arg0_arg1_streams_20|       pointer|
+|arg0_arg1_streams_20_num_data_valid                 |   in|    5|     ap_fifo|                 arg0_arg1_streams_20|       pointer|
+|arg0_arg1_streams_20_fifo_cap                       |   in|    5|     ap_fifo|                 arg0_arg1_streams_20|       pointer|
+|arg0_arg1_streams_20_empty_n                        |   in|    1|     ap_fifo|                 arg0_arg1_streams_20|       pointer|
+|arg0_arg1_streams_20_read                           |  out|    1|     ap_fifo|                 arg0_arg1_streams_20|       pointer|
+|arg0_arg1_streams_21_din                            |  out|  256|     ap_fifo|                 arg0_arg1_streams_21|       pointer|
+|arg0_arg1_streams_21_num_data_valid                 |   in|    5|     ap_fifo|                 arg0_arg1_streams_21|       pointer|
+|arg0_arg1_streams_21_fifo_cap                       |   in|    5|     ap_fifo|                 arg0_arg1_streams_21|       pointer|
+|arg0_arg1_streams_21_full_n                         |   in|    1|     ap_fifo|                 arg0_arg1_streams_21|       pointer|
+|arg0_arg1_streams_21_write                          |  out|    1|     ap_fifo|                 arg0_arg1_streams_21|       pointer|
+|stencilConfig_grid_size_0_c149_din                  |  out|   16|     ap_fifo|       stencilConfig_grid_size_0_c149|       pointer|
+|stencilConfig_grid_size_0_c149_num_data_valid       |   in|    2|     ap_fifo|       stencilConfig_grid_size_0_c149|       pointer|
+|stencilConfig_grid_size_0_c149_fifo_cap             |   in|    2|     ap_fifo|       stencilConfig_grid_size_0_c149|       pointer|
+|stencilConfig_grid_size_0_c149_full_n               |   in|    1|     ap_fifo|       stencilConfig_grid_size_0_c149|       pointer|
+|stencilConfig_grid_size_0_c149_write                |  out|    1|     ap_fifo|       stencilConfig_grid_size_0_c149|       pointer|
+|stencilConfig_grid_size_1_c203_din                  |  out|   16|     ap_fifo|       stencilConfig_grid_size_1_c203|       pointer|
+|stencilConfig_grid_size_1_c203_num_data_valid       |   in|    2|     ap_fifo|       stencilConfig_grid_size_1_c203|       pointer|
+|stencilConfig_grid_size_1_c203_fifo_cap             |   in|    2|     ap_fifo|       stencilConfig_grid_size_1_c203|       pointer|
+|stencilConfig_grid_size_1_c203_full_n               |   in|    1|     ap_fifo|       stencilConfig_grid_size_1_c203|       pointer|
+|stencilConfig_grid_size_1_c203_write                |  out|    1|     ap_fifo|       stencilConfig_grid_size_1_c203|       pointer|
+|stencilConfig_lower_limit_0_c257_din                |  out|   16|     ap_fifo|     stencilConfig_lower_limit_0_c257|       pointer|
+|stencilConfig_lower_limit_0_c257_num_data_valid     |   in|    2|     ap_fifo|     stencilConfig_lower_limit_0_c257|       pointer|
+|stencilConfig_lower_limit_0_c257_fifo_cap           |   in|    2|     ap_fifo|     stencilConfig_lower_limit_0_c257|       pointer|
+|stencilConfig_lower_limit_0_c257_full_n             |   in|    1|     ap_fifo|     stencilConfig_lower_limit_0_c257|       pointer|
+|stencilConfig_lower_limit_0_c257_write              |  out|    1|     ap_fifo|     stencilConfig_lower_limit_0_c257|       pointer|
+|stencilConfig_lower_limit_1_c311_din                |  out|   16|     ap_fifo|     stencilConfig_lower_limit_1_c311|       pointer|
+|stencilConfig_lower_limit_1_c311_num_data_valid     |   in|    2|     ap_fifo|     stencilConfig_lower_limit_1_c311|       pointer|
+|stencilConfig_lower_limit_1_c311_fifo_cap           |   in|    2|     ap_fifo|     stencilConfig_lower_limit_1_c311|       pointer|
+|stencilConfig_lower_limit_1_c311_full_n             |   in|    1|     ap_fifo|     stencilConfig_lower_limit_1_c311|       pointer|
+|stencilConfig_lower_limit_1_c311_write              |  out|    1|     ap_fifo|     stencilConfig_lower_limit_1_c311|       pointer|
+|stencilConfig_upper_limit_0_c365_din                |  out|   16|     ap_fifo|     stencilConfig_upper_limit_0_c365|       pointer|
+|stencilConfig_upper_limit_0_c365_num_data_valid     |   in|    2|     ap_fifo|     stencilConfig_upper_limit_0_c365|       pointer|
+|stencilConfig_upper_limit_0_c365_fifo_cap           |   in|    2|     ap_fifo|     stencilConfig_upper_limit_0_c365|       pointer|
+|stencilConfig_upper_limit_0_c365_full_n             |   in|    1|     ap_fifo|     stencilConfig_upper_limit_0_c365|       pointer|
+|stencilConfig_upper_limit_0_c365_write              |  out|    1|     ap_fifo|     stencilConfig_upper_limit_0_c365|       pointer|
+|stencilConfig_upper_limit_1_c419_din                |  out|   16|     ap_fifo|     stencilConfig_upper_limit_1_c419|       pointer|
+|stencilConfig_upper_limit_1_c419_num_data_valid     |   in|    2|     ap_fifo|     stencilConfig_upper_limit_1_c419|       pointer|
+|stencilConfig_upper_limit_1_c419_fifo_cap           |   in|    2|     ap_fifo|     stencilConfig_upper_limit_1_c419|       pointer|
+|stencilConfig_upper_limit_1_c419_full_n             |   in|    1|     ap_fifo|     stencilConfig_upper_limit_1_c419|       pointer|
+|stencilConfig_upper_limit_1_c419_write              |  out|    1|     ap_fifo|     stencilConfig_upper_limit_1_c419|       pointer|
+|stencilConfig_outer_loop_limit_c473_din             |  out|   16|     ap_fifo|  stencilConfig_outer_loop_limit_c473|       pointer|
+|stencilConfig_outer_loop_limit_c473_num_data_valid  |   in|    2|     ap_fifo|  stencilConfig_outer_loop_limit_c473|       pointer|
+|stencilConfig_outer_loop_limit_c473_fifo_cap        |   in|    2|     ap_fifo|  stencilConfig_outer_loop_limit_c473|       pointer|
+|stencilConfig_outer_loop_limit_c473_full_n          |   in|    1|     ap_fifo|  stencilConfig_outer_loop_limit_c473|       pointer|
+|stencilConfig_outer_loop_limit_c473_write           |  out|    1|     ap_fifo|  stencilConfig_outer_loop_limit_c473|       pointer|
+|stencilConfig_batch_size_c527_din                   |  out|   16|     ap_fifo|        stencilConfig_batch_size_c527|       pointer|
+|stencilConfig_batch_size_c527_num_data_valid        |   in|    2|     ap_fifo|        stencilConfig_batch_size_c527|       pointer|
+|stencilConfig_batch_size_c527_fifo_cap              |   in|    2|     ap_fifo|        stencilConfig_batch_size_c527|       pointer|
+|stencilConfig_batch_size_c527_full_n                |   in|    1|     ap_fifo|        stencilConfig_batch_size_c527|       pointer|
+|stencilConfig_batch_size_c527_write                 |  out|    1|     ap_fifo|        stencilConfig_batch_size_c527|       pointer|
++----------------------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+
