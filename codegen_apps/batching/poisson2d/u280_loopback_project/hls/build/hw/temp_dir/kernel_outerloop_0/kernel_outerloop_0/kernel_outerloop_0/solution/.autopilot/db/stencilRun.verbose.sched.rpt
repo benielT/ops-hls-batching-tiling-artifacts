@@ -1,0 +1,193 @@
+
+
+================================================================
+== Vitis HLS Report for 'stencilRun'
+================================================================
+* Date:           Fri Jul 24 21:25:10 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        kernel_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.342 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_94_1  |        ?|        ?|         ?|          -|          -|     ?|        no|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 5 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.53>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%bat = alloca i32 1"   --->   Operation 7 'alloca' 'bat' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%p_read_2 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read6"   --->   Operation 8 'read' 'p_read_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%p_read_7 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read1"   --->   Operation 9 'read' 'p_read_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%p_read25 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read"   --->   Operation 10 'read' 'p_read25' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%arg0_buf_r0_1_p0_V = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:141]   --->   Operation 11 'alloca' 'arg0_buf_r0_1_p0_V' <Predicate = true> <Delay = 0.00> <CoreInst = "RAM_S2P_URAM">   --->   Core 98 'RAM_S2P_URAM' <Latency = 2> <II = 1> <Delay = 1.64> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 38> <RAM>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%arg0_buf_r1_2_p0_V = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:145]   --->   Operation 12 'alloca' 'arg0_buf_r1_2_p0_V' <Predicate = true> <Delay = 0.00> <CoreInst = "RAM_S2P_BRAM">   --->   Core 97 'RAM_S2P_BRAM' <Latency = 2> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 38> <RAM>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%conv7 = zext i16 %p_read_2"   --->   Operation 13 'zext' 'conv7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%conv10 = zext i16 %p_read25"   --->   Operation 14 'zext' 'conv10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%conv14 = zext i16 %p_read_7"   --->   Operation 15 'zext' 'conv14' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [4/4] (0.53ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i32 %conv14, i32 %conv10"   --->   Operation 16 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 17 [4/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln94 = mul i32 %conv10, i32 %conv7" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 17 'mul' 'mul_ln94' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 18 [1/1] (0.38ns)   --->   "%store_ln94 = store i16 0, i16 %bat" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 18 'store' 'store_ln94' <Predicate = true> <Delay = 0.38>
+
+State 2 <SV = 1> <Delay = 0.53>
+ST_2 : Operation 19 [3/4] (0.53ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i32 %conv14, i32 %conv10"   --->   Operation 19 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 20 [3/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln94 = mul i32 %conv10, i32 %conv7" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 20 'mul' 'mul_ln94' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 3 <SV = 2> <Delay = 0.53>
+ST_3 : Operation 21 [2/4] (0.53ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i32 %conv14, i32 %conv10"   --->   Operation 21 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 22 [2/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln94 = mul i32 %conv10, i32 %conv7" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 22 'mul' 'mul_ln94' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 4 <SV = 3> <Delay = 0.78>
+ST_4 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_2626, void @empty_25, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 24 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_27, void @empty_25, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 24 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 25 [1/1] (0.00ns)   --->   "%p_read_1 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read7"   --->   Operation 25 'read' 'p_read_1' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 26 [1/1] (0.00ns)   --->   "%p_read_3 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read5"   --->   Operation 26 'read' 'p_read_3' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 27 [1/1] (0.00ns)   --->   "%p_read_4 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read4"   --->   Operation 27 'read' 'p_read_4' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 28 [1/1] (0.00ns)   --->   "%p_read_5 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read3"   --->   Operation 28 'read' 'p_read_5' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 29 [1/1] (0.00ns)   --->   "%p_read_6 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read2"   --->   Operation 29 'read' 'p_read_6' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 30 [1/1] (0.00ns)   --->   "%p_read_cast = zext i16 %p_read25"   --->   Operation 30 'zext' 'p_read_cast' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 31 [1/4] (0.00ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i32 %conv14, i32 %conv10"   --->   Operation 31 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 32 [1/1] (0.78ns)   --->   "%sub = add i17 %p_read_cast, i17 131071"   --->   Operation 32 'add' 'sub' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 33 [1/1] (0.78ns)   --->   "%cond_x_val = add i16 %p_read25, i16 65535"   --->   Operation 33 'add' 'cond_x_val' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 34 [1/1] (0.78ns)   --->   "%cond_y_val = add i16 %p_read_2, i16 65535"   --->   Operation 34 'add' 'cond_y_val' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 35 [1/4] (0.00ns) (root node of the DSP)   --->   "%mul_ln94 = mul i32 %conv10, i32 %conv7" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 35 'mul' 'mul_ln94' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 36 [1/1] (0.00ns)   --->   "%br_ln94 = br void %VITIS_LOOP_171_2" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 36 'br' 'br_ln94' <Predicate = true> <Delay = 0.00>
+
+State 5 <SV = 4> <Delay = 1.92>
+ST_5 : Operation 37 [1/1] (0.00ns)   --->   "%bat_1 = load i16 %bat" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:169]   --->   Operation 37 'load' 'bat_1' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 38 [1/1] (0.67ns)   --->   "%icmp_ln94 = icmp_eq  i16 %bat_1, i16 %p_read_1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 38 'icmp' 'icmp_ln94' <Predicate = true> <Delay = 0.67> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.67> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 39 [1/1] (0.78ns)   --->   "%bat_2 = add i16 %bat_1, i16 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:169]   --->   Operation 39 'add' 'bat_2' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 40 [1/1] (0.00ns)   --->   "%br_ln94 = br i1 %icmp_ln94, void %VITIS_LOOP_171_2.split, void %while.end.loopexit" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 40 'br' 'br_ln94' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 41 [1/1] (0.00ns)   --->   "%empty = wait i32 @_ssdm_op_Wait"   --->   Operation 41 'wait' 'empty' <Predicate = (!icmp_ln94)> <Delay = 0.00>
+ST_5 : Operation 42 [2/2] (1.24ns)   --->   "%call_ln94 = call void @stencilRun_Pipeline_VITIS_LOOP_171_2, i32 %mul_ln94, i256 %arg0_buf_r0_1_p0_V, i256 %arg0_buf_r1_2_p0_V, i17 %sub, i16 %p_read_6, i16 %p_read_4, i16 %p_read_5, i16 %p_read_3, i16 %cond_x_val, i16 %cond_y_val, i32 %S2D_00_P10_M10_0P1_0M1_read_ub_itr, i256 %arg0_arg1_streams_2626, i256 %arg0_arg1_streams_27" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 42 'call' 'call_ln94' <Predicate = (!icmp_ln94)> <Delay = 1.24> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 43 [1/1] (0.38ns)   --->   "%store_ln94 = store i16 %bat_2, i16 %bat" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 43 'store' 'store_ln94' <Predicate = (!icmp_ln94)> <Delay = 0.38>
+ST_5 : Operation 44 [1/1] (0.00ns)   --->   "%ret_ln376 = ret" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:376]   --->   Operation 44 'ret' 'ret_ln376' <Predicate = (icmp_ln94)> <Delay = 0.00>
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 45 [1/1] (0.00ns)   --->   "%specloopname_ln77 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:77]   --->   Operation 45 'specloopname' 'specloopname_ln77' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 46 [1/1] (0.00ns)   --->   "%specmemcore_ln142 = specmemcore void @_ssdm_op_SpecMemCore, i256 %arg0_buf_r0_1_p0_V, i64 666, i64 28, i64 2" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:142]   --->   Operation 46 'specmemcore' 'specmemcore_ln142' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 47 [1/1] (0.00ns)   --->   "%specmemcore_ln146 = specmemcore void @_ssdm_op_SpecMemCore, i256 %arg0_buf_r1_2_p0_V, i64 666, i64 25, i64 2" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:146]   --->   Operation 47 'specmemcore' 'specmemcore_ln146' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 48 [1/2] (0.00ns)   --->   "%call_ln94 = call void @stencilRun_Pipeline_VITIS_LOOP_171_2, i32 %mul_ln94, i256 %arg0_buf_r0_1_p0_V, i256 %arg0_buf_r1_2_p0_V, i17 %sub, i16 %p_read_6, i16 %p_read_4, i16 %p_read_5, i16 %p_read_3, i16 %cond_x_val, i16 %cond_y_val, i32 %S2D_00_P10_M10_0P1_0M1_read_ub_itr, i256 %arg0_arg1_streams_2626, i256 %arg0_arg1_streams_27" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 48 'call' 'call_ln94' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_6 : Operation 49 [1/1] (0.00ns)   --->   "%br_ln94 = br void %VITIS_LOOP_171_2" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94]   --->   Operation 49 'br' 'br_ln94' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 0.535ns
+The critical path consists of the following:
+	wire read operation ('p_read_7') on port 'p_read1' [20]  (0 ns)
+	'mul' operation of DSP[28] ('S2D_00_P10_M10_0P1_0M1_read_ub_itr') [28]  (0.535 ns)
+
+ <State 2>: 0.535ns
+The critical path consists of the following:
+	'mul' operation of DSP[28] ('S2D_00_P10_M10_0P1_0M1_read_ub_itr') [28]  (0.535 ns)
+
+ <State 3>: 0.535ns
+The critical path consists of the following:
+	'mul' operation of DSP[28] ('S2D_00_P10_M10_0P1_0M1_read_ub_itr') [28]  (0.535 ns)
+
+ <State 4>: 0.785ns
+The critical path consists of the following:
+	'add' operation ('sub') [29]  (0.785 ns)
+
+ <State 5>: 1.92ns
+The critical path consists of the following:
+	'call' operation ('call_ln94', /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/include/PE_poisson_kernel_stencil.hpp:94) to 'stencilRun_Pipeline_VITIS_LOOP_171_2' [45]  (1.25 ns)
+	blocking operation 0.676 ns on control path)
+
+ <State 6>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,692 @@
+
+
+================================================================
+== Vitis HLS Report for 'datamover_outerloop_0_loopback_dataflow_region'
+================================================================
+* Date:           Fri Jul 24 21:23:59 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  1.267 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|  dataflow|
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------+--------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                              |                    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |           Instance           |       Module       |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +------------------------------+--------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_axis2stream_256u_s_fu_80  |axis2stream_256u_s  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |grp_stream2axis_256u_1_fu_96  |stream2axis_256u_1  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +------------------------------+--------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 0
+* Dataflow Pipeline: 1
+  DF-Pipeline-0: Size = 4, States = { 1 2 3 4 }
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.21>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%num_pkts_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %num_pkts" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 5 'read' 'num_pkts_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%num_pkts_c = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 6 'alloca' 'num_pkts_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.39> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 2> <FIFO>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%arg0_mem_strm = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:149]   --->   Operation 7 'alloca' 'arg0_mem_strm' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_1 : Operation 8 [2/2] (1.21ns)   --->   "%call_ln152 = call void @axis2stream<256u>, i256 %arg1_axis_in_V_data_V, i32 %arg1_axis_in_V_keep_V, i32 %arg1_axis_in_V_strb_V, i1 %arg1_axis_in_V_last_V, i256 %arg0_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:152]   --->   Operation 8 'call' 'call_ln152' <Predicate = true> <Delay = 1.21> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 9 [1/2] (0.00ns)   --->   "%call_ln152 = call void @axis2stream<256u>, i256 %arg1_axis_in_V_data_V, i32 %arg1_axis_in_V_keep_V, i32 %arg1_axis_in_V_strb_V, i1 %arg1_axis_in_V_last_V, i256 %arg0_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:152]   --->   Operation 9 'call' 'call_ln152' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 10 [2/2] (0.00ns)   --->   "%call_ln153 = call void @stream2axis<256u>.1, i256 %arg0_mem_strm, i256 %arg0_axis_out_V_data_V, i32 %arg0_axis_out_V_keep_V, i32 %arg0_axis_out_V_strb_V, i1 %arg0_axis_out_V_last_V, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:153]   --->   Operation 10 'call' 'call_ln153' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 11 [1/1] (0.00ns)   --->   "%empty = specchannel i32 @_ssdm_op_SpecChannel, void @num_pkts_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i32 %num_pkts_c, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 11 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln151 = specinterface void @_ssdm_op_SpecInterface, i32 %num_pkts_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 12 'specinterface' 'specinterface_ln151' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 13 [1/1] (0.00ns)   --->   "%specdataflowpipeline_ln151 = specdataflowpipeline void @_ssdm_op_SpecDataflowPipeline, i32 4294967295, i32 0, void @empty_31" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 13 'specdataflowpipeline' 'specdataflowpipeline_ln151' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 14 [1/1] (0.00ns)   --->   "%specaxissidechannel_ln0 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i256 %arg1_axis_in_V_data_V, i32 %arg1_axis_in_V_keep_V, i32 %arg1_axis_in_V_strb_V, i1 0, i1 %arg1_axis_in_V_last_V, i1 0, i1 0, void @empty_8"   --->   Operation 14 'specaxissidechannel' 'specaxissidechannel_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 15 [1/1] (0.00ns)   --->   "%specaxissidechannel_ln0 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i256 %arg0_axis_out_V_data_V, i32 %arg0_axis_out_V_keep_V, i32 %arg0_axis_out_V_strb_V, i1 0, i1 %arg0_axis_out_V_last_V, i1 0, i1 0, void @empty_23"   --->   Operation 15 'specaxissidechannel' 'specaxissidechannel_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 16 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg1_axis_in_V_last_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 16 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 17 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg1_axis_in_V_strb_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 17 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 18 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg1_axis_in_V_keep_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 18 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_axis_in_V_data_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg0_axis_out_V_last_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 21 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg0_axis_out_V_strb_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 21 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg0_axis_out_V_keep_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_axis_out_V_data_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 24 [1/1] (0.00ns)   --->   "%empty_60 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_mem_strm_str, i32 1, void @p_str, void @p_str, i32 2, i32 2, i256 %arg0_mem_strm, i256 %arg0_mem_strm"   --->   Operation 24 'specchannel' 'empty_60' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 25 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_mem_strm, void @empty_21, i32 0, i32 0, void @empty_31, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 25 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 26 [1/2] (0.00ns)   --->   "%call_ln153 = call void @stream2axis<256u>.1, i256 %arg0_mem_strm, i256 %arg0_axis_out_V_data_V, i32 %arg0_axis_out_V_keep_V, i32 %arg0_axis_out_V_strb_V, i1 %arg0_axis_out_V_last_V, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:153]   --->   Operation 26 'call' 'call_ln153' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 27 [1/1] (0.00ns)   --->   "%ret_ln154 = ret" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:154]   --->   Operation 27 'ret' 'ret_ln154' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 0
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ num_pkts]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ arg0_axis_out_V_data_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ arg0_axis_out_V_keep_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ arg0_axis_out_V_strb_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ arg0_axis_out_V_last_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ arg1_axis_in_V_data_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ arg1_axis_in_V_keep_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ arg1_axis_in_V_strb_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+Port [ arg1_axis_in_V_last_V]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=axis:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+num_pkts_read              (read                ) [ 00100]
+num_pkts_c                 (alloca              ) [ 01111]
+arg0_mem_strm              (alloca              ) [ 01111]
+call_ln152                 (call                ) [ 00000]
+empty                      (specchannel         ) [ 00000]
+specinterface_ln151        (specinterface       ) [ 00000]
+specdataflowpipeline_ln151 (specdataflowpipeline) [ 00000]
+specaxissidechannel_ln0    (specaxissidechannel ) [ 00000]
+specaxissidechannel_ln0    (specaxissidechannel ) [ 00000]
+specinterface_ln0          (specinterface       ) [ 00000]
+specinterface_ln0          (specinterface       ) [ 00000]
+specinterface_ln0          (specinterface       ) [ 00000]
+specinterface_ln0          (specinterface       ) [ 00000]
+specinterface_ln0          (specinterface       ) [ 00000]
+specinterface_ln0          (specinterface       ) [ 00000]
+specinterface_ln0          (specinterface       ) [ 00000]
+specinterface_ln0          (specinterface       ) [ 00000]
+empty_60                   (specchannel         ) [ 00000]
+specinterface_ln0          (specinterface       ) [ 00000]
+call_ln153                 (call                ) [ 00000]
+ret_ln154                  (ret                 ) [ 00000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="num_pkts">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="num_pkts"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="arg0_axis_out_V_data_V">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg0_axis_out_V_data_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="arg0_axis_out_V_keep_V">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg0_axis_out_V_keep_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1000" name="arg0_axis_out_V_strb_V">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg0_axis_out_V_strb_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1000" name="arg0_axis_out_V_last_V">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg0_axis_out_V_last_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1000" name="arg1_axis_in_V_data_V">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg1_axis_in_V_data_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1000" name="arg1_axis_in_V_keep_V">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg1_axis_in_V_keep_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1000" name="arg1_axis_in_V_strb_V">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg1_axis_in_V_strb_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1000" name="arg1_axis_in_V_last_V">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg1_axis_in_V_last_V"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_auto.i32"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="axis2stream<256u>"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stream2axis<256u>.1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecChannel"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="num_pkts_c_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ap_fifo_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1001" name="const_46">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecDataflowPipeline"/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1001" name="const_48">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_31"/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1001" name="const_50">
+<pin_list>
+<pin id="51" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecAXISSideChannel"/></StgValue>
+</bind>
+</comp>
+
+<comp id="52" class="1001" name="const_52">
+<pin_list>
+<pin id="53" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="54" class="1001" name="const_54">
+<pin_list>
+<pin id="55" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_8"/></StgValue>
+</bind>
+</comp>
+
+<comp id="56" class="1001" name="const_56">
+<pin_list>
+<pin id="57" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_23"/></StgValue>
+</bind>
+</comp>
+
+<comp id="58" class="1001" name="const_58">
+<pin_list>
+<pin id="59" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_19"/></StgValue>
+</bind>
+</comp>
+
+<comp id="60" class="1001" name="const_60">
+<pin_list>
+<pin id="61" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_20"/></StgValue>
+</bind>
+</comp>
+
+<comp id="62" class="1001" name="const_62">
+<pin_list>
+<pin id="63" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg0_mem_strm_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="64" class="1001" name="const_64">
+<pin_list>
+<pin id="65" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_21"/></StgValue>
+</bind>
+</comp>
+
+<comp id="66" class="1004" name="num_pkts_c_fu_66">
+<pin_list>
+<pin id="67" dir="0" index="0" bw="1" slack="0"/>
+<pin id="68" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="num_pkts_c/1 "/>
+</bind>
+</comp>
+
+<comp id="70" class="1004" name="arg0_mem_strm_fu_70">
+<pin_list>
+<pin id="71" dir="0" index="0" bw="1" slack="0"/>
+<pin id="72" dir="1" index="1" bw="256" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="arg0_mem_strm/1 "/>
+</bind>
+</comp>
+
+<comp id="74" class="1004" name="num_pkts_read_read_fu_74">
+<pin_list>
+<pin id="75" dir="0" index="0" bw="32" slack="0"/>
+<pin id="76" dir="0" index="1" bw="32" slack="0"/>
+<pin id="77" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="num_pkts_read/1 "/>
+</bind>
+</comp>
+
+<comp id="80" class="1004" name="grp_axis2stream_256u_s_fu_80">
+<pin_list>
+<pin id="81" dir="0" index="0" bw="0" slack="0"/>
+<pin id="82" dir="0" index="1" bw="256" slack="0"/>
+<pin id="83" dir="0" index="2" bw="32" slack="0"/>
+<pin id="84" dir="0" index="3" bw="32" slack="0"/>
+<pin id="85" dir="0" index="4" bw="1" slack="0"/>
+<pin id="86" dir="0" index="5" bw="256" slack="0"/>
+<pin id="87" dir="0" index="6" bw="32" slack="0"/>
+<pin id="88" dir="0" index="7" bw="32" slack="0"/>
+<pin id="89" dir="1" index="8" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln152/1 "/>
+</bind>
+</comp>
+
+<comp id="96" class="1004" name="grp_stream2axis_256u_1_fu_96">
+<pin_list>
+<pin id="97" dir="0" index="0" bw="0" slack="0"/>
+<pin id="98" dir="0" index="1" bw="256" slack="2"/>
+<pin id="99" dir="0" index="2" bw="256" slack="0"/>
+<pin id="100" dir="0" index="3" bw="32" slack="0"/>
+<pin id="101" dir="0" index="4" bw="32" slack="0"/>
+<pin id="102" dir="0" index="5" bw="1" slack="0"/>
+<pin id="103" dir="0" index="6" bw="32" slack="2"/>
+<pin id="104" dir="1" index="7" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln153/3 "/>
+</bind>
+</comp>
+
+<comp id="110" class="1005" name="num_pkts_read_reg_110">
+<pin_list>
+<pin id="111" dir="0" index="0" bw="32" slack="1"/>
+<pin id="112" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="num_pkts_read "/>
+</bind>
+</comp>
+
+<comp id="115" class="1005" name="num_pkts_c_reg_115">
+<pin_list>
+<pin id="116" dir="0" index="0" bw="32" slack="0"/>
+<pin id="117" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opset="num_pkts_c "/>
+</bind>
+</comp>
+
+<comp id="121" class="1005" name="arg0_mem_strm_reg_121">
+<pin_list>
+<pin id="122" dir="0" index="0" bw="256" slack="0"/>
+<pin id="123" dir="1" index="1" bw="256" slack="0"/>
+</pin_list>
+<bind>
+<opset="arg0_mem_strm "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="69"><net_src comp="20" pin="0"/><net_sink comp="66" pin=0"/></net>
+
+<net id="73"><net_src comp="20" pin="0"/><net_sink comp="70" pin=0"/></net>
+
+<net id="78"><net_src comp="18" pin="0"/><net_sink comp="74" pin=0"/></net>
+
+<net id="79"><net_src comp="0" pin="0"/><net_sink comp="74" pin=1"/></net>
+
+<net id="90"><net_src comp="22" pin="0"/><net_sink comp="80" pin=0"/></net>
+
+<net id="91"><net_src comp="10" pin="0"/><net_sink comp="80" pin=1"/></net>
+
+<net id="92"><net_src comp="12" pin="0"/><net_sink comp="80" pin=2"/></net>
+
+<net id="93"><net_src comp="14" pin="0"/><net_sink comp="80" pin=3"/></net>
+
+<net id="94"><net_src comp="16" pin="0"/><net_sink comp="80" pin=4"/></net>
+
+<net id="95"><net_src comp="74" pin="2"/><net_sink comp="80" pin=6"/></net>
+
+<net id="105"><net_src comp="24" pin="0"/><net_sink comp="96" pin=0"/></net>
+
+<net id="106"><net_src comp="2" pin="0"/><net_sink comp="96" pin=2"/></net>
+
+<net id="107"><net_src comp="4" pin="0"/><net_sink comp="96" pin=3"/></net>
+
+<net id="108"><net_src comp="6" pin="0"/><net_sink comp="96" pin=4"/></net>
+
+<net id="109"><net_src comp="8" pin="0"/><net_sink comp="96" pin=5"/></net>
+
+<net id="113"><net_src comp="74" pin="2"/><net_sink comp="110" pin=0"/></net>
+
+<net id="114"><net_src comp="110" pin="1"/><net_sink comp="80" pin=6"/></net>
+
+<net id="118"><net_src comp="66" pin="1"/><net_sink comp="115" pin=0"/></net>
+
+<net id="119"><net_src comp="115" pin="1"/><net_sink comp="80" pin=7"/></net>
+
+<net id="120"><net_src comp="115" pin="1"/><net_sink comp="96" pin=6"/></net>
+
+<net id="124"><net_src comp="70" pin="1"/><net_sink comp="121" pin=0"/></net>
+
+<net id="125"><net_src comp="121" pin="1"/><net_sink comp="80" pin=5"/></net>
+
+<net id="126"><net_src comp="121" pin="1"/><net_sink comp="96" pin=1"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: arg0_axis_out_V_data_V | {3 4 }
+	Port: arg0_axis_out_V_keep_V | {3 4 }
+	Port: arg0_axis_out_V_strb_V | {3 4 }
+	Port: arg0_axis_out_V_last_V | {3 4 }
+ - Input state : 
+	Port: datamover_outerloop_0_loopback_dataflow_region : num_pkts | {1 }
+	Port: datamover_outerloop_0_loopback_dataflow_region : arg1_axis_in_V_data_V | {1 2 }
+	Port: datamover_outerloop_0_loopback_dataflow_region : arg1_axis_in_V_keep_V | {1 2 }
+	Port: datamover_outerloop_0_loopback_dataflow_region : arg1_axis_in_V_strb_V | {1 2 }
+	Port: datamover_outerloop_0_loopback_dataflow_region : arg1_axis_in_V_last_V | {1 2 }
+  - Chain level:
+	State 1
+		call_ln152 : 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|------------------------------|---------|---------|
+| Operation|        Functional Unit       |    FF   |   LUT   |
+|----------|------------------------------|---------|---------|
+|   call   | grp_axis2stream_256u_s_fu_80 |   320   |    59   |
+|          | grp_stream2axis_256u_1_fu_96 |    64   |    59   |
+|----------|------------------------------|---------|---------|
+|   read   |   num_pkts_read_read_fu_74   |    0    |    0    |
+|----------|------------------------------|---------|---------|
+|   Total  |                              |   384   |   118   |
+|----------|------------------------------|---------|---------|
+
+Memories:
+N/A
+
+* Register list:
++---------------------+--------+
+|                     |   FF   |
++---------------------+--------+
+|arg0_mem_strm_reg_121|   256  |
+|  num_pkts_c_reg_115 |   32   |
+|num_pkts_read_reg_110|   32   |
++---------------------+--------+
+|        Total        |   320  |
++---------------------+--------+
+
+* Multiplexer (MUX) list: 
+|------------------------------|------|------|------|--------||---------||---------|
+|             Comp             |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|------------------------------|------|------|------|--------||---------||---------|
+| grp_axis2stream_256u_s_fu_80 |  p6  |   2  |  32  |   64   ||    9    |
+|------------------------------|------|------|------|--------||---------||---------|
+|             Total            |      |      |      |   64   ||  0.387  ||    9    |
+|------------------------------|------|------|------|--------||---------||---------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+
+|           |  Delay |   FF   |   LUT  |
++-----------+--------+--------+--------+
+|  Function |    -   |   384  |   118  |
+|   Memory  |    -   |    -   |    -   |
+|Multiplexer|    0   |    -   |    9   |
+|  Register |    -   |   320  |    -   |
++-----------+--------+--------+--------+
+|   Total   |    0   |   704  |   127  |
++-----------+--------+--------+--------+

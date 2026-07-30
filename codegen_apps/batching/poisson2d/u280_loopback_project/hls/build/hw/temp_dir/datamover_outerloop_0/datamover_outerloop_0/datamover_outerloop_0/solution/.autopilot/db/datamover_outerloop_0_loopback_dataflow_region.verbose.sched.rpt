@@ -1,0 +1,150 @@
+
+
+================================================================
+== Vitis HLS Report for 'datamover_outerloop_0_loopback_dataflow_region'
+================================================================
+* Date:           Fri Jul 24 21:23:59 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  1.267 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|  dataflow|
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 0
+* Dataflow Pipeline: 1
+  DF-Pipeline-0: Size = 4, States = { 1 2 3 4 }
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.21>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%num_pkts_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %num_pkts" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 5 'read' 'num_pkts_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%num_pkts_c = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 6 'alloca' 'num_pkts_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.39> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 2> <FIFO>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%arg0_mem_strm = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:149]   --->   Operation 7 'alloca' 'arg0_mem_strm' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_1 : Operation 8 [2/2] (1.21ns)   --->   "%call_ln152 = call void @axis2stream<256u>, i256 %arg1_axis_in_V_data_V, i32 %arg1_axis_in_V_keep_V, i32 %arg1_axis_in_V_strb_V, i1 %arg1_axis_in_V_last_V, i256 %arg0_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:152]   --->   Operation 8 'call' 'call_ln152' <Predicate = true> <Delay = 1.21> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 9 [1/2] (0.00ns)   --->   "%call_ln152 = call void @axis2stream<256u>, i256 %arg1_axis_in_V_data_V, i32 %arg1_axis_in_V_keep_V, i32 %arg1_axis_in_V_strb_V, i1 %arg1_axis_in_V_last_V, i256 %arg0_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:152]   --->   Operation 9 'call' 'call_ln152' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 10 [2/2] (0.00ns)   --->   "%call_ln153 = call void @stream2axis<256u>.1, i256 %arg0_mem_strm, i256 %arg0_axis_out_V_data_V, i32 %arg0_axis_out_V_keep_V, i32 %arg0_axis_out_V_strb_V, i1 %arg0_axis_out_V_last_V, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:153]   --->   Operation 10 'call' 'call_ln153' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 11 [1/1] (0.00ns)   --->   "%empty = specchannel i32 @_ssdm_op_SpecChannel, void @num_pkts_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i32 %num_pkts_c, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 11 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln151 = specinterface void @_ssdm_op_SpecInterface, i32 %num_pkts_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 12 'specinterface' 'specinterface_ln151' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 13 [1/1] (0.00ns)   --->   "%specdataflowpipeline_ln151 = specdataflowpipeline void @_ssdm_op_SpecDataflowPipeline, i32 4294967295, i32 0, void @empty_31" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151]   --->   Operation 13 'specdataflowpipeline' 'specdataflowpipeline_ln151' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 14 [1/1] (0.00ns)   --->   "%specaxissidechannel_ln0 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i256 %arg1_axis_in_V_data_V, i32 %arg1_axis_in_V_keep_V, i32 %arg1_axis_in_V_strb_V, i1 0, i1 %arg1_axis_in_V_last_V, i1 0, i1 0, void @empty_8"   --->   Operation 14 'specaxissidechannel' 'specaxissidechannel_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 15 [1/1] (0.00ns)   --->   "%specaxissidechannel_ln0 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i256 %arg0_axis_out_V_data_V, i32 %arg0_axis_out_V_keep_V, i32 %arg0_axis_out_V_strb_V, i1 0, i1 %arg0_axis_out_V_last_V, i1 0, i1 0, void @empty_23"   --->   Operation 15 'specaxissidechannel' 'specaxissidechannel_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 16 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg1_axis_in_V_last_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 16 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 17 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg1_axis_in_V_strb_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 17 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 18 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg1_axis_in_V_keep_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 18 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_axis_in_V_data_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg0_axis_out_V_last_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 21 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg0_axis_out_V_strb_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 21 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg0_axis_out_V_keep_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_axis_out_V_data_V, void @empty_19, i32 0, i32 0, void @empty_20, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 24 [1/1] (0.00ns)   --->   "%empty_60 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_mem_strm_str, i32 1, void @p_str, void @p_str, i32 2, i32 2, i256 %arg0_mem_strm, i256 %arg0_mem_strm"   --->   Operation 24 'specchannel' 'empty_60' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 25 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_mem_strm, void @empty_21, i32 0, i32 0, void @empty_31, i32 0, i32 0, void @empty_31, void @empty_31, void @empty_31, i32 0, i32 0, i32 0, i32 0, void @empty_31, void @empty_31, i32 4294967295, i32 0"   --->   Operation 25 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 26 [1/2] (0.00ns)   --->   "%call_ln153 = call void @stream2axis<256u>.1, i256 %arg0_mem_strm, i256 %arg0_axis_out_V_data_V, i32 %arg0_axis_out_V_keep_V, i32 %arg0_axis_out_V_strb_V, i1 %arg0_axis_out_V_last_V, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:153]   --->   Operation 26 'call' 'call_ln153' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 27 [1/1] (0.00ns)   --->   "%ret_ln154 = ret" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:154]   --->   Operation 27 'ret' 'ret_ln154' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 1.22ns
+The critical path consists of the following:
+	wire read operation ('num_pkts_read', /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151) on port 'num_pkts' (/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:151) [10]  (0 ns)
+	'call' operation ('call_ln152', /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/poisson2d/u280_loopback_project/hls/device/src/datamover_outerloop_0.cpp:152) to 'axis2stream<256u>' [28]  (1.22 ns)
+
+ <State 2>: 0ns
+The critical path consists of the following:
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
