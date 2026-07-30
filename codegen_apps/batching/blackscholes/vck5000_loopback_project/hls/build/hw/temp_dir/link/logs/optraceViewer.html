@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+
+<html>
+<!-- Styles -->
+<style>
+    #chartdiv {
+      width: 100%;
+      height: 1000px;
+    }
+</style>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>OPTraceViewer</title>
+  <script src="https://www.amcharts.com/lib/3/amcharts.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/serial.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/gantt.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/themes/light.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js">
+  </script>
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all"/>
+
+  <form name="userInputForm" action="javascript:userInputFormCallback()">
+    <fieldset>
+    <legend>Graph Filters:</legend>
+    <table style="width:100%">
+      <col width="50"></col>
+      <col width="20"></col>
+      <col width="60"></col>
+      <tr>
+        <td style="text-align: center"; colspan="3"><input type="number" name="userDurationFilterSecInput" id="userDurationFilterSecInput" value="2" min="0" max="6000" step="1"> sec</td>
+        <td>Filter out run durations lower than this value</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center"><input type="checkbox" name="userGroupPidSortSelected" id="userGroupPidSortSelected"></td>
+        <td>Group sort by process ID</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#0099ff"></td>
+        <td style="text-align: center"><input type="checkbox" name="userRollupSelected" id="userRollupSelected"></td>
+        <td>Show rollup entries</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#8dc49f"></td>
+        <td style="text-align: center"><input type="checkbox" name="userIndividualEntrySelected" id="userIndividualEntrySelected"></td>
+        <td>Show individual entries</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#cd82ad"></td>
+        <td style="text-align: center"><input type="checkbox" name="userCheckpointEntrySelected" id="userCheckpointEntrySelected"></td>
+        <td>Show checkpoints entry</td>
+      </tr>
+       <tr>
+        <td></td>
+        <td bgcolor="#b9783f"></td>
+        <td style="text-align: center"><input type="checkbox" name="userReportEntrySelected" id="userReportEntrySelected"></td>
+        <td>Show report entry</td>
+      </tr>
+
+    </table>
+    <br>
+    <input name="Submit" type="submit" value="Update Graph">
+    </fieldset>
+  </form> 
+
+  <div id="chartdiv">
+  </div>
+
+  <script>
+  </script>
+
+</head>
+
+
+<body>
+<table id="myDynamicTable" cellpadding="2" cellspacing="2" border="1" onclick="tester()">
+  <tr>
+  <td>Task</td>
+  <td>Start</td>
+  <td>Duration</td>
+  </tr>
+</table>
+<script>
+  // Default User Selected variables
+  var m_secondFilter = 1;
+  var m_groupPidSort = true;
+  var m_showRollup = true;
+  var m_showIndividualEntry = false;
+  var m_showCheckpointEntry = false;
+  var m_showReportEntry = false;
+
+  function SetDefaultUserValues()
+  {
+    document.getElementById("userDurationFilterSecInput").value = m_secondFilter;
+    document.getElementById("userGroupPidSortSelected").checked = m_groupPidSort;
+    document.getElementById("userRollupSelected").checked = m_showRollup;
+    document.getElementById("userIndividualEntrySelected").checked = m_showIndividualEntry;
+    document.getElementById("userCheckpointEntrySelected").checked = m_showCheckpointEntry;
+    document.getElementById("userReportEntrySelected").checked = m_showReportEntry;
+  }
+
+  window.onload = function(){
+    SetDefaultUserValues();
+  }
+
+
+
+
+  // Header
+  var header = "Keyword|pid|Entry|SrcFile|Catagory|TimeStampMSec|Action|Task|Tags|Misc";
+                         
+  // Insert Raw Data Here
+  // Note: Do not change the following signature. 
+  var csvData =    [
+      "[OPTRACE]|1958989|10|run|cpp|1785024076449|START|OCL_LINK|",
+      "[OPTRACE]|1958989|11|setupBinaryForLink|cpp|1785024076450|START|Create Binary|",
+      "[OPTRACE]|1958989|12||cpp|1785024076450|END|Create Binary|",
+      "[OPTRACE]|1958989|13|setupBinaryForLink|cpp|1785024076450|START|Extract Kernels|",
+      "[OPTRACE]|1958989|14||cpp|1785024081724|END|Extract Kernels|",
+      "[OPTRACE]|1958989|15|launchStep_|cpp|1785024082219|START|Launch Step: system_link|",
+      "[OPTRACE]|1958989|16||cpp|1785024098885|END|Launch Step: system_link|",
+      "[OPTRACE]|1958989|17|launchStep_|cpp|1785024098888|START|Launch Step: cf2sw|",
+      "[OPTRACE]|1958989|18||cpp|1785024102292|END|Launch Step: cf2sw|",
+      "[OPTRACE]|1958989|19|launchStep_|cpp|1785024102294|START|Launch Step: rtd2_system_diagram|",
+      "[OPTRACE]|1958989|1|main|cpp|1785024062248|START|v++|ROLLUP_0",
+      "[OPTRACE]|1958989|20||cpp|1785024102716|END|Launch Step: rtd2_system_diagram|",
+      "[OPTRACE]|1958989|21|launchStep_|cpp|1785024102717|START|Launch Step: vpl|",
+      "[OPTRACE]|1958989|2|run|cpp|1785024062248|START|Validate Kernels|",
+      "[OPTRACE]|1958989|3||cpp|1785024062424|END|Validate Kernels|",
+      "[OPTRACE]|1958989|4|prepareProject|cpp|1785024062425|START|Create Solution|",
+      "[OPTRACE]|1958989|548||cpp|1785034831603|END|Launch Step: vpl|",
+      "[OPTRACE]|1958989|549|launchStep_|cpp|1785034831608|START|Launch Step: rtdgen|",
+      "[OPTRACE]|1958989|550|launchCf2sw_|cpp|1785034831633|START|Launch cf2sw|",
+      "[OPTRACE]|1958989|551||cpp|1785034834180|END|Launch cf2sw|",
+      "[OPTRACE]|1958989|552|writeSystemDiagram|cpp|1785034834180|START|writeSystemDiagram|",
+      "[OPTRACE]|1958989|553||cpp|1785034834189|END|writeSystemDiagram|",
+      "[OPTRACE]|1958989|554|writeAutomationSummary|cpp|1785034834189|START|writeAutomationSummary|",
+      "[OPTRACE]|1958989|555||cpp|1785034834195|END|writeAutomationSummary|",
+      "[OPTRACE]|1958989|556||cpp|1785034834197|END|Launch Step: rtdgen|",
+      "[OPTRACE]|1958989|557|launchStep_|cpp|1785034834202|START|Launch Step: xclbinutil|",
+      "[OPTRACE]|1958989|558||cpp|1785034834441|END|Launch Step: xclbinutil|",
+      "[OPTRACE]|1958989|559|launchStep_|cpp|1785034834443|START|Launch Step: xclbinutilinfo|",
+      "[OPTRACE]|1958989|560||cpp|1785034834755|END|Launch Step: xclbinutilinfo|",
+      "[OPTRACE]|1958989|561|launchStep_|cpp|1785034834758|START|Launch Step: generate_sc_driver|",
+      "[OPTRACE]|1958989|562||cpp|1785034834767|END|Launch Step: generate_sc_driver|",
+      "[OPTRACE]|1958989|563||cpp|1785034834774|END|OCL_LINK|",
+      "[OPTRACE]|1958989|564||cpp|1785034835453|END|v++|",
+      "[OPTRACE]|1958989|5||cpp|1785024073745|END|Create Solution|",
+      "[OPTRACE]|1958989|6|prepareProject|cpp|1785024073745|START|Add Device|",
+      "[OPTRACE]|1958989|7|addDevice|cpp|1785024073745|START|Find & Load Device|",
+      "[OPTRACE]|1958989|8||cpp|1785024075131|END|Find & Load Device|",
+      "[OPTRACE]|1958989|9||cpp|1785024076429|END|Add Device|",
+      "[OPTRACE]|1959887|22|main|cpp|1785024103849|START|vpl|",
+      "[OPTRACE]|1959887|23|runPlatformLinker|cpp|1785024103876|START|runPlatformLinker|",
+      "[OPTRACE]|1959887|24|setupBinaryForLink|cpp|1785024103876|START|Create Solution|",
+      "[OPTRACE]|1959887|25||cpp|1785024103888|END|Create Solution|",
+      "[OPTRACE]|1959887|26|setupBinaryForLink|cpp|1785024103888|START|Add platform|",
+      "[OPTRACE]|1959887|27||cpp|1785024106892|END|Add platform|",
+      "[OPTRACE]|1959887|28|setupBinaryForLink|cpp|1785024106892|START|Create Binary|",
+      "[OPTRACE]|1959887|29||cpp|1785024106892|END|Create Binary|",
+      "[OPTRACE]|1959887|30|setupBinaryForLink|cpp|1785024106892|START|Create Kernels|",
+      "[OPTRACE]|1959887|31||cpp|1785024106968|END|Create Kernels|",
+      "[OPTRACE]|1959887|32|runPlatformLinker|cpp|1785024106977|START|Process Kernels|",
+      "[OPTRACE]|1959887|33|runPlatformLinker|cpp|1785024106977|START|Set Board Repo Paths and Connections|",
+      "[OPTRACE]|1959887|34||cpp|1785024106977|END|Set Board Repo Paths and Connections|",
+      "[OPTRACE]|1959887|35|runPlatformLinker|cpp|1785024106977|START|Process Kernel Profiles|",
+      "[OPTRACE]|1959887|36||cpp|1785024106977|END|Process Kernel Profiles|",
+      "[OPTRACE]|1959887|37|runPlatformLinker|cpp|1785024106977|START|Process Trace Memory|",
+      "[OPTRACE]|1959887|38||cpp|1785024106978|END|Process Trace Memory|",
+      "[OPTRACE]|1959887|39||cpp|1785024106978|END|Process Kernels|",
+      "[OPTRACE]|1959887|40|runPlatformLinker|cpp|1785024106978|START|Process Kernel Debug|",
+      "[OPTRACE]|1959887|41||cpp|1785024106978|END|Process Kernel Debug|",
+      "[OPTRACE]|1959887|42|runPlatformLinker|cpp|1785024106978|START|Set Kernel Debug|",
+      "[OPTRACE]|1959887|43||cpp|1785024106978|END|Set Kernel Debug|",
+      "[OPTRACE]|1959887|44|runPlatformLinker|cpp|1785024106978|START|Set Miscellaneous|",
+      "[OPTRACE]|1959887|45||cpp|1785024106978|END|Set Miscellaneous|",
+      "[OPTRACE]|1959887|46|run|cpp|1785024106979|START|Extract Platform|",
+      "[OPTRACE]|1959887|47||cpp|1785024112282|END|Extract Platform|",
+      "[OPTRACE]|1959887|544|runPlatformLinker|cpp|1785034831557|START|Generate Resource Availability Report|",
+      "[OPTRACE]|1959887|545||cpp|1785034831558|END|Generate Resource Availability Report|",
+      "[OPTRACE]|1959887|546||cpp|1785034831558|END|runPlatformLinker|",
+      "[OPTRACE]|1959887|547||cpp|1785034831580|END|vpl|",
+      "[OPTRACE]|1960043|430|ipirun.tcl|vpl|1785025429416|END|Synthesis|",
+      "[OPTRACE]|1960043|48|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/vpl.tcl|vivado_impl|1785024118820|START|Implementation|ROLLUP_1",
+      "[OPTRACE]|1960043|49|ipirun.tcl|vpl|1785024118848|START|ipirun|ROLLUP_0",
+      "[OPTRACE]|1960043|50|ipirun.tcl|vpl|1785024118848|END|ipirun|",
+      "[OPTRACE]|1960043|51|ipirun.tcl|vpl|1785024118867|START|Create project|",
+      "[OPTRACE]|1960043|52|ipirun.tcl|vpl|1785024122804|END|Create project|",
+      "[OPTRACE]|1960043|53|ipirun.tcl|vpl|1785024122818|START|Create IP caching environment|",
+      "[OPTRACE]|1960043|543|ipirun.tcl|vpl|1785034829895|END|Implementation|",
+      "[OPTRACE]|1960043|54|ipirun.tcl|vpl|1785024125444|END|Create IP caching environment|",
+      "[OPTRACE]|1960043|55|ipirun.tcl|vpl|1785024125444|START|Import/add dynamic BD|",
+      "[OPTRACE]|1960043|56|ipirun.tcl|vpl|1785024137239|END|Import/add dynamic BD|",
+      "[OPTRACE]|1960043|57|ipirun.tcl|vpl|1785024137239|START|Open BD and insert kernels|",
+      "[OPTRACE]|1960043|58|ipirun.tcl|vpl|1785024138475|START|Source pre_sys_link_overlay_tcl Tcl script|",
+      "[OPTRACE]|1960043|59|ipirun.tcl|vpl|1785024138478|END|Source pre_sys_link_overlay_tcl Tcl script|",
+      "[OPTRACE]|1960043|60|ipirun.tcl|vpl|1785024147501|START|Source post_sys_link_overlay_tcl Tcl script|",
+      "[OPTRACE]|1960043|61|ipirun.tcl|vpl|1785024147502|END|Source post_sys_link_overlay_tcl Tcl script|",
+      "[OPTRACE]|1960043|62|ipirun.tcl|vpl|1785024147502|END|Open BD and insert kernels|",
+      "[OPTRACE]|1960043|63|ipirun.tcl|vpl|1785024147509|START|Add debug/profiling support|",
+      "[OPTRACE]|1960043|64|ipirun.tcl|vpl|1785024147532|END|Add debug/profiling support|",
+      "[OPTRACE]|1960043|65|ipirun.tcl|vpl|1785024147532|START|IPI address assignments|",
+      "[OPTRACE]|1960043|66|ipirun.tcl|vpl|1785024147547|END|IPI address assignments|",
+      "[OPTRACE]|1960043|67|ipirun.tcl|vpl|1785024147551|START|Save BD|",
+      "[OPTRACE]|1960043|68|ipirun.tcl|vpl|1785024147640|END|Save BD|",
+      "[OPTRACE]|1960043|69|ipirun.tcl|vpl|1785024147640|START|Create address map and debug IP profile files|",
+      "[OPTRACE]|1960043|70|ipirun.tcl|vpl|1785024147648|END|Create address map and debug IP profile files|",
+      "[OPTRACE]|1960043|71|ipirun.tcl|vpl|1785024147648|START|Collect BD interface connectivity and write automation summary report|",
+      "[OPTRACE]|1960043|72|ipirun.tcl|vpl|1785024147667|END|Collect BD interface connectivity and write automation summary report|",
+      "[OPTRACE]|1960043|73|ipirun.tcl|vpl|1785024147673|START|Generate output products|",
+      "[OPTRACE]|1960043|74|ipirun.tcl|vpl|1785024186580|END|Generate output products|",
+      "[OPTRACE]|1960043|75|ipirun.tcl|vpl|1785024186603|START|Source report_commands_tcl|",
+      "[OPTRACE]|1960043|76|ipirun.tcl|vpl|1785024187040|END|Source report_commands_tcl|",
+      "[OPTRACE]|1960043|77|ipirun.tcl|vpl|1785024187041|START|Source synth_props_tcl|",
+      "[OPTRACE]|1960043|78|ipirun.tcl|vpl|1785024191212|END|Source synth_props_tcl|",
+      "[OPTRACE]|1960043|79|ipirun.tcl|vpl|1785024191251|START|Source impl_props_tcl|",
+      "[OPTRACE]|1960043|80|ipirun.tcl|vpl|1785024191417|END|Source impl_props_tcl|",
+      "[OPTRACE]|1960043|81|ipirun.tcl|vpl|1785024191426|START|Synthesis|ROLLUP_1,SYNTH",
+      "[OPTRACE]|1961711|100|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024208498|END|Creating in-memory project|",
+      "[OPTRACE]|1961711|101|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024208498|START|Adding files|",
+      "[OPTRACE]|1961711|110|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024208713|END|Adding files|",
+      "[OPTRACE]|1961711|111|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024208714|START|Configure IP Cache|",
+      "[OPTRACE]|1961711|112|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024208717|END|Configure IP Cache|",
+      "[OPTRACE]|1961711|113|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024208718|START|synth_design|",
+      "[OPTRACE]|1961711|148|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024271370|END|synth_design|",
+      "[OPTRACE]|1961711|149|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024271371|START|Write IP Cache|",
+      "[OPTRACE]|1961711|154|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024272503|END|Write IP Cache|",
+      "[OPTRACE]|1961711|155|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024272516|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1961711|156|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024272870|END|write_checkpoint|",
+      "[OPTRACE]|1961711|157|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024272870|START|synth reports|REPORT",
+      "[OPTRACE]|1961711|162|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024273139|END|synth reports|",
+      "[OPTRACE]|1961711|167|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024273908|END|ulp_inst_0_axi_gpio_null_user_0_synth_1|",
+      "[OPTRACE]|1961711|82|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024202193|START|ulp_inst_0_axi_gpio_null_user_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1961711|83|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_gpio_null_user_0_synth_1/ulp_inst_0_axi_gpio_null_user_0.tcl|vivado_synth|1785024202195|START|Creating in-memory project|",
+      "[OPTRACE]|1961713|114|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024208857|END|Creating in-memory project|",
+      "[OPTRACE]|1961713|115|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024208858|START|Adding files|",
+      "[OPTRACE]|1961713|140|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024212748|END|Adding files|",
+      "[OPTRACE]|1961713|141|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024212750|START|Configure IP Cache|",
+      "[OPTRACE]|1961713|144|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024212801|END|Configure IP Cache|",
+      "[OPTRACE]|1961713|145|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024212803|START|synth_design|",
+      "[OPTRACE]|1961713|192|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024287660|END|synth_design|",
+      "[OPTRACE]|1961713|193|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024287661|START|Write IP Cache|",
+      "[OPTRACE]|1961713|194|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024290096|END|Write IP Cache|",
+      "[OPTRACE]|1961713|197|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024290110|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1961713|212|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024290782|END|write_checkpoint|",
+      "[OPTRACE]|1961713|213|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024290782|START|synth reports|REPORT",
+      "[OPTRACE]|1961713|218|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024291062|END|synth reports|",
+      "[OPTRACE]|1961713|219|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024292785|END|ulp_inst_0_axi_ic_user_extend_0_synth_1|",
+      "[OPTRACE]|1961713|92|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024202333|START|ulp_inst_0_axi_ic_user_extend_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1961713|93|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_extend_0_synth_1/ulp_inst_0_axi_ic_user_extend_0.tcl|vivado_synth|1785024202335|START|Creating in-memory project|",
+      "[OPTRACE]|1961714|124|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024208967|END|Creating in-memory project|",
+      "[OPTRACE]|1961714|125|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024208967|START|Adding files|",
+      "[OPTRACE]|1961714|138|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024212662|END|Adding files|",
+      "[OPTRACE]|1961714|139|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024212664|START|Configure IP Cache|",
+      "[OPTRACE]|1961714|142|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024212764|END|Configure IP Cache|",
+      "[OPTRACE]|1961714|143|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024212766|START|synth_design|",
+      "[OPTRACE]|1961714|146|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024269709|END|synth_design|",
+      "[OPTRACE]|1961714|147|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024269709|START|Write IP Cache|",
+      "[OPTRACE]|1961714|152|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024271995|END|Write IP Cache|",
+      "[OPTRACE]|1961714|153|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024272012|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1961714|159|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024272935|END|write_checkpoint|",
+      "[OPTRACE]|1961714|160|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024272936|START|synth reports|REPORT",
+      "[OPTRACE]|1961714|163|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024273228|END|synth reports|",
+      "[OPTRACE]|1961714|169|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024274580|END|ulp_inst_0_axi_noc_kernel0_0_synth_1|",
+      "[OPTRACE]|1961714|94|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024202440|START|ulp_inst_0_axi_noc_kernel0_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1961714|95|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_noc_kernel0_0_synth_1/ulp_inst_0_axi_noc_kernel0_0.tcl|vivado_synth|1785024202441|START|Creating in-memory project|",
+      "[OPTRACE]|1961717|102|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024208642|END|Adding files|",
+      "[OPTRACE]|1961717|103|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024208644|START|Configure IP Cache|",
+      "[OPTRACE]|1961717|104|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024208645|END|Configure IP Cache|",
+      "[OPTRACE]|1961717|105|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024208646|START|synth_design|",
+      "[OPTRACE]|1961717|178|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024281087|END|synth_design|",
+      "[OPTRACE]|1961717|179|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024281088|START|Write IP Cache|",
+      "[OPTRACE]|1961717|180|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024282793|END|Write IP Cache|",
+      "[OPTRACE]|1961717|181|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024282808|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1961717|182|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024283413|END|write_checkpoint|",
+      "[OPTRACE]|1961717|183|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024283413|START|synth reports|REPORT",
+      "[OPTRACE]|1961717|184|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024283702|END|synth reports|",
+      "[OPTRACE]|1961717|191|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024284733|END|ulp_inst_0_plram_ctrl_0_synth_1|",
+      "[OPTRACE]|1961717|86|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024202235|START|ulp_inst_0_plram_ctrl_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1961717|87|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024202236|START|Creating in-memory project|",
+      "[OPTRACE]|1961717|98|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024208445|END|Creating in-memory project|",
+      "[OPTRACE]|1961717|99|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_0_synth_1/ulp_inst_0_plram_ctrl_0.tcl|vivado_synth|1785024208445|START|Adding files|",
+      "[OPTRACE]|1961718|122|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024208888|END|Creating in-memory project|",
+      "[OPTRACE]|1961718|123|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024208889|START|Adding files|",
+      "[OPTRACE]|1961718|130|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024209216|END|Adding files|",
+      "[OPTRACE]|1961718|131|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024209218|START|Configure IP Cache|",
+      "[OPTRACE]|1961718|132|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024209219|END|Configure IP Cache|",
+      "[OPTRACE]|1961718|133|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024209221|START|synth_design|",
+      "[OPTRACE]|1961718|170|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024276770|END|synth_design|",
+      "[OPTRACE]|1961718|171|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024276771|START|Write IP Cache|",
+      "[OPTRACE]|1961718|172|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024278402|END|Write IP Cache|",
+      "[OPTRACE]|1961718|173|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024278417|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1961718|174|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024278872|END|write_checkpoint|",
+      "[OPTRACE]|1961718|175|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024278872|START|synth reports|REPORT",
+      "[OPTRACE]|1961718|176|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024279168|END|synth reports|",
+      "[OPTRACE]|1961718|177|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024280295|END|ulp_inst_0_axi_dbg_hub_0_synth_1|",
+      "[OPTRACE]|1961718|90|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024202288|START|ulp_inst_0_axi_dbg_hub_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1961718|91|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_dbg_hub_0_synth_1/ulp_inst_0_axi_dbg_hub_0.tcl|vivado_synth|1785024202290|START|Creating in-memory project|",
+      "[OPTRACE]|1961719|106|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024208672|END|Creating in-memory project|",
+      "[OPTRACE]|1961719|107|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024208672|START|Adding files|",
+      "[OPTRACE]|1961719|134|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024212480|END|Adding files|",
+      "[OPTRACE]|1961719|135|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024212483|START|Configure IP Cache|",
+      "[OPTRACE]|1961719|136|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024212534|END|Configure IP Cache|",
+      "[OPTRACE]|1961719|137|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024212535|START|synth_design|",
+      "[OPTRACE]|1961719|250|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024345532|END|synth_design|",
+      "[OPTRACE]|1961719|251|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024345532|START|Write IP Cache|",
+      "[OPTRACE]|1961719|254|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024352120|END|Write IP Cache|",
+      "[OPTRACE]|1961719|255|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024352154|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1961719|270|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024354826|END|write_checkpoint|",
+      "[OPTRACE]|1961719|271|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024354826|START|synth reports|REPORT",
+      "[OPTRACE]|1961719|272|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024355228|END|synth reports|",
+      "[OPTRACE]|1961719|273|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024359182|END|ulp_inst_0_axi_sc_plram_0_synth_1|",
+      "[OPTRACE]|1961719|88|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024202270|START|ulp_inst_0_axi_sc_plram_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1961719|89|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_sc_plram_0_synth_1/ulp_inst_0_axi_sc_plram_0.tcl|vivado_synth|1785024202271|START|Creating in-memory project|",
+      "[OPTRACE]|1961720|120|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024208876|END|Creating in-memory project|",
+      "[OPTRACE]|1961720|121|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024208876|START|Adding files|",
+      "[OPTRACE]|1961720|126|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024209049|END|Adding files|",
+      "[OPTRACE]|1961720|127|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024209051|START|Configure IP Cache|",
+      "[OPTRACE]|1961720|128|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024209052|END|Configure IP Cache|",
+      "[OPTRACE]|1961720|129|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024209054|START|synth_design|",
+      "[OPTRACE]|1961720|150|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024271770|END|synth_design|",
+      "[OPTRACE]|1961720|151|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024271771|START|Write IP Cache|",
+      "[OPTRACE]|1961720|158|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024272922|END|Write IP Cache|",
+      "[OPTRACE]|1961720|161|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024272936|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1961720|164|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024273298|END|write_checkpoint|",
+      "[OPTRACE]|1961720|165|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024273298|START|synth reports|REPORT",
+      "[OPTRACE]|1961720|166|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024273571|END|synth reports|",
+      "[OPTRACE]|1961720|168|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024274376|END|ulp_inst_0_reset_sync_kernel0_0_synth_1|",
+      "[OPTRACE]|1961720|96|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024202459|START|ulp_inst_0_reset_sync_kernel0_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1961720|97|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel0_0_synth_1/ulp_inst_0_reset_sync_kernel0_0.tcl|vivado_synth|1785024202460|START|Creating in-memory project|",
+      "[OPTRACE]|1961721|108|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024208682|END|Creating in-memory project|",
+      "[OPTRACE]|1961721|109|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024208682|START|Adding files|",
+      "[OPTRACE]|1961721|116|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024208859|END|Adding files|",
+      "[OPTRACE]|1961721|117|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024208860|START|Configure IP Cache|",
+      "[OPTRACE]|1961721|118|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024208861|END|Configure IP Cache|",
+      "[OPTRACE]|1961721|119|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024208863|START|synth_design|",
+      "[OPTRACE]|1961721|230|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024300140|END|synth_design|",
+      "[OPTRACE]|1961721|231|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024300140|START|Write IP Cache|",
+      "[OPTRACE]|1961721|236|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024301584|END|Write IP Cache|",
+      "[OPTRACE]|1961721|237|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024301598|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1961721|238|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024302057|END|write_checkpoint|",
+      "[OPTRACE]|1961721|239|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024302057|START|synth reports|REPORT",
+      "[OPTRACE]|1961721|240|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024302348|END|synth reports|",
+      "[OPTRACE]|1961721|243|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024303277|END|ulp_inst_0_plram_ctrl_bram_0_synth_1|",
+      "[OPTRACE]|1961721|84|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024202209|START|ulp_inst_0_plram_ctrl_bram_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1961721|85|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_plram_ctrl_bram_0_synth_1/ulp_inst_0_plram_ctrl_bram_0.tcl|vivado_synth|1785024202210|START|Creating in-memory project|",
+      "[OPTRACE]|1963092|185|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024283883|START|ulp_inst_0_reset_sync_kernel1_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1963092|186|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024283884|START|Creating in-memory project|",
+      "[OPTRACE]|1963092|198|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024290141|END|Creating in-memory project|",
+      "[OPTRACE]|1963092|199|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024290141|START|Adding files|",
+      "[OPTRACE]|1963092|200|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024290299|END|Adding files|",
+      "[OPTRACE]|1963092|201|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024290301|START|Configure IP Cache|",
+      "[OPTRACE]|1963092|202|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024290302|END|Configure IP Cache|",
+      "[OPTRACE]|1963092|203|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024290304|START|synth_design|",
+      "[OPTRACE]|1963092|252|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024351656|END|synth_design|",
+      "[OPTRACE]|1963092|253|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024351656|START|Write IP Cache|",
+      "[OPTRACE]|1963092|258|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024352747|END|Write IP Cache|",
+      "[OPTRACE]|1963092|259|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024352763|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1963092|260|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024353101|END|write_checkpoint|",
+      "[OPTRACE]|1963092|261|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024353101|START|synth reports|REPORT",
+      "[OPTRACE]|1963092|263|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024353353|END|synth reports|",
+      "[OPTRACE]|1963092|268|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_kernel1_0_synth_1/ulp_inst_0_reset_sync_kernel1_0.tcl|vivado_synth|1785024354091|END|ulp_inst_0_reset_sync_kernel1_0_synth_1|",
+      "[OPTRACE]|1963169|187|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024284138|START|ulp_inst_0_reset_sync_fixed_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1963169|188|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024284139|START|Creating in-memory project|",
+      "[OPTRACE]|1963169|204|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024290581|END|Creating in-memory project|",
+      "[OPTRACE]|1963169|205|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024290582|START|Adding files|",
+      "[OPTRACE]|1963169|208|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024290748|END|Adding files|",
+      "[OPTRACE]|1963169|209|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024290749|START|Configure IP Cache|",
+      "[OPTRACE]|1963169|210|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024290751|END|Configure IP Cache|",
+      "[OPTRACE]|1963169|211|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024290752|START|synth_design|",
+      "[OPTRACE]|1963169|256|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024352242|END|synth_design|",
+      "[OPTRACE]|1963169|257|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024352242|START|Write IP Cache|",
+      "[OPTRACE]|1963169|262|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024353345|END|Write IP Cache|",
+      "[OPTRACE]|1963169|264|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024353362|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1963169|265|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024353714|END|write_checkpoint|",
+      "[OPTRACE]|1963169|266|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024353715|START|synth reports|REPORT",
+      "[OPTRACE]|1963169|267|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024353948|END|synth reports|",
+      "[OPTRACE]|1963169|269|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_reset_sync_fixed_0_synth_1/ulp_inst_0_reset_sync_fixed_0.tcl|vivado_synth|1785024354680|END|ulp_inst_0_reset_sync_fixed_0_synth_1|",
+      "[OPTRACE]|1963177|189|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024284265|START|ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1963177|190|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024284266|START|Creating in-memory project|",
+      "[OPTRACE]|1963177|206|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024290715|END|Creating in-memory project|",
+      "[OPTRACE]|1963177|207|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024290715|START|Adding files|",
+      "[OPTRACE]|1963177|214|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024290885|END|Adding files|",
+      "[OPTRACE]|1963177|215|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024290886|START|Configure IP Cache|",
+      "[OPTRACE]|1963177|216|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024290888|END|Configure IP Cache|",
+      "[OPTRACE]|1963177|217|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024290889|START|synth_design|",
+      "[OPTRACE]|1963177|274|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024360219|END|synth_design|",
+      "[OPTRACE]|1963177|275|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024360219|START|Write IP Cache|",
+      "[OPTRACE]|1963177|276|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024361806|END|Write IP Cache|",
+      "[OPTRACE]|1963177|277|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024361819|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1963177|278|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024362342|END|write_checkpoint|",
+      "[OPTRACE]|1963177|279|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024362342|START|synth reports|REPORT",
+      "[OPTRACE]|1963177|280|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024362591|END|synth reports|",
+      "[OPTRACE]|1963177|281|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024363673|END|ulp_inst_0_buffer_datamover_outerloop_0_1_arg3_axis_out_0_synth_1|",
+      "[OPTRACE]|1963442|195|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785024290106|START|ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1963442|196|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785024290107|START|Creating in-memory project|",
+      "[OPTRACE]|1963442|222|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785024296372|END|Creating in-memory project|",
+      "[OPTRACE]|1963442|223|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785024296373|START|Adding files|",
+      "[OPTRACE]|1963442|224|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785024296680|END|Adding files|",
+      "[OPTRACE]|1963442|225|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785024296682|START|Configure IP Cache|",
+      "[OPTRACE]|1963442|226|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785024296684|END|Configure IP Cache|",
+      "[OPTRACE]|1963442|227|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785024296686|START|synth_design|",
+      "[OPTRACE]|1963442|410|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785025173398|END|synth_design|",
+      "[OPTRACE]|1963442|411|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785025173399|START|Write IP Cache|",
+      "[OPTRACE]|1963442|412|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785025257173|END|Write IP Cache|",
+      "[OPTRACE]|1963442|413|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785025257290|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1963442|414|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785025305314|END|write_checkpoint|",
+      "[OPTRACE]|1963442|415|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785025305314|START|synth reports|REPORT",
+      "[OPTRACE]|1963442|416|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785025307904|END|synth reports|",
+      "[OPTRACE]|1963442|417|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1/ulp_inst_0_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785025344558|END|ulp_inst_0_kernel_outerloop_inst_0_1_0_synth_1|",
+      "[OPTRACE]|1963586|220|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024293339|START|ulp_inst_0_datamover_outerloop_0_1_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1963586|221|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024293341|START|Creating in-memory project|",
+      "[OPTRACE]|1963586|228|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024300118|END|Creating in-memory project|",
+      "[OPTRACE]|1963586|229|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024300119|START|Adding files|",
+      "[OPTRACE]|1963586|232|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024300480|END|Adding files|",
+      "[OPTRACE]|1963586|233|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024300482|START|Configure IP Cache|",
+      "[OPTRACE]|1963586|234|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024300483|END|Configure IP Cache|",
+      "[OPTRACE]|1963586|235|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024300484|START|synth_design|",
+      "[OPTRACE]|1963586|402|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024716113|END|synth_design|",
+      "[OPTRACE]|1963586|403|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024716113|START|Write IP Cache|",
+      "[OPTRACE]|1963586|404|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024729900|END|Write IP Cache|",
+      "[OPTRACE]|1963586|405|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024729930|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1963586|406|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024736900|END|write_checkpoint|",
+      "[OPTRACE]|1963586|407|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024736900|START|synth reports|REPORT",
+      "[OPTRACE]|1963586|408|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024737671|END|synth reports|",
+      "[OPTRACE]|1963586|409|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_datamover_outerloop_0_1_0_synth_1/ulp_inst_0_datamover_outerloop_0_1_0.tcl|vivado_synth|1785024744318|END|ulp_inst_0_datamover_outerloop_0_1_0_synth_1|",
+      "[OPTRACE]|1963768|241|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024302927|START|ulp_inst_0_axi_ic_user_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1963768|242|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024302928|START|Creating in-memory project|",
+      "[OPTRACE]|1963768|244|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024309125|END|Creating in-memory project|",
+      "[OPTRACE]|1963768|245|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024309126|START|Adding files|",
+      "[OPTRACE]|1963768|246|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024314007|END|Adding files|",
+      "[OPTRACE]|1963768|247|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024314009|START|Configure IP Cache|",
+      "[OPTRACE]|1963768|248|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024314061|END|Configure IP Cache|",
+      "[OPTRACE]|1963768|249|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024314062|START|synth_design|",
+      "[OPTRACE]|1963768|322|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024408881|END|synth_design|",
+      "[OPTRACE]|1963768|323|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024408883|START|Write IP Cache|",
+      "[OPTRACE]|1963768|324|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024412678|END|Write IP Cache|",
+      "[OPTRACE]|1963768|325|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024412695|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1963768|326|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024414011|END|write_checkpoint|",
+      "[OPTRACE]|1963768|327|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024414011|START|synth reports|REPORT",
+      "[OPTRACE]|1963768|328|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024414308|END|synth reports|",
+      "[OPTRACE]|1963768|329|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_axi_ic_user_0_synth_1/ulp_inst_0_axi_ic_user_0.tcl|vivado_synth|1785024416622|END|ulp_inst_0_axi_ic_user_0_synth_1|",
+      "[OPTRACE]|1965205|282|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024373539|START|ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1965205|283|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024373540|START|Creating in-memory project|",
+      "[OPTRACE]|1965205|292|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024379413|END|Creating in-memory project|",
+      "[OPTRACE]|1965205|293|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024379413|START|Adding files|",
+      "[OPTRACE]|1965205|296|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024379602|END|Adding files|",
+      "[OPTRACE]|1965205|299|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024379603|START|Configure IP Cache|",
+      "[OPTRACE]|1965205|300|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024379606|END|Configure IP Cache|",
+      "[OPTRACE]|1965205|301|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024379607|START|synth_design|",
+      "[OPTRACE]|1965205|338|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024448696|END|synth_design|",
+      "[OPTRACE]|1965205|339|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024448696|START|Write IP Cache|",
+      "[OPTRACE]|1965205|348|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024450313|END|Write IP Cache|",
+      "[OPTRACE]|1965205|349|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024450326|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1965205|350|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024450862|END|write_checkpoint|",
+      "[OPTRACE]|1965205|351|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024450862|START|synth reports|REPORT",
+      "[OPTRACE]|1965205|354|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024451128|END|synth reports|",
+      "[OPTRACE]|1965205|369|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024452118|END|ulp_inst_0_buffer_datamover_outerloop_0_1_arg2_axis_out_0_synth_1|",
+      "[OPTRACE]|1965206|284|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024373598|START|ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1965206|285|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024373600|START|Creating in-memory project|",
+      "[OPTRACE]|1965206|294|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024379472|END|Creating in-memory project|",
+      "[OPTRACE]|1965206|295|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024379472|START|Adding files|",
+      "[OPTRACE]|1965206|302|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024379664|END|Adding files|",
+      "[OPTRACE]|1965206|303|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024379666|START|Configure IP Cache|",
+      "[OPTRACE]|1965206|304|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024379668|END|Configure IP Cache|",
+      "[OPTRACE]|1965206|305|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024379673|START|synth_design|",
+      "[OPTRACE]|1965206|342|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024449450|END|synth_design|",
+      "[OPTRACE]|1965206|343|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024449450|START|Write IP Cache|",
+      "[OPTRACE]|1965206|355|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024451140|END|Write IP Cache|",
+      "[OPTRACE]|1965206|356|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024451154|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1965206|361|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024451701|END|write_checkpoint|",
+      "[OPTRACE]|1965206|362|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024451701|START|synth reports|REPORT",
+      "[OPTRACE]|1965206|366|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024451936|END|synth reports|",
+      "[OPTRACE]|1965206|375|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024452993|END|ulp_inst_0_buffer_datamover_outerloop_0_1_arg1_axis_out_0_synth_1|",
+      "[OPTRACE]|1965207|290|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024373862|START|ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1965207|291|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024373863|START|Creating in-memory project|",
+      "[OPTRACE]|1965207|312|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024379845|END|Creating in-memory project|",
+      "[OPTRACE]|1965207|313|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024379845|START|Adding files|",
+      "[OPTRACE]|1965207|318|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024380017|END|Adding files|",
+      "[OPTRACE]|1965207|319|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024380019|START|Configure IP Cache|",
+      "[OPTRACE]|1965207|320|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024380021|END|Configure IP Cache|",
+      "[OPTRACE]|1965207|321|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024380023|START|synth_design|",
+      "[OPTRACE]|1965207|346|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024450228|END|synth_design|",
+      "[OPTRACE]|1965207|347|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024450228|START|Write IP Cache|",
+      "[OPTRACE]|1965207|364|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024451891|END|Write IP Cache|",
+      "[OPTRACE]|1965207|365|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024451904|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1965207|371|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024452494|END|write_checkpoint|",
+      "[OPTRACE]|1965207|372|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024452494|START|synth reports|REPORT",
+      "[OPTRACE]|1965207|373|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024452787|END|synth reports|",
+      "[OPTRACE]|1965207|377|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1/ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0.tcl|vivado_synth|1785024453857|END|ulp_inst_0_buffer_datamover_outerloop_0_1_arg0_axis_out_0_synth_1|",
+      "[OPTRACE]|1965208|288|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024373775|START|ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1965208|289|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024373776|START|Creating in-memory project|",
+      "[OPTRACE]|1965208|306|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024379763|END|Creating in-memory project|",
+      "[OPTRACE]|1965208|307|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024379763|START|Adding files|",
+      "[OPTRACE]|1965208|314|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024379934|END|Adding files|",
+      "[OPTRACE]|1965208|315|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024379936|START|Configure IP Cache|",
+      "[OPTRACE]|1965208|316|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024379938|END|Configure IP Cache|",
+      "[OPTRACE]|1965208|317|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024379940|START|synth_design|",
+      "[OPTRACE]|1965208|344|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024449681|END|synth_design|",
+      "[OPTRACE]|1965208|345|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024449681|START|Write IP Cache|",
+      "[OPTRACE]|1965208|357|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024451383|END|Write IP Cache|",
+      "[OPTRACE]|1965208|358|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024451396|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1965208|367|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024451985|END|write_checkpoint|",
+      "[OPTRACE]|1965208|368|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024451985|START|synth reports|REPORT",
+      "[OPTRACE]|1965208|370|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024452280|END|synth reports|",
+      "[OPTRACE]|1965208|376|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0.tcl|vivado_synth|1785024453350|END|ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg4_axis_out_0_synth_1|",
+      "[OPTRACE]|1965209|286|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024373647|START|ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1965209|287|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024373649|START|Creating in-memory project|",
+      "[OPTRACE]|1965209|297|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024379603|END|Creating in-memory project|",
+      "[OPTRACE]|1965209|298|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024379603|START|Adding files|",
+      "[OPTRACE]|1965209|308|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024379795|END|Adding files|",
+      "[OPTRACE]|1965209|309|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024379796|START|Configure IP Cache|",
+      "[OPTRACE]|1965209|310|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024379798|END|Configure IP Cache|",
+      "[OPTRACE]|1965209|311|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024379800|START|synth_design|",
+      "[OPTRACE]|1965209|340|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024449190|END|synth_design|",
+      "[OPTRACE]|1965209|341|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024449190|START|Write IP Cache|",
+      "[OPTRACE]|1965209|352|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024450873|END|Write IP Cache|",
+      "[OPTRACE]|1965209|353|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024450885|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1965209|359|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024451517|END|write_checkpoint|",
+      "[OPTRACE]|1965209|360|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024451518|START|synth reports|REPORT",
+      "[OPTRACE]|1965209|363|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024451790|END|synth reports|",
+      "[OPTRACE]|1965209|374|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0.tcl|vivado_synth|1785024452859|END|ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg3_axis_out_0_synth_1|",
+      "[OPTRACE]|1966054|330|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024423510|START|ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1966054|331|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024423511|START|Creating in-memory project|",
+      "[OPTRACE]|1966054|332|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024429226|END|Creating in-memory project|",
+      "[OPTRACE]|1966054|333|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024429226|START|Adding files|",
+      "[OPTRACE]|1966054|334|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024429407|END|Adding files|",
+      "[OPTRACE]|1966054|335|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024429408|START|Configure IP Cache|",
+      "[OPTRACE]|1966054|336|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024429410|END|Configure IP Cache|",
+      "[OPTRACE]|1966054|337|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024429412|START|synth_design|",
+      "[OPTRACE]|1966054|386|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024498293|END|synth_design|",
+      "[OPTRACE]|1966054|387|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024498293|START|Write IP Cache|",
+      "[OPTRACE]|1966054|388|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024499963|END|Write IP Cache|",
+      "[OPTRACE]|1966054|389|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024499976|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1966054|390|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024500524|END|write_checkpoint|",
+      "[OPTRACE]|1966054|391|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024500524|START|synth reports|REPORT",
+      "[OPTRACE]|1966054|392|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024500806|END|synth reports|",
+      "[OPTRACE]|1966054|393|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0.tcl|vivado_synth|1785024501864|END|ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg1_axis_out_0_synth_1|",
+      "[OPTRACE]|1966434|378|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024462074|START|ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|1966434|379|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024462075|START|Creating in-memory project|",
+      "[OPTRACE]|1966434|380|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024467776|END|Creating in-memory project|",
+      "[OPTRACE]|1966434|381|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024467776|START|Adding files|",
+      "[OPTRACE]|1966434|382|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024467965|END|Adding files|",
+      "[OPTRACE]|1966434|383|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024467967|START|Configure IP Cache|",
+      "[OPTRACE]|1966434|384|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024467969|END|Configure IP Cache|",
+      "[OPTRACE]|1966434|385|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024467970|START|synth_design|",
+      "[OPTRACE]|1966434|394|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024534423|END|synth_design|",
+      "[OPTRACE]|1966434|395|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024534423|START|Write IP Cache|",
+      "[OPTRACE]|1966434|396|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024535884|END|Write IP Cache|",
+      "[OPTRACE]|1966434|397|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024535896|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|1966434|398|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024536420|END|write_checkpoint|",
+      "[OPTRACE]|1966434|399|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024536421|START|synth reports|REPORT",
+      "[OPTRACE]|1966434|400|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024536692|END|synth reports|",
+      "[OPTRACE]|1966434|401|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1/ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0.tcl|vivado_synth|1785024537651|END|ulp_inst_0_buffer_kernel_outerloop_inst_0_1_arg2_axis_out_0_synth_1|",
+      "[OPTRACE]|2121315|418|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025353453|START|my_rm_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|2121315|419|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025353454|START|Creating in-memory project|",
+      "[OPTRACE]|2121315|420|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025359156|END|Creating in-memory project|",
+      "[OPTRACE]|2121315|421|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025359156|START|Adding files|",
+      "[OPTRACE]|2121315|422|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025367031|END|Adding files|",
+      "[OPTRACE]|2121315|423|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025367041|START|synth_design|",
+      "[OPTRACE]|2121315|424|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025423493|END|synth_design|",
+      "[OPTRACE]|2121315|425|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025423506|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|2121315|426|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025424164|END|write_checkpoint|",
+      "[OPTRACE]|2121315|427|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025424164|START|synth reports|REPORT",
+      "[OPTRACE]|2121315|428|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025424164|END|synth reports|",
+      "[OPTRACE]|2121315|429|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp_inst_0.tcl|vivado_synth|1785025425109|END|my_rm_synth_1|",
+      "[OPTRACE]|2122041|431|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025437239|START|impl_1|ROLLUP_1",
+      "[OPTRACE]|2122041|432|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025437239|START|Phase: Init Design|ROLLUP_AUTO",
+      "[OPTRACE]|2122041|433|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025437241|START|Design Initialization: pre hook|",
+      "[OPTRACE]|2122041|434|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025437259|END|Design Initialization: pre hook|",
+      "[OPTRACE]|2122041|435|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025437260|START|create in-memory project|",
+      "[OPTRACE]|2122041|436|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025440530|END|create in-memory project|",
+      "[OPTRACE]|2122041|437|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025440530|START|set parameters|",
+      "[OPTRACE]|2122041|438|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025442878|END|set parameters|",
+      "[OPTRACE]|2122041|439|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025442878|START|add files|",
+      "[OPTRACE]|2122041|440|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025451104|START|read constraints: implementation|",
+      "[OPTRACE]|2122041|441|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025451105|END|read constraints: implementation|",
+      "[OPTRACE]|2122041|442|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025451106|END|add files|",
+      "[OPTRACE]|2122041|443|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785025451106|START|link_design|",
+      "[OPTRACE]|2122041|444|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107648|END|link_design|",
+      "[OPTRACE]|2122041|445|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107649|START|gray box cells|",
+      "[OPTRACE]|2122041|446|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107649|END|gray box cells|",
+      "[OPTRACE]|2122041|447|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107649|START|Design Initialization: post hook|",
+      "[OPTRACE]|2122041|448|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107786|END|Design Initialization: post hook|",
+      "[OPTRACE]|2122041|449|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107786|START|init_design_reports|REPORT",
+      "[OPTRACE]|2122041|450|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107786|END|init_design_reports|",
+      "[OPTRACE]|2122041|451|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107786|START|init_design_write_hwdef|",
+      "[OPTRACE]|2122041|452|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107786|END|init_design_write_hwdef|",
+      "[OPTRACE]|2122041|453|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107789|END|Phase: Init Design|",
+      "[OPTRACE]|2122041|454|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107789|START|Phase: Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|2122041|455|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026107792|START|Opt Design: pre hook|",
+      "[OPTRACE]|2122041|456|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026132487|END|Opt Design: pre hook|",
+      "[OPTRACE]|2122041|457|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026132487|START|read constraints: opt_design|",
+      "[OPTRACE]|2122041|458|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026132487|END|read constraints: opt_design|",
+      "[OPTRACE]|2122041|459|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026132487|START|opt_design|",
+      "[OPTRACE]|2122041|460|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441203|END|opt_design|",
+      "[OPTRACE]|2122041|461|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441203|START|read constraints: opt_design_post|",
+      "[OPTRACE]|2122041|462|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441203|END|read constraints: opt_design_post|",
+      "[OPTRACE]|2122041|463|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441203|START|Opt Design: post hook|",
+      "[OPTRACE]|2122041|464|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441208|END|Opt Design: post hook|",
+      "[OPTRACE]|2122041|465|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441208|START|opt_design reports|REPORT",
+      "[OPTRACE]|2122041|466|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441208|END|opt_design reports|",
+      "[OPTRACE]|2122041|467|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441210|END|Phase: Opt Design|",
+      "[OPTRACE]|2122041|468|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441210|START|Phase: Place Design|ROLLUP_AUTO",
+      "[OPTRACE]|2122041|469|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441212|START|Place Design: pre hook|",
+      "[OPTRACE]|2122041|470|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441241|END|Place Design: pre hook|",
+      "[OPTRACE]|2122041|471|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441241|START|read constraints: place_design|",
+      "[OPTRACE]|2122041|472|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441242|END|read constraints: place_design|",
+      "[OPTRACE]|2122041|473|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441242|START|implement_debug_core|",
+      "[OPTRACE]|2122041|474|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441242|END|implement_debug_core|",
+      "[OPTRACE]|2122041|475|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785026441242|START|place_design|",
+      "[OPTRACE]|2122041|476|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029255697|END|place_design|",
+      "[OPTRACE]|2122041|477|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029255697|START|read constraints: place_design_post|",
+      "[OPTRACE]|2122041|478|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029255697|END|read constraints: place_design_post|",
+      "[OPTRACE]|2122041|479|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029255697|START|Place Design: post hook|",
+      "[OPTRACE]|2122041|480|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029321150|END|Place Design: post hook|",
+      "[OPTRACE]|2122041|481|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029321150|START|place_design reports|REPORT",
+      "[OPTRACE]|2122041|482|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029321151|END|place_design reports|",
+      "[OPTRACE]|2122041|483|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029321154|END|Phase: Place Design|",
+      "[OPTRACE]|2122041|484|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029321154|START|Phase: Physical Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|2122041|485|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029321157|START|read constraints: phys_opt_design|",
+      "[OPTRACE]|2122041|486|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029321157|END|read constraints: phys_opt_design|",
+      "[OPTRACE]|2122041|487|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029321157|START|phys_opt_design|",
+      "[OPTRACE]|2122041|488|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433840|END|phys_opt_design|",
+      "[OPTRACE]|2122041|489|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433841|START|read constraints: phys_opt_design_post|",
+      "[OPTRACE]|2122041|490|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433841|END|read constraints: phys_opt_design_post|",
+      "[OPTRACE]|2122041|491|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433841|START|phys_opt_design report|REPORT",
+      "[OPTRACE]|2122041|492|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433841|END|phys_opt_design report|",
+      "[OPTRACE]|2122041|493|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433845|END|Phase: Physical Opt Design|",
+      "[OPTRACE]|2122041|494|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433845|START|Phase: Route Design|ROLLUP_AUTO",
+      "[OPTRACE]|2122041|495|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433850|START|read constraints: route_design|",
+      "[OPTRACE]|2122041|496|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433850|END|read constraints: route_design|",
+      "[OPTRACE]|2122041|497|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785029433850|START|route_design|",
+      "[OPTRACE]|2122041|498|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032095266|END|route_design|",
+      "[OPTRACE]|2122041|499|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032095267|START|read constraints: route_design_post|",
+      "[OPTRACE]|2122041|500|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032095267|END|read constraints: route_design_post|",
+      "[OPTRACE]|2122041|501|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032095267|START|Route Design: post hook|",
+      "[OPTRACE]|2122041|502|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032216377|END|Route Design: post hook|",
+      "[OPTRACE]|2122041|503|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032216377|START|Route Design: write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|2122041|504|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032324255|END|Route Design: write_checkpoint|",
+      "[OPTRACE]|2122041|505|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032324256|START|route_design reports|REPORT",
+      "[OPTRACE]|2122041|506|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032368131|END|route_design reports|",
+      "[OPTRACE]|2122041|507|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032368132|START|route_design misc|",
+      "[OPTRACE]|2122041|508|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032368135|END|route_design misc|",
+      "[OPTRACE]|2122041|509|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032368135|END|Phase: Route Design|",
+      "[OPTRACE]|2122041|510|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032368135|START|Phase: Phys-Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|2122041|511|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032368139|START|phys_opt_design|",
+      "[OPTRACE]|2122041|512|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032371690|END|phys_opt_design|",
+      "[OPTRACE]|2122041|513|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032371691|START|Post-Route Phys Opt Design: post hook|",
+      "[OPTRACE]|2122041|514|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032371694|END|Post-Route Phys Opt Design: post hook|",
+      "[OPTRACE]|2122041|515|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032371694|START|Post-Route Phys Opt Design: write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|2122041|516|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032477925|END|Post-Route Phys Opt Design: write_checkpoint|",
+      "[OPTRACE]|2122041|517|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032477926|START|phys_opt_design reports|REPORT",
+      "[OPTRACE]|2122041|518|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032520015|END|phys_opt_design reports|",
+      "[OPTRACE]|2122041|519|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032520015|START|phys_opt_design misc|",
+      "[OPTRACE]|2122041|520|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032520018|END|phys_opt_design misc|",
+      "[OPTRACE]|2122041|521|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032520019|END|Phase: Phys-Opt Design|",
+      "[OPTRACE]|2122041|522|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032520019|START|Phase: Write Device Image|ROLLUP_AUTO",
+      "[OPTRACE]|2122041|523|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032520019|START|write_device_image setup|",
+      "[OPTRACE]|2122041|524|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032520021|START|Write Device Image: pre hook|",
+      "[OPTRACE]|2122041|525|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032614689|END|Write Device Image: pre hook|",
+      "[OPTRACE]|2122041|526|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032614689|START|read constraints: write_bitstream|",
+      "[OPTRACE]|2122041|527|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032614689|END|read constraints: write_bitstream|",
+      "[OPTRACE]|2122041|528|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032614689|START|read constraints: write_bitstream|",
+      "[OPTRACE]|2122041|529|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032614689|END|read constraints: write_bitstream|",
+      "[OPTRACE]|2122041|530|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032614692|END|write_device_image setup|",
+      "[OPTRACE]|2122041|531|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785032614692|START|write_device_image|",
+      "[OPTRACE]|2122041|532|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034471152|END|write_device_image|",
+      "[OPTRACE]|2122041|533|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034471153|START|write_device_image misc|",
+      "[OPTRACE]|2122041|534|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034471153|START|read constraints: write_bitstream_post|",
+      "[OPTRACE]|2122041|535|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034471153|END|read constraints: write_bitstream_post|",
+      "[OPTRACE]|2122041|536|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034471153|START|read constraints: write_device_image_post|",
+      "[OPTRACE]|2122041|537|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034471153|END|read constraints: write_device_image_post|",
+      "[OPTRACE]|2122041|538|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034471153|START|Write Device Image: post hook|",
+      "[OPTRACE]|2122041|539|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034471158|END|Write Device Image: post hook|",
+      "[OPTRACE]|2122041|540|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034505249|END|write_device_image misc|",
+      "[OPTRACE]|2122041|541|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034505250|END|Phase: Write Device Image|",
+      "[OPTRACE]|2122041|542|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/top_wrapper.tcl|vivado_impl|1785034505250|END|impl_1|"
+      ];
+
+  var legendData = [
+  { "title": "Report Generation",
+    "color": "#b9783f"
+  }, {
+    "title": "Write Checkpoint",
+    "color": "#cd82ad"
+  },
+  {
+    "title": "Incomplete Data",
+    "color": "#cc4748"
+  } ];
+
+  // -- Convert Raw data into something we can use ---------------------------
+  console.log("Convert log data (%s entries) to Javascript 'JSON' objects...", csvData.length);
+  var jsonData = csvArrayToJSON(header, csvData, "|");
+
+  // -- Clean up the JSON objects --------------------------------------------
+  for (var i = 0; i < jsonData.length; i++) {
+    jsonData[i].Action = jsonData[i].Action.toUpperCase();
+    jsonData[i].Tags = jsonData[i].Tags.toUpperCase();
+    jsonData[i].Tags = jsonData[i].Tags.trim();
+    jsonData[i].TimeStampMSec = parseInt(jsonData[i].TimeStampMSec, 10);
+    jsonData[i].pid = parseInt(jsonData[i].pid, 10);
+  }
+
+  // -- Sort JSON array ------------------------------------------------------
+  console.log("Sorting JSON objects (%s objects) according to timestamps...", jsonData.length);
+  jsonData.sort(compareByTimeStamp);
+
+  // Record the PID grouping order
+  var pidOrder = new Map();
+  for (var i = 0; i < jsonData.length; i++) {
+    if (pidOrder.has(jsonData[i].pid) == false) {
+      pidOrder.set(jsonData[i].pid, i);    // Simple ordering (lower is first)
+    }
+  }
+
+  // -- Create secondary data array for the chart data array -----------------
+  console.log("Preparing graph data...");
+
+  // Task limits
+  var m_startTS = 0;      // Earliest Timestamp
+  var m_endTS = 0;        // Latest Timestamp
+
+  if (jsonData.length > 0) {
+    m_startTS = jsonData[0].TimeStampMSec;
+    m_endTS = jsonData[jsonData.length - 1].TimeStampMSec;
+  }
+
+
+  var chartData = [ ];   // Empty JSON array
+
+
+  populateChartData();
+  tableCreate( chartData );
+
+  filterChartEntries();
+
+  // -- Search for "holes"
+  // -- Sort by common PID
+  // -- Create groupings by process
+
+  console.log("done");
+
+  var chart = AmCharts.makeChart("chartdiv", {
+    "type": "gantt",
+    "theme": "light",
+    "titles": [
+    { "text": "OPTrace", "size": 15}],
+    "marginRight": 70,
+    "period": "fff",                                     // X-Axis
+    "balloonDateFormat": "JJ:NN:SS",
+    "columnWidth": 0.5,                                 // Bar thickness
+    "valueAxis": {
+      "type": "numeric",
+      "title": "Time [HH:MM:SS]",
+      "duration": "ss",
+      "durationUnits": { DD: 'd. ', hh: ':', mm: ':', ss: '' },
+    },
+    "brightnessStep": 10,
+    "graph": {
+      "fillAlphas": 1,
+      "labelFunction": barLabelCallBack,
+      "labelText": " ",
+      "labelPosition": "right",
+      "balloonFunction": ballonLabelCallBack,
+      "balloonText": "<p align='left'> Task: [[task]]<br/>Start:[[start]]<br/>End:[[end]]<br/>Duration:[[duration]]</p>",
+      "bulletField": "bullet",
+      "bulletSize": 8
+    },
+    "rotate": true,
+    "categoryField": "category",
+    "segmentsField": "segments",
+    "colorField": "color",
+    "startDate": "2015-01-01 00:00:00",
+    "startField": "start",
+    "endField": "end",
+    "durationField": "duration",
+    "dataProvider": chartData,
+    "valueScrollbar": {
+      "autoGridCount": true
+    },
+    "chartScrollbar": {
+      "enable": true
+    },
+    "chartCursor": {
+      "cursorColor": "#55bb76",
+      "valueBalloonsEnabled": false,
+      "cursorAlpha": 0.1,
+      "valueLineAlpha": 0.5,
+      "valueLineBalloonEnabled": true,
+      "valueLineEnabled": true,
+      "zoomable": true,
+      "valueZoomable": true,
+      "fullWidth": true
+    },
+    "legend": {
+      "data": legendData,
+    },
+    "export": {
+      "enabled": true
+    }
+  });
+
+  // =========================================================================
+  // Call back methods
+  // =========================================================================
+function ballonLabelCallBack( _graphDataItem )
+{
+  var start = _graphDataItem.values.open;
+  var end = _graphDataItem.values.value;
+  var duration = end - start;
+
+  var result = "<p align='left'>Task: " + _graphDataItem.category + "<br/>Start: " + secondsToHHMMSS(start) + "<br/>End: " + secondsToHHMMSS( end ) + "<br/>Duration: " + secondsToHHMMSS( duration ) + "</p>";
+  return result;
+}
+
+
+function barLabelCallBack( _graphDataItem )
+{
+   var duration = _graphDataItem.values.value - _graphDataItem.values.open;
+
+   return secondsToHHMMSS( duration);
+}
+
+
+function userInputFormCallback()
+{
+  // Second filter
+  m_secondFilter = document.getElementById("userDurationFilterSecInput").value;
+  console.log("Setting second filter to: " + m_secondFilter + " seconds");
+
+  // Group PID Sort
+  m_groupPidSort = document.getElementById("userGroupPidSortSelected").checked;
+  console.log("Group PID filter is set to: " + m_groupPidSort);
+
+  // Rollup filter
+  m_showRollup = document.getElementById("userRollupSelected").checked;
+  console.log("Rollup filter is set to: " + m_showRollup);
+
+  // Individual filter
+  m_showIndividualEntry = document.getElementById("userIndividualEntrySelected").checked;
+  console.log("Individual filter is set to: " + m_showIndividualEntry);
+
+  // Checkpoint Report Entries filter
+  m_showCheckpointEntry = document.getElementById("userCheckpointEntrySelected").checked;
+  console.log("Checkpoint Entry filter is set to: " + m_showCheckpointEntry);
+
+  // Checkpoint Report Entries filter
+  m_showReportEntry = document.getElementById("userReportEntrySelected").checked;
+  console.log("Report Entry filter is set to: " + m_showReportEntry);
+
+  populateChartData();
+  filterChartEntries()
+  chart.dataProvider = chartData;
+  chart.validateData();
+}
+
+  // =========================================================================
+  // Utilities
+  // =========================================================================
+
+
+function populateChartData()
+{
+  chartData = [ ];
+  if (m_groupPidSort == false) {
+    jsonData.sort(compareByTimeStamp);
+  } else {
+    jsonData.sort(compareByGroupTimeStamp);
+  }
+
+  for (var i = 0; i < jsonData.length; i++) {
+    var timestamp = parseInt(jsonData[0].TimeStampMSec, 10);
+
+    if (m_startTS > timestamp) m_startTS = timestamp;
+    if (m_endTS < timestamp) m_endTS = timestamp;
+
+    for (var i = 0; i < jsonData.length; i++) {
+      switch (jsonData[i].Action) {
+      case "START":
+        var categoryEntry = { };
+        categoryEntry["category"] = jsonData[i].Task;
+        categoryEntry["pid"] = jsonData[i].pid;
+
+        var segmentEntry = { };
+        // Normalize entry and convert to seconds
+        segmentEntry["start"] = (jsonData[i].TimeStampMSec - m_startTS) / 1000;
+        segmentEntry["color"] = getTaskBarColor(jsonData[i].Tags)
+        segmentEntry["task"] = jsonData[i].Task;
+        segmentEntry["tags"] = jsonData[i].Tags;
+        segmentEntry["duration"] = -1;
+
+        categoryEntry["segments"] = [ ];
+        categoryEntry["segments"].push(segmentEntry);
+        chartData.push(categoryEntry);
+        break;
+
+      case "END":
+        var catagory = findCatagory(jsonData[i].pid, jsonData[i].Task, chartData);
+        if (catagory != null) {
+          var segmentsEntry = catagory.segments[0];
+          segmentsEntry["end"] = (jsonData[i].TimeStampMSec - m_startTS) / 1000;
+          segmentsEntry["duration"] = segmentsEntry.end - segmentsEntry.start;
+        } else {
+          console.log("Null entry found: pid:%s, Task: %s", jsonData[i].pid, jsonData[i].Task);
+        }
+
+        break;
+
+      default:
+        console.log("Default");
+        break;
+      }
+    }
+  }
+}
+
+function filterChartEntries()
+{
+  for(var i = chartData.length - 1; i >= 0; i--) {
+    var segment = chartData[i].segments[0];
+
+    // -- Remove entries less than 1 seconds
+    if ( segment["duration"] == -1) {
+      segment["bullet"] = "xError";
+      segment["color"] = "#cc4748";
+      segment["duration"] = ((m_endTS - m_startTS) / 1000) - segment["start"];
+    } else if (segment["duration"] <  m_secondFilter) {
+      chartData.splice(i, 1);
+      continue;
+    }
+  
+
+    // Filter by tags
+    var bHasRollup = false;
+    var bHasCheckpoint = false;
+    var bHasReport = false;
+
+    var tags = segment["tags"];
+    console.log("Tag: " + tags);
+    if (tags.search(/ROLLUP_/i) != -1) { bHasRollup = true; }
+    if (tags.search(/CHECKPOINT/i) != -1) { bHasCheckpoint = true; }
+    if (tags.search(/REPORT/i) != -1) { bHasReport = true; }
+
+    var bRemoveEntry = false;
+
+    // Remove rollups
+    if ((m_showRollup == false) && (bHasRollup == true)) {
+      bRemoveEntry = true;
+    }
+    
+    // Remove checkpoints    
+    if ((m_showCheckpointEntry == false) && (bHasCheckpoint == true)) {
+      bRemoveEntry = true;
+    }
+
+    // Remove reports
+    if ((m_showReportEntry == false) && (bHasReport == true)) {
+      bRemoveEntry = true;
+    }
+
+    // Remove individual entry
+    if (((m_showIndividualEntry == false) && 
+         ((bHasRollup == false) &&
+          (bHasCheckpoint == false) &&
+          (bHasReport == false)))) {
+      bRemoveEntry = true;
+    }
+
+    if (bRemoveEntry == true) {
+      chartData.splice(i, 1);
+      continue;
+    }
+  }
+
+  console.log("ChartData.length: " + chartData.length);
+}
+
+
+function getTaskBarColor( _tags )
+{
+  if (_tags == null)
+    return "#8dc49f";
+
+  if (_tags.search(/ROLLUP_AUTO/i) != -1){ return "#0099ff"; }
+  if (_tags.search(/ROLLUP_0/i) != -1)   { return "#006699"; }
+  if (_tags.search(/ROLLUP_1/i) != -1)   { return "#009933"; }
+  if (_tags.search(/ROLLUP_2/i) != -1)   { return "#66ccff"; }
+  if (_tags.search(/REPORT/i) != -1)     { return "#b9783f"; }
+  if (_tags.search(/CHECKPOINT/i) != -1) { return "#cd82ad"; }
+
+  return "#8dc49f"
+}
+
+
+function tableCreate( _chartData ){
+    var myTableDiv = document.getElementById("myDynamicTable");
+
+
+    for ( var i = 0; i < _chartData.length; i++) {
+      var tr = myTableDiv.insertRow();
+
+      var td_task = tr.insertCell();
+      td_task.appendChild(document.createTextNode( _chartData[i].category ));
+
+      var segmentEntry = _chartData[i].segments;
+      var td_start = tr.insertCell();
+      td_start.appendChild(document.createTextNode( secondsToHHMMSS(segmentEntry[0].start) ));
+
+      var td_duration = tr.insertCell();
+      td_duration.appendChild(document.createTextNode( secondsToHHMMSS(segmentEntry[0].duration) ));
+
+    }
+}
+
+function secondsToHHMMSS( _seconds )
+{
+  var hours = Math.floor(_seconds / 3600);
+  var minutes = Math.floor(_seconds % 3600 / 60);
+  var seconds = Math.floor(_seconds % 3600 % 60);
+
+  var result = hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds; 
+
+  return result;
+}
+
+
+  function findCatagory(_pid, _category, _catagoryArray) {
+    for (var i = (_catagoryArray.length - 1); i >= 0; i--) {
+      if (_pid == _catagoryArray[i].pid) {
+        if (_catagoryArray[i].category == _category) {
+          return  _catagoryArray[i];
+        }
+      }
+    }
+    return null;
+  }
+
+
+  // Compares the timestamps between to JSON objects
+  function compareByTimeStamp(_a, _b) {
+    if (_a.TimeStampMSec < _b.TimeStampMSec) return -1;
+    if (_a.TimeStampMSec > _b.TimeStampMSec) return 1;
+
+    if (_a.pid == _b.pid) {
+      if ((_a.Action == "START") && (_b.Action == "END")) return -1;
+      if ((_a.Action == "END") && (_b.Action == "START")) return 1;
+
+      if(_a.Entry < _b.Entry) return -1;
+      if(_a.Entry > _b.Entry) return 1;
+    }
+
+    return 0;
+  }
+
+
+  // Compares the timestamps between to JSON objects
+  function compareByGroupTimeStamp(_a, _b) {
+    if (pidOrder.get(_a.pid) < pidOrder.get(_b.pid)) return -1;
+
+    if (pidOrder.get(_a.pid) > pidOrder.get(_b.pid)) return 1;
+
+    return compareByTimeStamp(_a, _b);
+  }
+
+
+  // Return array of string values, or NULL if CSV string not well formed.
+  function CSVtoArray(_text, _sep) {
+    // Regex expressions
+    var re_valid_default = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+    var re_value_default = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+    var re_special_default = /,\s*$/;
+
+    // Algorithm:
+    //   1) Convert regex expression to a string.
+    //   2) Remove leading regex escape character (e.g., '\')
+    //   3) Remove training regex escape character(s) (e.g., '\' or "\g")
+    //   4) Replace the comma (',') character witht he new delimiter character
+    //   5) Build the regex command
+
+    // Check delimiter, if special insert escapes
+    if (_sep == "|") _sep = "\\|";
+
+    var re_valid = new RegExp(re_valid_default.toString().substr(1).slice(0, -1).replace(/,/g, _sep));
+    var re_value = new RegExp(re_value_default.toString().substr(1).slice(0, -2).replace(/,/g, _sep), 'g');
+    var re_special = new RegExp(re_special_default.toString().substr(1).slice(0, -1).replace(/,/g, _sep));
+
+    // Validate the input string to determine if it is well formed
+    if (!re_valid.test(_text)) return null;
+
+    var a = [ ];                     // Initialize array to receive values.
+    _text.replace(re_value,           // "Walk" the string using replace with callback.
+                  function(m0, m1, m2, m3) {
+                      // Remove backslash from \' in single quoted values.
+                      if      (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+                      // Remove backslash from \" in double quoted values.
+                      else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+                      else if (m3 !== undefined) a.push(m3);
+                      return ''; // Return empty string.
+                  });
+
+    // Handle special case of empty last value.
+    if (re_special.test(_text)) a.push('');
+
+    return a;
+  };
+
+
+  // Converts the given CSV array & header into a JSON array
+  function csvArrayToJSON(_header, _csvArray, _sep) {
+    var result = [ ];
+    var headers = CSVtoArray(_header, _sep);
+
+    for (var i = 0; i < _csvArray.length; i++) {
+
+      var obj = { };
+      var currentline = CSVtoArray(_csvArray[i], _sep);
+
+      for (var j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
+      }
+
+      result.push(obj);
+
+    }
+
+    return result; //JavaScript object
+  }
+
+
+</script>
+</body>
+
+</html>
+

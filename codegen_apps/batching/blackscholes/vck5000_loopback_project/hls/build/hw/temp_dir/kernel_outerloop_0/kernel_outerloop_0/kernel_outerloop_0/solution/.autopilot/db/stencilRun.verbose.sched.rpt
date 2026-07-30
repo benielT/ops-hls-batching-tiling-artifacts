@@ -1,0 +1,162 @@
+
+
+================================================================
+== Vitis HLS Report for 'stencilRun'
+================================================================
+* Date:           Sun Jul 26 02:55:24 2026
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        kernel_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: versal
+* Target device:  xcvc1902-vsvd1760-2MP-e-S
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.227 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.53>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%p_read_3 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read4"   --->   Operation 6 'read' 'p_read_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%p_read_4 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read3"   --->   Operation 7 'read' 'p_read_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%cast = zext i16 %p_read_3"   --->   Operation 8 'zext' 'cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%cast1 = zext i16 %p_read_4"   --->   Operation 9 'zext' 'cast1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [4/4] (0.53ns) (root node of the DSP)   --->   "%bound = mul i32 %cast, i32 %cast1"   --->   Operation 10 'mul' 'bound' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 132 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 2 <SV = 1> <Delay = 0.53>
+ST_2 : Operation 11 [3/4] (0.53ns) (root node of the DSP)   --->   "%bound = mul i32 %cast, i32 %cast1"   --->   Operation 11 'mul' 'bound' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 132 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 3 <SV = 2> <Delay = 0.53>
+ST_3 : Operation 12 [1/1] (0.00ns)   --->   "%p_read_5 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read2"   --->   Operation 12 'read' 'p_read_5' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 13 [1/1] (0.00ns)   --->   "%p_read_6 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read1"   --->   Operation 13 'read' 'p_read_6' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 14 [1/1] (0.00ns)   --->   "%p_read_7 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read"   --->   Operation 14 'read' 'p_read_7' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 15 [2/4] (0.53ns) (root node of the DSP)   --->   "%bound = mul i32 %cast, i32 %cast1"   --->   Operation 15 'mul' 'bound' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 132 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 4 <SV = 3> <Delay = 0.82>
+ST_4 : Operation 16 [1/1] (0.00ns)   --->   "%p_read_cast = zext i16 %p_read_7"   --->   Operation 16 'zext' 'p_read_cast' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 17 [1/1] (0.82ns)   --->   "%S1D_1pt_read_ub_itr = add i17 %p_read_cast, i17 1"   --->   Operation 17 'add' 'S1D_1pt_read_ub_itr' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 18 [1/1] (0.82ns)   --->   "%cond_x_val = add i16 %p_read_7, i16 65535"   --->   Operation 18 'add' 'cond_x_val' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 19 [1/4] (0.00ns) (root node of the DSP)   --->   "%bound = mul i32 %cast, i32 %cast1"   --->   Operation 19 'mul' 'bound' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 132 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 20 [1/1] (0.00ns)   --->   "%empty = wait i32 @_ssdm_op_Wait"   --->   Operation 20 'wait' 'empty' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 21 [2/2] (0.00ns)   --->   "%call_ln0 = call void @stencilRun_Pipeline_VITIS_LOOP_112_1_VITIS_LOOP_198_2, i32 %bound, i16 %p_read_5, i16 %p_read_6, i16 %p_read_4, i16 %cond_x_val, i16 %p_read_7, i17 %S1D_1pt_read_ub_itr, i256 %arg0_arg4_streams_47, i256 %arg1_arg1_streams_47139, i256 %arg2_arg2_streams_47140, i256 %arg3_arg3_streams_47141, i256 %arg0_arg4_streams_48, i256 %arg1_arg1_streams_48, i256 %arg2_arg2_streams_48, i256 %arg3_arg3_streams_48"   --->   Operation 21 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg4_streams_47, void @empty_0, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg4_streams_48, void @empty_0, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 24 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_arg1_streams_47139, void @empty_0, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 24 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 25 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_arg1_streams_48, void @empty_0, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 25 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 26 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg2_arg2_streams_47140, void @empty_0, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 26 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 27 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg2_arg2_streams_48, void @empty_0, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 27 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 28 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg3_arg3_streams_47141, void @empty_0, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 28 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 29 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg3_arg3_streams_48, void @empty_0, i32 0, i32 0, void @empty_18, i32 0, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18, i32 4294967295, i32 0"   --->   Operation 29 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 30 [1/2] (0.00ns)   --->   "%call_ln0 = call void @stencilRun_Pipeline_VITIS_LOOP_112_1_VITIS_LOOP_198_2, i32 %bound, i16 %p_read_5, i16 %p_read_6, i16 %p_read_4, i16 %cond_x_val, i16 %p_read_7, i17 %S1D_1pt_read_ub_itr, i256 %arg0_arg4_streams_47, i256 %arg1_arg1_streams_47139, i256 %arg2_arg2_streams_47140, i256 %arg3_arg3_streams_47141, i256 %arg0_arg4_streams_48, i256 %arg1_arg1_streams_48, i256 %arg2_arg2_streams_48, i256 %arg3_arg3_streams_48"   --->   Operation 30 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 31 [1/1] (0.00ns)   --->   "%ret_ln424 = ret" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/include/PE_ops_krnl_blackscholes.hpp:424]   --->   Operation 31 'ret' 'ret_ln424' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 0.535ns
+The critical path consists of the following:
+	wire read operation ('p_read_3') on port 'p_read4' [22]  (0 ns)
+	'mul' operation of DSP[32] ('bound') [32]  (0.535 ns)
+
+ <State 2>: 0.535ns
+The critical path consists of the following:
+	'mul' operation of DSP[32] ('bound') [32]  (0.535 ns)
+
+ <State 3>: 0.535ns
+The critical path consists of the following:
+	'mul' operation of DSP[32] ('bound') [32]  (0.535 ns)
+
+ <State 4>: 0.82ns
+The critical path consists of the following:
+	'add' operation ('S1D_1pt_read_ub_itr') [28]  (0.82 ns)
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

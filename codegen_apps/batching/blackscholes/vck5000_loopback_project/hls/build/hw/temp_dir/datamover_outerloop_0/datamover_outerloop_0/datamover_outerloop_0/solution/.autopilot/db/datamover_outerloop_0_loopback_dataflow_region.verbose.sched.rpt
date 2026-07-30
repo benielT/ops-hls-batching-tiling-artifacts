@@ -1,0 +1,202 @@
+
+
+================================================================
+== Vitis HLS Report for 'datamover_outerloop_0_loopback_dataflow_region'
+================================================================
+* Date:           Sun Jul 26 02:53:03 2026
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: versal
+* Target device:  xcvc1902-vsvd1760-2MP-e-S
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  1.361 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|  dataflow|
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 0
+* Dataflow Pipeline: 1
+  DF-Pipeline-0: Size = 4, States = { 1 2 3 4 }
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.73>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%num_pkts_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %num_pkts" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 5 'read' 'num_pkts_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%num_pkts_c21 = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 6 'alloca' 'num_pkts_c21' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 2> <FIFO>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%num_pkts_c20 = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 7 'alloca' 'num_pkts_c20' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 2> <FIFO>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%num_pkts_c19 = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 8 'alloca' 'num_pkts_c19' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 2> <FIFO>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%num_pkts_c = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 9 'alloca' 'num_pkts_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 2> <FIFO>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%arg0_mem_strm = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:347]   --->   Operation 10 'alloca' 'arg0_mem_strm' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.86> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%arg1_mem_strm = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:349]   --->   Operation 11 'alloca' 'arg1_mem_strm' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.86> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%arg2_mem_strm = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:351]   --->   Operation 12 'alloca' 'arg2_mem_strm' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.86> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%arg3_mem_strm = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:353]   --->   Operation 13 'alloca' 'arg3_mem_strm' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.86> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_1 : Operation 14 [2/2] (0.73ns)   --->   "%call_ln356 = call void @axis2stream<256u>, i256 %arg4_axis_in_V_data_V, i32 %arg4_axis_in_V_keep_V, i32 %arg4_axis_in_V_strb_V, i1 %arg4_axis_in_V_last_V, i256 %arg0_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c21" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:356]   --->   Operation 14 'call' 'call_ln356' <Predicate = true> <Delay = 0.73> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 15 [2/2] (0.73ns)   --->   "%call_ln357 = call void @axis2stream<256u>.10, i256 %arg1_axis_in_V_data_V, i32 %arg1_axis_in_V_keep_V, i32 %arg1_axis_in_V_strb_V, i1 %arg1_axis_in_V_last_V, i256 %arg1_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c20" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:357]   --->   Operation 15 'call' 'call_ln357' <Predicate = true> <Delay = 0.73> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 16 [2/2] (0.73ns)   --->   "%call_ln358 = call void @axis2stream<256u>.11, i256 %arg2_axis_in_V_data_V, i32 %arg2_axis_in_V_keep_V, i32 %arg2_axis_in_V_strb_V, i1 %arg2_axis_in_V_last_V, i256 %arg2_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c19" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:358]   --->   Operation 16 'call' 'call_ln358' <Predicate = true> <Delay = 0.73> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 17 [2/2] (0.73ns)   --->   "%call_ln359 = call void @axis2stream<256u>.12, i256 %arg3_axis_in_V_data_V, i32 %arg3_axis_in_V_keep_V, i32 %arg3_axis_in_V_strb_V, i1 %arg3_axis_in_V_last_V, i256 %arg3_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:359]   --->   Operation 17 'call' 'call_ln359' <Predicate = true> <Delay = 0.73> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 18 [1/2] (0.00ns)   --->   "%call_ln356 = call void @axis2stream<256u>, i256 %arg4_axis_in_V_data_V, i32 %arg4_axis_in_V_keep_V, i32 %arg4_axis_in_V_strb_V, i1 %arg4_axis_in_V_last_V, i256 %arg0_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c21" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:356]   --->   Operation 18 'call' 'call_ln356' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 19 [1/2] (0.00ns)   --->   "%call_ln357 = call void @axis2stream<256u>.10, i256 %arg1_axis_in_V_data_V, i32 %arg1_axis_in_V_keep_V, i32 %arg1_axis_in_V_strb_V, i1 %arg1_axis_in_V_last_V, i256 %arg1_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c20" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:357]   --->   Operation 19 'call' 'call_ln357' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 20 [1/2] (0.00ns)   --->   "%call_ln358 = call void @axis2stream<256u>.11, i256 %arg2_axis_in_V_data_V, i32 %arg2_axis_in_V_keep_V, i32 %arg2_axis_in_V_strb_V, i1 %arg2_axis_in_V_last_V, i256 %arg2_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c19" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:358]   --->   Operation 20 'call' 'call_ln358' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 21 [1/2] (0.00ns)   --->   "%call_ln359 = call void @axis2stream<256u>.12, i256 %arg3_axis_in_V_data_V, i32 %arg3_axis_in_V_keep_V, i32 %arg3_axis_in_V_strb_V, i1 %arg3_axis_in_V_last_V, i256 %arg3_mem_strm, i32 %num_pkts_read, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:359]   --->   Operation 21 'call' 'call_ln359' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 22 [2/2] (0.00ns)   --->   "%call_ln360 = call void @stream2axis<256u>.13, i256 %arg0_mem_strm, i256 %arg0_axis_out_V_data_V, i32 %arg0_axis_out_V_keep_V, i32 %arg0_axis_out_V_strb_V, i1 %arg0_axis_out_V_last_V, i32 %num_pkts_c21" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:360]   --->   Operation 22 'call' 'call_ln360' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 23 [2/2] (0.00ns)   --->   "%call_ln361 = call void @stream2axis<256u>.14, i256 %arg1_mem_strm, i256 %arg1_axis_out_V_data_V, i32 %arg1_axis_out_V_keep_V, i32 %arg1_axis_out_V_strb_V, i1 %arg1_axis_out_V_last_V, i32 %num_pkts_c20" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:361]   --->   Operation 23 'call' 'call_ln361' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 24 [2/2] (0.00ns)   --->   "%call_ln362 = call void @stream2axis<256u>.15, i256 %arg2_mem_strm, i256 %arg2_axis_out_V_data_V, i32 %arg2_axis_out_V_keep_V, i32 %arg2_axis_out_V_strb_V, i1 %arg2_axis_out_V_last_V, i32 %num_pkts_c19" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:362]   --->   Operation 24 'call' 'call_ln362' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 25 [2/2] (0.00ns)   --->   "%call_ln363 = call void @stream2axis<256u>.16, i256 %arg3_mem_strm, i256 %arg3_axis_out_V_data_V, i32 %arg3_axis_out_V_keep_V, i32 %arg3_axis_out_V_strb_V, i1 %arg3_axis_out_V_last_V, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:363]   --->   Operation 25 'call' 'call_ln363' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 26 [1/1] (0.00ns)   --->   "%empty = specchannel i32 @_ssdm_op_SpecChannel, void @num_pkts_c21_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i32 %num_pkts_c21, i32 %num_pkts_c21" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 26 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 27 [1/1] (0.00ns)   --->   "%specinterface_ln355 = specinterface void @_ssdm_op_SpecInterface, i32 %num_pkts_c21, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 27 'specinterface' 'specinterface_ln355' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 28 [1/1] (0.00ns)   --->   "%empty_93 = specchannel i32 @_ssdm_op_SpecChannel, void @num_pkts_c20_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i32 %num_pkts_c20, i32 %num_pkts_c20" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 28 'specchannel' 'empty_93' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 29 [1/1] (0.00ns)   --->   "%specinterface_ln355 = specinterface void @_ssdm_op_SpecInterface, i32 %num_pkts_c20, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 29 'specinterface' 'specinterface_ln355' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 30 [1/1] (0.00ns)   --->   "%empty_94 = specchannel i32 @_ssdm_op_SpecChannel, void @num_pkts_c19_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i32 %num_pkts_c19, i32 %num_pkts_c19" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 30 'specchannel' 'empty_94' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 31 [1/1] (0.00ns)   --->   "%specinterface_ln355 = specinterface void @_ssdm_op_SpecInterface, i32 %num_pkts_c19, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 31 'specinterface' 'specinterface_ln355' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 32 [1/1] (0.00ns)   --->   "%empty_95 = specchannel i32 @_ssdm_op_SpecChannel, void @num_pkts_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i32 %num_pkts_c, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 32 'specchannel' 'empty_95' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 33 [1/1] (0.00ns)   --->   "%specinterface_ln355 = specinterface void @_ssdm_op_SpecInterface, i32 %num_pkts_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 33 'specinterface' 'specinterface_ln355' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 34 [1/1] (0.00ns)   --->   "%specdataflowpipeline_ln355 = specdataflowpipeline void @_ssdm_op_SpecDataflowPipeline, i32 4294967295, i32 0, void @empty_14" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355]   --->   Operation 34 'specdataflowpipeline' 'specdataflowpipeline_ln355' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 35 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg4_axis_in_V_last_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 35 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 36 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg4_axis_in_V_strb_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 36 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 37 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg4_axis_in_V_keep_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 37 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 38 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg4_axis_in_V_data_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 38 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 39 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg3_axis_in_V_last_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 39 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 40 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg3_axis_in_V_strb_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 40 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 41 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg3_axis_in_V_keep_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 41 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 42 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg3_axis_in_V_data_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 42 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 43 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg3_axis_out_V_last_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 43 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 44 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg3_axis_out_V_strb_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 44 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 45 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg3_axis_out_V_keep_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 45 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 46 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg3_axis_out_V_data_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 46 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 47 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg2_axis_in_V_last_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 47 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 48 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg2_axis_in_V_strb_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 48 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 49 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg2_axis_in_V_keep_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 49 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 50 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg2_axis_in_V_data_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 50 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 51 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg2_axis_out_V_last_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 51 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 52 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg2_axis_out_V_strb_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 52 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 53 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg2_axis_out_V_keep_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 53 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 54 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg2_axis_out_V_data_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 54 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 55 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg1_axis_in_V_last_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 55 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 56 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg1_axis_in_V_strb_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 56 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 57 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg1_axis_in_V_keep_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 57 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 58 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_axis_in_V_data_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 58 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 59 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg1_axis_out_V_last_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 59 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 60 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg1_axis_out_V_strb_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 60 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 61 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg1_axis_out_V_keep_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 61 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 62 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_axis_out_V_data_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 62 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 63 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg0_axis_out_V_last_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 63 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 64 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg0_axis_out_V_strb_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 64 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 65 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %arg0_axis_out_V_keep_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 65 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 66 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_axis_out_V_data_V, void @empty_16, i32 0, i32 0, void @empty_24, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 66 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 67 [1/1] (0.00ns)   --->   "%empty_96 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_mem_strm_str, i32 1, void @p_str, void @p_str, i32 2, i32 2, i256 %arg0_mem_strm, i256 %arg0_mem_strm"   --->   Operation 67 'specchannel' 'empty_96' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 68 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_mem_strm, void @empty_9, i32 0, i32 0, void @empty_14, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 68 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 69 [1/1] (0.00ns)   --->   "%empty_97 = specchannel i32 @_ssdm_op_SpecChannel, void @arg1_mem_strm_str, i32 1, void @p_str, void @p_str, i32 2, i32 2, i256 %arg1_mem_strm, i256 %arg1_mem_strm"   --->   Operation 69 'specchannel' 'empty_97' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 70 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_mem_strm, void @empty_9, i32 0, i32 0, void @empty_14, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 70 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 71 [1/1] (0.00ns)   --->   "%empty_98 = specchannel i32 @_ssdm_op_SpecChannel, void @arg2_mem_strm_str, i32 1, void @p_str, void @p_str, i32 2, i32 2, i256 %arg2_mem_strm, i256 %arg2_mem_strm"   --->   Operation 71 'specchannel' 'empty_98' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 72 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg2_mem_strm, void @empty_9, i32 0, i32 0, void @empty_14, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 72 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 73 [1/1] (0.00ns)   --->   "%empty_99 = specchannel i32 @_ssdm_op_SpecChannel, void @arg3_mem_strm_str, i32 1, void @p_str, void @p_str, i32 2, i32 2, i256 %arg3_mem_strm, i256 %arg3_mem_strm"   --->   Operation 73 'specchannel' 'empty_99' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 74 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg3_mem_strm, void @empty_9, i32 0, i32 0, void @empty_14, i32 0, i32 0, void @empty_14, void @empty_14, void @empty_14, i32 0, i32 0, i32 0, i32 0, void @empty_14, void @empty_14, i32 4294967295, i32 0"   --->   Operation 74 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 75 [1/2] (0.00ns)   --->   "%call_ln360 = call void @stream2axis<256u>.13, i256 %arg0_mem_strm, i256 %arg0_axis_out_V_data_V, i32 %arg0_axis_out_V_keep_V, i32 %arg0_axis_out_V_strb_V, i1 %arg0_axis_out_V_last_V, i32 %num_pkts_c21" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:360]   --->   Operation 75 'call' 'call_ln360' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 76 [1/2] (0.00ns)   --->   "%call_ln361 = call void @stream2axis<256u>.14, i256 %arg1_mem_strm, i256 %arg1_axis_out_V_data_V, i32 %arg1_axis_out_V_keep_V, i32 %arg1_axis_out_V_strb_V, i1 %arg1_axis_out_V_last_V, i32 %num_pkts_c20" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:361]   --->   Operation 76 'call' 'call_ln361' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 77 [1/2] (0.00ns)   --->   "%call_ln362 = call void @stream2axis<256u>.15, i256 %arg2_mem_strm, i256 %arg2_axis_out_V_data_V, i32 %arg2_axis_out_V_keep_V, i32 %arg2_axis_out_V_strb_V, i1 %arg2_axis_out_V_last_V, i32 %num_pkts_c19" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:362]   --->   Operation 77 'call' 'call_ln362' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 78 [1/2] (0.00ns)   --->   "%call_ln363 = call void @stream2axis<256u>.16, i256 %arg3_mem_strm, i256 %arg3_axis_out_V_data_V, i32 %arg3_axis_out_V_keep_V, i32 %arg3_axis_out_V_strb_V, i1 %arg3_axis_out_V_last_V, i32 %num_pkts_c" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:363]   --->   Operation 78 'call' 'call_ln363' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 79 [1/1] (0.00ns)   --->   "%ret_ln364 = ret" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:364]   --->   Operation 79 'ret' 'ret_ln364' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 0.733ns
+The critical path consists of the following:
+	wire read operation ('num_pkts_read', /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355) on port 'num_pkts' (/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:355) [34]  (0 ns)
+	'call' operation ('call_ln356', /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/blackscholes/vck5000_loopback_project/hls/device/src/datamover_outerloop_0.cpp:356) to 'axis2stream<256u>' [92]  (0.733 ns)
+
+ <State 2>: 0ns
+The critical path consists of the following:
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
