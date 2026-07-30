@@ -1,0 +1,152 @@
+
+
+================================================================
+== Vitis HLS Report for 'stream2mem_512u_64u_2u_18_Pipeline_VITIS_LOOP_803_1'
+================================================================
+* Date:           Sun Jul 26 02:52:59 2026
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: versal
+* Target device:  xcvc1902-vsvd1760-2MP-e-S
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_803_1  |        ?|        ?|         3|          2|          2|     ?|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 2, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 2, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.36>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%index = alloca i32 1"   --->   Operation 6 'alloca' 'index' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%burst_beats_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %burst_beats"   --->   Operation 7 'read' 'burst_beats_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%sext_ln803_read = read i58 @_ssdm_op_Read.ap_auto.i58, i58 %sext_ln803"   --->   Operation 8 'read' 'sext_ln803_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%sext_ln803_cast = sext i58 %sext_ln803_read"   --->   Operation 9 'sext' 'sext_ln803_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i512 %gmem4, void @empty_19, i32 0, i32 0, void @empty_29, i32 40, i32 4096, void @empty_20, void @empty_21, void @empty_29, i32 2, i32 2, i32 64, i32 64, void @empty_29, void @empty_29, i32 4294967295, i32 0"   --->   Operation 10 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i512 %arg4_write_mem_strm, void @empty_3, i32 0, i32 0, void @empty_29, i32 0, i32 0, void @empty_29, void @empty_29, void @empty_29, i32 0, i32 0, i32 0, i32 0, void @empty_29, void @empty_29, i32 4294967295, i32 0"   --->   Operation 11 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.46ns)   --->   "%store_ln0 = store i32 0, i32 %index"   --->   Operation 12 'store' 'store_ln0' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc.i"   --->   Operation 13 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%index_5 = load i32 %index" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:820]   --->   Operation 14 'load' 'index_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.89ns)   --->   "%add_ln820 = add i32 %index_5, i32 1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:820]   --->   Operation 15 'add' 'add_ln820' <Predicate = true> <Delay = 0.89> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.89> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 16 [1/1] (0.70ns)   --->   "%icmp_ln803 = icmp_eq  i32 %index_5, i32 %burst_beats_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:803]   --->   Operation 16 'icmp' 'icmp_ln803' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%br_ln803 = br i1 %icmp_ln803, void %for.inc.split.i, void %VITIS_LOOP_824_2.loopexit.i.exitStub" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:803]   --->   Operation 17 'br' 'br_ln803' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.46ns)   --->   "%store_ln803 = store i32 %add_ln820, i32 %index" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:803]   --->   Operation 18 'store' 'store_ln803' <Predicate = (!icmp_ln803)> <Delay = 0.46>
+
+State 2 <SV = 1> <Delay = 0.86>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%gmem4_addr = getelementptr i512 %gmem4, i64 %sext_ln803_cast" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:803]   --->   Operation 19 'getelementptr' 'gmem4_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.86ns)   --->   "%tmp = read i512 @_ssdm_op_Read.ap_fifo.volatile.i512P0A, i512 %arg4_write_mem_strm" [/tools/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot/hls_stream_39.h:145]   --->   Operation 20 'read' 'tmp' <Predicate = (!icmp_ln803)> <Delay = 0.86> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.86> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 512> <Depth = 2> <FIFO>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 25 'ret' 'ret_ln0' <Predicate = (icmp_ln803)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 2.43>
+ST_3 : Operation 21 [1/1] (0.00ns)   --->   "%specpipeline_ln805 = specpipeline void @_ssdm_op_SpecPipeline, i32 2, i32 0, i32 0, i32 0, void @empty_29" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:805]   --->   Operation 21 'specpipeline' 'specpipeline_ln805' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 22 [1/1] (0.00ns)   --->   "%specloopname_ln801 = specloopname void @_ssdm_op_SpecLoopName, void @empty_13" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:801]   --->   Operation 22 'specloopname' 'specloopname_ln801' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 23 [1/1] (2.43ns)   --->   "%write_ln808 = write void @_ssdm_op_Write.m_axi.p1i512, i512 %gmem4_addr, i512 %tmp, i64 18446744073709551615" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:808]   --->   Operation 23 'write' 'write_ln808' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 125 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%br_ln803 = br void %for.inc.i" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:803]   --->   Operation 24 'br' 'br_ln803' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 1.36ns
+The critical path consists of the following:
+	'alloca' operation ('index') [5]  (0 ns)
+	'load' operation ('index', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:820) on local variable 'index' [14]  (0 ns)
+	'add' operation ('add_ln820', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:820) [15]  (0.893 ns)
+	'store' operation ('store_ln803', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:803) of variable 'add_ln820', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:820 on local variable 'index' [24]  (0.468 ns)
+
+ <State 2>: 0.864ns
+The critical path consists of the following:
+	fifo read operation ('tmp', /tools/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot/hls_stream_39.h:145) on port 'arg4_write_mem_strm' (/tools/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot/hls_stream_39.h:145) [22]  (0.864 ns)
+
+ <State 3>: 2.43ns
+The critical path consists of the following:
+	bus write operation ('write_ln808', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:808) on port 'gmem4' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:808) [23]  (2.43 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
