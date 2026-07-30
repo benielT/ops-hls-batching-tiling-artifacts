@@ -1,0 +1,1138 @@
+
+
+================================================================
+== Vitis HLS Report for 'entry_proc'
+================================================================
+* Date:           Sat Jul 25 11:42:20 2026
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        kernel_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: versal
+* Target device:  xcvc1902-vsvd1760-2MP-e-S
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  0.901 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    0|    0|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+---------+--------+-----+
+|       Name      | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
++-----------------+---------+------+---------+--------+-----+
+|DSP              |        -|     -|        -|       -|    -|
+|Expression       |        -|     -|        0|       2|    -|
+|FIFO             |        -|     -|        -|       -|    -|
+|Instance         |        -|     -|        -|       -|    -|
+|Memory           |        -|     -|        -|       -|    -|
+|Multiplexer      |        -|     -|        -|      26|    -|
+|Register         |        -|     -|        3|       -|    -|
++-----------------+---------+------+---------+--------+-----+
+|Total            |        0|     0|        3|      28|    0|
++-----------------+---------+------+---------+--------+-----+
+|Available        |     1934|  1968|  1799680|  899840|  463|
++-----------------+---------+------+---------+--------+-----+
+|Utilization (%)  |        0|     0|       ~0|      ~0|    0|
++-----------------+---------+------+---------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------------------+----+-----------+-----+-----------+
+    |                    Name                   | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------------------+----+-----------+-----+-----------+
+    |ap_done                                    |   2|          2|    1|          2|
+    |real_start                                 |   2|          2|    1|          2|
+    |stencilConfig_batch_size_c177_blk_n        |   2|          2|    1|          2|
+    |stencilConfig_grid_size_0_c47_blk_n        |   2|          2|    1|          2|
+    |stencilConfig_grid_size_1_c60_blk_n        |   2|          2|    1|          2|
+    |stencilConfig_grid_size_2_c73_blk_n        |   2|          2|    1|          2|
+    |stencilConfig_lower_limit_0_c86_blk_n      |   2|          2|    1|          2|
+    |stencilConfig_lower_limit_1_c99_blk_n      |   2|          2|    1|          2|
+    |stencilConfig_lower_limit_2_c112_blk_n     |   2|          2|    1|          2|
+    |stencilConfig_outer_loop_limit_c164_blk_n  |   2|          2|    1|          2|
+    |stencilConfig_upper_limit_0_c125_blk_n     |   2|          2|    1|          2|
+    |stencilConfig_upper_limit_1_c138_blk_n     |   2|          2|    1|          2|
+    |stencilConfig_upper_limit_2_c151_blk_n     |   2|          2|    1|          2|
+    +-------------------------------------------+----+-----------+-----+-----------+
+    |Total                                      |  26|         26|   13|         26|
+    +-------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------+---+----+-----+-----------+
+    |      Name      | FF| LUT| Bits| Const Bits|
+    +----------------+---+----+-----+-----------+
+    |ap_CS_fsm       |  1|   0|    1|          0|
+    |ap_done_reg     |  1|   0|    1|          0|
+    |start_once_reg  |  1|   0|    1|          0|
+    +----------------+---+----+-----+-----------+
+    |Total           |  3|   0|    3|          0|
+    +----------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+|                      RTL Ports                     | Dir | Bits|  Protocol  |            Source Object            |    C Type    |
++----------------------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+|ap_clk                                              |   in|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|ap_rst                                              |   in|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|ap_start                                            |   in|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|start_full_n                                        |   in|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|ap_done                                             |  out|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|ap_continue                                         |   in|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|ap_idle                                             |  out|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|ap_ready                                            |  out|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|start_out                                           |  out|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|start_write                                         |  out|    1|  ap_ctrl_hs|                           entry_proc|  return value|
+|p_read                                              |   in|   16|     ap_none|                               p_read|        scalar|
+|stencilConfig_grid_size_0_c47_din                   |  out|   16|     ap_fifo|        stencilConfig_grid_size_0_c47|       pointer|
+|stencilConfig_grid_size_0_c47_num_data_valid        |   in|    3|     ap_fifo|        stencilConfig_grid_size_0_c47|       pointer|
+|stencilConfig_grid_size_0_c47_fifo_cap              |   in|    3|     ap_fifo|        stencilConfig_grid_size_0_c47|       pointer|
+|stencilConfig_grid_size_0_c47_full_n                |   in|    1|     ap_fifo|        stencilConfig_grid_size_0_c47|       pointer|
+|stencilConfig_grid_size_0_c47_write                 |  out|    1|     ap_fifo|        stencilConfig_grid_size_0_c47|       pointer|
+|p_read1                                             |   in|   16|     ap_none|                              p_read1|        scalar|
+|stencilConfig_grid_size_1_c60_din                   |  out|   16|     ap_fifo|        stencilConfig_grid_size_1_c60|       pointer|
+|stencilConfig_grid_size_1_c60_num_data_valid        |   in|    3|     ap_fifo|        stencilConfig_grid_size_1_c60|       pointer|
+|stencilConfig_grid_size_1_c60_fifo_cap              |   in|    3|     ap_fifo|        stencilConfig_grid_size_1_c60|       pointer|
+|stencilConfig_grid_size_1_c60_full_n                |   in|    1|     ap_fifo|        stencilConfig_grid_size_1_c60|       pointer|
+|stencilConfig_grid_size_1_c60_write                 |  out|    1|     ap_fifo|        stencilConfig_grid_size_1_c60|       pointer|
+|p_read2                                             |   in|   16|     ap_none|                              p_read2|        scalar|
+|stencilConfig_grid_size_2_c73_din                   |  out|   16|     ap_fifo|        stencilConfig_grid_size_2_c73|       pointer|
+|stencilConfig_grid_size_2_c73_num_data_valid        |   in|    3|     ap_fifo|        stencilConfig_grid_size_2_c73|       pointer|
+|stencilConfig_grid_size_2_c73_fifo_cap              |   in|    3|     ap_fifo|        stencilConfig_grid_size_2_c73|       pointer|
+|stencilConfig_grid_size_2_c73_full_n                |   in|    1|     ap_fifo|        stencilConfig_grid_size_2_c73|       pointer|
+|stencilConfig_grid_size_2_c73_write                 |  out|    1|     ap_fifo|        stencilConfig_grid_size_2_c73|       pointer|
+|p_read3                                             |   in|   16|     ap_none|                              p_read3|        scalar|
+|stencilConfig_lower_limit_0_c86_din                 |  out|   16|     ap_fifo|      stencilConfig_lower_limit_0_c86|       pointer|
+|stencilConfig_lower_limit_0_c86_num_data_valid      |   in|    3|     ap_fifo|      stencilConfig_lower_limit_0_c86|       pointer|
+|stencilConfig_lower_limit_0_c86_fifo_cap            |   in|    3|     ap_fifo|      stencilConfig_lower_limit_0_c86|       pointer|
+|stencilConfig_lower_limit_0_c86_full_n              |   in|    1|     ap_fifo|      stencilConfig_lower_limit_0_c86|       pointer|
+|stencilConfig_lower_limit_0_c86_write               |  out|    1|     ap_fifo|      stencilConfig_lower_limit_0_c86|       pointer|
+|p_read4                                             |   in|   16|     ap_none|                              p_read4|        scalar|
+|stencilConfig_lower_limit_1_c99_din                 |  out|   16|     ap_fifo|      stencilConfig_lower_limit_1_c99|       pointer|
+|stencilConfig_lower_limit_1_c99_num_data_valid      |   in|    3|     ap_fifo|      stencilConfig_lower_limit_1_c99|       pointer|
+|stencilConfig_lower_limit_1_c99_fifo_cap            |   in|    3|     ap_fifo|      stencilConfig_lower_limit_1_c99|       pointer|
+|stencilConfig_lower_limit_1_c99_full_n              |   in|    1|     ap_fifo|      stencilConfig_lower_limit_1_c99|       pointer|
+|stencilConfig_lower_limit_1_c99_write               |  out|    1|     ap_fifo|      stencilConfig_lower_limit_1_c99|       pointer|
+|p_read5                                             |   in|   16|     ap_none|                              p_read5|        scalar|
+|stencilConfig_lower_limit_2_c112_din                |  out|   16|     ap_fifo|     stencilConfig_lower_limit_2_c112|       pointer|
+|stencilConfig_lower_limit_2_c112_num_data_valid     |   in|    3|     ap_fifo|     stencilConfig_lower_limit_2_c112|       pointer|
+|stencilConfig_lower_limit_2_c112_fifo_cap           |   in|    3|     ap_fifo|     stencilConfig_lower_limit_2_c112|       pointer|
+|stencilConfig_lower_limit_2_c112_full_n             |   in|    1|     ap_fifo|     stencilConfig_lower_limit_2_c112|       pointer|
+|stencilConfig_lower_limit_2_c112_write              |  out|    1|     ap_fifo|     stencilConfig_lower_limit_2_c112|       pointer|
+|p_read6                                             |   in|   16|     ap_none|                              p_read6|        scalar|
+|stencilConfig_upper_limit_0_c125_din                |  out|   16|     ap_fifo|     stencilConfig_upper_limit_0_c125|       pointer|
+|stencilConfig_upper_limit_0_c125_num_data_valid     |   in|    3|     ap_fifo|     stencilConfig_upper_limit_0_c125|       pointer|
+|stencilConfig_upper_limit_0_c125_fifo_cap           |   in|    3|     ap_fifo|     stencilConfig_upper_limit_0_c125|       pointer|
+|stencilConfig_upper_limit_0_c125_full_n             |   in|    1|     ap_fifo|     stencilConfig_upper_limit_0_c125|       pointer|
+|stencilConfig_upper_limit_0_c125_write              |  out|    1|     ap_fifo|     stencilConfig_upper_limit_0_c125|       pointer|
+|p_read7                                             |   in|   16|     ap_none|                              p_read7|        scalar|
+|stencilConfig_upper_limit_1_c138_din                |  out|   16|     ap_fifo|     stencilConfig_upper_limit_1_c138|       pointer|
+|stencilConfig_upper_limit_1_c138_num_data_valid     |   in|    3|     ap_fifo|     stencilConfig_upper_limit_1_c138|       pointer|
+|stencilConfig_upper_limit_1_c138_fifo_cap           |   in|    3|     ap_fifo|     stencilConfig_upper_limit_1_c138|       pointer|
+|stencilConfig_upper_limit_1_c138_full_n             |   in|    1|     ap_fifo|     stencilConfig_upper_limit_1_c138|       pointer|
+|stencilConfig_upper_limit_1_c138_write              |  out|    1|     ap_fifo|     stencilConfig_upper_limit_1_c138|       pointer|
+|p_read8                                             |   in|   16|     ap_none|                              p_read8|        scalar|
+|stencilConfig_upper_limit_2_c151_din                |  out|   16|     ap_fifo|     stencilConfig_upper_limit_2_c151|       pointer|
+|stencilConfig_upper_limit_2_c151_num_data_valid     |   in|    3|     ap_fifo|     stencilConfig_upper_limit_2_c151|       pointer|
+|stencilConfig_upper_limit_2_c151_fifo_cap           |   in|    3|     ap_fifo|     stencilConfig_upper_limit_2_c151|       pointer|
+|stencilConfig_upper_limit_2_c151_full_n             |   in|    1|     ap_fifo|     stencilConfig_upper_limit_2_c151|       pointer|
+|stencilConfig_upper_limit_2_c151_write              |  out|    1|     ap_fifo|     stencilConfig_upper_limit_2_c151|       pointer|
+|p_read9                                             |   in|   16|     ap_none|                              p_read9|        scalar|
+|stencilConfig_outer_loop_limit_c164_din             |  out|   16|     ap_fifo|  stencilConfig_outer_loop_limit_c164|       pointer|
+|stencilConfig_outer_loop_limit_c164_num_data_valid  |   in|    3|     ap_fifo|  stencilConfig_outer_loop_limit_c164|       pointer|
+|stencilConfig_outer_loop_limit_c164_fifo_cap        |   in|    3|     ap_fifo|  stencilConfig_outer_loop_limit_c164|       pointer|
+|stencilConfig_outer_loop_limit_c164_full_n          |   in|    1|     ap_fifo|  stencilConfig_outer_loop_limit_c164|       pointer|
+|stencilConfig_outer_loop_limit_c164_write           |  out|    1|     ap_fifo|  stencilConfig_outer_loop_limit_c164|       pointer|
+|p_read10                                            |   in|   16|     ap_none|                             p_read10|        scalar|
+|stencilConfig_batch_size_c177_din                   |  out|   16|     ap_fifo|        stencilConfig_batch_size_c177|       pointer|
+|stencilConfig_batch_size_c177_num_data_valid        |   in|    3|     ap_fifo|        stencilConfig_batch_size_c177|       pointer|
+|stencilConfig_batch_size_c177_fifo_cap              |   in|    3|     ap_fifo|        stencilConfig_batch_size_c177|       pointer|
+|stencilConfig_batch_size_c177_full_n                |   in|    1|     ap_fifo|        stencilConfig_batch_size_c177|       pointer|
+|stencilConfig_batch_size_c177_write                 |  out|    1|     ap_fifo|        stencilConfig_batch_size_c177|       pointer|
++----------------------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 0
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.90>
+ST_1 : Operation 2 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_batch_size_c177, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 2 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%p_read_17 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read10"   --->   Operation 3 'read' 'p_read_17' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%p_read_18 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read9"   --->   Operation 4 'read' 'p_read_18' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%p_read_19 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read8"   --->   Operation 5 'read' 'p_read_19' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%p_read718 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read7"   --->   Operation 6 'read' 'p_read718' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%p_read617 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read6"   --->   Operation 7 'read' 'p_read617' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%p_read516 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read5"   --->   Operation 8 'read' 'p_read516' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%p_read415 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read4"   --->   Operation 9 'read' 'p_read415' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%p_read314 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read3"   --->   Operation 10 'read' 'p_read314' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%p_read213 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read2"   --->   Operation 11 'read' 'p_read213' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%p_read112 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read1"   --->   Operation 12 'read' 'p_read112' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%p_read11 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read"   --->   Operation 13 'read' 'p_read11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_batch_size_c177, i16 %p_read_17"   --->   Operation 14 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_outer_loop_limit_c164, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 15 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_outer_loop_limit_c164, i16 %p_read_18"   --->   Operation 16 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_upper_limit_2_c151, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 17 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_upper_limit_2_c151, i16 %p_read_19"   --->   Operation 18 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_upper_limit_1_c138, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_upper_limit_1_c138, i16 %p_read718"   --->   Operation 20 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_upper_limit_0_c125, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 21 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_upper_limit_0_c125, i16 %p_read617"   --->   Operation 22 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_lower_limit_2_c112, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_lower_limit_2_c112, i16 %p_read516"   --->   Operation 24 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_lower_limit_1_c99, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 25 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_lower_limit_1_c99, i16 %p_read415"   --->   Operation 26 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_lower_limit_0_c86, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 27 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_lower_limit_0_c86, i16 %p_read314"   --->   Operation 28 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_grid_size_2_c73, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 29 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_grid_size_2_c73, i16 %p_read213"   --->   Operation 30 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_grid_size_1_c60, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 31 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_grid_size_1_c60, i16 %p_read112"   --->   Operation 32 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_grid_size_0_c47, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 33 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.90ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_grid_size_0_c47, i16 %p_read11"   --->   Operation 34 'write' 'write_ln0' <Predicate = true> <Delay = 0.90> <CoreInst = "FIFO_SRL">   --->   Core 85 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 0.90> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 35 'ret' 'ret_ln0' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 1
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 0
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ p_read]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_grid_size_0_c47]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read1]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_grid_size_1_c60]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read2]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_grid_size_2_c73]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read3]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_lower_limit_0_c86]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read4]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_lower_limit_1_c99]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read5]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_lower_limit_2_c112]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read6]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_upper_limit_0_c125]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read7]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_upper_limit_1_c138]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read8]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_upper_limit_2_c151]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read9]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_outer_loop_limit_c164]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read10]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ stencilConfig_batch_size_c177]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+specinterface_ln0 (specinterface) [ 00]
+p_read_17         (read         ) [ 00]
+p_read_18         (read         ) [ 00]
+p_read_19         (read         ) [ 00]
+p_read718         (read         ) [ 00]
+p_read617         (read         ) [ 00]
+p_read516         (read         ) [ 00]
+p_read415         (read         ) [ 00]
+p_read314         (read         ) [ 00]
+p_read213         (read         ) [ 00]
+p_read112         (read         ) [ 00]
+p_read11          (read         ) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+specinterface_ln0 (specinterface) [ 00]
+write_ln0         (write        ) [ 00]
+ret_ln0           (ret          ) [ 00]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="p_read">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="stencilConfig_grid_size_0_c47">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_grid_size_0_c47"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="p_read1">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1000" name="stencilConfig_grid_size_1_c60">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_grid_size_1_c60"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1000" name="p_read2">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1000" name="stencilConfig_grid_size_2_c73">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_grid_size_2_c73"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1000" name="p_read3">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read3"/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1000" name="stencilConfig_lower_limit_0_c86">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_lower_limit_0_c86"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1000" name="p_read4">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read4"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1000" name="stencilConfig_lower_limit_1_c99">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_lower_limit_1_c99"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1000" name="p_read5">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read5"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1000" name="stencilConfig_lower_limit_2_c112">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_lower_limit_2_c112"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1000" name="p_read6">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read6"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1000" name="stencilConfig_upper_limit_0_c125">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_upper_limit_0_c125"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1000" name="p_read7">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read7"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1000" name="stencilConfig_upper_limit_1_c138">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_upper_limit_1_c138"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1000" name="p_read8">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read8"/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1000" name="stencilConfig_upper_limit_2_c151">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_upper_limit_2_c151"/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1000" name="p_read9">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read9"/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1000" name="stencilConfig_outer_loop_limit_c164">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_outer_loop_limit_c164"/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1000" name="p_read10">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read10"/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1000" name="stencilConfig_batch_size_c177">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilConfig_batch_size_c177"/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1001" name="const_46">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ap_fifo_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1001" name="const_48">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1001" name="const_50">
+<pin_list>
+<pin id="51" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="52" class="1001" name="const_52">
+<pin_list>
+<pin id="53" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="54" class="1001" name="const_54">
+<pin_list>
+<pin id="55" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="56" class="1001" name="const_56">
+<pin_list>
+<pin id="57" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ScalarProp_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="58" class="1001" name="const_58">
+<pin_list>
+<pin id="59" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="60" class="1001" name="const_60">
+<pin_list>
+<pin id="61" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_auto.i16"/></StgValue>
+</bind>
+</comp>
+
+<comp id="62" class="1001" name="const_62">
+<pin_list>
+<pin id="63" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Write.ap_fifo.i16P0A"/></StgValue>
+</bind>
+</comp>
+
+<comp id="64" class="1004" name="p_read_17_read_fu_64">
+<pin_list>
+<pin id="65" dir="0" index="0" bw="16" slack="0"/>
+<pin id="66" dir="0" index="1" bw="16" slack="0"/>
+<pin id="67" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read_17/1 "/>
+</bind>
+</comp>
+
+<comp id="70" class="1004" name="p_read_18_read_fu_70">
+<pin_list>
+<pin id="71" dir="0" index="0" bw="16" slack="0"/>
+<pin id="72" dir="0" index="1" bw="16" slack="0"/>
+<pin id="73" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read_18/1 "/>
+</bind>
+</comp>
+
+<comp id="76" class="1004" name="p_read_19_read_fu_76">
+<pin_list>
+<pin id="77" dir="0" index="0" bw="16" slack="0"/>
+<pin id="78" dir="0" index="1" bw="16" slack="0"/>
+<pin id="79" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read_19/1 "/>
+</bind>
+</comp>
+
+<comp id="82" class="1004" name="p_read718_read_fu_82">
+<pin_list>
+<pin id="83" dir="0" index="0" bw="16" slack="0"/>
+<pin id="84" dir="0" index="1" bw="16" slack="0"/>
+<pin id="85" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read718/1 "/>
+</bind>
+</comp>
+
+<comp id="88" class="1004" name="p_read617_read_fu_88">
+<pin_list>
+<pin id="89" dir="0" index="0" bw="16" slack="0"/>
+<pin id="90" dir="0" index="1" bw="16" slack="0"/>
+<pin id="91" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read617/1 "/>
+</bind>
+</comp>
+
+<comp id="94" class="1004" name="p_read516_read_fu_94">
+<pin_list>
+<pin id="95" dir="0" index="0" bw="16" slack="0"/>
+<pin id="96" dir="0" index="1" bw="16" slack="0"/>
+<pin id="97" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read516/1 "/>
+</bind>
+</comp>
+
+<comp id="100" class="1004" name="p_read415_read_fu_100">
+<pin_list>
+<pin id="101" dir="0" index="0" bw="16" slack="0"/>
+<pin id="102" dir="0" index="1" bw="16" slack="0"/>
+<pin id="103" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read415/1 "/>
+</bind>
+</comp>
+
+<comp id="106" class="1004" name="p_read314_read_fu_106">
+<pin_list>
+<pin id="107" dir="0" index="0" bw="16" slack="0"/>
+<pin id="108" dir="0" index="1" bw="16" slack="0"/>
+<pin id="109" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read314/1 "/>
+</bind>
+</comp>
+
+<comp id="112" class="1004" name="p_read213_read_fu_112">
+<pin_list>
+<pin id="113" dir="0" index="0" bw="16" slack="0"/>
+<pin id="114" dir="0" index="1" bw="16" slack="0"/>
+<pin id="115" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read213/1 "/>
+</bind>
+</comp>
+
+<comp id="118" class="1004" name="p_read112_read_fu_118">
+<pin_list>
+<pin id="119" dir="0" index="0" bw="16" slack="0"/>
+<pin id="120" dir="0" index="1" bw="16" slack="0"/>
+<pin id="121" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read112/1 "/>
+</bind>
+</comp>
+
+<comp id="124" class="1004" name="p_read11_read_fu_124">
+<pin_list>
+<pin id="125" dir="0" index="0" bw="16" slack="0"/>
+<pin id="126" dir="0" index="1" bw="16" slack="0"/>
+<pin id="127" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read11/1 "/>
+</bind>
+</comp>
+
+<comp id="130" class="1004" name="write_ln0_write_fu_130">
+<pin_list>
+<pin id="131" dir="0" index="0" bw="0" slack="0"/>
+<pin id="132" dir="0" index="1" bw="16" slack="0"/>
+<pin id="133" dir="0" index="2" bw="16" slack="0"/>
+<pin id="134" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="138" class="1004" name="write_ln0_write_fu_138">
+<pin_list>
+<pin id="139" dir="0" index="0" bw="0" slack="0"/>
+<pin id="140" dir="0" index="1" bw="16" slack="0"/>
+<pin id="141" dir="0" index="2" bw="16" slack="0"/>
+<pin id="142" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="146" class="1004" name="write_ln0_write_fu_146">
+<pin_list>
+<pin id="147" dir="0" index="0" bw="0" slack="0"/>
+<pin id="148" dir="0" index="1" bw="16" slack="0"/>
+<pin id="149" dir="0" index="2" bw="16" slack="0"/>
+<pin id="150" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="154" class="1004" name="write_ln0_write_fu_154">
+<pin_list>
+<pin id="155" dir="0" index="0" bw="0" slack="0"/>
+<pin id="156" dir="0" index="1" bw="16" slack="0"/>
+<pin id="157" dir="0" index="2" bw="16" slack="0"/>
+<pin id="158" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="162" class="1004" name="write_ln0_write_fu_162">
+<pin_list>
+<pin id="163" dir="0" index="0" bw="0" slack="0"/>
+<pin id="164" dir="0" index="1" bw="16" slack="0"/>
+<pin id="165" dir="0" index="2" bw="16" slack="0"/>
+<pin id="166" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="170" class="1004" name="write_ln0_write_fu_170">
+<pin_list>
+<pin id="171" dir="0" index="0" bw="0" slack="0"/>
+<pin id="172" dir="0" index="1" bw="16" slack="0"/>
+<pin id="173" dir="0" index="2" bw="16" slack="0"/>
+<pin id="174" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="178" class="1004" name="write_ln0_write_fu_178">
+<pin_list>
+<pin id="179" dir="0" index="0" bw="0" slack="0"/>
+<pin id="180" dir="0" index="1" bw="16" slack="0"/>
+<pin id="181" dir="0" index="2" bw="16" slack="0"/>
+<pin id="182" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="186" class="1004" name="write_ln0_write_fu_186">
+<pin_list>
+<pin id="187" dir="0" index="0" bw="0" slack="0"/>
+<pin id="188" dir="0" index="1" bw="16" slack="0"/>
+<pin id="189" dir="0" index="2" bw="16" slack="0"/>
+<pin id="190" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="194" class="1004" name="write_ln0_write_fu_194">
+<pin_list>
+<pin id="195" dir="0" index="0" bw="0" slack="0"/>
+<pin id="196" dir="0" index="1" bw="16" slack="0"/>
+<pin id="197" dir="0" index="2" bw="16" slack="0"/>
+<pin id="198" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="202" class="1004" name="write_ln0_write_fu_202">
+<pin_list>
+<pin id="203" dir="0" index="0" bw="0" slack="0"/>
+<pin id="204" dir="0" index="1" bw="16" slack="0"/>
+<pin id="205" dir="0" index="2" bw="16" slack="0"/>
+<pin id="206" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+<comp id="210" class="1004" name="write_ln0_write_fu_210">
+<pin_list>
+<pin id="211" dir="0" index="0" bw="0" slack="0"/>
+<pin id="212" dir="0" index="1" bw="16" slack="0"/>
+<pin id="213" dir="0" index="2" bw="16" slack="0"/>
+<pin id="214" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="write(1151) " fcode="write"/>
+<opset="write_ln0/1 "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="68"><net_src comp="60" pin="0"/><net_sink comp="64" pin=0"/></net>
+
+<net id="69"><net_src comp="40" pin="0"/><net_sink comp="64" pin=1"/></net>
+
+<net id="74"><net_src comp="60" pin="0"/><net_sink comp="70" pin=0"/></net>
+
+<net id="75"><net_src comp="36" pin="0"/><net_sink comp="70" pin=1"/></net>
+
+<net id="80"><net_src comp="60" pin="0"/><net_sink comp="76" pin=0"/></net>
+
+<net id="81"><net_src comp="32" pin="0"/><net_sink comp="76" pin=1"/></net>
+
+<net id="86"><net_src comp="60" pin="0"/><net_sink comp="82" pin=0"/></net>
+
+<net id="87"><net_src comp="28" pin="0"/><net_sink comp="82" pin=1"/></net>
+
+<net id="92"><net_src comp="60" pin="0"/><net_sink comp="88" pin=0"/></net>
+
+<net id="93"><net_src comp="24" pin="0"/><net_sink comp="88" pin=1"/></net>
+
+<net id="98"><net_src comp="60" pin="0"/><net_sink comp="94" pin=0"/></net>
+
+<net id="99"><net_src comp="20" pin="0"/><net_sink comp="94" pin=1"/></net>
+
+<net id="104"><net_src comp="60" pin="0"/><net_sink comp="100" pin=0"/></net>
+
+<net id="105"><net_src comp="16" pin="0"/><net_sink comp="100" pin=1"/></net>
+
+<net id="110"><net_src comp="60" pin="0"/><net_sink comp="106" pin=0"/></net>
+
+<net id="111"><net_src comp="12" pin="0"/><net_sink comp="106" pin=1"/></net>
+
+<net id="116"><net_src comp="60" pin="0"/><net_sink comp="112" pin=0"/></net>
+
+<net id="117"><net_src comp="8" pin="0"/><net_sink comp="112" pin=1"/></net>
+
+<net id="122"><net_src comp="60" pin="0"/><net_sink comp="118" pin=0"/></net>
+
+<net id="123"><net_src comp="4" pin="0"/><net_sink comp="118" pin=1"/></net>
+
+<net id="128"><net_src comp="60" pin="0"/><net_sink comp="124" pin=0"/></net>
+
+<net id="129"><net_src comp="0" pin="0"/><net_sink comp="124" pin=1"/></net>
+
+<net id="135"><net_src comp="62" pin="0"/><net_sink comp="130" pin=0"/></net>
+
+<net id="136"><net_src comp="42" pin="0"/><net_sink comp="130" pin=1"/></net>
+
+<net id="137"><net_src comp="64" pin="2"/><net_sink comp="130" pin=2"/></net>
+
+<net id="143"><net_src comp="62" pin="0"/><net_sink comp="138" pin=0"/></net>
+
+<net id="144"><net_src comp="38" pin="0"/><net_sink comp="138" pin=1"/></net>
+
+<net id="145"><net_src comp="70" pin="2"/><net_sink comp="138" pin=2"/></net>
+
+<net id="151"><net_src comp="62" pin="0"/><net_sink comp="146" pin=0"/></net>
+
+<net id="152"><net_src comp="34" pin="0"/><net_sink comp="146" pin=1"/></net>
+
+<net id="153"><net_src comp="76" pin="2"/><net_sink comp="146" pin=2"/></net>
+
+<net id="159"><net_src comp="62" pin="0"/><net_sink comp="154" pin=0"/></net>
+
+<net id="160"><net_src comp="30" pin="0"/><net_sink comp="154" pin=1"/></net>
+
+<net id="161"><net_src comp="82" pin="2"/><net_sink comp="154" pin=2"/></net>
+
+<net id="167"><net_src comp="62" pin="0"/><net_sink comp="162" pin=0"/></net>
+
+<net id="168"><net_src comp="26" pin="0"/><net_sink comp="162" pin=1"/></net>
+
+<net id="169"><net_src comp="88" pin="2"/><net_sink comp="162" pin=2"/></net>
+
+<net id="175"><net_src comp="62" pin="0"/><net_sink comp="170" pin=0"/></net>
+
+<net id="176"><net_src comp="22" pin="0"/><net_sink comp="170" pin=1"/></net>
+
+<net id="177"><net_src comp="94" pin="2"/><net_sink comp="170" pin=2"/></net>
+
+<net id="183"><net_src comp="62" pin="0"/><net_sink comp="178" pin=0"/></net>
+
+<net id="184"><net_src comp="18" pin="0"/><net_sink comp="178" pin=1"/></net>
+
+<net id="185"><net_src comp="100" pin="2"/><net_sink comp="178" pin=2"/></net>
+
+<net id="191"><net_src comp="62" pin="0"/><net_sink comp="186" pin=0"/></net>
+
+<net id="192"><net_src comp="14" pin="0"/><net_sink comp="186" pin=1"/></net>
+
+<net id="193"><net_src comp="106" pin="2"/><net_sink comp="186" pin=2"/></net>
+
+<net id="199"><net_src comp="62" pin="0"/><net_sink comp="194" pin=0"/></net>
+
+<net id="200"><net_src comp="10" pin="0"/><net_sink comp="194" pin=1"/></net>
+
+<net id="201"><net_src comp="112" pin="2"/><net_sink comp="194" pin=2"/></net>
+
+<net id="207"><net_src comp="62" pin="0"/><net_sink comp="202" pin=0"/></net>
+
+<net id="208"><net_src comp="6" pin="0"/><net_sink comp="202" pin=1"/></net>
+
+<net id="209"><net_src comp="118" pin="2"/><net_sink comp="202" pin=2"/></net>
+
+<net id="215"><net_src comp="62" pin="0"/><net_sink comp="210" pin=0"/></net>
+
+<net id="216"><net_src comp="2" pin="0"/><net_sink comp="210" pin=1"/></net>
+
+<net id="217"><net_src comp="124" pin="2"/><net_sink comp="210" pin=2"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: stencilConfig_grid_size_0_c47 | {1 }
+	Port: stencilConfig_grid_size_1_c60 | {1 }
+	Port: stencilConfig_grid_size_2_c73 | {1 }
+	Port: stencilConfig_lower_limit_0_c86 | {1 }
+	Port: stencilConfig_lower_limit_1_c99 | {1 }
+	Port: stencilConfig_lower_limit_2_c112 | {1 }
+	Port: stencilConfig_upper_limit_0_c125 | {1 }
+	Port: stencilConfig_upper_limit_1_c138 | {1 }
+	Port: stencilConfig_upper_limit_2_c151 | {1 }
+	Port: stencilConfig_outer_loop_limit_c164 | {1 }
+	Port: stencilConfig_batch_size_c177 | {1 }
+ - Input state : 
+	Port: entry_proc : p_read | {1 }
+	Port: entry_proc : stencilConfig_grid_size_0_c47 | {}
+	Port: entry_proc : p_read1 | {1 }
+	Port: entry_proc : stencilConfig_grid_size_1_c60 | {}
+	Port: entry_proc : p_read2 | {1 }
+	Port: entry_proc : stencilConfig_grid_size_2_c73 | {}
+	Port: entry_proc : p_read3 | {1 }
+	Port: entry_proc : stencilConfig_lower_limit_0_c86 | {}
+	Port: entry_proc : p_read4 | {1 }
+	Port: entry_proc : stencilConfig_lower_limit_1_c99 | {}
+	Port: entry_proc : p_read5 | {1 }
+	Port: entry_proc : stencilConfig_lower_limit_2_c112 | {}
+	Port: entry_proc : p_read6 | {1 }
+	Port: entry_proc : stencilConfig_upper_limit_0_c125 | {}
+	Port: entry_proc : p_read7 | {1 }
+	Port: entry_proc : stencilConfig_upper_limit_1_c138 | {}
+	Port: entry_proc : p_read8 | {1 }
+	Port: entry_proc : stencilConfig_upper_limit_2_c151 | {}
+	Port: entry_proc : p_read9 | {1 }
+	Port: entry_proc : stencilConfig_outer_loop_limit_c164 | {}
+	Port: entry_proc : p_read10 | {1 }
+	Port: entry_proc : stencilConfig_batch_size_c177 | {}
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|------------------------|
+| Operation|     Functional Unit    |
+|----------|------------------------|
+|          |  p_read_17_read_fu_64  |
+|          |  p_read_18_read_fu_70  |
+|          |  p_read_19_read_fu_76  |
+|          |  p_read718_read_fu_82  |
+|          |  p_read617_read_fu_88  |
+|   read   |  p_read516_read_fu_94  |
+|          |  p_read415_read_fu_100 |
+|          |  p_read314_read_fu_106 |
+|          |  p_read213_read_fu_112 |
+|          |  p_read112_read_fu_118 |
+|          |  p_read11_read_fu_124  |
+|----------|------------------------|
+|          | write_ln0_write_fu_130 |
+|          | write_ln0_write_fu_138 |
+|          | write_ln0_write_fu_146 |
+|          | write_ln0_write_fu_154 |
+|          | write_ln0_write_fu_162 |
+|   write  | write_ln0_write_fu_170 |
+|          | write_ln0_write_fu_178 |
+|          | write_ln0_write_fu_186 |
+|          | write_ln0_write_fu_194 |
+|          | write_ln0_write_fu_202 |
+|          | write_ln0_write_fu_210 |
+|----------|------------------------|
+|   Total  |                        |
+|----------|------------------------|
+
+Memories:
+N/A
+
+* Register list:
+N/A
+
+* Multiplexer (MUX) list: 
+|--------|------|------|------|--------|
+|  Comp  |  Pin | Size |  BW  | S x BW |
+|--------|------|------|------|--------|
+|  Total |      |      |      |    0   |
+|--------|------|------|------|--------|
+
+
+
+* Summary:
++-----------+
+|           |
++-----------+
+|  Function |
+|   Memory  |
+|Multiplexer|
+|  Register |
++-----------+
+|   Total   |
++-----------+

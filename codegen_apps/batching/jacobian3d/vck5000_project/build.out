@@ -1,0 +1,884 @@
+hls platform: xilinx_vck5000_gen4x8_xdma_2_202210_1
+Found XSA platform
+hls mode: HW_EMU
+generating translations for jac3D7pt.cpp
+OPS_EXTENTIONS: _ops_hls
+OPS_GENERATED: jac3D7pt_ops_hls.cpp
+which python3
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops_translator/ops_venv/bin/python3
+python3 /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/../ops_translator/ops_translator     --hls --config ./config_vck5000.json -DOPS_ACC_IGNORE -DPROFILE -DBATCHING -DOPS_FPGA -I /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/c/include/ --file_paths jac3D7pt.cpp -dff "png"
+Found config overide file: ./config_vck5000.json
+Found config overide file: ./config_vck5000.json
+Log level WARNING set
+Targets: [['hls']]
+Clang parse diagnotic message: severity 4 at: /usr/include/stdlib.h/31:10: 'stddef.h' file not found
+Clang parse diagnotic message: severity 4 at: /usr/include/stdlib.h/31:10: 'stddef.h' file not found
+
+rm -f .generated_hls
+touch .generated_hls
+
+
+Building jac3D7pt_hls_host
+
+
+test -d ./hls/build/hw_emu || mkdir -p ./hls/build/hw_emu
+g++  -o ./hls/build/hw_emu/jac3D7pt_host jac3D7pt_ops_hls.cpp  -O3 -fPIC -Wall -ffloat-store -g -std=c++11 -fopenmp -DPROFILE -DBATCHING -I/opt/xilinx/xrt/include/ -I/tools/Xilinx/Vivado/2022.2/include/ -DVITIS_PLATFORM=xilinx_vck5000_gen4x8_xdma_2_202210_1 -DOPS_FPGA -D__USE_XOPEN2K8 -I/tools/Xilinx/Vitis_HLS/2022.2/include/ -fmessage-length=0 -I/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/c/include/ -I/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ -I/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/ext/xcl2/ -I/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/L1/include/ -I/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/L2/include/ -D__VITIS_HLS__ -I./ -I./hls/host/kernel_wrappers/ -lxilinxopencl -lops_seq -lops_hls -lpthread -lrt -lstdc++ -L/opt/xilinx/xrt/lib/ -L/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/lib/gnu/ -Wl,-rpath-link,/opt/xilinx/xrt/lib 
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:17,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../common/include/ops_hls_utils.hpp:53: warning: ignoring #pragma HLS inline [-Wunknown-pragmas]
+   53 |  #pragma HLS inline off
+      | 
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:19,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:128: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  128 |  #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:129: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+  129 |  #pragma HLS LOOP_TRIPCOUNT min=min_strm_pkts_per_beat avg=avg_strm_pkts_per_beat max=max_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:182: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  182 |  #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:183: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+  183 |  #pragma HLS LOOP_TRIPCOUNT min=min_strm_pkts_per_beat avg=avg_strm_pkts_per_beat max=max_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:260: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  260 | #pragma HLS PIPELINE  II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:261: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+  261 | #pragma HLS LOOP_TRIPCOUNT avg=avg_num_data_per_axis_pkt
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:309: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  309 |  #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:310: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+  310 |  #pragma HLS LOOP_TRIPCOUNT min=min_strm_pkts_per_beat avg=avg_strm_pkts_per_beat max=max_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:391: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  391 | #pragma HLS PIPELINE  II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:392: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+  392 | #pragma HLS LOOP_TRIPCOUNT avg=avg_num_data_per_axis_pkt
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:458: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  458 |     #pragma HLS PIPELINE II=ii
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:480: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  480 |  #pragma HLS PIPELINE II=ii
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:553: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  553 |     #pragma HLS PIPELINE II=ii_adj
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:559: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+  559 |         #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:581: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  581 |     #pragma HLS PIPELINE II=ii_adj
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:587: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+  587 |         #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:737: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+  737 |    #pragma HLS LOOP_FLATTEN
+      | 
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:19,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:758: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  758 | #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:805: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  805 |     #pragma HLS PIPELINE II=ii
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:826: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  826 |  #pragma HLS PIPELINE II=ii
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:867: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  867 | #pragma HLS PIPELINE II=II
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:930: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  930 |  #pragma HLS PIPELINE II=ii
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:951: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  951 |   #pragma HLS PIPELINE II=ii
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:973: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+  973 |  #pragma HLS PIPELINE II=ii
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1059: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1059 |     #pragma HLS PIPELINE II=ii_adj
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1065: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1065 |         #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1089: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1089 |         #pragma HLS PIPELINE II=ii_adj
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1096: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1096 |             #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1121: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1121 |     #pragma HLS PIPELINE II=ii_adj
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1128: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1128 |         #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1192: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 1192 |    #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1264: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 1264 |  #pragma HLS ARRAY_PARTITION variable=data_front dim=0 complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1265: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 1265 |  #pragma HLS ARRAY_PARTITION variable=data dim=0 complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1266: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 1266 |  #pragma HLS ARRAY_PARTITION variable=data_back dim=0 complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1270: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1270 |   #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1273: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 1273 |   #pragma HLS ARRAY_PARTITION variable=tmp dim=0 complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1278: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1278 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1299: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1299 |    #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1306: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 1306 |   #pragma HLS ARRAY_PARTITION variable=tmp_out dim=1 complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1312: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1312 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1331: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1331 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1391: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 1391 |  #pragma HLS ARRAY_PARTITION variable = tmp_in dim=0 complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1393: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 1393 |  #pragma HLS ARRAY_PARTITION variable = tmp_out dim=0 complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1397: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1397 |   #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1401: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1401 |    #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1421: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1421 |    #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1428: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1428 |    #pragma HLS UNROLL
+      | 
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:19,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1542: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1542 |             #pragma HLS PIPELINE
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1571: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1571 |             #pragma HLS PIPELINE
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1601: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1601 |             #pragma HLS PIPELINE
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1671: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1671 |                     #pragma HLS PIPELINE // TODO: Check whether this is effective or not. Most probaly not required as mem2stream already has PIPELINE pragma inside.
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1757: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 1757 |                     #pragma HLS PIPELINE // TODO: Check whether this is effective or not. Most probaly not required as mem2stream already has PIPELINE pragma inside.
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1955: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 1955 |                 #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2197: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 2197 |  #pragma HLS ARRAY_PARTITION variable=initial_bank_offsets complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2200: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 2200 |  #pragma HLS ARRAY_PARTITION variable=grid_size_x_banks complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2203: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 2203 |  #pragma HLS ARRAY_PARTITION variable=bank_stride_z complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2206: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 2206 |  #pragma HLS ARRAY_PARTITION variable=bank_tile_size_x complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2210: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 2210 |   #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2228: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 2228 |    #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2232: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 2232 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2336: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 2336 |                 #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2485: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 2485 |    #pragma HLS LOOP_FLATTEN off
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2486: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 2486 |             #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2556: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 2556 |    #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2557: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 2557 |    #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2646: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 2646 |     #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2647: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 2647 |     #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2773: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 2773 |    #pragma HLS LOOP_FLATTEN off
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2774: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 2774 |             #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2867: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 2867 |     #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2868: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 2868 |     #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2971: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 2971 |     #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:2972: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 2972 |     #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3087: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 3087 |             #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3099: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3099 |             #pragma HLS ARRAY_PARTITION variable=bank_cond complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3103: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3103 |                 #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3116: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3116 |                 #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3121: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3121 |                 #pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3122: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3122 |                 #pragma HLS ARRAY_PARTITION variable=swap complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3129: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3129 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3154: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3154 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3162: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3162 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3251: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 3251 |   #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3280: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3280 |    #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3285: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3285 |    #pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3286: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3286 |    #pragma HLS ARRAY_PARTITION variable=swap complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3293: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3293 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3318: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3318 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3326: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3326 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3400: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3400 |  #pragma HLS ARRAY_PARTITION variable=read_val
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3404: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3404 |  #pragma HLS PIPELINE II=ii_adj
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3412: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3412 |   #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3431: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3431 |   #pragma HLS PIPELINE II=ii_out
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3438: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3438 |    #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3516: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3516 |  #pragma HLS ARRAY_PARTITION variable=read_val
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3520: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3520 |  #pragma HLS PIPELINE II=ii_adj
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3528: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3528 |   #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3548: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3548 |    #pragma HLS PIPELINE II=ii_out
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3555: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3555 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3579: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3579 |    #pragma HLS PIPELINE II=ii_out
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3586: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3586 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3663: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3663 |  #pragma HLS ARRAY_PARTITION variable=chunks dim=0 complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3667: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3667 |  #pragma HLS PIPELINE II=ii_adj
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3677: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3677 |   #pragma HLS PIPELINE II=ii_out
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3684: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3684 |    #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3707: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3707 |   #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3711: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3711 |    #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3785: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3785 |  #pragma HLS ARRAY_PARTITION variable=chunks dim=0 complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3789: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3789 |  #pragma HLS PIPELINE II=ii_adj
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3800: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3800 |    #pragma HLS PIPELINE II=ii_out
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3807: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3807 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3829: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3829 |    #pragma HLS PIPELINE II=ii_out
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3836: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3836 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3859: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3859 |   #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3863: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3863 |    #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3965: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 3965 |             #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3977: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3977 |             #pragma HLS ARRAY_PARTITION variable=bank_cond complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3981: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 3981 |                 #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3994: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 3994 |                 #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:3999: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 3999 |                 #pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4000: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 4000 |                 #pragma HLS ARRAY_PARTITION variable=swap complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4007: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4007 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4012: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4012 |       #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4037: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4037 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4045: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4045 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4048: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4048 |      #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4140: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 4140 |             #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4151: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 4151 |             #pragma HLS ARRAY_PARTITION variable=bank_cond complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4155: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4155 |                 #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4168: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 4168 |                 #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4172: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 4172 |                 #pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4173: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 4173 |                 #pragma HLS ARRAY_PARTITION variable=swap complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4180: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4180 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4200: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4200 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4208: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4208 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4302: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 4302 |   #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4330: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 4330 |    #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4334: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 4334 |    #pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4335: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 4335 |    #pragma HLS ARRAY_PARTITION variable=swap complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4342: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4342 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4362: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4362 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4370: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4370 |     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4470: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 4470 |             #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4481: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 4481 |             #pragma HLS ARRAY_PARTITION variable=bank_cond complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4485: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4485 |                 #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4498: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 4498 |                 #pragma HLS PIPELINE II=IN_ITR
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4502: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 4502 |                 #pragma HLS ARRAY_PARTITION variable=tmp complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4503: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 4503 |                 #pragma HLS ARRAY_PARTITION variable=swap complete dim=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4510: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4510 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4513: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4513 |       #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4535: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4535 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4543: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4543 |                     #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4548: warning: ignoring #pragma HLS UNROLL [-Wunknown-pragmas]
+ 4548 |       #pragma HLS UNROLL
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4880: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 4880 |                     #pragma HLS PIPELINE //TODO: Check whether this is effective or not. Most probaly not required as mem2stream already has PIPELINE pragma inside.
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:4996: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 4996 |                     #pragma HLS PIPELINE //TODO: Check whether this is effective or not. Most probaly not required as mem2stream already has PIPELINE pragma inside.
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5082: warning: ignoring #pragma HLS STREAM [-Wunknown-pragmas]
+ 5082 |         #pragma HLS STREAM variable = strm_in_b1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5084: warning: ignoring #pragma HLS STREAM [-Wunknown-pragmas]
+ 5084 |         #pragma HLS STREAM variable = strm_in_b2
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5085: warning: ignoring #pragma HLS DATAFLOW [-Wunknown-pragmas]
+ 5085 |         #pragma HLS DATAFLOW
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5133: warning: ignoring #pragma HLS STREAM [-Wunknown-pragmas]
+ 5133 |         #pragma HLS STREAM variable = strm_out_b1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5135: warning: ignoring #pragma HLS STREAM [-Wunknown-pragmas]
+ 5135 |         #pragma HLS STREAM variable = strm_out_b2
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5136: warning: ignoring #pragma HLS DATAFLOW [-Wunknown-pragmas]
+ 5136 |         #pragma HLS DATAFLOW
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5185: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5185 |    #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5186: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 5186 |    #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5231: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5231 |    #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5232: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 5232 |    #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5313: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5313 |         #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5314: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 5314 |         #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5393: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5393 |         #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5394: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 5394 |         #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5460: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5460 |   #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5513: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5513 |   #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5588: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5588 |  #pragma HLS LOOP_TRIPCOUNT avg=avg_num_of_bursts max=max_num_of_bursts
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5592: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5592 |   #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5593: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5593 |   #pragma HLS LOOP_TRIPCOUNT min=min_burst_len avg=avg_burst_len max=max_burst_len
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5602: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5602 |  #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5652: warning: ignoring #pragma HLS STREAM [-Wunknown-pragmas]
+ 5652 | #pragma HLS STREAM variable = mem_strm depth = max_depth_v16
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5653: warning: ignoring #pragma HLS STREAM [-Wunknown-pragmas]
+ 5653 | #pragma HLS STREAM variable = red_mem_strm depth = max_depth_v8
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5655: warning: ignoring #pragma HLS DATAFLOW [-Wunknown-pragmas]
+ 5655 | #pragma HLS DATAFLOW
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5709: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5709 |    #pragma HLS LOOP_TRIPCOUNT avg=avg_num_of_bursts max=max_num_of_bursts
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5713: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5713 |     #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5714: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5714 |     #pragma HLS LOOP_TRIPCOUNT min=min_burst_len avg=avg_burst_len max=max_burst_len
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5723: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5723 |    #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5732: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5732 |    #pragma HLS LOOP_TRIPCOUNT avg=avg_num_of_bursts max=max_num_of_bursts
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5736: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5736 |     #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5737: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5737 |     #pragma HLS LOOP_TRIPCOUNT min=min_burst_len avg=avg_burst_len max=max_burst_len
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5746: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5746 |    #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5807: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5807 |  #pragma HLS LOOP_TRIPCOUNT avg=avg_num_of_bursts max=max_num_of_bursts
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5811: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5811 |   #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5812: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5812 |   #pragma HLS LOOP_TRIPCOUNT min=min_burst_len avg=avg_burst_len max=max_burst_len
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5821: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5821 |  #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5872: warning: ignoring #pragma HLS STREAM [-Wunknown-pragmas]
+ 5872 | #pragma HLS STREAM variable = mem_strm depth = max_depth_v16
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5873: warning: ignoring #pragma HLS STREAM [-Wunknown-pragmas]
+ 5873 | #pragma HLS STREAM variable = red_mem_strm depth = max_depth_v8
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5875: warning: ignoring #pragma HLS DATAFLOW [-Wunknown-pragmas]
+ 5875 | #pragma HLS DATAFLOW
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5930: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5930 |    #pragma HLS LOOP_TRIPCOUNT avg=avg_num_of_bursts max=max_num_of_bursts
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5934: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5934 |     #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5935: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5935 |     #pragma HLS LOOP_TRIPCOUNT min=min_burst_len avg=avg_burst_len max=max_burst_len
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5944: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5944 |    #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5953: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5953 |    #pragma HLS LOOP_TRIPCOUNT avg=avg_num_of_bursts max=max_num_of_bursts
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5957: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5957 |     #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5958: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 5958 |     #pragma HLS LOOP_TRIPCOUNT min=min_burst_len avg=avg_burst_len max=max_burst_len
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:5967: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 5967 |    #pragma HLS PIPELINE II=num_strm_pkts_per_beat
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6011: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6011 |  #pragma HLS PIPELINE II=data_per_axis_pkt
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6012: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 6012 |  #pragma HLS LOOP_TRIPCOUNT min=1 avg=8
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6059: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6059 |   #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6060: warning: ignoring #pragma HLS LOOP_FLATTEN [-Wunknown-pragmas]
+ 6060 |   #pragma HLS LOOP_FLATTEN
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6128: warning: ignoring #pragma HLS ARRAY_PARTITION [-Wunknown-pragmas]
+ 6128 | #pragma HLS ARRAY_PARTITION variable=cycleBuf type=complete
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6156: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6156 |  #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6214: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6214 |   #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6283: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6283 | #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6354: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6354 |  #pragma HLS PIPELINE II = 1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6390: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6390 | #pragma HLS PIPELINE II=II
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6449: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6449 |   #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6518: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6518 |   #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6634: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6634 |  #pragma HLS PIPELINE II=data_per_strm_pkt
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6635: warning: ignoring #pragma HLS LOOP_TRIPCOUNT [-Wunknown-pragmas]
+ 6635 |  #pragma HLS LOOP_TRIPCOUNT min=1 avg=8
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6859: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6859 | #pragma HLS PIPELINE II=1
+      | 
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6938: warning: ignoring #pragma HLS PIPELINE [-Wunknown-pragmas]
+ 6938 | #pragma HLS PIPELINE II = 1
+      | 
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:16,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../common/include/ops_hls_defs.hpp:107:19: warning: attribute ignored in declaration of ‘struct ops::hls::GridPropertyCore’ [-Wattributes]
+  107 | DEPRECATED struct GridPropertyCore
+      |                   ^~~~~~~~~~~~~~~~
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../common/include/ops_hls_defs.hpp:107:19: note: attribute for ‘struct ops::hls::GridPropertyCore’ must follow the ‘struct’ keyword
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:19,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp: In function ‘void ops::hls::print(const char*)’:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:84:15: warning: format not a string literal and no format arguments [-Wformat-security]
+   84 |     printf(fmt);
+      |               ^
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:19,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp: In function ‘void ops::hls::memReadGridV2(ap_uint<MEM_DATA_WIDTH>*, hls::stream<hls::axis<ap_uint<AXIS_DATA_WIDTH>, 0, 0, 0> >&, short unsigned int*, ops::hls::AccessRange&)’:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6740:94: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+ 6740 |  bool isContinous = (grid_xblocks == num_xblocks and (diff_y == gridSize[1] or not range.dim == 3)) or range.dim == 1;
+      |                                                                                              ^~
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6740:80: note: add parentheses around left hand side expression to silence this warning
+ 6740 |  bool isContinous = (grid_xblocks == num_xblocks and (diff_y == gridSize[1] or not range.dim == 3)) or range.dim == 1;
+      |                                                                                ^~~~~~~~~~~~~
+      |                                                                                (            )
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:6740:94: warning: comparison of constant ‘3’ with boolean expression is always false [-Wbool-compare]
+ 6740 |  bool isContinous = (grid_xblocks == num_xblocks and (diff_y == gridSize[1] or not range.dim == 3)) or range.dim == 1;
+      |                                                                                ~~~~~~~~~~~~~~^~~~
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp: In function ‘void ops::hls::memWriteGridSimpleV2(ap_uint<MEM_DATA_WIDTH>*, hls::stream<hls::axis<ap_uint<AXIS_DATA_WIDTH>, 0, 0, 0> >&, short unsigned int*, ops::hls::AccessRange&)’:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:7011:94: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+ 7011 |  bool isContinous = (grid_xblocks == num_xblocks and (diff_y == gridSize[1] or not range.dim == 3)) or range.dim==1;
+      |                                                                                              ^~
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:7011:80: note: add parentheses around left hand side expression to silence this warning
+ 7011 |  bool isContinous = (grid_xblocks == num_xblocks and (diff_y == gridSize[1] or not range.dim == 3)) or range.dim==1;
+      |                                                                                ^~~~~~~~~~~~~
+      |                                                                                (            )
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:7011:94: warning: comparison of constant ‘3’ with boolean expression is always false [-Wbool-compare]
+ 7011 |  bool isContinous = (grid_xblocks == num_xblocks and (diff_y == gridSize[1] or not range.dim == 3)) or range.dim==1;
+      |                                                                                ~~~~~~~~~~~~~~^~~~
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:23,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L2/include/ops_hls_host_utils.hpp: At global scope:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L2/include/ops_hls_host_utils.hpp:29:46: warning: list-initializer for non-class type must not be parenthesized
+   29 | static ops::hls::SizeType default_d_p({0,0,0});
+      |                                              ^
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L2/include/ops_hls_host_utils.hpp:30:46: warning: list-initializer for non-class type must not be parenthesized
+   30 | static ops::hls::SizeType default_d_m({0,0,0});
+      |                                              ^
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:23,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L2/include/ops_hls_host_utils.hpp: In function ‘ops::hls::GridPropertyCoreV2 createGridPropery(short unsigned int, short unsigned int, const short unsigned int (&)[3], const short unsigned int (&)[3], const short unsigned int (&)[3], int, short unsigned int, short unsigned int, short unsigned int)’:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L2/include/ops_hls_host_utils.hpp:395:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const unsigned int’ [-Wsign-compare]
+  395 |  for (int i = 0; i < ops_max_dim; i++)
+      |                  ~~^~~~~~~~~~~~~
+In file included from ./hls/host/kernel_wrappers/hls_kernels.hpp:16,
+                 from jac3D7pt_ops_hls.cpp:66:
+./hls/host/kernel_wrappers/outerloop_0.hpp: In member function ‘void KernelWrapper_outerloop_0::run(ops::hls::AccessRange&, unsigned int, ops::hls::Grid<float>&, ops::hls::Grid<float>&)’:
+./hls/host/kernel_wrappers/outerloop_0.hpp:30:28: warning: unused variable ‘write_stencil_d_m’ [-Wunused-variable]
+   30 |         ops::hls::SizeType write_stencil_d_m = {0,0,0};
+      |                            ^~~~~~~~~~~~~~~~~
+./hls/host/kernel_wrappers/outerloop_0.hpp:31:28: warning: unused variable ‘write_stencil_d_p’ [-Wunused-variable]
+   31 |         ops::hls::SizeType write_stencil_d_p = {0,0,0};
+      |                            ^~~~~~~~~~~~~~~~~
+In file included from ./hls/host/kernel_wrappers/hls_kernels.hpp:16,
+                 from jac3D7pt_ops_hls.cpp:66:
+./hls/host/kernel_wrappers/outerloop_0.hpp:126:14: warning: unused variable ‘loopback_enbl’ [-Wunused-variable]
+  126 |         bool loopback_enbl = true;
+      |              ^~~~~~~~~~~~~
+In file included from jac3D7pt_ops_hls.cpp:77:
+jac3D7pt_cpu_verification.hpp: In function ‘void copy_grid(stencil_type*, stencil_type*, int*, int*, int*, int*, int)’:
+jac3D7pt_cpu_verification.hpp:133:9: warning: unused variable ‘actual_size_x’ [-Wunused-variable]
+  133 |     int actual_size_x = size[0] - d_m[0] + d_p[0];
+      |         ^~~~~~~~~~~~~
+jac3D7pt_ops_hls.cpp: In function ‘int main(int, char**)’:
+jac3D7pt_ops_hls.cpp:326:14: warning: variable ‘main_loop_start_clk_point’ set but not used [-Wunused-but-set-variable]
+  326 |         auto main_loop_start_clk_point = std::chrono::high_resolution_clock::now();
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~
+jac3D7pt_ops_hls.cpp:214:9: warning: unused variable ‘s3D_00’ [-Wunused-variable]
+  214 |     int s3D_00[] = {0,0,0};
+      |         ^~~~~~
+jac3D7pt_ops_hls.cpp:215:9: warning: unused variable ‘s3D_7pt’ [-Wunused-variable]
+  215 |     int s3D_7pt[] = {0,0,-1, 0,-1,0, -1,0,0, 0,0,0, 1,0,0, 0,1,0, 0,0,1};
+      |         ^~~~~~~
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:23,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L2/include/ops_hls_host_utils.hpp: In instantiation of ‘ops::hls::Grid<T> ops_hls_decl_dat(ops::hls::Block&, int, int*, int*, int*, int*, T*, std::string, std::string, short unsigned int, short unsigned int, short unsigned int) [with T = float; std::string = std::__cxx11::basic_string<char>]’:
+jac3D7pt_ops_hls.cpp:247:153:   required from here
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L2/include/ops_hls_host_utils.hpp:449:9: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  449 |   if (i < block.dims)
+      |       ~~^~~~~~~~~~~~
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:20,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_stencil_core_v2.hpp: At global scope:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_stencil_core_v2.hpp:265:36: warning: ‘ops::hls::StencilConfigCoreSingleTile ops::hls::stencilConfigCoreSingleTileGen3D(const ops::hls::StencilConfigCoreTiled&, short unsigned int, short unsigned int, bool)’ defined but not used [-Wunused-function]
+  265 | static StencilConfigCoreSingleTile stencilConfigCoreSingleTileGen3D(const StencilConfigCoreTiled& srcConfig, const unsigned short tile_x, const unsigned short tile_y, bool is_small_tile = false)
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:20,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_stencil_core_v2.hpp:243:36: warning: ‘ops::hls::StencilConfigCoreSingleTile ops::hls::stencilConfigCoreSingleTileGen2D(const ops::hls::StencilConfigCoreTiled&, short unsigned int)’ defined but not used [-Wunused-function]
+  243 | static StencilConfigCoreSingleTile stencilConfigCoreSingleTileGen2D(const StencilConfigCoreTiled& srcConfig, const unsigned short tile_x)
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:19,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1502:21: warning: ‘ap_uint<192> ops::hls::commandGen3D(const ap_uint<64>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&)’ defined but not used [-Wunused-function]
+ 1502 | static ap_uint<192> commandGen3D(const ap_uint<64>& offset, const ap_uint<16>& stride_x, const ap_uint<16>& size_x,
+      |                     ^~~~~~~~~~~~
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:19,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1483:21: warning: ‘ap_uint<160> ops::hls::commandGen3D(const ap_uint<64>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&)’ defined but not used [-Wunused-function]
+ 1483 | static ap_uint<160> commandGen3D(const ap_uint<64>& offset, const ap_uint<16>& stride_x, const ap_uint<16>& size_x,
+      |                     ^~~~~~~~~~~~
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1466:21: warning: ‘ap_uint<128> ops::hls::commandGen2D(const ap_uint<64>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&)’ defined but not used [-Wunused-function]
+ 1466 | static ap_uint<128> commandGen2D(const ap_uint<64>& offset, const ap_uint<16>& stride_x, const ap_uint<16>& size_x,
+      |                     ^~~~~~~~~~~~
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../L1/include/ops_hls_datamover.hpp:1448:21: warning: ‘ap_uint<144> ops::hls::commandGen2D(const ap_uint<64>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&, const ap_uint<16>&)’ defined but not used [-Wunused-function]
+ 1448 | static ap_uint<144> commandGen2D(const ap_uint<64>& offset, const ap_uint<16>& stride_x, const ap_uint<16>& size_x,
+      |                     ^~~~~~~~~~~~
+In file included from /home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/ops_hls_rt_support.h:17,
+                 from jac3D7pt_ops_hls.cpp:57:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../common/include/ops_hls_utils.hpp:34:18: warning: ‘const int multiply(unsigned int, ...)’ defined but not used [-Wunused-function]
+   34 | static const int multiply(unsigned int N, ...)
+      |                  ^~~~~~~~
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/hls/include/host/../../common/include/ops_hls_utils.hpp:17:12: warning: ‘int add(unsigned int, ...)’ defined but not used [-Wunused-function]
+   17 | static int add(unsigned int N, ...)
+      |            ^~~
+In file included from jac3D7pt_ops_hls.cpp:56:
+/home/x_thileeb/repos/ops-hls-batching-new/OPS/source_files/../ops/c/include/ops_seq_v2.h:203:13: warning: ‘void initoffs(const ops_arg&, int*, const int&, int*, int*)’ defined but not used [-Wunused-function]
+  203 | static void initoffs(const ops_arg &arg, int *offs, const int &ndim, int *start, int *end) {
+      |             ^~~~~~~~
+
+
+Building jac3D7pt_hls.xclbin
+
+test -d hls/build/hw_emu/temp_dir/link/ || mkdir -p hls/build/hw_emu/temp_dir/link/
+Compiling datamover_outerloop_0
+Option Map File Used: '/tools/Xilinx/Vitis/2022.2/data/vitis/vpp/optMap.xml'
+
+****** v++ v2022.2 (64-bit)
+  **** SW Build 3671529 on 2022-10-13-17:52:11
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
+	Reports: /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/temp_dir/reports/datamover_outerloop_0
+	Log files: /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/temp_dir/datamover_outerloop_0
+Running Dispatch Server on port: 33329
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/datamover_outerloop_0.xo.compile_summary, at Fri Jul 24 23:48:54 2026
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/temp_dir/reports/datamover_outerloop_0/v++_compile_datamover_outerloop_0_guidance.html', at Fri Jul 24 23:48:54 2026
+INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_vck5000_gen4x8_xdma_2_202210_1/xilinx_vck5000_gen4x8_xdma_2_202210_1.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/opt/xilinx/platforms/xilinx_vck5000_gen4x8_xdma_2_202210_1/hw/xilinx_vck5000_gen4x8_xdma_2_202210_1.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2022.2
+INFO: [v++ 60-585] Compiling for hardware emulation target
+INFO: [v++ 60-423]   Target device: xilinx_vck5000_gen4x8_xdma_2_202210_1
+INFO: [v++ 60-242] Creating kernel: 'datamover_outerloop_0'
+
+===>The following messages were generated while  performing high-level synthesis for kernel: datamover_outerloop_0 Log file: /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/temp_dir/datamover_outerloop_0/datamover_outerloop_0/vitis_hls.log :
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_456_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 2, Depth = 3, loop 'VITIS_LOOP_456_1'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_478_2'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 2, Depth = 3, loop 'VITIS_LOOP_478_2'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_5389_1_VITIS_LOOP_5391_2'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 6, loop 'VITIS_LOOP_5389_1_VITIS_LOOP_5391_2'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_5459_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_5459_1'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_5512_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_5512_1'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_5309_1_VITIS_LOOP_5311_2'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 5, loop 'VITIS_LOOP_5309_1_VITIS_LOOP_5311_2'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_803_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 2, Depth = 3, loop 'VITIS_LOOP_803_1'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_824_2'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 2, Final II = 2, Depth = 3, loop 'VITIS_LOOP_824_2'
+INFO: [v++ 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [v++ 200-789] **** Estimated Fmax: 411.00 MHz
+INFO: [v++ 60-594] Finished kernel compilation
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/temp_dir/reports/datamover_outerloop_0/system_estimate_datamover_outerloop_0.xtxt
+INFO: [v++ 60-586] Created hls/build/hw_emu/datamover_outerloop_0.xo
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command. 
+    vitis_analyzer /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/datamover_outerloop_0.xo.compile_summary 
+INFO: [v++ 60-791] Total elapsed time: 0h 1m 6s
+INFO: [v++ 60-1653] Closing dispatch client.
+Compiling kernel_outerloop_0
+Option Map File Used: '/tools/Xilinx/Vitis/2022.2/data/vitis/vpp/optMap.xml'
+
+****** v++ v2022.2 (64-bit)
+  **** SW Build 3671529 on 2022-10-13-17:52:11
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
+	Reports: /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/temp_dir/reports/kernel_outerloop_0
+	Log files: /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/temp_dir/kernel_outerloop_0
+Running Dispatch Server on port: 46669
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/kernel_outerloop_0.xo.compile_summary, at Fri Jul 24 23:50:02 2026
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/batching/jacobian3d/vck5000_project/hls/build/hw_emu/temp_dir/reports/kernel_outerloop_0/v++_compile_kernel_outerloop_0_guidance.html', at Fri Jul 24 23:50:02 2026
+INFO: [v++ 60-895]   Target platform: /opt/xilinx/platforms/xilinx_vck5000_gen4x8_xdma_2_202210_1/xilinx_vck5000_gen4x8_xdma_2_202210_1.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/opt/xilinx/platforms/xilinx_vck5000_gen4x8_xdma_2_202210_1/hw/xilinx_vck5000_gen4x8_xdma_2_202210_1.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2022.2
+INFO: [v++ 60-585] Compiling for hardware emulation target
+INFO: [v++ 60-423]   Target device: xilinx_vck5000_gen4x8_xdma_2_202210_1
+INFO: [v++ 60-242] Creating kernel: 'kernel_outerloop_0'

@@ -1,0 +1,2032 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jac3D7pt">
+  <platform vendor="xilinx" boardid="vck5000" name="gen4x8_xdma_2" featureRomTime="0">
+    <version major="202210" minor="1"/>
+    <description/>
+    <board name="xilinx.com:vck5000:1.0" vendor="xilinx.com" fpga="xcvc1902-vsvd1760-2MP-e-S">
+      <interfaces>
+        <interface id="int1" name="PCIe" type="gen4x8"/>
+      </interfaces>
+      <memories>
+        <memory name="mem0" type="ddr4" size="12GB"/>
+      </memories>
+      <images>
+        <image name="" type="HDPI"/>
+        <image name="" type="MDPI"/>
+        <image name="" type="LDPI"/>
+      </images>
+      <id>
+        <vendor>0x10ee</vendor>
+        <device>0x5048</device>
+        <subsystem>0x000e</subsystem>
+      </id>
+    </board>
+    <build_flow/>
+    <host architecture="x86_64"/>
+    <device name="fpga0" fpgaDevice="versal:xcvc1902:vsvd1760:-2MP:e:S" addrWidth="0">
+      <core name="OCL_REGION_0" target="bitstream" type="clc_region" clockFreq="0MHz" numComputeUnits="64">
+        <kernelClocks>
+          <clock port="KERNEL_CLK" frequency="500.0MHz" name="blp_s_aclk_kernel_01"/>
+          <clock port="DATA_CLK" frequency="298.6MHz" name="blp_s_aclk_kernel_00"/>
+        </kernelClocks>
+        <kernel name="kernel_outerloop_0" language="c" vlnv="xilinx.com:hls:kernel_outerloop_0:1.0" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="false" interrupt="true" hwControlProtocol="ap_ctrl_chain" countedAutoRestart="0" deadlockDetection="local" mailbox="none" swReset="false">
+          <module name="kernel_outerloop_0">
+            <module name="kernel_outerloop_0_dataflow_region" instName="grp_kernel_outerloop_0_dataflow_region_fu_196" type="DataflowHS">
+              <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+              <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+              <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+              <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+              <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+              <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+              <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+              <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+              <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+              <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+              <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+              <rtlPort name="num_pkts" object="num_pkts" protocol="ap_none"/>
+              <module name="entry_proc" instName="entry_proc_U0" type="DataflowHS">
+                <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+              </module>
+              <module name="axis2stream_256u_s" instName="axis2stream_256u_U0" type="DataflowHS">
+                <rtlPort name="pkts" object="pkts" protocol="ap_none"/>
+                <module name="axis2stream_256u_Pipeline_VITIS_LOOP_5512_1" instName="grp_axis2stream_256u_Pipeline_VITIS_LOOP_5512_1_fu_60" type="NonDataflowHS">
+                  <rtlPort name="pkts" object="pkts" protocol="ap_none"/>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE" instName="kernel_jac3D_kernel_stencil_PE_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_1" instName="kernel_jac3D_kernel_stencil_PE_1_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_2" instName="kernel_jac3D_kernel_stencil_PE_2_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_3" instName="kernel_jac3D_kernel_stencil_PE_3_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_4" instName="kernel_jac3D_kernel_stencil_PE_4_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_5" instName="kernel_jac3D_kernel_stencil_PE_5_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_6" instName="kernel_jac3D_kernel_stencil_PE_6_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_7" instName="kernel_jac3D_kernel_stencil_PE_7_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_8" instName="kernel_jac3D_kernel_stencil_PE_8_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_9" instName="kernel_jac3D_kernel_stencil_PE_9_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_10" instName="kernel_jac3D_kernel_stencil_PE_10_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_11" instName="kernel_jac3D_kernel_stencil_PE_11_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_12" instName="kernel_jac3D_kernel_stencil_PE_12_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_228" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="kernel_jac3D_kernel_stencil_PE_13" instName="kernel_jac3D_kernel_stencil_PE_13_U0" type="DataflowHS">
+                <module name="stencilRun" instName="grp_stencilRun_fu_116" type="NonDataflowHS">
+                  <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                  <rtlPort name="p_read1" object="p_read1" protocol="ap_none"/>
+                  <rtlPort name="p_read2" object="p_read2" protocol="ap_none"/>
+                  <rtlPort name="p_read3" object="p_read3" protocol="ap_none"/>
+                  <rtlPort name="p_read4" object="p_read4" protocol="ap_none"/>
+                  <rtlPort name="p_read5" object="p_read5" protocol="ap_none"/>
+                  <rtlPort name="p_read6" object="p_read6" protocol="ap_none"/>
+                  <rtlPort name="p_read7" object="p_read7" protocol="ap_none"/>
+                  <rtlPort name="p_read8" object="p_read8" protocol="ap_none"/>
+                  <rtlPort name="p_read9" object="p_read9" protocol="ap_none"/>
+                  <rtlPort name="p_read10" object="p_read10" protocol="ap_none"/>
+                  <module name="stencilRun_Pipeline_VITIS_LOOP_228_2" instName="grp_stencilRun_Pipeline_VITIS_LOOP_228_2_fu_154" type="NonDataflowHS">
+                    <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                    <rtlPort name="iter_limit" object="iter_limit" protocol="ap_none"/>
+                    <rtlPort name="zext_ln430" object="zext_ln430" protocol="ap_none"/>
+                    <rtlPort name="zext_ln431" object="zext_ln431" protocol="ap_none"/>
+                    <rtlPort name="zext_ln105" object="zext_ln105" protocol="ap_none"/>
+                    <rtlPort name="arg0_buf_p0_1_V_q0" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p0_1_V_d1" object="arg0_buf_p0_1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_q0" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r0_1_p1_V_d1" object="arg0_buf_r0_1_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_q0" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_r1_2_p1_V_d1" object="arg0_buf_r1_2_p1_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_q0" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="arg0_buf_p1_2_V_d1" object="arg0_buf_p1_2_V" protocol="ap_memory"/>
+                    <rtlPort name="sub219" object="sub219" protocol="ap_none"/>
+                    <rtlPort name="plane_diff" object="plane_diff" protocol="ap_none"/>
+                    <rtlPort name="zext_ln432" object="zext_ln432" protocol="ap_none"/>
+                    <rtlPort name="zext_ln433" object="zext_ln433" protocol="ap_none"/>
+                    <rtlPort name="zext_ln434" object="zext_ln434" protocol="ap_none"/>
+                    <rtlPort name="cond_x_val" object="cond_x_val" protocol="ap_none"/>
+                    <rtlPort name="cond_y_val" object="cond_y_val" protocol="ap_none"/>
+                    <rtlPort name="cond_z_val" object="cond_z_val" protocol="ap_none"/>
+                    <rtlPort name="S3D_7PT_read_ub_itr" object="S3D_7PT_read_ub_itr" protocol="ap_none"/>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_477">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_489">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_501">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_513">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_525">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_537">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_548">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                    <module name="kernel_jac3D_kernel_stencil_core" instName="grp_kernel_jac3D_kernel_stencil_core_fu_559">
+                      <rtlPort name="reg_0_0_read" object="reg_0_0_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_1_read" object="reg_0_1_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_2_read" object="reg_0_2_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_3_read" object="reg_0_3_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_4_read" object="reg_0_4_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_5_read" object="reg_0_5_read" protocol="ap_none"/>
+                      <rtlPort name="reg_0_6_read" object="reg_0_6_read" protocol="ap_none"/>
+                    </module>
+                  </module>
+                </module>
+              </module>
+              <module name="stream2axis_256u_s" instName="stream2axis_256u_U0" type="DataflowHS">
+                <module name="stream2axis_256u_Pipeline_VITIS_LOOP_5459_1" instName="grp_stream2axis_256u_Pipeline_VITIS_LOOP_5459_1_fu_48" type="NonDataflowHS">
+                  <rtlPort name="pkts_load" object="pkts_load" protocol="ap_none"/>
+                </module>
+              </module>
+            </module>
+          </module>
+          <port name="ARG0_AXIS_IN" mode="read_only" range="" dataWidth="256" portType="stream" base=""/>
+          <port name="ARG1_AXIS_OUT" mode="write_only" range="" dataWidth="256" portType="stream" base=""/>
+          <port name="S_AXI_CONTROL" mode="slave" range="0x88" dataWidth="32" portType="addressable" base="0x0"/>
+          <arg name="slr_region" addressQualifier="0" id="0" port="S_AXI_CONTROL" size="0x4" offset="0x10" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="outer_itr" addressQualifier="0" id="1" port="S_AXI_CONTROL" size="0x4" offset="0x18" hostOffset="0x0" hostSize="0x4" type="unsigned int"/>
+          <arg name="stencilConfig_grid_size_0" addressQualifier="0" id="2" port="S_AXI_CONTROL" size="0x4" offset="0x20" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_grid_size_1" addressQualifier="0" id="3" port="S_AXI_CONTROL" size="0x4" offset="0x28" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_grid_size_2" addressQualifier="0" id="4" port="S_AXI_CONTROL" size="0x4" offset="0x30" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_dim" addressQualifier="0" id="5" port="S_AXI_CONTROL" size="0x4" offset="0x38" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_total_itr" addressQualifier="0" id="6" port="S_AXI_CONTROL" size="0x4" offset="0x40" hostOffset="0x0" hostSize="0x4" type="unsigned int"/>
+          <arg name="stencilConfig_lower_limit_0" addressQualifier="0" id="7" port="S_AXI_CONTROL" size="0x4" offset="0x48" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_lower_limit_1" addressQualifier="0" id="8" port="S_AXI_CONTROL" size="0x4" offset="0x50" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_lower_limit_2" addressQualifier="0" id="9" port="S_AXI_CONTROL" size="0x4" offset="0x58" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_upper_limit_0" addressQualifier="0" id="10" port="S_AXI_CONTROL" size="0x4" offset="0x60" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_upper_limit_1" addressQualifier="0" id="11" port="S_AXI_CONTROL" size="0x4" offset="0x68" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_upper_limit_2" addressQualifier="0" id="12" port="S_AXI_CONTROL" size="0x4" offset="0x70" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_outer_loop_limit" addressQualifier="0" id="13" port="S_AXI_CONTROL" size="0x4" offset="0x78" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="stencilConfig_batch_size" addressQualifier="0" id="14" port="S_AXI_CONTROL" size="0x4" offset="0x80" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="arg0_axis_in" addressQualifier="4" id="15" port="ARG0_AXIS_IN" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;256>, 0, 0, 0>, 0>&amp;" memSize="0x20" origName="arg0_axis_in" origUse="variable"/>
+          <arg name="arg1_axis_out" addressQualifier="4" id="16" port="ARG1_AXIS_OUT" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;256>, 0, 0, 0>, 0>&amp;" memSize="0x20" origName="arg1_axis_out" origUse="variable"/>
+          <compileWorkGroupSize x="1" y="1" z="1"/>
+          <maxWorkGroupSize x="1" y="1" z="1"/>
+          <string_table/>
+          <instance name="kernel_outerloop_inst_0_1"/>
+          <FIFOInformation>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_0_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_1_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_2_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_3_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_4_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_5_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_6_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_7_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_8_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_9_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_10_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_11_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_12_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_13_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_arg1_streams_14_U</Name>
+              <ParentInst>grp_kernel_outerloop_0_dataflow_region_fu_196</ParentInst>
+              <StaticDepth>10</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+          </FIFOInformation>
+        </kernel>
+        <kernel name="datamover_outerloop_0" language="c" vlnv="xilinx.com:hls:datamover_outerloop_0:1.0" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="false" interrupt="true" hwControlProtocol="ap_ctrl_chain" countedAutoRestart="0" deadlockDetection="local" mailbox="none" swReset="false">
+          <module name="datamover_outerloop_0">
+            <module name="datamover_outerloop_0_dataflow_read_write_dataflow_region" instName="grp_datamover_outerloop_0_dataflow_read_write_dataflow_region_fu_226" type="DataflowHS">
+              <rtlPort name="num_pkts" object="num_pkts" protocol="ap_none"/>
+              <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+              <rtlPort name="m_axi_gmem0_AWVALID" object="gmem0" protocol="m_axi"/>
+              <rtlPort name="arg0" object="arg0" protocol="ap_none"/>
+              <rtlPort name="arg1" object="arg1" protocol="ap_none"/>
+              <module name="entry_proc" instName="entry_proc_U0" type="DataflowHS">
+                <rtlPort name="num_pkts" object="num_pkts" protocol="ap_none"/>
+                <rtlPort name="p_read" object="p_read" protocol="ap_none"/>
+                <rtlPort name="arg1" object="arg1" protocol="ap_none"/>
+              </module>
+              <module name="mem2stream_512u_64u_2u_s" instName="mem2stream_512u_64u_2u_U0" type="DataflowHS">
+                <rtlPort name="m_axi_gmem0_AWVALID" object="gmem0" protocol="m_axi"/>
+                <rtlPort name="mem_in" object="mem_in" protocol="ap_none"/>
+                <rtlPort name="num_beats" object="num_beats" protocol="ap_none"/>
+                <module name="mem2stream_512u_64u_2u_Pipeline_VITIS_LOOP_456_1" instName="grp_mem2stream_512u_64u_2u_Pipeline_VITIS_LOOP_456_1_fu_116" type="NonDataflowHS">
+                  <rtlPort name="m_axi_gmem0_AWVALID" object="gmem0" protocol="m_axi"/>
+                  <rtlPort name="sext_ln456" object="sext_ln456" protocol="ap_none"/>
+                  <rtlPort name="burst_beats" object="burst_beats" protocol="ap_none"/>
+                </module>
+                <module name="mem2stream_512u_64u_2u_Pipeline_VITIS_LOOP_478_2" instName="grp_mem2stream_512u_64u_2u_Pipeline_VITIS_LOOP_478_2_fu_126" type="NonDataflowHS">
+                  <rtlPort name="m_axi_gmem0_AWVALID" object="gmem0" protocol="m_axi"/>
+                  <rtlPort name="index_4" object="index_4" protocol="ap_none"/>
+                  <rtlPort name="sext_ln478" object="sext_ln478" protocol="ap_none"/>
+                  <rtlPort name="or_ln" object="or_ln" protocol="ap_none"/>
+                </module>
+              </module>
+              <module name="axis2stream_256u_s" instName="axis2stream_256u_U0" type="DataflowHS">
+                <rtlPort name="pkts" object="pkts" protocol="ap_none"/>
+              </module>
+              <module name="stream2streamStepdown_512u_256u_s" instName="stream2streamStepdown_512u_256u_U0" type="DataflowHS">
+                <module name="stream2streamStepdown_512u_256u_Pipeline_VITIS_LOOP_5389_1_VITIS_LOOP_5391_2" instName="grp_stream2streamStepdown_512u_256u_Pipeline_VITIS_LOOP_5389_1_VITIS_LOOP_5391_2_fu_42" type="NonDataflowHS">
+                  <rtlPort name="bound" object="bound" protocol="ap_none"/>
+                </module>
+              </module>
+              <module name="stream2streamStepup_256u_512u_s" instName="stream2streamStepup_256u_512u_U0" type="DataflowHS">
+                <module name="stream2streamStepup_256u_512u_Pipeline_VITIS_LOOP_5309_1_VITIS_LOOP_5311_2" instName="grp_stream2streamStepup_256u_512u_Pipeline_VITIS_LOOP_5309_1_VITIS_LOOP_5311_2_fu_54" type="NonDataflowHS">
+                  <rtlPort name="bound" object="bound" protocol="ap_none"/>
+                </module>
+              </module>
+              <module name="stream2axis_256u_s" instName="stream2axis_256u_U0" type="DataflowHS">
+                <module name="stream2axis_256u_Pipeline_VITIS_LOOP_5459_1" instName="grp_stream2axis_256u_Pipeline_VITIS_LOOP_5459_1_fu_48" type="NonDataflowHS">
+                  <rtlPort name="pkts_load" object="pkts_load" protocol="ap_none"/>
+                </module>
+              </module>
+              <module name="stream2mem_512u_64u_2u_s" instName="stream2mem_512u_64u_2u_U0" type="DataflowHS">
+                <rtlPort name="m_axi_gmem1_AWVALID" object="gmem0" protocol="m_axi"/>
+                <module name="stream2mem_512u_64u_2u_Pipeline_VITIS_LOOP_803_1" instName="grp_stream2mem_512u_64u_2u_Pipeline_VITIS_LOOP_803_1_fu_102" type="NonDataflowHS">
+                  <rtlPort name="m_axi_gmem1_AWVALID" object="gmem0" protocol="m_axi"/>
+                  <rtlPort name="sext_ln803" object="sext_ln803" protocol="ap_none"/>
+                  <rtlPort name="burst_beats" object="burst_beats" protocol="ap_none"/>
+                </module>
+                <module name="stream2mem_512u_64u_2u_Pipeline_VITIS_LOOP_824_2" instName="grp_stream2mem_512u_64u_2u_Pipeline_VITIS_LOOP_824_2_fu_112" type="NonDataflowHS">
+                  <rtlPort name="index_1" object="index_1" protocol="ap_none"/>
+                  <rtlPort name="m_axi_gmem1_AWVALID" object="gmem0" protocol="m_axi"/>
+                  <rtlPort name="sext_ln824" object="sext_ln824" protocol="ap_none"/>
+                  <rtlPort name="add_ln824" object="add_ln824" protocol="ap_none"/>
+                </module>
+              </module>
+            </module>
+          </module>
+          <port name="M_AXI_GMEM0" mode="master" range="0xFFFFFFFF" dataWidth="512" portType="addressable" base="0x0"/>
+          <port name="M_AXI_GMEM1" mode="master" range="0xFFFFFFFF" dataWidth="512" portType="addressable" base="0x0"/>
+          <port name="ARG0_AXIS_OUT" mode="write_only" range="" dataWidth="256" portType="stream" base=""/>
+          <port name="ARG1_AXIS_IN" mode="read_only" range="" dataWidth="256" portType="stream" base=""/>
+          <port name="S_AXI_CONTROL" mode="slave" range="0x80" dataWidth="32" portType="addressable" base="0x0"/>
+          <arg name="range_start_0" addressQualifier="0" id="0" port="S_AXI_CONTROL" size="0x4" offset="0x10" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="range_end_0" addressQualifier="0" id="1" port="S_AXI_CONTROL" size="0x4" offset="0x18" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="range_start_1" addressQualifier="0" id="2" port="S_AXI_CONTROL" size="0x4" offset="0x20" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="range_end_1" addressQualifier="0" id="3" port="S_AXI_CONTROL" size="0x4" offset="0x28" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="range_start_2" addressQualifier="0" id="4" port="S_AXI_CONTROL" size="0x4" offset="0x30" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="range_end_2" addressQualifier="0" id="5" port="S_AXI_CONTROL" size="0x4" offset="0x38" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="gridSize_0" addressQualifier="0" id="6" port="S_AXI_CONTROL" size="0x4" offset="0x40" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="gridSize_1" addressQualifier="0" id="7" port="S_AXI_CONTROL" size="0x4" offset="0x48" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="gridSize_2" addressQualifier="0" id="8" port="S_AXI_CONTROL" size="0x4" offset="0x50" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="outer_itr" addressQualifier="0" id="9" port="S_AXI_CONTROL" size="0x4" offset="0x58" hostOffset="0x0" hostSize="0x4" type="unsigned int"/>
+          <arg name="batch_size" addressQualifier="0" id="10" port="S_AXI_CONTROL" size="0x4" offset="0x60" hostOffset="0x0" hostSize="0x2" type="unsigned int"/>
+          <arg name="arg0" addressQualifier="1" id="11" port="M_AXI_GMEM0" size="0x8" offset="0x68" hostOffset="0x0" hostSize="0x8" type="void*"/>
+          <arg name="arg1" addressQualifier="1" id="12" port="M_AXI_GMEM1" size="0x8" offset="0x74" hostOffset="0x0" hostSize="0x8" type="void*"/>
+          <arg name="arg0_axis_out" addressQualifier="4" id="13" port="ARG0_AXIS_OUT" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;256>, 0, 0, 0>, 0>&amp;" memSize="0x20" origName="arg0_axis_out" origUse="variable"/>
+          <arg name="arg1_axis_in" addressQualifier="4" id="14" port="ARG1_AXIS_IN" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;256>, 0, 0, 0>, 0>&amp;" memSize="0x20" origName="arg1_axis_in" origUse="variable"/>
+          <compileWorkGroupSize x="1" y="1" z="1"/>
+          <maxWorkGroupSize x="1" y="1" z="1"/>
+          <string_table/>
+          <instance name="datamover_outerloop_0_1"/>
+          <FIFOInformation>
+            <FIFOInst>
+              <Name>arg0_read_mem_strm_U</Name>
+              <ParentInst>grp_datamover_outerloop_0_dataflow_read_write_dataflow_region_fu_226</ParentInst>
+              <StaticDepth>2</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg0_read_reduced_mem_strm_U</Name>
+              <ParentInst>grp_datamover_outerloop_0_dataflow_read_write_dataflow_region_fu_226</ParentInst>
+              <StaticDepth>2</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg1_write_reduced_mem_strm_U</Name>
+              <ParentInst>grp_datamover_outerloop_0_dataflow_read_write_dataflow_region_fu_226</ParentInst>
+              <StaticDepth>2</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+            <FIFOInst>
+              <Name>arg1_write_mem_strm_U</Name>
+              <ParentInst>grp_datamover_outerloop_0_dataflow_read_write_dataflow_region_fu_226</ParentInst>
+              <StaticDepth>2</StaticDepth>
+              <RuntimeDepth>mOutPtr</RuntimeDepth>
+              <InterfaceList>
+                <Interface>clk</Interface>
+                <Interface>reset</Interface>
+                <Interface>if_write</Interface>
+                <Interface>if_din</Interface>
+                <Interface>if_full_n</Interface>
+                <Interface>if_read</Interface>
+                <Interface>if_empty_n</Interface>
+              </InterfaceList>
+            </FIFOInst>
+          </FIFOInformation>
+        </kernel>
+      </core>
+    </device>
+  </platform>
+</project>
