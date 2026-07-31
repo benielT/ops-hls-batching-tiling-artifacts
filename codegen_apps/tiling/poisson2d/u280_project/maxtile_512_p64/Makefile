@@ -12,7 +12,7 @@ include $(OPS_INSTALL_PATH)/../makefiles/Makefile.hip
 include $(OPS_INSTALL_PATH)/../makefiles/Makefile.hdf5
 
 PLATFORM=xilinx_u280_gen3x16_xdma_1_202211_1
-HLS_TARGET_MODE=sw_emu
+HLS_TARGET_MODE=hw
 HLS_JOBS=64
 include $(OPS_INSTALL_PATH)/../makefiles/Makefile_hls.mk
 
@@ -43,7 +43,7 @@ CXXFLAGS += -DPROFILE
 
 ########  VERIIFICATION OPTIONS  ######
 #Enable if wanted to verify
-CXXFLAGS += -DVERIFICATION
+# CXXFLAGS += -DVERIFICATION
 
 ######## ASYN_DISPATCH OPTION ########
 #Enable if wanted to use asynchronous dispatch
@@ -57,7 +57,7 @@ CXXFLAGS += -DVERIFICATION
 TILE_SIZE_X=512
 TILE_BANKS=8
 CXXFLAGS += -DOPS_TILING -DOPS_MAXTILESIZE_X=$(TILE_SIZE_X) -DOPS_HLS_TILE_BANKS=$(TILE_BANKS)
-VPP_FLAGS += -DOPS_TILING -DOPS_MAXTILESIZE_X=$(TILE_SIZE_X)-DOPS_HLS_TILE_BANKS=$(TILE_BANKS)
+VPP_FLAGS += -DOPS_TILING -DOPS_MAXTILESIZE_X=$(TILE_SIZE_X) -DOPS_HLS_TILE_BANKS=$(TILE_BANKS)
 ########  DEBUG OPTIONS  ######
 #Enable if wanted to debug
 # CXXFLAGS += -DDEBUG_LOG

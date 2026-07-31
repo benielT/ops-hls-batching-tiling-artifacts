@@ -1,0 +1,242 @@
+
+
+================================================================
+== Vitis HLS Report for 'combineStreams2D_unsigned_short_256_unsigned_short_8_unsigned_short_1_s'
+================================================================
+* Date:           Thu Jul 30 23:54:30 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.002 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------------------------------------------+---------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                                                         |                                                               |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                                 Instance                                |                             Module                            |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +-------------------------------------------------------------------------+---------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_combineStreams2D_Pipeline_VITIS_LOOP_5422_2_VITIS_LOOP_5426_3_fu_98  |combineStreams2D_Pipeline_VITIS_LOOP_5422_2_VITIS_LOOP_5426_3  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +-------------------------------------------------------------------------+---------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  |    Trip   |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  |   Count   | Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |- VITIS_LOOP_5418_1  |        ?|        ?|         ?|          -|          -|  0 ~ 65535|        no|
+        +---------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     1|        -|        -|    -|
+|Expression           |        -|     -|        0|       91|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|      842|      356|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|      172|    -|
+|Register             |        -|     -|      153|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     1|      995|      619|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|    ~0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|    ~0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------------------------------------------+---------------------------------------------------------------+---------+----+-----+-----+-----+
+    |                                 Instance                                |                             Module                            | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-------------------------------------------------------------------------+---------------------------------------------------------------+---------+----+-----+-----+-----+
+    |grp_combineStreams2D_Pipeline_VITIS_LOOP_5422_2_VITIS_LOOP_5426_3_fu_98  |combineStreams2D_Pipeline_VITIS_LOOP_5422_2_VITIS_LOOP_5426_3  |        0|   0|  842|  356|    0|
+    +-------------------------------------------------------------------------+---------------------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                                    |                                                               |        0|   0|  842|  356|    0|
+    +-------------------------------------------------------------------------+---------------------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    +-------------------------------+--------------------------+-----------+
+    |            Instance           |          Module          | Expression|
+    +-------------------------------+--------------------------+-----------+
+    |mul_mul_16ns_16ns_32_4_1_U250  |mul_mul_16ns_16ns_32_4_1  |    i0 * i1|
+    +-------------------------------+--------------------------+-----------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |add_ln5418_fu_149_p2   |         +|   0|  0|  23|          16|           1|
+    |sub_fu_126_p2          |         +|   0|  0|  24|          17|           2|
+    |icmp_ln5418_fu_144_p2  |      icmp|   0|  0|  13|          16|          16|
+    |icmp_ln5420_fu_159_p2  |      icmp|   0|  0|  13|          17|          17|
+    |ap_block_state1        |        or|   0|  0|   2|           1|           1|
+    |tile_size_x_fu_164_p3  |    select|   0|  0|  16|           1|          16|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |Total                  |          |   0|  0|  91|          68|          53|
+    +-----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------------+----+-----------+-----+-----------+
+    |                Name                | LUT| Input Size| Bits| Total Bits|
+    +------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                           |  37|          7|    1|          7|
+    |ap_done                             |   9|          2|    1|          2|
+    |arg0_combined_read_mem_strm1_write  |   9|          2|    1|          2|
+    |arg0_read_mem_strm_0_read           |   9|          2|    1|          2|
+    |arg0_read_mem_strm_1_read           |   9|          2|    1|          2|
+    |arg0_read_mem_strm_2_read           |   9|          2|    1|          2|
+    |arg0_read_mem_strm_3_read           |   9|          2|    1|          2|
+    |arg0_read_mem_strm_4_read           |   9|          2|    1|          2|
+    |arg0_read_mem_strm_5_read           |   9|          2|    1|          2|
+    |arg0_read_mem_strm_6_read           |   9|          2|    1|          2|
+    |arg0_read_mem_strm_7_read           |   9|          2|    1|          2|
+    |config_grid_size_y_blk_n            |   9|          2|    1|          2|
+    |config_last_tile_size_x_blk_n       |   9|          2|    1|          2|
+    |config_tile_count_x_blk_n           |   9|          2|    1|          2|
+    |config_tile_size_x_blk_n            |   9|          2|    1|          2|
+    |tile_x_fu_70                        |   9|          2|   16|         32|
+    +------------------------------------+----+-----------+-----+-----------+
+    |Total                               | 172|         37|   31|         67|
+    +------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                         Name                                         | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                             |   6|   0|    6|          0|
+    |ap_done_reg                                                                           |   1|   0|    1|          0|
+    |config_last_tile_size_x_read_reg_192                                                  |  16|   0|   16|          0|
+    |config_tile_count_x_read_reg_202                                                      |  16|   0|   16|          0|
+    |config_tile_size_x_read_reg_197                                                       |  16|   0|   16|          0|
+    |grp_combineStreams2D_Pipeline_VITIS_LOOP_5422_2_VITIS_LOOP_5426_3_fu_98_ap_start_reg  |   1|   0|    1|          0|
+    |mul_ln5418_reg_230                                                                    |  32|   0|   32|          0|
+    |sub_reg_207                                                                           |  17|   0|   17|          0|
+    |tile_size_x_reg_220                                                                   |  16|   0|   16|          0|
+    |tile_x_fu_70                                                                          |  16|   0|   16|          0|
+    |zext_ln5418_1_reg_212                                                                 |  16|   0|   32|         16|
+    +--------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                 | 153|   0|  169|         16|
+    +--------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------------------------+-----+-----+------------+-----------------------------------------------------------------------------+--------------+
+|                  RTL Ports                  | Dir | Bits|  Protocol  |                                Source Object                                |    C Type    |
++---------------------------------------------+-----+-----+------------+-----------------------------------------------------------------------------+--------------+
+|ap_clk                                       |   in|    1|  ap_ctrl_hs|  combineStreams2D<(unsigned short)256, (unsigned short)8, (unsigned short)1>|  return value|
+|ap_rst                                       |   in|    1|  ap_ctrl_hs|  combineStreams2D<(unsigned short)256, (unsigned short)8, (unsigned short)1>|  return value|
+|ap_start                                     |   in|    1|  ap_ctrl_hs|  combineStreams2D<(unsigned short)256, (unsigned short)8, (unsigned short)1>|  return value|
+|ap_done                                      |  out|    1|  ap_ctrl_hs|  combineStreams2D<(unsigned short)256, (unsigned short)8, (unsigned short)1>|  return value|
+|ap_continue                                  |   in|    1|  ap_ctrl_hs|  combineStreams2D<(unsigned short)256, (unsigned short)8, (unsigned short)1>|  return value|
+|ap_idle                                      |  out|    1|  ap_ctrl_hs|  combineStreams2D<(unsigned short)256, (unsigned short)8, (unsigned short)1>|  return value|
+|ap_ready                                     |  out|    1|  ap_ctrl_hs|  combineStreams2D<(unsigned short)256, (unsigned short)8, (unsigned short)1>|  return value|
+|arg0_read_mem_strm_0_dout                    |   in|  256|     ap_fifo|                                                         arg0_read_mem_strm_0|       pointer|
+|arg0_read_mem_strm_0_num_data_valid          |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_0|       pointer|
+|arg0_read_mem_strm_0_fifo_cap                |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_0|       pointer|
+|arg0_read_mem_strm_0_empty_n                 |   in|    1|     ap_fifo|                                                         arg0_read_mem_strm_0|       pointer|
+|arg0_read_mem_strm_0_read                    |  out|    1|     ap_fifo|                                                         arg0_read_mem_strm_0|       pointer|
+|arg0_read_mem_strm_1_dout                    |   in|  256|     ap_fifo|                                                         arg0_read_mem_strm_1|       pointer|
+|arg0_read_mem_strm_1_num_data_valid          |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_1|       pointer|
+|arg0_read_mem_strm_1_fifo_cap                |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_1|       pointer|
+|arg0_read_mem_strm_1_empty_n                 |   in|    1|     ap_fifo|                                                         arg0_read_mem_strm_1|       pointer|
+|arg0_read_mem_strm_1_read                    |  out|    1|     ap_fifo|                                                         arg0_read_mem_strm_1|       pointer|
+|arg0_read_mem_strm_2_dout                    |   in|  256|     ap_fifo|                                                         arg0_read_mem_strm_2|       pointer|
+|arg0_read_mem_strm_2_num_data_valid          |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_2|       pointer|
+|arg0_read_mem_strm_2_fifo_cap                |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_2|       pointer|
+|arg0_read_mem_strm_2_empty_n                 |   in|    1|     ap_fifo|                                                         arg0_read_mem_strm_2|       pointer|
+|arg0_read_mem_strm_2_read                    |  out|    1|     ap_fifo|                                                         arg0_read_mem_strm_2|       pointer|
+|arg0_read_mem_strm_3_dout                    |   in|  256|     ap_fifo|                                                         arg0_read_mem_strm_3|       pointer|
+|arg0_read_mem_strm_3_num_data_valid          |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_3|       pointer|
+|arg0_read_mem_strm_3_fifo_cap                |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_3|       pointer|
+|arg0_read_mem_strm_3_empty_n                 |   in|    1|     ap_fifo|                                                         arg0_read_mem_strm_3|       pointer|
+|arg0_read_mem_strm_3_read                    |  out|    1|     ap_fifo|                                                         arg0_read_mem_strm_3|       pointer|
+|arg0_read_mem_strm_4_dout                    |   in|  256|     ap_fifo|                                                         arg0_read_mem_strm_4|       pointer|
+|arg0_read_mem_strm_4_num_data_valid          |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_4|       pointer|
+|arg0_read_mem_strm_4_fifo_cap                |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_4|       pointer|
+|arg0_read_mem_strm_4_empty_n                 |   in|    1|     ap_fifo|                                                         arg0_read_mem_strm_4|       pointer|
+|arg0_read_mem_strm_4_read                    |  out|    1|     ap_fifo|                                                         arg0_read_mem_strm_4|       pointer|
+|arg0_read_mem_strm_5_dout                    |   in|  256|     ap_fifo|                                                         arg0_read_mem_strm_5|       pointer|
+|arg0_read_mem_strm_5_num_data_valid          |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_5|       pointer|
+|arg0_read_mem_strm_5_fifo_cap                |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_5|       pointer|
+|arg0_read_mem_strm_5_empty_n                 |   in|    1|     ap_fifo|                                                         arg0_read_mem_strm_5|       pointer|
+|arg0_read_mem_strm_5_read                    |  out|    1|     ap_fifo|                                                         arg0_read_mem_strm_5|       pointer|
+|arg0_read_mem_strm_6_dout                    |   in|  256|     ap_fifo|                                                         arg0_read_mem_strm_6|       pointer|
+|arg0_read_mem_strm_6_num_data_valid          |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_6|       pointer|
+|arg0_read_mem_strm_6_fifo_cap                |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_6|       pointer|
+|arg0_read_mem_strm_6_empty_n                 |   in|    1|     ap_fifo|                                                         arg0_read_mem_strm_6|       pointer|
+|arg0_read_mem_strm_6_read                    |  out|    1|     ap_fifo|                                                         arg0_read_mem_strm_6|       pointer|
+|arg0_read_mem_strm_7_dout                    |   in|  256|     ap_fifo|                                                         arg0_read_mem_strm_7|       pointer|
+|arg0_read_mem_strm_7_num_data_valid          |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_7|       pointer|
+|arg0_read_mem_strm_7_fifo_cap                |   in|    5|     ap_fifo|                                                         arg0_read_mem_strm_7|       pointer|
+|arg0_read_mem_strm_7_empty_n                 |   in|    1|     ap_fifo|                                                         arg0_read_mem_strm_7|       pointer|
+|arg0_read_mem_strm_7_read                    |  out|    1|     ap_fifo|                                                         arg0_read_mem_strm_7|       pointer|
+|arg0_combined_read_mem_strm1_din             |  out|  256|     ap_fifo|                                                 arg0_combined_read_mem_strm1|       pointer|
+|arg0_combined_read_mem_strm1_num_data_valid  |   in|    2|     ap_fifo|                                                 arg0_combined_read_mem_strm1|       pointer|
+|arg0_combined_read_mem_strm1_fifo_cap        |   in|    2|     ap_fifo|                                                 arg0_combined_read_mem_strm1|       pointer|
+|arg0_combined_read_mem_strm1_full_n          |   in|    1|     ap_fifo|                                                 arg0_combined_read_mem_strm1|       pointer|
+|arg0_combined_read_mem_strm1_write           |  out|    1|     ap_fifo|                                                 arg0_combined_read_mem_strm1|       pointer|
+|config_grid_size_y_dout                      |   in|   16|     ap_fifo|                                                           config_grid_size_y|       pointer|
+|config_grid_size_y_num_data_valid            |   in|    2|     ap_fifo|                                                           config_grid_size_y|       pointer|
+|config_grid_size_y_fifo_cap                  |   in|    2|     ap_fifo|                                                           config_grid_size_y|       pointer|
+|config_grid_size_y_empty_n                   |   in|    1|     ap_fifo|                                                           config_grid_size_y|       pointer|
+|config_grid_size_y_read                      |  out|    1|     ap_fifo|                                                           config_grid_size_y|       pointer|
+|config_tile_count_x_dout                     |   in|   16|     ap_fifo|                                                          config_tile_count_x|       pointer|
+|config_tile_count_x_num_data_valid           |   in|    2|     ap_fifo|                                                          config_tile_count_x|       pointer|
+|config_tile_count_x_fifo_cap                 |   in|    2|     ap_fifo|                                                          config_tile_count_x|       pointer|
+|config_tile_count_x_empty_n                  |   in|    1|     ap_fifo|                                                          config_tile_count_x|       pointer|
+|config_tile_count_x_read                     |  out|    1|     ap_fifo|                                                          config_tile_count_x|       pointer|
+|config_tile_size_x_dout                      |   in|   16|     ap_fifo|                                                           config_tile_size_x|       pointer|
+|config_tile_size_x_num_data_valid            |   in|    2|     ap_fifo|                                                           config_tile_size_x|       pointer|
+|config_tile_size_x_fifo_cap                  |   in|    2|     ap_fifo|                                                           config_tile_size_x|       pointer|
+|config_tile_size_x_empty_n                   |   in|    1|     ap_fifo|                                                           config_tile_size_x|       pointer|
+|config_tile_size_x_read                      |  out|    1|     ap_fifo|                                                           config_tile_size_x|       pointer|
+|config_last_tile_size_x_dout                 |   in|   16|     ap_fifo|                                                      config_last_tile_size_x|       pointer|
+|config_last_tile_size_x_num_data_valid       |   in|    2|     ap_fifo|                                                      config_last_tile_size_x|       pointer|
+|config_last_tile_size_x_fifo_cap             |   in|    2|     ap_fifo|                                                      config_last_tile_size_x|       pointer|
+|config_last_tile_size_x_empty_n              |   in|    1|     ap_fifo|                                                      config_last_tile_size_x|       pointer|
+|config_last_tile_size_x_read                 |  out|    1|     ap_fifo|                                                      config_last_tile_size_x|       pointer|
++---------------------------------------------+-----+-----+------------+-----------------------------------------------------------------------------+--------------+
+

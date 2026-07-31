@@ -1,0 +1,190 @@
+
+
+================================================================
+== Vitis HLS Report for 'splitStream2D_Pipeline_VITIS_LOOP_5575_2_VITIS_LOOP_5579_3'
+================================================================
+* Date:           Thu Jul 30 23:54:18 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.356 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                       |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |               Loop Name               |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_5575_2_VITIS_LOOP_5579_3  |        ?|        ?|         2|          1|          1|     ?|       yes|
+        +---------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.38>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%i = alloca i32 1"   --->   Operation 5 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%bank_id = alloca i32 1"   --->   Operation 6 'alloca' 'bank_id' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%indvar_flatten = alloca i32 1"   --->   Operation 7 'alloca' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_combined_write_mem_strm2, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 8 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_write_mem_strm_0, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 9 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_write_mem_strm_1, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 10 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_write_mem_strm_2, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 11 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_write_mem_strm_3, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 12 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_write_mem_strm_4, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 13 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_write_mem_strm_5, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 14 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_write_mem_strm_6, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 15 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg1_write_mem_strm_7, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 16 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%tile_size_x_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %tile_size_x" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5560]   --->   Operation 17 'read' 'tile_size_x_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%mul_ln5571_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %mul_ln5571" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5560]   --->   Operation 18 'read' 'mul_ln5571_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.38ns)   --->   "%store_ln0 = store i32 0, i32 %indvar_flatten"   --->   Operation 19 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 20 [1/1] (0.38ns)   --->   "%store_ln0 = store i16 0, i16 %bank_id"   --->   Operation 20 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 21 [1/1] (0.38ns)   --->   "%store_ln0 = store i16 0, i16 %i"   --->   Operation 21 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc"   --->   Operation 22 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 1.41>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%i_2 = load i16 %i" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579]   --->   Operation 23 'load' 'i_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%indvar_flatten_load = load i32 %indvar_flatten" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575]   --->   Operation 24 'load' 'indvar_flatten_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.85ns)   --->   "%icmp_ln5575 = icmp_eq  i32 %indvar_flatten_load, i32 %mul_ln5571_read" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575]   --->   Operation 25 'icmp' 'icmp_ln5575' <Predicate = true> <Delay = 0.85> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 26 [1/1] (0.88ns)   --->   "%add_ln5575 = add i32 %indvar_flatten_load, i32 1" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575]   --->   Operation 26 'add' 'add_ln5575' <Predicate = true> <Delay = 0.88> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%br_ln5575 = br i1 %icmp_ln5575, void %for.inc20.loopexit, void %for.inc23.loopexit.exitStub" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575]   --->   Operation 27 'br' 'br_ln5575' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%bank_id_load = load i16 %bank_id" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575]   --->   Operation 28 'load' 'bank_id_load' <Predicate = (!icmp_ln5575)> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.78ns)   --->   "%add_ln5575_1 = add i16 %bank_id_load, i16 1" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575]   --->   Operation 29 'add' 'add_ln5575_1' <Predicate = (!icmp_ln5575)> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 30 [1/1] (0.67ns)   --->   "%icmp_ln5579 = icmp_eq  i16 %i_2, i16 %tile_size_x_read" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579]   --->   Operation 30 'icmp' 'icmp_ln5579' <Predicate = (!icmp_ln5575)> <Delay = 0.67> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.67> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 31 [1/1] (0.24ns)   --->   "%select_ln5575 = select i1 %icmp_ln5579, i16 %add_ln5575_1, i16 %bank_id_load" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575]   --->   Operation 31 'select' 'select_ln5575' <Predicate = (!icmp_ln5575)> <Delay = 0.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%trunc_ln5575 = trunc i16 %select_ln5575" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575]   --->   Operation 32 'trunc' 'trunc_ln5575' <Predicate = (!icmp_ln5575)> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.34ns)   --->   "%switch_ln5594 = switch i3 %trunc_ln5575, void %V.i11.case.7, i3 0, void %V.i11.case.0, i3 1, void %V.i11.case.1, i3 2, void %V.i11.case.2, i3 3, void %V.i11.case.3, i3 4, void %V.i11.case.4, i3 5, void %V.i11.case.5, i3 6, void %V.i11.case.6" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 33 'switch' 'switch_ln5594' <Predicate = (!icmp_ln5575)> <Delay = 0.34>
+ST_2 : Operation 34 [1/1] (0.78ns)   --->   "%add_ln5579 = add i16 %i_2, i16 1" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579]   --->   Operation 34 'add' 'add_ln5579' <Predicate = (!icmp_ln5575)> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 35 [1/1] (0.24ns)   --->   "%i_3 = select i1 %icmp_ln5579, i16 1, i16 %add_ln5579" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579]   --->   Operation 35 'select' 'i_3' <Predicate = (!icmp_ln5575)> <Delay = 0.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 36 [1/1] (0.38ns)   --->   "%store_ln5579 = store i32 %add_ln5575, i32 %indvar_flatten" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579]   --->   Operation 36 'store' 'store_ln5579' <Predicate = (!icmp_ln5575)> <Delay = 0.38>
+ST_2 : Operation 37 [1/1] (0.38ns)   --->   "%store_ln5579 = store i16 %select_ln5575, i16 %bank_id" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579]   --->   Operation 37 'store' 'store_ln5579' <Predicate = (!icmp_ln5575)> <Delay = 0.38>
+ST_2 : Operation 38 [1/1] (0.38ns)   --->   "%store_ln5579 = store i16 %i_3, i16 %i" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579]   --->   Operation 38 'store' 'store_ln5579' <Predicate = (!icmp_ln5575)> <Delay = 0.38>
+ST_2 : Operation 39 [1/1] (0.00ns)   --->   "%br_ln5579 = br void %for.inc" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579]   --->   Operation 39 'br' 'br_ln5579' <Predicate = (!icmp_ln5575)> <Delay = 0.00>
+ST_2 : Operation 60 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 60 'ret' 'ret_ln0' <Predicate = (icmp_ln5575)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 2.35>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%specloopname_ln0 = specloopname void @_ssdm_op_SpecLoopName, void @VITIS_LOOP_5575_2_VITIS_LOOP_5579_3_str"   --->   Operation 40 'specloopname' 'specloopname_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%specpipeline_ln5581 = specpipeline void @_ssdm_op_SpecPipeline, i32 1, i32 0, i32 0, i32 0, void @empty_47" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5581]   --->   Operation 41 'specpipeline' 'specpipeline_ln5581' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%specloopname_ln5579 = specloopname void @_ssdm_op_SpecLoopName, void @empty_3" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579]   --->   Operation 42 'specloopname' 'specloopname_ln5579' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (1.21ns)   --->   "%data = read i256 @_ssdm_op_Read.ap_fifo.volatile.i256P0A, i256 %arg1_combined_write_mem_strm2" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5582]   --->   Operation 43 'read' 'data' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_3 : Operation 44 [1/1] (1.13ns)   --->   "%write_ln5594 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg1_write_mem_strm_6, i256 %data" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 44 'write' 'write_ln5594' <Predicate = (trunc_ln5575 == 6)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%br_ln5594 = br void %V.i11.exit" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 45 'br' 'br_ln5594' <Predicate = (trunc_ln5575 == 6)> <Delay = 0.00>
+ST_3 : Operation 46 [1/1] (1.13ns)   --->   "%write_ln5594 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg1_write_mem_strm_5, i256 %data" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 46 'write' 'write_ln5594' <Predicate = (trunc_ln5575 == 5)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%br_ln5594 = br void %V.i11.exit" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 47 'br' 'br_ln5594' <Predicate = (trunc_ln5575 == 5)> <Delay = 0.00>
+ST_3 : Operation 48 [1/1] (1.13ns)   --->   "%write_ln5594 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg1_write_mem_strm_4, i256 %data" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 48 'write' 'write_ln5594' <Predicate = (trunc_ln5575 == 4)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "%br_ln5594 = br void %V.i11.exit" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 49 'br' 'br_ln5594' <Predicate = (trunc_ln5575 == 4)> <Delay = 0.00>
+ST_3 : Operation 50 [1/1] (1.13ns)   --->   "%write_ln5594 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg1_write_mem_strm_3, i256 %data" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 50 'write' 'write_ln5594' <Predicate = (trunc_ln5575 == 3)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "%br_ln5594 = br void %V.i11.exit" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 51 'br' 'br_ln5594' <Predicate = (trunc_ln5575 == 3)> <Delay = 0.00>
+ST_3 : Operation 52 [1/1] (1.13ns)   --->   "%write_ln5594 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg1_write_mem_strm_2, i256 %data" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 52 'write' 'write_ln5594' <Predicate = (trunc_ln5575 == 2)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_3 : Operation 53 [1/1] (0.00ns)   --->   "%br_ln5594 = br void %V.i11.exit" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 53 'br' 'br_ln5594' <Predicate = (trunc_ln5575 == 2)> <Delay = 0.00>
+ST_3 : Operation 54 [1/1] (1.13ns)   --->   "%write_ln5594 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg1_write_mem_strm_1, i256 %data" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 54 'write' 'write_ln5594' <Predicate = (trunc_ln5575 == 1)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%br_ln5594 = br void %V.i11.exit" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 55 'br' 'br_ln5594' <Predicate = (trunc_ln5575 == 1)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (1.13ns)   --->   "%write_ln5594 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg1_write_mem_strm_0, i256 %data" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 56 'write' 'write_ln5594' <Predicate = (trunc_ln5575 == 0)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%br_ln5594 = br void %V.i11.exit" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 57 'br' 'br_ln5594' <Predicate = (trunc_ln5575 == 0)> <Delay = 0.00>
+ST_3 : Operation 58 [1/1] (1.13ns)   --->   "%write_ln5594 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg1_write_mem_strm_7, i256 %data" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 58 'write' 'write_ln5594' <Predicate = (trunc_ln5575 == 7)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%br_ln5594 = br void %V.i11.exit" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594]   --->   Operation 59 'br' 'br_ln5594' <Predicate = (trunc_ln5575 == 7)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 0.387ns
+The critical path consists of the following:
+	'alloca' operation ('indvar_flatten') [14]  (0 ns)
+	'store' operation ('store_ln0') of constant 0 on local variable 'indvar_flatten' [26]  (0.387 ns)
+
+ <State 2>: 1.42ns
+The critical path consists of the following:
+	'load' operation ('bank_id_load', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575) on local variable 'bank_id' [37]  (0 ns)
+	'add' operation ('add_ln5575_1', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575) [39]  (0.785 ns)
+	'select' operation ('select_ln5575', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575) [41]  (0.243 ns)
+	'store' operation ('store_ln5579', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5579) of variable 'select_ln5575', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5575 on local variable 'bank_id' [75]  (0.387 ns)
+
+ <State 3>: 2.36ns
+The critical path consists of the following:
+	fifo read operation ('data', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5582) on port 'arg1_combined_write_mem_strm2' (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5582) [45]  (1.22 ns)
+	fifo write operation ('write_ln5594', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594) on port 'arg1_write_mem_strm_6' (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5594) [48]  (1.14 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,1404 @@
+<ENTRY>
+{
+ "thisFile": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/poisson2d.xclbin.link_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Fri Jul 31 00:09:40 2026",
+ "timestampMillis": "1785449380513",
+ "buildStep": {
+  "cmdId": "e75ebbb4-4aba-45d9-9db0-fc2bf206e3be",
+  "name": "v++",
+  "logFile": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/link.steps.log",
+  "commandLine": "/opt/software/FPGA/Xilinx/Vitis/2022.2/bin/unwrapped/lnx64.o/v++  --vivado.prop \"run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --vivado.prop \"run.impl_1.{STEPS.PLACE_DESIGN.ARGS.MORE OPTIONS}={-retiming}\" --vivado.prop run.impl_1.STEPS.PHYS_OPT_DESIGN.IS_ENABLED=true --vivado.prop run.impl_1.STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED=true --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --advanced.misc \"report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -s -O3 --target hw --platform xilinx_u280_gen3x16_xdma_1_202211_1 --hls.jobs 64 --remote_ip_cache /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/source_files/../ops/hls/IP_CACHE/ -DOPS_TILING -DOPS_MAXTILESIZE_X=512-DOPS_HLS_TILE_BANKS=8 --temp_dir hls/build/hw/temp_dir/link/ --log_dir hls/build/hw/temp_dir/link/logs/ --link --config hls/host/xrt.cfg -o hls/build/hw/poisson2d.xclbin ./hls/build/hw/datamover_outerloop_0.xo ./hls/build/hw/kernel_outerloop_0_0.xo ./hls/build/hw/kernel_outerloop_0_1.xo ./hls/build/hw/kernel_outerloop_0_2.xo ./hls/build/hw/repeater_outerloop_0.xo ",
+  "args": [
+   "-s",
+   "-O3",
+   "--target",
+   "hw",
+   "--platform",
+   "xilinx_u280_gen3x16_xdma_1_202211_1",
+   "--hls.jobs",
+   "64",
+   "--remote_ip_cache",
+   "/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/source_files/../ops/hls/IP_CACHE/",
+   "-DOPS_TILING",
+   "-DOPS_MAXTILESIZE_X=512-DOPS_HLS_TILE_BANKS=8",
+   "--temp_dir",
+   "hls/build/hw/temp_dir/link/",
+   "--log_dir",
+   "hls/build/hw/temp_dir/link/logs/",
+   "--link",
+   "--config",
+   "hls/host/xrt.cfg",
+   "-o",
+   "hls/build/hw/poisson2d.xclbin",
+   "./hls/build/hw/datamover_outerloop_0.xo",
+   "./hls/build/hw/kernel_outerloop_0_0.xo",
+   "./hls/build/hw/kernel_outerloop_0_1.xo",
+   "./hls/build/hw/kernel_outerloop_0_2.xo",
+   "./hls/build/hw/repeater_outerloop_0.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/host/xrt.cfg",
+    "content": "[connectivity]\nnk=kernel_outerloop_0_0:1:kernel_outerloop_inst_0_1\nnk=kernel_outerloop_0_1:1:kernel_outerloop_inst_0_2\nnk=kernel_outerloop_0_2:1:kernel_outerloop_inst_0_3\nstream_connect=datamover_outerloop_0_1.arg0_axis_out:kernel_outerloop_inst_0_1.arg0_axis_in:128\nstream_connect=kernel_outerloop_inst_0_1.arg1_axis_out:kernel_outerloop_inst_0_2.arg0_axis_in:128\nstream_connect=kernel_outerloop_inst_0_2.arg1_axis_out:kernel_outerloop_inst_0_3.arg0_axis_in:128\nstream_connect=kernel_outerloop_inst_0_3.arg1_axis_out:repeater_outerloop_0_1.arg0_axis_in\nstream_connect=repeater_outerloop_0_1.arg1_axis_out:datamover_outerloop_0_1.arg1_axis_in:128\n\nslr=kernel_outerloop_inst_0_1:SLR0\nslr=kernel_outerloop_inst_0_2:SLR1\nslr=kernel_outerloop_inst_0_3:SLR2\nslr=repeater_outerloop_0_1:SLR1\n\nsp=datamover_outerloop_0_1.arg0_b0:HBM[0]\nsp=datamover_outerloop_0_1.arg0_b1:HBM[1]\nsp=datamover_outerloop_0_1.arg0_b2:HBM[2]\nsp=datamover_outerloop_0_1.arg0_b3:HBM[3]\nsp=datamover_outerloop_0_1.arg0_b4:HBM[4]\nsp=datamover_outerloop_0_1.arg0_b5:HBM[5]\nsp=datamover_outerloop_0_1.arg0_b6:HBM[6]\nsp=datamover_outerloop_0_1.arg0_b7:HBM[7]\nsp=datamover_outerloop_0_1.arg1_b0:HBM[8]\nsp=datamover_outerloop_0_1.arg1_b1:HBM[9]\nsp=datamover_outerloop_0_1.arg1_b2:HBM[10]\nsp=datamover_outerloop_0_1.arg1_b3:HBM[11]\nsp=datamover_outerloop_0_1.arg1_b4:HBM[12]\nsp=datamover_outerloop_0_1.arg1_b5:HBM[13]\nsp=datamover_outerloop_0_1.arg1_b6:HBM[14]\nsp=datamover_outerloop_0_1.arg1_b7:HBM[15]\n\n"
+   }
+  ],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:09:40 2026",
+ "timestampMillis": "1785449380515",
+ "status": {
+  "cmdId": "e75ebbb4-4aba-45d9-9db0-fc2bf206e3be",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Fri Jul 31 00:09:48 2026",
+ "timestampMillis": "1785449388947",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u280_gen3x16_xdma_1_202211_1.xpfm",
+  "hardwareDsa": "",
+  "platformDirectory": "/opt/software/FPGA/Xilinx/platforms/xilinx_u280_gen3x16_xdma_1_202211_1",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_LINK",
+  "target": "TT_HW",
+  "binaryContainer": {
+   "base": {
+    "type": "BT_UKNOWN",
+    "name": "poisson2d",
+    "file": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/poisson2d.xclbin",
+    "reports": [],
+    "uuid": ""
+   },
+   "kernels": []
+  },
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "datamover_outerloop_0",
+     "file": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/datamover_outerloop_0.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/datamover_outerloop_0/datamover_outerloop_0/cpu_sources/datamover_outerloop_0.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "datamover_outerloop_0_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "kernel_outerloop_0_0",
+     "file": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/kernel_outerloop_0_0.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/kernel_outerloop_0_0/kernel_outerloop_0_0/cpu_sources/kernel_outerloop_0_0.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "kernel_outerloop_inst_0_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "kernel_outerloop_0_1",
+     "file": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/kernel_outerloop_0_1.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/kernel_outerloop_0_1/kernel_outerloop_0_1/cpu_sources/kernel_outerloop_0_1.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "kernel_outerloop_inst_0_2"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "kernel_outerloop_0_2",
+     "file": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/kernel_outerloop_0_2.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/kernel_outerloop_0_2/kernel_outerloop_0_2/cpu_sources/kernel_outerloop_0_2.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "kernel_outerloop_inst_0_3"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   },
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "repeater_outerloop_0",
+     "file": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/repeater_outerloop_0.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/repeater_outerloop_0/repeater_outerloop_0/cpu_sources/repeater_outerloop_0.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "repeater_outerloop_0_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2022.2. SW Build 3671529 on 2022-10-13-17:52:11"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 00:09:49 2026",
+ "timestampMillis": "1785449389747",
+ "buildStep": {
+  "cmdId": "c7d3fbc3-6aba-49be-b4e1-77b4bea55e41",
+  "name": "system_link",
+  "logFile": "",
+  "commandLine": "system_link --xo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/datamover_outerloop_0.xo --xo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/kernel_outerloop_0_0.xo --xo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/kernel_outerloop_0_1.xo --xo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/kernel_outerloop_0_2.xo --xo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/repeater_outerloop_0.xo -keep --config /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/syslinkConfig.ini --xpfm /opt/software/FPGA/Xilinx/platforms/xilinx_u280_gen3x16_xdma_1_202211_1/xilinx_u280_gen3x16_xdma_1_202211_1.xpfm --target hw --output_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int --temp_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/sys_link",
+  "args": [
+   "--xo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/datamover_outerloop_0.xo",
+   "--xo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/kernel_outerloop_0_0.xo",
+   "--xo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/kernel_outerloop_0_1.xo",
+   "--xo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/kernel_outerloop_0_2.xo",
+   "--xo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/repeater_outerloop_0.xo",
+   "-keep",
+   "--config",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/syslinkConfig.ini",
+   "--xpfm",
+   "/opt/software/FPGA/Xilinx/platforms/xilinx_u280_gen3x16_xdma_1_202211_1/xilinx_u280_gen3x16_xdma_1_202211_1.xpfm",
+   "--target",
+   "hw",
+   "--output_dir",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int",
+   "--temp_dir",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/sys_link"
+  ],
+  "iniFiles": [
+   {
+    "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/syslinkConfig.ini",
+    "content": "nk=kernel_outerloop_0_0:1:kernel_outerloop_inst_0_1\nnk=kernel_outerloop_0_1:1:kernel_outerloop_inst_0_2\nnk=kernel_outerloop_0_2:1:kernel_outerloop_inst_0_3\nsc=datamover_outerloop_0_1.arg0_axis_out:kernel_outerloop_inst_0_1.arg0_axis_in:128\nsc=kernel_outerloop_inst_0_1.arg1_axis_out:kernel_outerloop_inst_0_2.arg0_axis_in:128\nsc=kernel_outerloop_inst_0_2.arg1_axis_out:kernel_outerloop_inst_0_3.arg0_axis_in:128\nsc=kernel_outerloop_inst_0_3.arg1_axis_out:repeater_outerloop_0_1.arg0_axis_in\nsc=repeater_outerloop_0_1.arg1_axis_out:datamover_outerloop_0_1.arg1_axis_in:128\nsp=datamover_outerloop_0_1.arg0_b0:HBM[0]\nsp=datamover_outerloop_0_1.arg0_b1:HBM[1]\nsp=datamover_outerloop_0_1.arg0_b2:HBM[2]\nsp=datamover_outerloop_0_1.arg0_b3:HBM[3]\nsp=datamover_outerloop_0_1.arg0_b4:HBM[4]\nsp=datamover_outerloop_0_1.arg0_b5:HBM[5]\nsp=datamover_outerloop_0_1.arg0_b6:HBM[6]\nsp=datamover_outerloop_0_1.arg0_b7:HBM[7]\nsp=datamover_outerloop_0_1.arg1_b0:HBM[8]\nsp=datamover_outerloop_0_1.arg1_b1:HBM[9]\nsp=datamover_outerloop_0_1.arg1_b2:HBM[10]\nsp=datamover_outerloop_0_1.arg1_b3:HBM[11]\nsp=datamover_outerloop_0_1.arg1_b4:HBM[12]\nsp=datamover_outerloop_0_1.arg1_b5:HBM[13]\nsp=datamover_outerloop_0_1.arg1_b6:HBM[14]\nsp=datamover_outerloop_0_1.arg1_b7:HBM[15]\nslr=kernel_outerloop_inst_0_1:SLR0\nslr=kernel_outerloop_inst_0_2:SLR1\nslr=kernel_outerloop_inst_0_3:SLR2\nslr=repeater_outerloop_0_1:SLR1\n\n"
+   }
+  ],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:09:49 2026",
+ "timestampMillis": "1785449389747",
+ "status": {
+  "cmdId": "c7d3fbc3-6aba-49be-b4e1-77b4bea55e41",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:10:21 2026",
+ "timestampMillis": "1785449421302",
+ "status": {
+  "cmdId": "c7d3fbc3-6aba-49be-b4e1-77b4bea55e41",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 00:10:21 2026",
+ "timestampMillis": "1785449421308",
+ "buildStep": {
+  "cmdId": "6c957241-56be-426c-bdef-9b44c9a50c00",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -sdsl /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/sdsl.dat -rtd /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/cf2sw.rtd -nofilter /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/cf2sw_full.rtd -xclbin /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xclbin_orig.xml -o /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xclbin_orig.1.xml",
+  "args": [
+   "-sdsl",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/sdsl.dat",
+   "-rtd",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/cf2sw.rtd",
+   "-nofilter",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/cf2sw_full.rtd",
+   "-xclbin",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xclbin_orig.xml",
+   "-o",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xclbin_orig.1.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:10:21 2026",
+ "timestampMillis": "1785449421308",
+ "status": {
+  "cmdId": "6c957241-56be-426c-bdef-9b44c9a50c00",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:10:34 2026",
+ "timestampMillis": "1785449434605",
+ "status": {
+  "cmdId": "6c957241-56be-426c-bdef-9b44c9a50c00",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 00:10:34 2026",
+ "timestampMillis": "1785449434618",
+ "buildStep": {
+  "cmdId": "0a855a89-e084-435e-8bdb-93ec693fa77a",
+  "name": "rtd2_system_diagram",
+  "logFile": "",
+  "commandLine": "rtd2SystemDiagram",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:10:34 2026",
+ "timestampMillis": "1785449434618",
+ "status": {
+  "cmdId": "0a855a89-e084-435e-8bdb-93ec693fa77a",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 00:10:34 2026",
+ "timestampMillis": "1785449434982",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/systemDiagramModel.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:10:34 2026",
+ "timestampMillis": "1785449434984",
+ "status": {
+  "cmdId": "0a855a89-e084-435e-8bdb-93ec693fa77a",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 00:10:34 2026",
+ "timestampMillis": "1785449434990",
+ "buildStep": {
+  "cmdId": "461bf560-6c5c-4093-9ff8-f4861bd9f329",
+  "name": "vpl",
+  "logFile": "",
+  "commandLine": "vpl -t hw -f xilinx_u280_gen3x16_xdma_1_202211_1 -s --remote_ip_cache /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/source_files/../ops/hls/IP_CACHE/ --output_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int --log_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/logs/link --report_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link --config /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/vplConfig.ini -k /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link --no-info --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_repeater_outerloop_0_1_0 --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_kernel_outerloop_0_0_1_0 --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_kernel_outerloop_0_1_1_0 --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_datamover_outerloop_0_1_0 --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_kernel_outerloop_0_2_1_0 --messageDb /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/run_link/vpl.pb /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/dr.bd.tcl",
+  "args": [
+   "-t",
+   "hw",
+   "-f",
+   "xilinx_u280_gen3x16_xdma_1_202211_1",
+   "-s",
+   "--remote_ip_cache",
+   "/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/source_files/../ops/hls/IP_CACHE/",
+   "--output_dir",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int",
+   "--log_dir",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/logs/link",
+   "--report_dir",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link",
+   "--config",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/vplConfig.ini",
+   "-k",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/kernel_info.dat",
+   "--webtalk_flag",
+   "Vitis",
+   "--temp_dir",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link",
+   "--no-info",
+   "--iprepo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_repeater_outerloop_0_1_0",
+   "--iprepo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_kernel_outerloop_0_0_1_0",
+   "--iprepo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_kernel_outerloop_0_1_1_0",
+   "--iprepo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_datamover_outerloop_0_1_0",
+   "--iprepo",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_kernel_outerloop_0_2_1_0",
+   "--messageDb",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/run_link/vpl.pb",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/dr.bd.tcl"
+  ],
+  "iniFiles": [
+   {
+    "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/vplConfig.ini",
+    "content": "[advanced]\nmisc=report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\nmisc=report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\nparam=compiler.enablePerformanceTrace=1\nparam=compiler.vppCurrentWorkingDir=/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512\nmisc=BinaryName=poisson2d\n\n[connectivity]\nnk=datamover_outerloop_0:1:datamover_outerloop_0_1\nnk=kernel_outerloop_0_0:1:kernel_outerloop_inst_0_1\nnk=kernel_outerloop_0_1:1:kernel_outerloop_inst_0_2\nnk=kernel_outerloop_0_2:1:kernel_outerloop_inst_0_3\nnk=repeater_outerloop_0:1:repeater_outerloop_0_1\n\n[vivado]\nprop=run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\nprop=run.impl_1.{STEPS.PLACE_DESIGN.ARGS.MORE OPTIONS}={-retiming}\nprop=run.impl_1.STEPS.PHYS_OPT_DESIGN.IS_ENABLED=true\nprop=run.impl_1.STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED=true\n\n"
+   }
+  ],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:10:34 2026",
+ "timestampMillis": "1785449434991",
+ "status": {
+  "cmdId": "461bf560-6c5c-4093-9ff8-f4861bd9f329",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Fri Jul 31 00:10:36 2026",
+ "timestampMillis": "1785449436095",
+ "buildStep": {
+  "cmdId": "ba7883a8-45cd-4704-9540-aee49fe655bc",
+  "name": "vpl",
+  "logFile": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/link.steps.log",
+  "commandLine": "/opt/software/FPGA/Xilinx/Vitis/2022.2/bin/unwrapped/lnx64.o/vpl -t hw -f xilinx_u280_gen3x16_xdma_1_202211_1 -s --remote_ip_cache /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/source_files/../ops/hls/IP_CACHE/ --output_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int --log_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/logs/link --report_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link --config /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/vplConfig.ini -k /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link --no-info --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_repeater_outerloop_0_1_0 --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_kernel_outerloop_0_0_1_0 --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_kernel_outerloop_0_1_1_0 --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_datamover_outerloop_0_1_0 --iprepo /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xo/ip_repo/xilinx_com_hls_kernel_outerloop_0_2_1_0 --messageDb /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/run_link/vpl.pb /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/dr.bd.tcl ",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:10:36 2026",
+ "timestampMillis": "1785449436095",
+ "status": {
+  "cmdId": "ba7883a8-45cd-4704-9540-aee49fe655bc",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_VivadoProject",
+ "dateTimestamp": "Fri Jul 31 00:10:40 2026",
+ "timestampMillis": "1785449440915",
+ "vivadoProject": {
+  "openDir": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl",
+  "openScript": "openprj.tcl",
+  "relativeProject": "prj/prj.xpr"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 00:10:40 2026",
+ "timestampMillis": "1785449440916",
+ "buildStep": {
+  "cmdId": "2edf948d-824c-4762-b3a1-876ca6ad9239",
+  "name": "vivado",
+  "logFile": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/vivado.log",
+  "commandLine": "vivado -log vivado.log -applog -m64 -messageDb vivado.pb -mode batch -source vpl.tcl -notrace",
+  "args": [
+   "-log",
+   "vivado.log",
+   "-applog",
+   " -m64",
+   "-messageDb",
+   "vivado.pb",
+   "-mode",
+   "batch",
+   "-source",
+   "vpl.tcl",
+   "-notrace"
+  ],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:10:40 2026",
+ "timestampMillis": "1785449440917",
+ "status": {
+  "cmdId": "2edf948d-824c-4762-b3a1-876ca6ad9239",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 00:11:31 2026",
+ "timestampMillis": "1785449491674",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/automation_summary_update_bd.txt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "VITIS_DESIGN_FLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Fri Jul 31 00:40:33 2026",
+ "timestampMillis": "1785451233862",
+ "buildStep": {
+  "cmdId": "4be172c2-d891-4d76-b177-c396954dc4e9",
+  "name": "vivado.impl",
+  "logFile": "",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:40:33 2026",
+ "timestampMillis": "1785451233864",
+ "status": {
+  "cmdId": "4be172c2-d891-4d76-b177-c396954dc4e9",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Fri Jul 31 00:40:33 2026",
+ "timestampMillis": "1785451233865",
+ "buildStep": {
+  "cmdId": "55a18549-c2d1-4136-8705-50c24d32955d",
+  "name": "vivado.impl.impl_1",
+  "logFile": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/runme.log",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 00:40:33 2026",
+ "timestampMillis": "1785451233865",
+ "status": {
+  "cmdId": "55a18549-c2d1-4136-8705-50c24d32955d",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 06:52:24 2026",
+ "timestampMillis": "1785473544720",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/system_diagram.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 06:58:37 2026",
+ "timestampMillis": "1785473917029",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/kernel_service.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "KERNEL_SERVICE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 06:58:37 2026",
+ "timestampMillis": "1785473917044",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/kernel_service.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "KERNEL_SERVICE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:12 2026",
+ "timestampMillis": "1785483312723",
+ "status": {
+  "cmdId": "2edf948d-824c-4762-b3a1-876ca6ad9239",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313477",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_full_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313493",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_full_util_synthed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313515",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_full_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313518",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_kernel_util_synthed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313521",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_slr_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313524",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_slr_util_placed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313527",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_kernel_util_routed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313530",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_kernel_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313559",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_kernel_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313579",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_kernel_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_ROUTE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313594",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_slr_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313597",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_slr_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313600",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_full_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313615",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_kernel_util_placed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313684",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/syn/ulp_kernel_outerloop_inst_0_1_0_synth_1_ulp_kernel_outerloop_inst_0_1_0_utilization_synth.rpt",
+  "name": "kernel_outerloop_0_0",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313699",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/syn/ulp_kernel_outerloop_inst_0_2_0_synth_1_ulp_kernel_outerloop_inst_0_2_0_utilization_synth.rpt",
+  "name": "kernel_outerloop_0_1",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313702",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/syn/ulp_kernel_outerloop_inst_0_3_0_synth_1_ulp_kernel_outerloop_inst_0_3_0_utilization_synth.rpt",
+  "name": "kernel_outerloop_0_2",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313706",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_system_diagram.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": "55a18549-c2d1-4136-8705-50c24d32955d"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313728",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "55a18549-c2d1-4136-8705-50c24d32955d"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313759",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpx",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "55a18549-c2d1-4136-8705-50c24d32955d"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313763",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpv",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY_CONCISE",
+  "cmdId": "55a18549-c2d1-4136-8705-50c24d32955d"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313844",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_hw_bb_locked_timing_summary_postroute_physopted.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "55a18549-c2d1-4136-8705-50c24d32955d"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313864",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_hw_bb_locked_timing_summary_postroute_physopted.rpx",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY",
+  "cmdId": "55a18549-c2d1-4136-8705-50c24d32955d"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:13 2026",
+ "timestampMillis": "1785483313898",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/imp/impl_1_hw_bb_locked_timing_summary_postroute_physopted.rpv",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY_CONCISE",
+  "cmdId": "55a18549-c2d1-4136-8705-50c24d32955d"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:14 2026",
+ "timestampMillis": "1785483314051",
+ "status": {
+  "cmdId": "ba7883a8-45cd-4704-9540-aee49fe655bc",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:15 2026",
+ "timestampMillis": "1785483315231",
+ "status": {
+  "cmdId": "461bf560-6c5c-4093-9ff8-f4861bd9f329",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 09:35:15 2026",
+ "timestampMillis": "1785483315305",
+ "buildStep": {
+  "cmdId": "b73a7044-9e7f-4c40-b9ad-bb60c1492bf8",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "rtdgen",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:15 2026",
+ "timestampMillis": "1785483315305",
+ "status": {
+  "cmdId": "b73a7044-9e7f-4c40-b9ad-bb60c1492bf8",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:15 2026",
+ "timestampMillis": "1785483315357",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d_xml.rtd",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "XCLBIN_INFO",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 09:35:15 2026",
+ "timestampMillis": "1785483315364",
+ "buildStep": {
+  "cmdId": "5160481d-5d4f-40d6-9795-8b243029b791",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -a /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/address_map.xml -sdsl /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/sdsl.dat -xclbin /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xclbin_orig.xml -rtd /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d.rtd -o /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d.xml",
+  "args": [
+   "-a",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/address_map.xml",
+   "-sdsl",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/sdsl.dat",
+   "-xclbin",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/xclbin_orig.xml",
+   "-rtd",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d.rtd",
+   "-o",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:15 2026",
+ "timestampMillis": "1785483315364",
+ "status": {
+  "cmdId": "5160481d-5d4f-40d6-9795-8b243029b791",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327503",
+ "status": {
+  "cmdId": "5160481d-5d4f-40d6-9795-8b243029b791",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327503",
+ "buildStep": {
+  "cmdId": "6f9f831d-a39e-4495-9ed1-f6988d763f0c",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "writeSystemDiagram",
+  "args": [
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d.rtd",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/systemDiagramModelSlrBaseAddress.json"
+  ],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327503",
+ "status": {
+  "cmdId": "6f9f831d-a39e-4495-9ed1-f6988d763f0c",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327520",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/systemDiagramModelSlrBaseAddress.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327522",
+ "status": {
+  "cmdId": "6f9f831d-a39e-4495-9ed1-f6988d763f0c",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327522",
+ "buildStep": {
+  "cmdId": "17155e51-dd4f-455a-8023-0b698a00ac67",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "writeAutomationSummary",
+  "args": [
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/automation_summary.txt"
+  ],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327522",
+ "status": {
+  "cmdId": "17155e51-dd4f-455a-8023-0b698a00ac67",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327525",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/automation_summary.txt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "VITIS_DESIGN_FLOW",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327526",
+ "status": {
+  "cmdId": "17155e51-dd4f-455a-8023-0b698a00ac67",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327530",
+ "status": {
+  "cmdId": "b73a7044-9e7f-4c40-b9ad-bb60c1492bf8",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327537",
+ "buildStep": {
+  "cmdId": "0cd663ab-de46-4cea-a484-116c25bccac8",
+  "name": "xclbinutil",
+  "logFile": "",
+  "commandLine": "xclbinutil --add-section BITSTREAM:RAW:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/partial.bit --force --target hw --key-value SYS:dfx_enable:true --add-section :JSON:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d.rtd --append-section :JSON:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d_xml.rtd --add-section BUILD_METADATA:JSON:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d_build.rtd --add-section EMBEDDED_METADATA:RAW:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d.xml --add-section SYSTEM_METADATA:RAW:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:xilinx_u280_gen3x16_xdma_1_202211_1 --output /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/poisson2d.xclbin",
+  "args": [
+   "--add-section",
+   "BITSTREAM:RAW:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/partial.bit",
+   "--force",
+   "--target",
+   "hw",
+   "--key-value",
+   "SYS:dfx_enable:true",
+   "--add-section",
+   ":JSON:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d.rtd",
+   "--append-section",
+   ":JSON:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/appendSection.rtd",
+   "--add-section",
+   "CLOCK_FREQ_TOPOLOGY:JSON:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d_xml.rtd",
+   "--add-section",
+   "BUILD_METADATA:JSON:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d_build.rtd",
+   "--add-section",
+   "EMBEDDED_METADATA:RAW:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/poisson2d.xml",
+   "--add-section",
+   "SYSTEM_METADATA:RAW:/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/int/systemDiagramModelSlrBaseAddress.json",
+   "--key-value",
+   "SYS:PlatformVBNV:xilinx_u280_gen3x16_xdma_1_202211_1",
+   "--output",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/poisson2d.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:27 2026",
+ "timestampMillis": "1785483327537",
+ "status": {
+  "cmdId": "0cd663ab-de46-4cea-a484-116c25bccac8",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328050",
+ "status": {
+  "cmdId": "0cd663ab-de46-4cea-a484-116c25bccac8",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328054",
+ "buildStep": {
+  "cmdId": "10a11528-b274-4392-8021-6a1292d8d280",
+  "name": "xclbinutilinfo",
+  "logFile": "",
+  "commandLine": "xclbinutil --quiet --force --info /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/poisson2d.xclbin.info --input /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/poisson2d.xclbin",
+  "args": [
+   "--quiet",
+   "--force",
+   "--info",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/poisson2d.xclbin.info",
+   "--input",
+   "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/poisson2d.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328054",
+ "status": {
+  "cmdId": "10a11528-b274-4392-8021-6a1292d8d280",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328738",
+ "status": {
+  "cmdId": "10a11528-b274-4392-8021-6a1292d8d280",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328742",
+ "buildStep": {
+  "cmdId": "da9b4a88-7b85-4a38-9a9b-95848de1cd92",
+  "name": "generate_sc_driver",
+  "logFile": "",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328743",
+ "status": {
+  "cmdId": "da9b4a88-7b85-4a38-9a9b-95848de1cd92",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328745",
+ "status": {
+  "cmdId": "da9b4a88-7b85-4a38-9a9b-95848de1cd92",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328895",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/system_estimate_poisson2d.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328929",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/logs/optraceViewer.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "OPERATION_TRACE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Fri Jul 31 09:35:28 2026",
+ "timestampMillis": "1785483328954",
+ "status": {
+  "cmdId": "e75ebbb4-4aba-45d9-9db0-fc2bf206e3be",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:29 2026",
+ "timestampMillis": "1785483329061",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/reports/link/v++_link_poisson2d_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Fri Jul 31 09:35:29 2026",
+ "timestampMillis": "1785483329062",
+ "report": {
+  "path": "/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/v++_link_poisson2d_guidance.pb3",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE",
+  "cmdId": ""
+ }
+}
+</ENTRY>

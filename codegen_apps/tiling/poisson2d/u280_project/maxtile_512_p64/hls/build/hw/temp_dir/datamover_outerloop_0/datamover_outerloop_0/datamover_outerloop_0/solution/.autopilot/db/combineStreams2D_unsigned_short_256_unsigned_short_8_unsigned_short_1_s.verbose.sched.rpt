@@ -1,0 +1,194 @@
+
+
+================================================================
+== Vitis HLS Report for 'combineStreams2D_unsigned_short_256_unsigned_short_8_unsigned_short_1_s'
+================================================================
+* Date:           Thu Jul 30 23:54:17 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.002 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  |    Trip   |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  |   Count   | Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+        |- VITIS_LOOP_5418_1  |        ?|        ?|         ?|          -|          -|  0 ~ 65535|        no|
+        +---------------------+---------+---------+----------+-----------+-----------+-----------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 2 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%tile_x = alloca i32 1"   --->   Operation 7 'alloca' 'tile_x' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %config_last_tile_size_x, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 8 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (1.21ns)   --->   "%config_last_tile_size_x_read = read i16 @_ssdm_op_Read.ap_fifo.i16P0A, i16 %config_last_tile_size_x"   --->   Operation 9 'read' 'config_last_tile_size_x_read' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %config_tile_size_x, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 10 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (1.21ns)   --->   "%config_tile_size_x_read = read i16 @_ssdm_op_Read.ap_fifo.i16P0A, i16 %config_tile_size_x"   --->   Operation 11 'read' 'config_tile_size_x_read' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %config_tile_count_x, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 12 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (1.21ns)   --->   "%config_tile_count_x_read = read i16 @_ssdm_op_Read.ap_fifo.i16P0A, i16 %config_tile_count_x"   --->   Operation 13 'read' 'config_tile_count_x_read' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %config_grid_size_y, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 14 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (1.21ns)   --->   "%config_grid_size_y_read = read i16 @_ssdm_op_Read.ap_fifo.i16P0A, i16 %config_grid_size_y"   --->   Operation 15 'read' 'config_grid_size_y_read' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_combined_read_mem_strm1, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 16 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_7, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 17 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_6, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 18 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_5, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_4, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_3, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 21 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_2, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_1, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_0, void @empty_50, i32 0, i32 0, void @empty_47, i32 0, i32 0, void @empty_47, void @empty_47, void @empty_47, i32 0, i32 0, i32 0, i32 0, void @empty_47, void @empty_47, i32 4294967295, i32 0"   --->   Operation 24 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%config_tile_count_x_load_cast = zext i16 %config_tile_count_x_read"   --->   Operation 25 'zext' 'config_tile_count_x_load_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.78ns)   --->   "%sub = add i17 %config_tile_count_x_load_cast, i17 131071"   --->   Operation 26 'add' 'sub' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%zext_ln5418_1 = zext i16 %config_grid_size_y_read" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 27 'zext' 'zext_ln5418_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.38ns)   --->   "%store_ln5418 = store i16 0, i16 %tile_x" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 28 'store' 'store_ln5418' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%br_ln5418 = br void %for.body" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 29 'br' 'br_ln5418' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 1.46>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%tile_x_18 = load i16 %tile_x" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 30 'load' 'tile_x_18' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.67ns)   --->   "%icmp_ln5418 = icmp_eq  i16 %tile_x_18, i16 %config_tile_count_x_read" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 31 'icmp' 'icmp_ln5418' <Predicate = true> <Delay = 0.67> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.67> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%empty = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 0, i64 65535, i64 0"   --->   Operation 32 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.78ns)   --->   "%add_ln5418 = add i16 %tile_x_18, i16 1" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 33 'add' 'add_ln5418' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%br_ln5418 = br i1 %icmp_ln5418, void %for.body.split, void %for.end25.loopexit" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 34 'br' 'br_ln5418' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 35 [1/1] (0.00ns)   --->   "%zext_ln5418 = zext i16 %tile_x_18" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 35 'zext' 'zext_ln5418' <Predicate = (!icmp_ln5418)> <Delay = 0.00>
+ST_2 : Operation 36 [1/1] (0.68ns)   --->   "%icmp_ln5420 = icmp_eq  i17 %sub, i17 %zext_ln5418" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5420]   --->   Operation 36 'icmp' 'icmp_ln5420' <Predicate = (!icmp_ln5418)> <Delay = 0.68> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.68> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 37 [1/1] (0.24ns)   --->   "%tile_size_x = select i1 %icmp_ln5420, i16 %config_last_tile_size_x_read, i16 %config_tile_size_x_read" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5420]   --->   Operation 37 'select' 'tile_size_x' <Predicate = (!icmp_ln5418)> <Delay = 0.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 38 [1/1] (0.00ns)   --->   "%zext_ln5418_2 = zext i16 %tile_size_x" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 38 'zext' 'zext_ln5418_2' <Predicate = (!icmp_ln5418)> <Delay = 0.00>
+ST_2 : Operation 39 [4/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln5418 = mul i32 %zext_ln5418_1, i32 %zext_ln5418_2" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 39 'mul' 'mul_ln5418' <Predicate = (!icmp_ln5418)> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 40 [1/1] (0.00ns)   --->   "%empty_225 = wait i32 @_ssdm_op_Wait"   --->   Operation 40 'wait' 'empty_225' <Predicate = (!icmp_ln5418)> <Delay = 0.00>
+ST_2 : Operation 41 [1/1] (0.38ns)   --->   "%store_ln5418 = store i16 %add_ln5418, i16 %tile_x" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 41 'store' 'store_ln5418' <Predicate = (!icmp_ln5418)> <Delay = 0.38>
+ST_2 : Operation 42 [1/1] (0.00ns)   --->   "%ret_ln5450 = ret" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5450]   --->   Operation 42 'ret' 'ret_ln5450' <Predicate = (icmp_ln5418)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 0.53>
+ST_3 : Operation 43 [3/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln5418 = mul i32 %zext_ln5418_1, i32 %zext_ln5418_2" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 43 'mul' 'mul_ln5418' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 4 <SV = 3> <Delay = 0.53>
+ST_4 : Operation 44 [2/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln5418 = mul i32 %zext_ln5418_1, i32 %zext_ln5418_2" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 44 'mul' 'mul_ln5418' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 45 [1/4] (0.00ns) (root node of the DSP)   --->   "%mul_ln5418 = mul i32 %zext_ln5418_1, i32 %zext_ln5418_2" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 45 'mul' 'mul_ln5418' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 46 [2/2] (0.00ns)   --->   "%call_ln5418 = call void @combineStreams2D_Pipeline_VITIS_LOOP_5422_2_VITIS_LOOP_5426_3, i32 %mul_ln5418, i256 %arg0_combined_read_mem_strm1, i256 %arg0_read_mem_strm_0, i16 %tile_size_x, i256 %arg0_read_mem_strm_1, i256 %arg0_read_mem_strm_2, i256 %arg0_read_mem_strm_3, i256 %arg0_read_mem_strm_4, i256 %arg0_read_mem_strm_5, i256 %arg0_read_mem_strm_6, i256 %arg0_read_mem_strm_7" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 46 'call' 'call_ln5418' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 47 [1/1] (0.00ns)   --->   "%specloopname_ln5418 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 47 'specloopname' 'specloopname_ln5418' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 48 [1/2] (0.00ns)   --->   "%call_ln5418 = call void @combineStreams2D_Pipeline_VITIS_LOOP_5422_2_VITIS_LOOP_5426_3, i32 %mul_ln5418, i256 %arg0_combined_read_mem_strm1, i256 %arg0_read_mem_strm_0, i16 %tile_size_x, i256 %arg0_read_mem_strm_1, i256 %arg0_read_mem_strm_2, i256 %arg0_read_mem_strm_3, i256 %arg0_read_mem_strm_4, i256 %arg0_read_mem_strm_5, i256 %arg0_read_mem_strm_6, i256 %arg0_read_mem_strm_7" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 48 'call' 'call_ln5418' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_6 : Operation 49 [1/1] (0.00ns)   --->   "%br_ln5418 = br void %for.body" [/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418]   --->   Operation 49 'br' 'br_ln5418' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 2ns
+The critical path consists of the following:
+	fifo read operation ('config_tile_count_x_read') on port 'config_tile_count_x' [20]  (1.22 ns)
+	'add' operation ('sub') [33]  (0.785 ns)
+
+ <State 2>: 1.47ns
+The critical path consists of the following:
+	'load' operation ('tile_x', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418) on local variable 'tile_x' [38]  (0 ns)
+	'icmp' operation ('icmp_ln5420', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5420) [46]  (0.687 ns)
+	'select' operation ('tile_size_x', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5420) [47]  (0.243 ns)
+	'mul' operation of DSP[49] ('mul_ln5418', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418) [49]  (0.535 ns)
+
+ <State 3>: 0.535ns
+The critical path consists of the following:
+	'mul' operation of DSP[49] ('mul_ln5418', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418) [49]  (0.535 ns)
+
+ <State 4>: 0.535ns
+The critical path consists of the following:
+	'mul' operation of DSP[49] ('mul_ln5418', /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5418) [49]  (0.535 ns)
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+ <State 6>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
