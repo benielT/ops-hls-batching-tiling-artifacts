@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+
+<html>
+<!-- Styles -->
+<style>
+    #chartdiv {
+      width: 100%;
+      height: 1000px;
+    }
+</style>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>OPTraceViewer</title>
+  <script src="https://www.amcharts.com/lib/3/amcharts.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/serial.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/gantt.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/themes/light.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js">
+  </script>
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all"/>
+
+  <form name="userInputForm" action="javascript:userInputFormCallback()">
+    <fieldset>
+    <legend>Graph Filters:</legend>
+    <table style="width:100%">
+      <col width="50"></col>
+      <col width="20"></col>
+      <col width="60"></col>
+      <tr>
+        <td style="text-align: center"; colspan="3"><input type="number" name="userDurationFilterSecInput" id="userDurationFilterSecInput" value="2" min="0" max="6000" step="1"> sec</td>
+        <td>Filter out run durations lower than this value</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center"><input type="checkbox" name="userGroupPidSortSelected" id="userGroupPidSortSelected"></td>
+        <td>Group sort by process ID</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#0099ff"></td>
+        <td style="text-align: center"><input type="checkbox" name="userRollupSelected" id="userRollupSelected"></td>
+        <td>Show rollup entries</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#8dc49f"></td>
+        <td style="text-align: center"><input type="checkbox" name="userIndividualEntrySelected" id="userIndividualEntrySelected"></td>
+        <td>Show individual entries</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#cd82ad"></td>
+        <td style="text-align: center"><input type="checkbox" name="userCheckpointEntrySelected" id="userCheckpointEntrySelected"></td>
+        <td>Show checkpoints entry</td>
+      </tr>
+       <tr>
+        <td></td>
+        <td bgcolor="#b9783f"></td>
+        <td style="text-align: center"><input type="checkbox" name="userReportEntrySelected" id="userReportEntrySelected"></td>
+        <td>Show report entry</td>
+      </tr>
+
+    </table>
+    <br>
+    <input name="Submit" type="submit" value="Update Graph">
+    </fieldset>
+  </form> 
+
+  <div id="chartdiv">
+  </div>
+
+  <script>
+  </script>
+
+</head>
+
+
+<body>
+<table id="myDynamicTable" cellpadding="2" cellspacing="2" border="1" onclick="tester()">
+  <tr>
+  <td>Task</td>
+  <td>Start</td>
+  <td>Duration</td>
+  </tr>
+</table>
+<script>
+  // Default User Selected variables
+  var m_secondFilter = 1;
+  var m_groupPidSort = true;
+  var m_showRollup = true;
+  var m_showIndividualEntry = false;
+  var m_showCheckpointEntry = false;
+  var m_showReportEntry = false;
+
+  function SetDefaultUserValues()
+  {
+    document.getElementById("userDurationFilterSecInput").value = m_secondFilter;
+    document.getElementById("userGroupPidSortSelected").checked = m_groupPidSort;
+    document.getElementById("userRollupSelected").checked = m_showRollup;
+    document.getElementById("userIndividualEntrySelected").checked = m_showIndividualEntry;
+    document.getElementById("userCheckpointEntrySelected").checked = m_showCheckpointEntry;
+    document.getElementById("userReportEntrySelected").checked = m_showReportEntry;
+  }
+
+  window.onload = function(){
+    SetDefaultUserValues();
+  }
+
+
+
+
+  // Header
+  var header = "Keyword|pid|Entry|SrcFile|Catagory|TimeStampMSec|Action|Task|Tags|Misc";
+                         
+  // Insert Raw Data Here
+  // Note: Do not change the following signature. 
+  var csvData =    [
+      "[OPTRACE]|869063|10|run|cpp|1785449383212|START|OCL_LINK|",
+      "[OPTRACE]|869063|11|setupBinaryForLink|cpp|1785449383213|START|Create Binary|",
+      "[OPTRACE]|869063|12||cpp|1785449383213|END|Create Binary|",
+      "[OPTRACE]|869063|13|setupBinaryForLink|cpp|1785449383213|START|Extract Kernels|",
+      "[OPTRACE]|869063|14||cpp|1785449388947|END|Extract Kernels|",
+      "[OPTRACE]|869063|15|launchStep_|cpp|1785449389743|START|Launch Step: system_link|",
+      "[OPTRACE]|869063|16||cpp|1785449421303|END|Launch Step: system_link|",
+      "[OPTRACE]|869063|17|launchStep_|cpp|1785449421305|START|Launch Step: cf2sw|",
+      "[OPTRACE]|869063|18||cpp|1785449434606|END|Launch Step: cf2sw|",
+      "[OPTRACE]|869063|19|launchStep_|cpp|1785449434615|START|Launch Step: rtd2_system_diagram|",
+      "[OPTRACE]|869063|1|main|cpp|1785449370304|START|v++|ROLLUP_0",
+      "[OPTRACE]|869063|20||cpp|1785449434985|END|Launch Step: rtd2_system_diagram|",
+      "[OPTRACE]|869063|21|launchStep_|cpp|1785449434987|START|Launch Step: vpl|",
+      "[OPTRACE]|869063|258||cpp|1785483315277|END|Launch Step: vpl|",
+      "[OPTRACE]|869063|259|launchStep_|cpp|1785483315299|START|Launch Step: rtdgen|",
+      "[OPTRACE]|869063|260|launchCf2sw_|cpp|1785483315359|START|Launch cf2sw|",
+      "[OPTRACE]|869063|261||cpp|1785483327503|END|Launch cf2sw|",
+      "[OPTRACE]|869063|262|writeSystemDiagram|cpp|1785483327503|START|writeSystemDiagram|",
+      "[OPTRACE]|869063|263||cpp|1785483327522|END|writeSystemDiagram|",
+      "[OPTRACE]|869063|264|writeAutomationSummary|cpp|1785483327522|START|writeAutomationSummary|",
+      "[OPTRACE]|869063|265||cpp|1785483327529|END|writeAutomationSummary|",
+      "[OPTRACE]|869063|266||cpp|1785483327530|END|Launch Step: rtdgen|",
+      "[OPTRACE]|869063|267|launchStep_|cpp|1785483327534|START|Launch Step: xclbinutil|",
+      "[OPTRACE]|869063|268||cpp|1785483328050|END|Launch Step: xclbinutil|",
+      "[OPTRACE]|869063|269|launchStep_|cpp|1785483328051|START|Launch Step: xclbinutilinfo|",
+      "[OPTRACE]|869063|270||cpp|1785483328739|END|Launch Step: xclbinutilinfo|",
+      "[OPTRACE]|869063|271|launchStep_|cpp|1785483328740|START|Launch Step: generate_sc_driver|",
+      "[OPTRACE]|869063|272||cpp|1785483328745|END|Launch Step: generate_sc_driver|",
+      "[OPTRACE]|869063|273||cpp|1785483328768|END|OCL_LINK|",
+      "[OPTRACE]|869063|274||cpp|1785483328926|END|v++|",
+      "[OPTRACE]|869063|2|run|cpp|1785449370304|START|Validate Kernels|",
+      "[OPTRACE]|869063|3||cpp|1785449370485|END|Validate Kernels|",
+      "[OPTRACE]|869063|4|prepareProject|cpp|1785449370501|START|Create Solution|",
+      "[OPTRACE]|869063|5||cpp|1785449380679|END|Create Solution|",
+      "[OPTRACE]|869063|6|prepareProject|cpp|1785449380679|START|Add Device|",
+      "[OPTRACE]|869063|7|addDevice|cpp|1785449380679|START|Find & Load Device|",
+      "[OPTRACE]|869063|8||cpp|1785449381641|END|Find & Load Device|",
+      "[OPTRACE]|869063|9||cpp|1785449383174|END|Add Device|",
+      "[OPTRACE]|870062|22|main|cpp|1785449436069|START|vpl|",
+      "[OPTRACE]|870062|23|runPlatformLinker|cpp|1785449436087|START|runPlatformLinker|",
+      "[OPTRACE]|870062|24|setupBinaryForLink|cpp|1785449436087|START|Create Solution|",
+      "[OPTRACE]|870062|254|runPlatformLinker|cpp|1785483313898|START|Generate Resource Availability Report|",
+      "[OPTRACE]|870062|255||cpp|1785483313921|END|Generate Resource Availability Report|",
+      "[OPTRACE]|870062|256||cpp|1785483313921|END|runPlatformLinker|",
+      "[OPTRACE]|870062|257||cpp|1785483314051|END|vpl|",
+      "[OPTRACE]|870062|25||cpp|1785449436097|END|Create Solution|",
+      "[OPTRACE]|870062|26|setupBinaryForLink|cpp|1785449436097|START|Add platform|",
+      "[OPTRACE]|870062|27||cpp|1785449438878|END|Add platform|",
+      "[OPTRACE]|870062|28|setupBinaryForLink|cpp|1785449438878|START|Create Binary|",
+      "[OPTRACE]|870062|29||cpp|1785449438878|END|Create Binary|",
+      "[OPTRACE]|870062|30|setupBinaryForLink|cpp|1785449438879|START|Create Kernels|",
+      "[OPTRACE]|870062|31||cpp|1785449438962|END|Create Kernels|",
+      "[OPTRACE]|870062|32|runPlatformLinker|cpp|1785449438975|START|Process Kernels|",
+      "[OPTRACE]|870062|33|runPlatformLinker|cpp|1785449438975|START|Set Board Repo Paths and Connections|",
+      "[OPTRACE]|870062|34||cpp|1785449438975|END|Set Board Repo Paths and Connections|",
+      "[OPTRACE]|870062|35|runPlatformLinker|cpp|1785449438975|START|Process Kernel Profiles|",
+      "[OPTRACE]|870062|36||cpp|1785449438975|END|Process Kernel Profiles|",
+      "[OPTRACE]|870062|37|runPlatformLinker|cpp|1785449438975|START|Process Trace Memory|",
+      "[OPTRACE]|870062|38||cpp|1785449438975|END|Process Trace Memory|",
+      "[OPTRACE]|870062|39|runPlatformLinker|cpp|1785449438975|START|Process AIE Trace|",
+      "[OPTRACE]|870062|40||cpp|1785449438975|END|Process AIE Trace|",
+      "[OPTRACE]|870062|41||cpp|1785449438975|END|Process Kernels|",
+      "[OPTRACE]|870062|42|runPlatformLinker|cpp|1785449438975|START|Process Kernel Debug|",
+      "[OPTRACE]|870062|43||cpp|1785449438975|END|Process Kernel Debug|",
+      "[OPTRACE]|870062|44|runPlatformLinker|cpp|1785449438975|START|Set Kernel Debug|",
+      "[OPTRACE]|870062|45||cpp|1785449438975|END|Set Kernel Debug|",
+      "[OPTRACE]|870062|46|runPlatformLinker|cpp|1785449438975|START|Set Miscellaneous|",
+      "[OPTRACE]|870062|47||cpp|1785449438975|END|Set Miscellaneous|",
+      "[OPTRACE]|870062|48|run|cpp|1785449438976|START|Extract Platform|",
+      "[OPTRACE]|870062|49||cpp|1785449440589|END|Extract Platform|",
+      "[OPTRACE]|870297|142|ipirun.tcl|vpl|1785451233814|END|Synthesis|",
+      "[OPTRACE]|870297|253|ipirun.tcl|vpl|1785483310693|END|Implementation|",
+      "[OPTRACE]|870297|50|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/vpl.tcl|vivado_impl|1785449447345|START|Implementation|ROLLUP_1",
+      "[OPTRACE]|870297|51|ipirun.tcl|vpl|1785449447390|START|ipirun|ROLLUP_0",
+      "[OPTRACE]|870297|52|ipirun.tcl|vpl|1785449447391|END|ipirun|",
+      "[OPTRACE]|870297|53|ipirun.tcl|vpl|1785449447415|START|Source pre_sys_link Tcl script|",
+      "[OPTRACE]|870297|54|ipirun.tcl|vpl|1785449447418|END|Source pre_sys_link Tcl script|",
+      "[OPTRACE]|870297|55|ipirun.tcl|vpl|1785449447418|START|Create project|",
+      "[OPTRACE]|870297|56|ipirun.tcl|vpl|1785449452023|END|Create project|",
+      "[OPTRACE]|870297|57|ipirun.tcl|vpl|1785449452044|START|Create IP caching environment|",
+      "[OPTRACE]|870297|58|ipirun.tcl|vpl|1785449453603|END|Create IP caching environment|",
+      "[OPTRACE]|870297|59|ipirun.tcl|vpl|1785449453603|START|Import/add dynamic BD|",
+      "[OPTRACE]|870297|60|ipirun.tcl|vpl|1785449456821|END|Import/add dynamic BD|",
+      "[OPTRACE]|870297|61|ipirun.tcl|vpl|1785449456821|START|Open BD and insert kernels|",
+      "[OPTRACE]|870297|62|ipirun.tcl|vpl|1785449491285|END|Open BD and insert kernels|",
+      "[OPTRACE]|870297|63|ipirun.tcl|vpl|1785449491293|START|Add debug/profiling support|",
+      "[OPTRACE]|870297|64|ipirun.tcl|vpl|1785449491484|END|Add debug/profiling support|",
+      "[OPTRACE]|870297|65|ipirun.tcl|vpl|1785449491484|START|IPI address assignments|",
+      "[OPTRACE]|870297|66|ipirun.tcl|vpl|1785449491509|END|IPI address assignments|",
+      "[OPTRACE]|870297|67|ipirun.tcl|vpl|1785449491509|START|Source hardware platform post_sys_link Tcl script|",
+      "[OPTRACE]|870297|68|ipirun.tcl|vpl|1785449491623|END|Source hardware platform post_sys_link Tcl script|",
+      "[OPTRACE]|870297|69|ipirun.tcl|vpl|1785449491631|START|Create address map and debug IP profile files|",
+      "[OPTRACE]|870297|70|ipirun.tcl|vpl|1785449491654|END|Create address map and debug IP profile files|",
+      "[OPTRACE]|870297|71|ipirun.tcl|vpl|1785449491654|START|Collect BD interface connectivity and write automation summary report|",
+      "[OPTRACE]|870297|72|ipirun.tcl|vpl|1785449491674|END|Collect BD interface connectivity and write automation summary report|",
+      "[OPTRACE]|870297|73|ipirun.tcl|vpl|1785449491928|START|Generate output products|",
+      "[OPTRACE]|870297|74|ipirun.tcl|vpl|1785449651273|END|Generate output products|",
+      "[OPTRACE]|870297|75|ipirun.tcl|vpl|1785449651289|START|Source report_commands_tcl|",
+      "[OPTRACE]|870297|76|ipirun.tcl|vpl|1785449651512|END|Source report_commands_tcl|",
+      "[OPTRACE]|870297|77|ipirun.tcl|vpl|1785449651513|START|Source synth_props_tcl|",
+      "[OPTRACE]|870297|78|ipirun.tcl|vpl|1785449654398|END|Source synth_props_tcl|",
+      "[OPTRACE]|870297|79|ipirun.tcl|vpl|1785449654481|START|Source impl_props_tcl|",
+      "[OPTRACE]|870297|80|ipirun.tcl|vpl|1785449654606|END|Source impl_props_tcl|",
+      "[OPTRACE]|870297|81|ipirun.tcl|vpl|1785449654613|START|Synthesis|ROLLUP_1,SYNTH",
+      "[OPTRACE]|876379|106|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785450169799|END|synth_design|",
+      "[OPTRACE]|876379|107|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785450169799|START|Write IP Cache|",
+      "[OPTRACE]|876379|108|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785450229057|END|Write IP Cache|",
+      "[OPTRACE]|876379|109|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785450229246|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|876379|110|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785450261275|END|write_checkpoint|",
+      "[OPTRACE]|876379|111|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785450261275|START|synth reports|REPORT",
+      "[OPTRACE]|876379|112|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785450262952|END|synth reports|",
+      "[OPTRACE]|876379|113|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785450291874|END|ulp_kernel_outerloop_inst_0_1_0_synth_1|",
+      "[OPTRACE]|876379|84|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785449665081|START|ulp_kernel_outerloop_inst_0_1_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|876379|87|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785449665082|START|Creating in-memory project|",
+      "[OPTRACE]|876379|88|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785449670730|END|Creating in-memory project|",
+      "[OPTRACE]|876379|89|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785449670730|START|Adding files|",
+      "[OPTRACE]|876379|94|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785449670943|END|Adding files|",
+      "[OPTRACE]|876379|95|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785449670944|START|Configure IP Cache|",
+      "[OPTRACE]|876379|96|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785449670946|END|Configure IP Cache|",
+      "[OPTRACE]|876379|97|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_1_0_synth_1/ulp_kernel_outerloop_inst_0_1_0.tcl|vivado_synth|1785449670947|START|synth_design|",
+      "[OPTRACE]|876380|100|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785449670969|START|Configure IP Cache|",
+      "[OPTRACE]|876380|102|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785449670970|END|Configure IP Cache|",
+      "[OPTRACE]|876380|103|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785449670971|START|synth_design|",
+      "[OPTRACE]|876380|116|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785450808706|END|synth_design|",
+      "[OPTRACE]|876380|117|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785450808706|START|Write IP Cache|",
+      "[OPTRACE]|876380|120|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785450964679|END|Write IP Cache|",
+      "[OPTRACE]|876380|121|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785450965171|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|876380|124|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785451045359|END|write_checkpoint|",
+      "[OPTRACE]|876380|125|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785451045359|START|synth reports|REPORT",
+      "[OPTRACE]|876380|127|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785451049563|END|synth reports|",
+      "[OPTRACE]|876380|129|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785451124803|END|ulp_kernel_outerloop_inst_0_2_0_synth_1|",
+      "[OPTRACE]|876380|82|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785449665081|START|ulp_kernel_outerloop_inst_0_2_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|876380|86|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785449665082|START|Creating in-memory project|",
+      "[OPTRACE]|876380|92|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785449670730|END|Creating in-memory project|",
+      "[OPTRACE]|876380|93|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785449670731|START|Adding files|",
+      "[OPTRACE]|876380|98|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_2_0_synth_1/ulp_kernel_outerloop_inst_0_2_0.tcl|vivado_synth|1785449670967|END|Adding files|",
+      "[OPTRACE]|876381|101|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785449670970|START|Configure IP Cache|",
+      "[OPTRACE]|876381|104|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785449670971|END|Configure IP Cache|",
+      "[OPTRACE]|876381|105|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785449670972|START|synth_design|",
+      "[OPTRACE]|876381|114|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785450807097|END|synth_design|",
+      "[OPTRACE]|876381|115|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785450807097|START|Write IP Cache|",
+      "[OPTRACE]|876381|118|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785450961376|END|Write IP Cache|",
+      "[OPTRACE]|876381|119|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785450961869|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|876381|122|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785451041977|END|write_checkpoint|",
+      "[OPTRACE]|876381|123|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785451041977|START|synth reports|REPORT",
+      "[OPTRACE]|876381|126|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785451046015|END|synth reports|",
+      "[OPTRACE]|876381|128|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785451119603|END|ulp_kernel_outerloop_inst_0_3_0_synth_1|",
+      "[OPTRACE]|876381|83|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785449665081|START|ulp_kernel_outerloop_inst_0_3_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|876381|85|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785449665082|START|Creating in-memory project|",
+      "[OPTRACE]|876381|90|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785449670730|END|Creating in-memory project|",
+      "[OPTRACE]|876381|91|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785449670730|START|Adding files|",
+      "[OPTRACE]|876381|99|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_kernel_outerloop_inst_0_3_0_synth_1/ulp_kernel_outerloop_inst_0_3_0.tcl|vivado_synth|1785449670969|END|Adding files|",
+      "[OPTRACE]|884484|130|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451141283|START|my_rm_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|884484|131|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451141283|START|Creating in-memory project|",
+      "[OPTRACE]|884484|132|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451147245|END|Creating in-memory project|",
+      "[OPTRACE]|884484|133|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451147245|START|Adding files|",
+      "[OPTRACE]|884484|134|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451179464|END|Adding files|",
+      "[OPTRACE]|884484|135|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451179511|START|synth_design|",
+      "[OPTRACE]|884484|136|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451221364|END|synth_design|",
+      "[OPTRACE]|884484|137|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451221374|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|884484|138|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451222173|END|write_checkpoint|",
+      "[OPTRACE]|884484|139|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451222173|START|synth reports|REPORT",
+      "[OPTRACE]|884484|140|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451222173|END|synth reports|",
+      "[OPTRACE]|884484|141|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1785451222955|END|my_rm_synth_1|",
+      "[OPTRACE]|885148|143|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451241574|START|impl_1|ROLLUP_1",
+      "[OPTRACE]|885148|144|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451241574|START|Phase: Init Design|ROLLUP_AUTO",
+      "[OPTRACE]|885148|145|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451241576|START|Design Initialization: pre hook|",
+      "[OPTRACE]|885148|146|ipirun.tcl|vpl|1785451241611|START|ipirun|ROLLUP_0",
+      "[OPTRACE]|885148|147|ipirun.tcl|vpl|1785451241612|END|ipirun|",
+      "[OPTRACE]|885148|148|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451241613|END|Design Initialization: pre hook|",
+      "[OPTRACE]|885148|149|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451241614|START|create in-memory project|",
+      "[OPTRACE]|885148|150|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451245822|END|create in-memory project|",
+      "[OPTRACE]|885148|151|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451245822|START|set parameters|",
+      "[OPTRACE]|885148|152|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451247183|END|set parameters|",
+      "[OPTRACE]|885148|153|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451247183|START|add files|",
+      "[OPTRACE]|885148|154|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451267499|START|read constraints: implementation|",
+      "[OPTRACE]|885148|155|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451267500|END|read constraints: implementation|",
+      "[OPTRACE]|885148|156|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451267502|END|add files|",
+      "[OPTRACE]|885148|157|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785451267502|START|link_design|",
+      "[OPTRACE]|885148|158|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452676834|END|link_design|",
+      "[OPTRACE]|885148|159|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452676838|START|gray box cells|",
+      "[OPTRACE]|885148|160|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452676838|END|gray box cells|",
+      "[OPTRACE]|885148|161|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452676838|START|Design Initialization: post hook|",
+      "[OPTRACE]|885148|162|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452677622|END|Design Initialization: post hook|",
+      "[OPTRACE]|885148|163|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452677622|START|init_design_reports|REPORT",
+      "[OPTRACE]|885148|164|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452677622|END|init_design_reports|",
+      "[OPTRACE]|885148|165|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452677622|START|init_design_write_hwdef|",
+      "[OPTRACE]|885148|166|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452677622|END|init_design_write_hwdef|",
+      "[OPTRACE]|885148|167|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452677625|END|Phase: Init Design|",
+      "[OPTRACE]|885148|168|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452677625|START|Phase: Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|885148|169|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452677627|START|Opt Design: pre hook|",
+      "[OPTRACE]|885148|170|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452840791|END|Opt Design: pre hook|",
+      "[OPTRACE]|885148|171|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452840791|START|read constraints: opt_design|",
+      "[OPTRACE]|885148|172|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452840791|END|read constraints: opt_design|",
+      "[OPTRACE]|885148|173|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785452840791|START|opt_design|",
+      "[OPTRACE]|885148|174|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350294|END|opt_design|",
+      "[OPTRACE]|885148|175|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350294|START|read constraints: opt_design_post|",
+      "[OPTRACE]|885148|176|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350294|END|read constraints: opt_design_post|",
+      "[OPTRACE]|885148|177|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350294|START|Opt Design: post hook|",
+      "[OPTRACE]|885148|178|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350330|END|Opt Design: post hook|",
+      "[OPTRACE]|885148|179|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350330|START|opt_design reports|REPORT",
+      "[OPTRACE]|885148|180|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350330|END|opt_design reports|",
+      "[OPTRACE]|885148|181|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350331|END|Phase: Opt Design|",
+      "[OPTRACE]|885148|182|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350331|START|Phase: Place Design|ROLLUP_AUTO",
+      "[OPTRACE]|885148|183|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350333|START|Place Design: pre hook|",
+      "[OPTRACE]|885148|184|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350366|END|Place Design: pre hook|",
+      "[OPTRACE]|885148|185|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350366|START|read constraints: place_design|",
+      "[OPTRACE]|885148|186|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350366|END|read constraints: place_design|",
+      "[OPTRACE]|885148|187|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350366|START|implement_debug_core|",
+      "[OPTRACE]|885148|188|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350514|END|implement_debug_core|",
+      "[OPTRACE]|885148|189|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785453350515|START|place_design|",
+      "[OPTRACE]|885148|190|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785459981943|END|place_design|",
+      "[OPTRACE]|885148|191|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785459981946|START|read constraints: place_design_post|",
+      "[OPTRACE]|885148|192|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785459981946|END|read constraints: place_design_post|",
+      "[OPTRACE]|885148|193|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785459981946|START|Place Design: post hook|",
+      "[OPTRACE]|885148|194|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785460360397|END|Place Design: post hook|",
+      "[OPTRACE]|885148|195|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785460360397|START|place_design reports|REPORT",
+      "[OPTRACE]|885148|196|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785460360397|END|place_design reports|",
+      "[OPTRACE]|885148|197|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785460360403|END|Phase: Place Design|",
+      "[OPTRACE]|885148|198|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785460360403|START|Phase: Physical Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|885148|199|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785460360405|START|read constraints: phys_opt_design|",
+      "[OPTRACE]|885148|200|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785460360405|END|read constraints: phys_opt_design|",
+      "[OPTRACE]|885148|201|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785460360405|START|phys_opt_design|",
+      "[OPTRACE]|885148|202|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318809|END|phys_opt_design|",
+      "[OPTRACE]|885148|203|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318813|START|read constraints: phys_opt_design_post|",
+      "[OPTRACE]|885148|204|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318813|END|read constraints: phys_opt_design_post|",
+      "[OPTRACE]|885148|205|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318813|START|phys_opt_design report|REPORT",
+      "[OPTRACE]|885148|206|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318813|END|phys_opt_design report|",
+      "[OPTRACE]|885148|207|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318830|END|Phase: Physical Opt Design|",
+      "[OPTRACE]|885148|208|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318830|START|Phase: Route Design|ROLLUP_AUTO",
+      "[OPTRACE]|885148|209|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318842|START|read constraints: route_design|",
+      "[OPTRACE]|885148|210|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318842|END|read constraints: route_design|",
+      "[OPTRACE]|885148|211|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785461318842|START|route_design|",
+      "[OPTRACE]|885148|212|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785473385742|END|route_design|",
+      "[OPTRACE]|885148|213|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785473385746|START|read constraints: route_design_post|",
+      "[OPTRACE]|885148|214|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785473385746|END|read constraints: route_design_post|",
+      "[OPTRACE]|885148|215|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785473385746|START|Route Design: post hook|",
+      "[OPTRACE]|885148|216|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474110408|END|Route Design: post hook|",
+      "[OPTRACE]|885148|217|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474110411|START|Route Design: write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|885148|218|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474475494|END|Route Design: write_checkpoint|",
+      "[OPTRACE]|885148|219|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474475495|START|route_design reports|REPORT",
+      "[OPTRACE]|885148|220|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474554205|END|route_design reports|",
+      "[OPTRACE]|885148|221|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474554205|START|route_design misc|",
+      "[OPTRACE]|885148|222|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474554216|END|route_design misc|",
+      "[OPTRACE]|885148|223|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474554216|END|Phase: Route Design|",
+      "[OPTRACE]|885148|224|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474554216|START|Phase: Phys-Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|885148|225|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785474554328|START|phys_opt_design|",
+      "[OPTRACE]|885148|226|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481151442|END|phys_opt_design|",
+      "[OPTRACE]|885148|227|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481151442|START|Post-Route Phys Opt Design: post hook|",
+      "[OPTRACE]|885148|228|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481151458|END|Post-Route Phys Opt Design: post hook|",
+      "[OPTRACE]|885148|229|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481151458|START|Post-Route Phys Opt Design: write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|885148|230|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481610070|END|Post-Route Phys Opt Design: write_checkpoint|",
+      "[OPTRACE]|885148|231|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481610070|START|phys_opt_design reports|REPORT",
+      "[OPTRACE]|885148|232|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481755609|END|phys_opt_design reports|",
+      "[OPTRACE]|885148|233|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481755609|START|phys_opt_design misc|",
+      "[OPTRACE]|885148|234|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481755643|END|phys_opt_design misc|",
+      "[OPTRACE]|885148|235|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481755644|END|Phase: Phys-Opt Design|",
+      "[OPTRACE]|885148|236|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481755644|START|Phase: Write Bitstream|ROLLUP_AUTO",
+      "[OPTRACE]|885148|237|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481755644|START|write_bitstream setup|",
+      "[OPTRACE]|885148|238|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481755645|START|Write Bitstream: pre hook|",
+      "[OPTRACE]|885148|239|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481806456|END|Write Bitstream: pre hook|",
+      "[OPTRACE]|885148|240|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481806456|START|read constraints: write_bitstream|",
+      "[OPTRACE]|885148|241|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481806456|END|read constraints: write_bitstream|",
+      "[OPTRACE]|885148|242|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481806474|END|write_bitstream setup|",
+      "[OPTRACE]|885148|243|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785481806474|START|write_bitstream|",
+      "[OPTRACE]|885148|244|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785483299248|END|write_bitstream|",
+      "[OPTRACE]|885148|245|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785483299249|START|write_bitstream misc|",
+      "[OPTRACE]|885148|246|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785483299249|START|read constraints: write_bitstream_post|",
+      "[OPTRACE]|885148|247|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785483299249|END|read constraints: write_bitstream_post|",
+      "[OPTRACE]|885148|248|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785483299249|START|Write Bitstream: post hook|",
+      "[OPTRACE]|885148|249|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785483299253|END|Write Bitstream: post hook|",
+      "[OPTRACE]|885148|250|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785483299288|END|write_bitstream misc|",
+      "[OPTRACE]|885148|251|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785483299288|END|Phase: Write Bitstream|",
+      "[OPTRACE]|885148|252|/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1785483299288|END|impl_1|"
+      ];
+
+  var legendData = [
+  { "title": "Report Generation",
+    "color": "#b9783f"
+  }, {
+    "title": "Write Checkpoint",
+    "color": "#cd82ad"
+  },
+  {
+    "title": "Incomplete Data",
+    "color": "#cc4748"
+  } ];
+
+  // -- Convert Raw data into something we can use ---------------------------
+  console.log("Convert log data (%s entries) to Javascript 'JSON' objects...", csvData.length);
+  var jsonData = csvArrayToJSON(header, csvData, "|");
+
+  // -- Clean up the JSON objects --------------------------------------------
+  for (var i = 0; i < jsonData.length; i++) {
+    jsonData[i].Action = jsonData[i].Action.toUpperCase();
+    jsonData[i].Tags = jsonData[i].Tags.toUpperCase();
+    jsonData[i].Tags = jsonData[i].Tags.trim();
+    jsonData[i].TimeStampMSec = parseInt(jsonData[i].TimeStampMSec, 10);
+    jsonData[i].pid = parseInt(jsonData[i].pid, 10);
+  }
+
+  // -- Sort JSON array ------------------------------------------------------
+  console.log("Sorting JSON objects (%s objects) according to timestamps...", jsonData.length);
+  jsonData.sort(compareByTimeStamp);
+
+  // Record the PID grouping order
+  var pidOrder = new Map();
+  for (var i = 0; i < jsonData.length; i++) {
+    if (pidOrder.has(jsonData[i].pid) == false) {
+      pidOrder.set(jsonData[i].pid, i);    // Simple ordering (lower is first)
+    }
+  }
+
+  // -- Create secondary data array for the chart data array -----------------
+  console.log("Preparing graph data...");
+
+  // Task limits
+  var m_startTS = 0;      // Earliest Timestamp
+  var m_endTS = 0;        // Latest Timestamp
+
+  if (jsonData.length > 0) {
+    m_startTS = jsonData[0].TimeStampMSec;
+    m_endTS = jsonData[jsonData.length - 1].TimeStampMSec;
+  }
+
+
+  var chartData = [ ];   // Empty JSON array
+
+
+  populateChartData();
+  tableCreate( chartData );
+
+  filterChartEntries();
+
+  // -- Search for "holes"
+  // -- Sort by common PID
+  // -- Create groupings by process
+
+  console.log("done");
+
+  var chart = AmCharts.makeChart("chartdiv", {
+    "type": "gantt",
+    "theme": "light",
+    "titles": [
+    { "text": "OPTrace", "size": 15}],
+    "marginRight": 70,
+    "period": "fff",                                     // X-Axis
+    "balloonDateFormat": "JJ:NN:SS",
+    "columnWidth": 0.5,                                 // Bar thickness
+    "valueAxis": {
+      "type": "numeric",
+      "title": "Time [HH:MM:SS]",
+      "duration": "ss",
+      "durationUnits": { DD: 'd. ', hh: ':', mm: ':', ss: '' },
+    },
+    "brightnessStep": 10,
+    "graph": {
+      "fillAlphas": 1,
+      "labelFunction": barLabelCallBack,
+      "labelText": " ",
+      "labelPosition": "right",
+      "balloonFunction": ballonLabelCallBack,
+      "balloonText": "<p align='left'> Task: [[task]]<br/>Start:[[start]]<br/>End:[[end]]<br/>Duration:[[duration]]</p>",
+      "bulletField": "bullet",
+      "bulletSize": 8
+    },
+    "rotate": true,
+    "categoryField": "category",
+    "segmentsField": "segments",
+    "colorField": "color",
+    "startDate": "2015-01-01 00:00:00",
+    "startField": "start",
+    "endField": "end",
+    "durationField": "duration",
+    "dataProvider": chartData,
+    "valueScrollbar": {
+      "autoGridCount": true
+    },
+    "chartScrollbar": {
+      "enable": true
+    },
+    "chartCursor": {
+      "cursorColor": "#55bb76",
+      "valueBalloonsEnabled": false,
+      "cursorAlpha": 0.1,
+      "valueLineAlpha": 0.5,
+      "valueLineBalloonEnabled": true,
+      "valueLineEnabled": true,
+      "zoomable": true,
+      "valueZoomable": true,
+      "fullWidth": true
+    },
+    "legend": {
+      "data": legendData,
+    },
+    "export": {
+      "enabled": true
+    }
+  });
+
+  // =========================================================================
+  // Call back methods
+  // =========================================================================
+function ballonLabelCallBack( _graphDataItem )
+{
+  var start = _graphDataItem.values.open;
+  var end = _graphDataItem.values.value;
+  var duration = end - start;
+
+  var result = "<p align='left'>Task: " + _graphDataItem.category + "<br/>Start: " + secondsToHHMMSS(start) + "<br/>End: " + secondsToHHMMSS( end ) + "<br/>Duration: " + secondsToHHMMSS( duration ) + "</p>";
+  return result;
+}
+
+
+function barLabelCallBack( _graphDataItem )
+{
+   var duration = _graphDataItem.values.value - _graphDataItem.values.open;
+
+   return secondsToHHMMSS( duration);
+}
+
+
+function userInputFormCallback()
+{
+  // Second filter
+  m_secondFilter = document.getElementById("userDurationFilterSecInput").value;
+  console.log("Setting second filter to: " + m_secondFilter + " seconds");
+
+  // Group PID Sort
+  m_groupPidSort = document.getElementById("userGroupPidSortSelected").checked;
+  console.log("Group PID filter is set to: " + m_groupPidSort);
+
+  // Rollup filter
+  m_showRollup = document.getElementById("userRollupSelected").checked;
+  console.log("Rollup filter is set to: " + m_showRollup);
+
+  // Individual filter
+  m_showIndividualEntry = document.getElementById("userIndividualEntrySelected").checked;
+  console.log("Individual filter is set to: " + m_showIndividualEntry);
+
+  // Checkpoint Report Entries filter
+  m_showCheckpointEntry = document.getElementById("userCheckpointEntrySelected").checked;
+  console.log("Checkpoint Entry filter is set to: " + m_showCheckpointEntry);
+
+  // Checkpoint Report Entries filter
+  m_showReportEntry = document.getElementById("userReportEntrySelected").checked;
+  console.log("Report Entry filter is set to: " + m_showReportEntry);
+
+  populateChartData();
+  filterChartEntries()
+  chart.dataProvider = chartData;
+  chart.validateData();
+}
+
+  // =========================================================================
+  // Utilities
+  // =========================================================================
+
+
+function populateChartData()
+{
+  chartData = [ ];
+  if (m_groupPidSort == false) {
+    jsonData.sort(compareByTimeStamp);
+  } else {
+    jsonData.sort(compareByGroupTimeStamp);
+  }
+
+  for (var i = 0; i < jsonData.length; i++) {
+    var timestamp = parseInt(jsonData[0].TimeStampMSec, 10);
+
+    if (m_startTS > timestamp) m_startTS = timestamp;
+    if (m_endTS < timestamp) m_endTS = timestamp;
+
+    for (var i = 0; i < jsonData.length; i++) {
+      switch (jsonData[i].Action) {
+      case "START":
+        var categoryEntry = { };
+        categoryEntry["category"] = jsonData[i].Task;
+        categoryEntry["pid"] = jsonData[i].pid;
+
+        var segmentEntry = { };
+        // Normalize entry and convert to seconds
+        segmentEntry["start"] = (jsonData[i].TimeStampMSec - m_startTS) / 1000;
+        segmentEntry["color"] = getTaskBarColor(jsonData[i].Tags)
+        segmentEntry["task"] = jsonData[i].Task;
+        segmentEntry["tags"] = jsonData[i].Tags;
+        segmentEntry["duration"] = -1;
+
+        categoryEntry["segments"] = [ ];
+        categoryEntry["segments"].push(segmentEntry);
+        chartData.push(categoryEntry);
+        break;
+
+      case "END":
+        var catagory = findCatagory(jsonData[i].pid, jsonData[i].Task, chartData);
+        if (catagory != null) {
+          var segmentsEntry = catagory.segments[0];
+          segmentsEntry["end"] = (jsonData[i].TimeStampMSec - m_startTS) / 1000;
+          segmentsEntry["duration"] = segmentsEntry.end - segmentsEntry.start;
+        } else {
+          console.log("Null entry found: pid:%s, Task: %s", jsonData[i].pid, jsonData[i].Task);
+        }
+
+        break;
+
+      default:
+        console.log("Default");
+        break;
+      }
+    }
+  }
+}
+
+function filterChartEntries()
+{
+  for(var i = chartData.length - 1; i >= 0; i--) {
+    var segment = chartData[i].segments[0];
+
+    // -- Remove entries less than 1 seconds
+    if ( segment["duration"] == -1) {
+      segment["bullet"] = "xError";
+      segment["color"] = "#cc4748";
+      segment["duration"] = ((m_endTS - m_startTS) / 1000) - segment["start"];
+    } else if (segment["duration"] <  m_secondFilter) {
+      chartData.splice(i, 1);
+      continue;
+    }
+  
+
+    // Filter by tags
+    var bHasRollup = false;
+    var bHasCheckpoint = false;
+    var bHasReport = false;
+
+    var tags = segment["tags"];
+    console.log("Tag: " + tags);
+    if (tags.search(/ROLLUP_/i) != -1) { bHasRollup = true; }
+    if (tags.search(/CHECKPOINT/i) != -1) { bHasCheckpoint = true; }
+    if (tags.search(/REPORT/i) != -1) { bHasReport = true; }
+
+    var bRemoveEntry = false;
+
+    // Remove rollups
+    if ((m_showRollup == false) && (bHasRollup == true)) {
+      bRemoveEntry = true;
+    }
+    
+    // Remove checkpoints    
+    if ((m_showCheckpointEntry == false) && (bHasCheckpoint == true)) {
+      bRemoveEntry = true;
+    }
+
+    // Remove reports
+    if ((m_showReportEntry == false) && (bHasReport == true)) {
+      bRemoveEntry = true;
+    }
+
+    // Remove individual entry
+    if (((m_showIndividualEntry == false) && 
+         ((bHasRollup == false) &&
+          (bHasCheckpoint == false) &&
+          (bHasReport == false)))) {
+      bRemoveEntry = true;
+    }
+
+    if (bRemoveEntry == true) {
+      chartData.splice(i, 1);
+      continue;
+    }
+  }
+
+  console.log("ChartData.length: " + chartData.length);
+}
+
+
+function getTaskBarColor( _tags )
+{
+  if (_tags == null)
+    return "#8dc49f";
+
+  if (_tags.search(/ROLLUP_AUTO/i) != -1){ return "#0099ff"; }
+  if (_tags.search(/ROLLUP_0/i) != -1)   { return "#006699"; }
+  if (_tags.search(/ROLLUP_1/i) != -1)   { return "#009933"; }
+  if (_tags.search(/ROLLUP_2/i) != -1)   { return "#66ccff"; }
+  if (_tags.search(/REPORT/i) != -1)     { return "#b9783f"; }
+  if (_tags.search(/CHECKPOINT/i) != -1) { return "#cd82ad"; }
+
+  return "#8dc49f"
+}
+
+
+function tableCreate( _chartData ){
+    var myTableDiv = document.getElementById("myDynamicTable");
+
+
+    for ( var i = 0; i < _chartData.length; i++) {
+      var tr = myTableDiv.insertRow();
+
+      var td_task = tr.insertCell();
+      td_task.appendChild(document.createTextNode( _chartData[i].category ));
+
+      var segmentEntry = _chartData[i].segments;
+      var td_start = tr.insertCell();
+      td_start.appendChild(document.createTextNode( secondsToHHMMSS(segmentEntry[0].start) ));
+
+      var td_duration = tr.insertCell();
+      td_duration.appendChild(document.createTextNode( secondsToHHMMSS(segmentEntry[0].duration) ));
+
+    }
+}
+
+function secondsToHHMMSS( _seconds )
+{
+  var hours = Math.floor(_seconds / 3600);
+  var minutes = Math.floor(_seconds % 3600 / 60);
+  var seconds = Math.floor(_seconds % 3600 % 60);
+
+  var result = hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds; 
+
+  return result;
+}
+
+
+  function findCatagory(_pid, _category, _catagoryArray) {
+    for (var i = (_catagoryArray.length - 1); i >= 0; i--) {
+      if (_pid == _catagoryArray[i].pid) {
+        if (_catagoryArray[i].category == _category) {
+          return  _catagoryArray[i];
+        }
+      }
+    }
+    return null;
+  }
+
+
+  // Compares the timestamps between to JSON objects
+  function compareByTimeStamp(_a, _b) {
+    if (_a.TimeStampMSec < _b.TimeStampMSec) return -1;
+    if (_a.TimeStampMSec > _b.TimeStampMSec) return 1;
+
+    if (_a.pid == _b.pid) {
+      if ((_a.Action == "START") && (_b.Action == "END")) return -1;
+      if ((_a.Action == "END") && (_b.Action == "START")) return 1;
+
+      if(_a.Entry < _b.Entry) return -1;
+      if(_a.Entry > _b.Entry) return 1;
+    }
+
+    return 0;
+  }
+
+
+  // Compares the timestamps between to JSON objects
+  function compareByGroupTimeStamp(_a, _b) {
+    if (pidOrder.get(_a.pid) < pidOrder.get(_b.pid)) return -1;
+
+    if (pidOrder.get(_a.pid) > pidOrder.get(_b.pid)) return 1;
+
+    return compareByTimeStamp(_a, _b);
+  }
+
+
+  // Return array of string values, or NULL if CSV string not well formed.
+  function CSVtoArray(_text, _sep) {
+    // Regex expressions
+    var re_valid_default = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+    var re_value_default = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+    var re_special_default = /,\s*$/;
+
+    // Algorithm:
+    //   1) Convert regex expression to a string.
+    //   2) Remove leading regex escape character (e.g., '\')
+    //   3) Remove training regex escape character(s) (e.g., '\' or "\g")
+    //   4) Replace the comma (',') character witht he new delimiter character
+    //   5) Build the regex command
+
+    // Check delimiter, if special insert escapes
+    if (_sep == "|") _sep = "\\|";
+
+    var re_valid = new RegExp(re_valid_default.toString().substr(1).slice(0, -1).replace(/,/g, _sep));
+    var re_value = new RegExp(re_value_default.toString().substr(1).slice(0, -2).replace(/,/g, _sep), 'g');
+    var re_special = new RegExp(re_special_default.toString().substr(1).slice(0, -1).replace(/,/g, _sep));
+
+    // Validate the input string to determine if it is well formed
+    if (!re_valid.test(_text)) return null;
+
+    var a = [ ];                     // Initialize array to receive values.
+    _text.replace(re_value,           // "Walk" the string using replace with callback.
+                  function(m0, m1, m2, m3) {
+                      // Remove backslash from \' in single quoted values.
+                      if      (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+                      // Remove backslash from \" in double quoted values.
+                      else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+                      else if (m3 !== undefined) a.push(m3);
+                      return ''; // Return empty string.
+                  });
+
+    // Handle special case of empty last value.
+    if (re_special.test(_text)) a.push('');
+
+    return a;
+  };
+
+
+  // Converts the given CSV array & header into a JSON array
+  function csvArrayToJSON(_header, _csvArray, _sep) {
+    var result = [ ];
+    var headers = CSVtoArray(_header, _sep);
+
+    for (var i = 0; i < _csvArray.length; i++) {
+
+      var obj = { };
+      var currentline = CSVtoArray(_csvArray[i], _sep);
+
+      for (var j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
+      }
+
+      result.push(obj);
+
+    }
+
+    return result; //JavaScript object
+  }
+
+
+</script>
+</body>
+
+</html>
+
