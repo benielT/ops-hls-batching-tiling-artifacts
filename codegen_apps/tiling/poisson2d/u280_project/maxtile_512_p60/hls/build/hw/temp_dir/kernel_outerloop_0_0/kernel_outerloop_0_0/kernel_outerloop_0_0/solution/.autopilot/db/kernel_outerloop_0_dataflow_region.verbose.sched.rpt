@@ -1,0 +1,392 @@
+
+
+================================================================
+== Vitis HLS Report for 'kernel_outerloop_0_dataflow_region'
+================================================================
+* Date:           Fri Jul 31 00:12:09 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        kernel_outerloop_0_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|  dataflow|
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 16
+* Pipeline : 0
+* Dataflow Pipeline: 1
+  DF-Pipeline-0: Size = 16, States = { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 }
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.21>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%num_pkts_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %num_pkts"   --->   Operation 17 'read' 'num_pkts_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%p_read_8 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read6"   --->   Operation 18 'read' 'p_read_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%p_read_9 = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %p_read5"   --->   Operation 19 'read' 'p_read_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%p_read_10 = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %p_read4"   --->   Operation 20 'read' 'p_read_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%p_read310 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read3"   --->   Operation 21 'read' 'p_read310' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%p_read29 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read2"   --->   Operation 22 'read' 'p_read29' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%p_read18 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read1"   --->   Operation 23 'read' 'p_read18' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%p_read_11 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read"   --->   Operation 24 'read' 'p_read_11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%num_pkts_c = alloca i64 1"   --->   Operation 25 'alloca' 'num_pkts_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.40> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 8> <FIFO>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%stencilConfig_6_c53 = alloca i64 1"   --->   Operation 26 'alloca' 'stencilConfig_6_c53' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.33> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%stencilConfig_6_c52 = alloca i64 1"   --->   Operation 27 'alloca' 'stencilConfig_6_c52' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%stencilConfig_6_c51 = alloca i64 1"   --->   Operation 28 'alloca' 'stencilConfig_6_c51' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%stencilConfig_6_c50 = alloca i64 1"   --->   Operation 29 'alloca' 'stencilConfig_6_c50' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%stencilConfig_6_c49 = alloca i64 1"   --->   Operation 30 'alloca' 'stencilConfig_6_c49' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%stencilConfig_6_c = alloca i64 1"   --->   Operation 31 'alloca' 'stencilConfig_6_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%stencilConfig_5_0_c48 = alloca i64 1"   --->   Operation 32 'alloca' 'stencilConfig_5_0_c48' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 3> <FIFO>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%stencilConfig_5_0_c47 = alloca i64 1"   --->   Operation 33 'alloca' 'stencilConfig_5_0_c47' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%stencilConfig_5_0_c46 = alloca i64 1"   --->   Operation 34 'alloca' 'stencilConfig_5_0_c46' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%stencilConfig_5_0_c45 = alloca i64 1"   --->   Operation 35 'alloca' 'stencilConfig_5_0_c45' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%stencilConfig_5_0_c44 = alloca i64 1"   --->   Operation 36 'alloca' 'stencilConfig_5_0_c44' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%stencilConfig_5_0_c = alloca i64 1"   --->   Operation 37 'alloca' 'stencilConfig_5_0_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%stencilConfig_4_0_c43 = alloca i64 1"   --->   Operation 38 'alloca' 'stencilConfig_4_0_c43' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.35> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 3> <FIFO>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%stencilConfig_4_0_c42 = alloca i64 1"   --->   Operation 39 'alloca' 'stencilConfig_4_0_c42' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%stencilConfig_4_0_c41 = alloca i64 1"   --->   Operation 40 'alloca' 'stencilConfig_4_0_c41' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%stencilConfig_4_0_c40 = alloca i64 1"   --->   Operation 41 'alloca' 'stencilConfig_4_0_c40' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%stencilConfig_4_0_c39 = alloca i64 1"   --->   Operation 42 'alloca' 'stencilConfig_4_0_c39' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%stencilConfig_4_0_c = alloca i64 1"   --->   Operation 43 'alloca' 'stencilConfig_4_0_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%stencilConfig_3_c38 = alloca i64 1"   --->   Operation 44 'alloca' 'stencilConfig_3_c38' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.33> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%stencilConfig_3_c37 = alloca i64 1"   --->   Operation 45 'alloca' 'stencilConfig_3_c37' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%stencilConfig_3_c36 = alloca i64 1"   --->   Operation 46 'alloca' 'stencilConfig_3_c36' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%stencilConfig_3_c35 = alloca i64 1"   --->   Operation 47 'alloca' 'stencilConfig_3_c35' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%stencilConfig_3_c34 = alloca i64 1"   --->   Operation 48 'alloca' 'stencilConfig_3_c34' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%stencilConfig_3_c = alloca i64 1"   --->   Operation 49 'alloca' 'stencilConfig_3_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%stencilConfig_2_c33 = alloca i64 1"   --->   Operation 50 'alloca' 'stencilConfig_2_c33' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.33> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%stencilConfig_2_c32 = alloca i64 1"   --->   Operation 51 'alloca' 'stencilConfig_2_c32' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%stencilConfig_2_c31 = alloca i64 1"   --->   Operation 52 'alloca' 'stencilConfig_2_c31' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%stencilConfig_2_c30 = alloca i64 1"   --->   Operation 53 'alloca' 'stencilConfig_2_c30' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%stencilConfig_2_c29 = alloca i64 1"   --->   Operation 54 'alloca' 'stencilConfig_2_c29' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 55 [1/1] (0.00ns)   --->   "%stencilConfig_2_c = alloca i64 1"   --->   Operation 55 'alloca' 'stencilConfig_2_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%stencilConfig_0_1_c28 = alloca i64 1"   --->   Operation 56 'alloca' 'stencilConfig_0_1_c28' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.33> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%stencilConfig_0_1_c27 = alloca i64 1"   --->   Operation 57 'alloca' 'stencilConfig_0_1_c27' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%stencilConfig_0_1_c26 = alloca i64 1"   --->   Operation 58 'alloca' 'stencilConfig_0_1_c26' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 59 [1/1] (0.00ns)   --->   "%stencilConfig_0_1_c25 = alloca i64 1"   --->   Operation 59 'alloca' 'stencilConfig_0_1_c25' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 60 [1/1] (0.00ns)   --->   "%stencilConfig_0_1_c24 = alloca i64 1"   --->   Operation 60 'alloca' 'stencilConfig_0_1_c24' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 61 [1/1] (0.00ns)   --->   "%stencilConfig_0_1_c = alloca i64 1"   --->   Operation 61 'alloca' 'stencilConfig_0_1_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%stencilConfig_0_0_c23 = alloca i64 1"   --->   Operation 62 'alloca' 'stencilConfig_0_0_c23' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.33> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 3> <FIFO>
+ST_1 : Operation 63 [1/1] (0.00ns)   --->   "%stencilConfig_0_0_c22 = alloca i64 1"   --->   Operation 63 'alloca' 'stencilConfig_0_0_c22' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%stencilConfig_0_0_c21 = alloca i64 1"   --->   Operation 64 'alloca' 'stencilConfig_0_0_c21' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 65 [1/1] (0.00ns)   --->   "%stencilConfig_0_0_c20 = alloca i64 1"   --->   Operation 65 'alloca' 'stencilConfig_0_0_c20' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%stencilConfig_0_0_c19 = alloca i64 1"   --->   Operation 66 'alloca' 'stencilConfig_0_0_c19' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%stencilConfig_0_0_c = alloca i64 1"   --->   Operation 67 'alloca' 'stencilConfig_0_0_c' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 68 [1/1] (0.00ns)   --->   "%arg0_arg1_streams_0 = alloca i64 1"   --->   Operation 68 'alloca' 'arg0_arg1_streams_0' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 10> <FIFO>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%arg0_arg1_streams_1 = alloca i64 1"   --->   Operation 69 'alloca' 'arg0_arg1_streams_1' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 10> <FIFO>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%arg0_arg1_streams_2 = alloca i64 1"   --->   Operation 70 'alloca' 'arg0_arg1_streams_2' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 10> <FIFO>
+ST_1 : Operation 71 [1/1] (0.00ns)   --->   "%arg0_arg1_streams_3 = alloca i64 1"   --->   Operation 71 'alloca' 'arg0_arg1_streams_3' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 10> <FIFO>
+ST_1 : Operation 72 [1/1] (0.00ns)   --->   "%arg0_arg1_streams_4 = alloca i64 1"   --->   Operation 72 'alloca' 'arg0_arg1_streams_4' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 10> <FIFO>
+ST_1 : Operation 73 [1/1] (0.00ns)   --->   "%arg0_arg1_streams_5 = alloca i64 1"   --->   Operation 73 'alloca' 'arg0_arg1_streams_5' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 10> <FIFO>
+ST_1 : Operation 74 [1/1] (0.00ns)   --->   "%arg0_arg1_streams_6 = alloca i64 1"   --->   Operation 74 'alloca' 'arg0_arg1_streams_6' <Predicate = true> <Delay = 0.00> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 10> <FIFO>
+ST_1 : Operation 75 [1/1] (1.21ns)   --->   "%call_ln0 = call void @entry_proc, i16 %p_read_11, i16 %stencilConfig_0_0_c23, i16 %p_read18, i16 %stencilConfig_0_1_c28, i16 %p_read29, i16 %stencilConfig_2_c33, i16 %p_read310, i16 %stencilConfig_3_c38, i1 %p_read_10, i1 %stencilConfig_4_0_c43, i1 %p_read_9, i1 %stencilConfig_5_0_c48, i16 %p_read_8, i16 %stencilConfig_6_c53"   --->   Operation 75 'call' 'call_ln0' <Predicate = true> <Delay = 1.21> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 76 [2/2] (1.21ns)   --->   "%call_ln49 = call void @axis2stream<256u>, i256 %arg0_axis_in_V_data_V, i32 %arg0_axis_in_V_keep_V, i32 %arg0_axis_in_V_strb_V, i1 %arg0_axis_in_V_last_V, i256 %arg0_arg1_streams_0, i32 %num_pkts_read, i32 %num_pkts_c" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:49]   --->   Operation 76 'call' 'call_ln49' <Predicate = true> <Delay = 1.21> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 77 [1/2] (0.00ns)   --->   "%call_ln49 = call void @axis2stream<256u>, i256 %arg0_axis_in_V_data_V, i32 %arg0_axis_in_V_keep_V, i32 %arg0_axis_in_V_strb_V, i1 %arg0_axis_in_V_last_V, i256 %arg0_arg1_streams_0, i32 %num_pkts_read, i32 %num_pkts_c" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:49]   --->   Operation 77 'call' 'call_ln49' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 78 [2/2] (0.00ns)   --->   "%call_ln55 = call void @kernel_poisson_kernel_stencil_PE, i16 %stencilConfig_0_0_c23, i16 %stencilConfig_0_1_c28, i16 %stencilConfig_2_c33, i16 %stencilConfig_3_c38, i1 %stencilConfig_4_0_c43, i1 %stencilConfig_5_0_c48, i16 %stencilConfig_6_c53, i256 %arg0_arg1_streams_0, i256 %arg0_arg1_streams_1, i16 %stencilConfig_0_0_c22, i16 %stencilConfig_0_1_c27, i16 %stencilConfig_2_c32, i16 %stencilConfig_3_c37, i1 %stencilConfig_4_0_c42, i1 %stencilConfig_5_0_c47, i16 %stencilConfig_6_c52" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:55]   --->   Operation 78 'call' 'call_ln55' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 79 [1/2] (0.00ns)   --->   "%call_ln55 = call void @kernel_poisson_kernel_stencil_PE, i16 %stencilConfig_0_0_c23, i16 %stencilConfig_0_1_c28, i16 %stencilConfig_2_c33, i16 %stencilConfig_3_c38, i1 %stencilConfig_4_0_c43, i1 %stencilConfig_5_0_c48, i16 %stencilConfig_6_c53, i256 %arg0_arg1_streams_0, i256 %arg0_arg1_streams_1, i16 %stencilConfig_0_0_c22, i16 %stencilConfig_0_1_c27, i16 %stencilConfig_2_c32, i16 %stencilConfig_3_c37, i1 %stencilConfig_4_0_c42, i1 %stencilConfig_5_0_c47, i16 %stencilConfig_6_c52" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:55]   --->   Operation 79 'call' 'call_ln55' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 80 [2/2] (0.00ns)   --->   "%call_ln58 = call void @kernel_poisson_kernel_stencil_PE.1, i16 %stencilConfig_0_0_c22, i16 %stencilConfig_0_1_c27, i16 %stencilConfig_2_c32, i16 %stencilConfig_3_c37, i1 %stencilConfig_4_0_c42, i1 %stencilConfig_5_0_c47, i16 %stencilConfig_6_c52, i256 %arg0_arg1_streams_1, i256 %arg0_arg1_streams_2, i16 %stencilConfig_0_0_c21, i16 %stencilConfig_0_1_c26, i16 %stencilConfig_2_c31, i16 %stencilConfig_3_c36, i1 %stencilConfig_4_0_c41, i1 %stencilConfig_5_0_c46, i16 %stencilConfig_6_c51" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:58]   --->   Operation 80 'call' 'call_ln58' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 81 [1/2] (0.00ns)   --->   "%call_ln58 = call void @kernel_poisson_kernel_stencil_PE.1, i16 %stencilConfig_0_0_c22, i16 %stencilConfig_0_1_c27, i16 %stencilConfig_2_c32, i16 %stencilConfig_3_c37, i1 %stencilConfig_4_0_c42, i1 %stencilConfig_5_0_c47, i16 %stencilConfig_6_c52, i256 %arg0_arg1_streams_1, i256 %arg0_arg1_streams_2, i16 %stencilConfig_0_0_c21, i16 %stencilConfig_0_1_c26, i16 %stencilConfig_2_c31, i16 %stencilConfig_3_c36, i1 %stencilConfig_4_0_c41, i1 %stencilConfig_5_0_c46, i16 %stencilConfig_6_c51" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:58]   --->   Operation 81 'call' 'call_ln58' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 7 <SV = 6> <Delay = 0.00>
+ST_7 : Operation 82 [2/2] (0.00ns)   --->   "%call_ln61 = call void @kernel_poisson_kernel_stencil_PE.2, i16 %stencilConfig_0_0_c21, i16 %stencilConfig_0_1_c26, i16 %stencilConfig_2_c31, i16 %stencilConfig_3_c36, i1 %stencilConfig_4_0_c41, i1 %stencilConfig_5_0_c46, i16 %stencilConfig_6_c51, i256 %arg0_arg1_streams_2, i256 %arg0_arg1_streams_3, i16 %stencilConfig_0_0_c20, i16 %stencilConfig_0_1_c25, i16 %stencilConfig_2_c30, i16 %stencilConfig_3_c35, i1 %stencilConfig_4_0_c40, i1 %stencilConfig_5_0_c45, i16 %stencilConfig_6_c50" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:61]   --->   Operation 82 'call' 'call_ln61' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 8 <SV = 7> <Delay = 0.00>
+ST_8 : Operation 83 [1/2] (0.00ns)   --->   "%call_ln61 = call void @kernel_poisson_kernel_stencil_PE.2, i16 %stencilConfig_0_0_c21, i16 %stencilConfig_0_1_c26, i16 %stencilConfig_2_c31, i16 %stencilConfig_3_c36, i1 %stencilConfig_4_0_c41, i1 %stencilConfig_5_0_c46, i16 %stencilConfig_6_c51, i256 %arg0_arg1_streams_2, i256 %arg0_arg1_streams_3, i16 %stencilConfig_0_0_c20, i16 %stencilConfig_0_1_c25, i16 %stencilConfig_2_c30, i16 %stencilConfig_3_c35, i1 %stencilConfig_4_0_c40, i1 %stencilConfig_5_0_c45, i16 %stencilConfig_6_c50" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:61]   --->   Operation 83 'call' 'call_ln61' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 9 <SV = 8> <Delay = 0.00>
+ST_9 : Operation 84 [2/2] (0.00ns)   --->   "%call_ln64 = call void @kernel_poisson_kernel_stencil_PE.3, i16 %stencilConfig_0_0_c20, i16 %stencilConfig_0_1_c25, i16 %stencilConfig_2_c30, i16 %stencilConfig_3_c35, i1 %stencilConfig_4_0_c40, i1 %stencilConfig_5_0_c45, i16 %stencilConfig_6_c50, i256 %arg0_arg1_streams_3, i256 %arg0_arg1_streams_4, i16 %stencilConfig_0_0_c19, i16 %stencilConfig_0_1_c24, i16 %stencilConfig_2_c29, i16 %stencilConfig_3_c34, i1 %stencilConfig_4_0_c39, i1 %stencilConfig_5_0_c44, i16 %stencilConfig_6_c49" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:64]   --->   Operation 84 'call' 'call_ln64' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 10 <SV = 9> <Delay = 0.00>
+ST_10 : Operation 85 [1/2] (0.00ns)   --->   "%call_ln64 = call void @kernel_poisson_kernel_stencil_PE.3, i16 %stencilConfig_0_0_c20, i16 %stencilConfig_0_1_c25, i16 %stencilConfig_2_c30, i16 %stencilConfig_3_c35, i1 %stencilConfig_4_0_c40, i1 %stencilConfig_5_0_c45, i16 %stencilConfig_6_c50, i256 %arg0_arg1_streams_3, i256 %arg0_arg1_streams_4, i16 %stencilConfig_0_0_c19, i16 %stencilConfig_0_1_c24, i16 %stencilConfig_2_c29, i16 %stencilConfig_3_c34, i1 %stencilConfig_4_0_c39, i1 %stencilConfig_5_0_c44, i16 %stencilConfig_6_c49" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:64]   --->   Operation 85 'call' 'call_ln64' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 11 <SV = 10> <Delay = 0.00>
+ST_11 : Operation 86 [2/2] (0.00ns)   --->   "%call_ln67 = call void @kernel_poisson_kernel_stencil_PE.4, i16 %stencilConfig_0_0_c19, i16 %stencilConfig_0_1_c24, i16 %stencilConfig_2_c29, i16 %stencilConfig_3_c34, i1 %stencilConfig_4_0_c39, i1 %stencilConfig_5_0_c44, i16 %stencilConfig_6_c49, i256 %arg0_arg1_streams_4, i256 %arg0_arg1_streams_5, i16 %stencilConfig_0_0_c, i16 %stencilConfig_0_1_c, i16 %stencilConfig_2_c, i16 %stencilConfig_3_c, i1 %stencilConfig_4_0_c, i1 %stencilConfig_5_0_c, i16 %stencilConfig_6_c" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:67]   --->   Operation 86 'call' 'call_ln67' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 12 <SV = 11> <Delay = 0.00>
+ST_12 : Operation 87 [1/2] (0.00ns)   --->   "%call_ln67 = call void @kernel_poisson_kernel_stencil_PE.4, i16 %stencilConfig_0_0_c19, i16 %stencilConfig_0_1_c24, i16 %stencilConfig_2_c29, i16 %stencilConfig_3_c34, i1 %stencilConfig_4_0_c39, i1 %stencilConfig_5_0_c44, i16 %stencilConfig_6_c49, i256 %arg0_arg1_streams_4, i256 %arg0_arg1_streams_5, i16 %stencilConfig_0_0_c, i16 %stencilConfig_0_1_c, i16 %stencilConfig_2_c, i16 %stencilConfig_3_c, i1 %stencilConfig_4_0_c, i1 %stencilConfig_5_0_c, i16 %stencilConfig_6_c" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:67]   --->   Operation 87 'call' 'call_ln67' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 13 <SV = 12> <Delay = 0.00>
+ST_13 : Operation 88 [2/2] (0.00ns)   --->   "%call_ln70 = call void @kernel_poisson_kernel_stencil_PE.5, i16 %stencilConfig_0_0_c, i16 %stencilConfig_0_1_c, i16 %stencilConfig_2_c, i16 %stencilConfig_3_c, i1 %stencilConfig_4_0_c, i1 %stencilConfig_5_0_c, i16 %stencilConfig_6_c, i256 %arg0_arg1_streams_5, i256 %arg0_arg1_streams_6" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:70]   --->   Operation 88 'call' 'call_ln70' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 14 <SV = 13> <Delay = 0.00>
+ST_14 : Operation 89 [1/2] (0.00ns)   --->   "%call_ln70 = call void @kernel_poisson_kernel_stencil_PE.5, i16 %stencilConfig_0_0_c, i16 %stencilConfig_0_1_c, i16 %stencilConfig_2_c, i16 %stencilConfig_3_c, i1 %stencilConfig_4_0_c, i1 %stencilConfig_5_0_c, i16 %stencilConfig_6_c, i256 %arg0_arg1_streams_5, i256 %arg0_arg1_streams_6" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:70]   --->   Operation 89 'call' 'call_ln70' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 15 <SV = 14> <Delay = 0.00>
+ST_15 : Operation 90 [2/2] (0.00ns)   --->   "%call_ln73 = call void @stream2axis<256u>, i256 %arg0_arg1_streams_6, i256 %arg1_axis_out_V_data_V, i32 %arg1_axis_out_V_keep_V, i32 %arg1_axis_out_V_strb_V, i1 %arg1_axis_out_V_last_V, i32 %num_pkts_c" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:73]   --->   Operation 90 'call' 'call_ln73' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 16 <SV = 15> <Delay = 0.00>
+ST_16 : Operation 91 [1/1] (0.00ns)   --->   "%empty = specchannel i32 @_ssdm_op_SpecChannel, void @num_pkts_c_str, i32 1, void @p_str, void @p_str, i32 8, i32 0, i32 %num_pkts_c, i32 %num_pkts_c"   --->   Operation 91 'specchannel' 'empty' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 92 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %num_pkts_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 92 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 93 [1/1] (0.00ns)   --->   "%empty_40 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_6_c53_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i16 %stencilConfig_6_c53, i16 %stencilConfig_6_c53"   --->   Operation 93 'specchannel' 'empty_40' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 94 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_6_c53, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 94 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 95 [1/1] (0.00ns)   --->   "%empty_41 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_6_c52_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_6_c52, i16 %stencilConfig_6_c52"   --->   Operation 95 'specchannel' 'empty_41' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 96 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_6_c52, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 96 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 97 [1/1] (0.00ns)   --->   "%empty_42 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_6_c51_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_6_c51, i16 %stencilConfig_6_c51"   --->   Operation 97 'specchannel' 'empty_42' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 98 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_6_c51, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 98 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 99 [1/1] (0.00ns)   --->   "%empty_43 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_6_c50_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_6_c50, i16 %stencilConfig_6_c50"   --->   Operation 99 'specchannel' 'empty_43' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 100 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_6_c50, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 100 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 101 [1/1] (0.00ns)   --->   "%empty_44 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_6_c49_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_6_c49, i16 %stencilConfig_6_c49"   --->   Operation 101 'specchannel' 'empty_44' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 102 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_6_c49, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 102 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 103 [1/1] (0.00ns)   --->   "%empty_45 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_6_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_6_c, i16 %stencilConfig_6_c"   --->   Operation 103 'specchannel' 'empty_45' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 104 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_6_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 104 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 105 [1/1] (0.00ns)   --->   "%empty_46 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_5_OC_0_c48_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i1 %stencilConfig_5_0_c48, i1 %stencilConfig_5_0_c48"   --->   Operation 105 'specchannel' 'empty_46' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 106 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_5_0_c48, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 106 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 107 [1/1] (0.00ns)   --->   "%empty_47 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_5_OC_0_c47_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_5_0_c47, i1 %stencilConfig_5_0_c47"   --->   Operation 107 'specchannel' 'empty_47' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 108 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_5_0_c47, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 108 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 109 [1/1] (0.00ns)   --->   "%empty_48 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_5_OC_0_c46_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_5_0_c46, i1 %stencilConfig_5_0_c46"   --->   Operation 109 'specchannel' 'empty_48' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 110 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_5_0_c46, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 110 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 111 [1/1] (0.00ns)   --->   "%empty_49 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_5_OC_0_c45_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_5_0_c45, i1 %stencilConfig_5_0_c45"   --->   Operation 111 'specchannel' 'empty_49' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 112 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_5_0_c45, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 112 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 113 [1/1] (0.00ns)   --->   "%empty_50 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_5_OC_0_c44_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_5_0_c44, i1 %stencilConfig_5_0_c44"   --->   Operation 113 'specchannel' 'empty_50' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 114 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_5_0_c44, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 114 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 115 [1/1] (0.00ns)   --->   "%empty_51 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_5_OC_0_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_5_0_c, i1 %stencilConfig_5_0_c"   --->   Operation 115 'specchannel' 'empty_51' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 116 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_5_0_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 116 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 117 [1/1] (0.00ns)   --->   "%empty_52 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_4_OC_0_c43_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i1 %stencilConfig_4_0_c43, i1 %stencilConfig_4_0_c43"   --->   Operation 117 'specchannel' 'empty_52' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 118 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_4_0_c43, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 118 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 119 [1/1] (0.00ns)   --->   "%empty_53 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_4_OC_0_c42_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_4_0_c42, i1 %stencilConfig_4_0_c42"   --->   Operation 119 'specchannel' 'empty_53' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 120 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_4_0_c42, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 120 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 121 [1/1] (0.00ns)   --->   "%empty_54 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_4_OC_0_c41_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_4_0_c41, i1 %stencilConfig_4_0_c41"   --->   Operation 121 'specchannel' 'empty_54' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 122 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_4_0_c41, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 122 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 123 [1/1] (0.00ns)   --->   "%empty_55 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_4_OC_0_c40_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_4_0_c40, i1 %stencilConfig_4_0_c40"   --->   Operation 123 'specchannel' 'empty_55' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 124 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_4_0_c40, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 124 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 125 [1/1] (0.00ns)   --->   "%empty_56 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_4_OC_0_c39_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_4_0_c39, i1 %stencilConfig_4_0_c39"   --->   Operation 125 'specchannel' 'empty_56' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 126 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_4_0_c39, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 126 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 127 [1/1] (0.00ns)   --->   "%empty_57 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_4_OC_0_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i1 %stencilConfig_4_0_c, i1 %stencilConfig_4_0_c"   --->   Operation 127 'specchannel' 'empty_57' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 128 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_4_0_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 128 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 129 [1/1] (0.00ns)   --->   "%empty_58 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_3_c38_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i16 %stencilConfig_3_c38, i16 %stencilConfig_3_c38"   --->   Operation 129 'specchannel' 'empty_58' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 130 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_3_c38, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 130 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 131 [1/1] (0.00ns)   --->   "%empty_59 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_3_c37_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_3_c37, i16 %stencilConfig_3_c37"   --->   Operation 131 'specchannel' 'empty_59' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 132 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_3_c37, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 132 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 133 [1/1] (0.00ns)   --->   "%empty_60 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_3_c36_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_3_c36, i16 %stencilConfig_3_c36"   --->   Operation 133 'specchannel' 'empty_60' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 134 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_3_c36, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 134 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 135 [1/1] (0.00ns)   --->   "%empty_61 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_3_c35_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_3_c35, i16 %stencilConfig_3_c35"   --->   Operation 135 'specchannel' 'empty_61' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 136 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_3_c35, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 136 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 137 [1/1] (0.00ns)   --->   "%empty_62 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_3_c34_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_3_c34, i16 %stencilConfig_3_c34"   --->   Operation 137 'specchannel' 'empty_62' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 138 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_3_c34, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 138 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 139 [1/1] (0.00ns)   --->   "%empty_63 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_3_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_3_c, i16 %stencilConfig_3_c"   --->   Operation 139 'specchannel' 'empty_63' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 140 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_3_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 140 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 141 [1/1] (0.00ns)   --->   "%empty_64 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_2_c33_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i16 %stencilConfig_2_c33, i16 %stencilConfig_2_c33"   --->   Operation 141 'specchannel' 'empty_64' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 142 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_2_c33, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 142 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 143 [1/1] (0.00ns)   --->   "%empty_65 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_2_c32_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_2_c32, i16 %stencilConfig_2_c32"   --->   Operation 143 'specchannel' 'empty_65' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 144 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_2_c32, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 144 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 145 [1/1] (0.00ns)   --->   "%empty_66 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_2_c31_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_2_c31, i16 %stencilConfig_2_c31"   --->   Operation 145 'specchannel' 'empty_66' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 146 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_2_c31, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 146 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 147 [1/1] (0.00ns)   --->   "%empty_67 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_2_c30_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_2_c30, i16 %stencilConfig_2_c30"   --->   Operation 147 'specchannel' 'empty_67' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 148 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_2_c30, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 148 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 149 [1/1] (0.00ns)   --->   "%empty_68 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_2_c29_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_2_c29, i16 %stencilConfig_2_c29"   --->   Operation 149 'specchannel' 'empty_68' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 150 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_2_c29, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 150 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 151 [1/1] (0.00ns)   --->   "%empty_69 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_2_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_2_c, i16 %stencilConfig_2_c"   --->   Operation 151 'specchannel' 'empty_69' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 152 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_2_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 152 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 153 [1/1] (0.00ns)   --->   "%empty_70 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_1_c28_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i16 %stencilConfig_0_1_c28, i16 %stencilConfig_0_1_c28"   --->   Operation 153 'specchannel' 'empty_70' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 154 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_1_c28, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 154 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 155 [1/1] (0.00ns)   --->   "%empty_71 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_1_c27_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_1_c27, i16 %stencilConfig_0_1_c27"   --->   Operation 155 'specchannel' 'empty_71' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 156 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_1_c27, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 156 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 157 [1/1] (0.00ns)   --->   "%empty_72 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_1_c26_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_1_c26, i16 %stencilConfig_0_1_c26"   --->   Operation 157 'specchannel' 'empty_72' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 158 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_1_c26, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 158 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 159 [1/1] (0.00ns)   --->   "%empty_73 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_1_c25_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_1_c25, i16 %stencilConfig_0_1_c25"   --->   Operation 159 'specchannel' 'empty_73' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 160 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_1_c25, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 160 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 161 [1/1] (0.00ns)   --->   "%empty_74 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_1_c24_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_1_c24, i16 %stencilConfig_0_1_c24"   --->   Operation 161 'specchannel' 'empty_74' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 162 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_1_c24, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 162 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 163 [1/1] (0.00ns)   --->   "%empty_75 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_1_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_1_c, i16 %stencilConfig_0_1_c"   --->   Operation 163 'specchannel' 'empty_75' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 164 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_1_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 164 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 165 [1/1] (0.00ns)   --->   "%empty_76 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_0_c23_str, i32 1, void @p_str, void @p_str, i32 3, i32 0, i16 %stencilConfig_0_0_c23, i16 %stencilConfig_0_0_c23"   --->   Operation 165 'specchannel' 'empty_76' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 166 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_0_c23, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 166 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 167 [1/1] (0.00ns)   --->   "%empty_77 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_0_c22_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_0_c22, i16 %stencilConfig_0_0_c22"   --->   Operation 167 'specchannel' 'empty_77' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 168 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_0_c22, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 168 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 169 [1/1] (0.00ns)   --->   "%empty_78 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_0_c21_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_0_c21, i16 %stencilConfig_0_0_c21"   --->   Operation 169 'specchannel' 'empty_78' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 170 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_0_c21, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 170 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 171 [1/1] (0.00ns)   --->   "%empty_79 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_0_c20_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_0_c20, i16 %stencilConfig_0_0_c20"   --->   Operation 171 'specchannel' 'empty_79' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 172 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_0_c20, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 172 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 173 [1/1] (0.00ns)   --->   "%empty_80 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_0_c19_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_0_c19, i16 %stencilConfig_0_0_c19"   --->   Operation 173 'specchannel' 'empty_80' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 174 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_0_c19, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 174 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 175 [1/1] (0.00ns)   --->   "%empty_81 = specchannel i32 @_ssdm_op_SpecChannel, void @stencilConfig_OC_0_OC_0_c_str, i32 1, void @p_str, void @p_str, i32 2, i32 0, i16 %stencilConfig_0_0_c, i16 %stencilConfig_0_0_c"   --->   Operation 175 'specchannel' 'empty_81' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 176 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_0_c, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @p_str, i32 4294967295, i32 0"   --->   Operation 176 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 177 [1/1] (0.00ns)   --->   "%specdataflowpipeline_ln0 = specdataflowpipeline void @_ssdm_op_SpecDataflowPipeline, i32 4294967295, i32 0, void @empty_25"   --->   Operation 177 'specdataflowpipeline' 'specdataflowpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 178 [1/1] (0.00ns)   --->   "%specaxissidechannel_ln0 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i256 %arg1_axis_out_V_data_V, i32 %arg1_axis_out_V_keep_V, i32 %arg1_axis_out_V_strb_V, i1 0, i1 %arg1_axis_out_V_last_V, i1 0, i1 0, void @empty_3"   --->   Operation 178 'specaxissidechannel' 'specaxissidechannel_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 179 [1/1] (0.00ns)   --->   "%specaxissidechannel_ln0 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i256 %arg0_axis_in_V_data_V, i32 %arg0_axis_in_V_keep_V, i32 %arg0_axis_in_V_strb_V, i1 0, i1 %arg0_axis_in_V_last_V, i1 0, i1 0, void @empty_2"   --->   Operation 179 'specaxissidechannel' 'specaxissidechannel_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 180 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg1_axis_out_V_last_V, i32 %arg1_axis_out_V_strb_V, i32 %arg1_axis_out_V_keep_V, i256 %arg1_axis_out_V_data_V, void @empty_9, i32 0, i32 0, void @empty_4, i32 0, i32 0, void @empty_25, void @empty_25, void @empty_25, i32 0, i32 0, i32 0, i32 0, void @empty_25, void @empty_25, i32 4294967295, i32 0"   --->   Operation 180 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 181 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %arg0_axis_in_V_last_V, i32 %arg0_axis_in_V_strb_V, i32 %arg0_axis_in_V_keep_V, i256 %arg0_axis_in_V_data_V, void @empty_9, i32 0, i32 0, void @empty_4, i32 0, i32 0, void @empty_25, void @empty_25, void @empty_25, i32 0, i32 0, i32 0, i32 0, void @empty_25, void @empty_25, i32 4294967295, i32 0"   --->   Operation 181 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 182 [1/1] (0.00ns)   --->   "%empty_82 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_arg1_streams_0_str, i32 1, void @p_str, void @p_str, i32 10, i32 10, i256 %arg0_arg1_streams_0, i256 %arg0_arg1_streams_0"   --->   Operation 182 'specchannel' 'empty_82' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 183 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_0, void @empty_16, i32 0, i32 0, void @empty_25, i32 0, i32 0, void @empty_25, void @empty_25, void @empty_25, i32 0, i32 0, i32 0, i32 0, void @empty_25, void @empty_25, i32 4294967295, i32 0"   --->   Operation 183 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 184 [1/1] (0.00ns)   --->   "%empty_83 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_arg1_streams_1_str, i32 1, void @p_str, void @p_str, i32 10, i32 10, i256 %arg0_arg1_streams_1, i256 %arg0_arg1_streams_1"   --->   Operation 184 'specchannel' 'empty_83' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 185 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_1, void @empty_16, i32 0, i32 0, void @empty_25, i32 0, i32 0, void @empty_25, void @empty_25, void @empty_25, i32 0, i32 0, i32 0, i32 0, void @empty_25, void @empty_25, i32 4294967295, i32 0"   --->   Operation 185 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 186 [1/1] (0.00ns)   --->   "%empty_84 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_arg1_streams_2_str, i32 1, void @p_str, void @p_str, i32 10, i32 10, i256 %arg0_arg1_streams_2, i256 %arg0_arg1_streams_2"   --->   Operation 186 'specchannel' 'empty_84' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 187 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_2, void @empty_16, i32 0, i32 0, void @empty_25, i32 0, i32 0, void @empty_25, void @empty_25, void @empty_25, i32 0, i32 0, i32 0, i32 0, void @empty_25, void @empty_25, i32 4294967295, i32 0"   --->   Operation 187 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 188 [1/1] (0.00ns)   --->   "%empty_85 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_arg1_streams_3_str, i32 1, void @p_str, void @p_str, i32 10, i32 10, i256 %arg0_arg1_streams_3, i256 %arg0_arg1_streams_3"   --->   Operation 188 'specchannel' 'empty_85' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 189 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_3, void @empty_16, i32 0, i32 0, void @empty_25, i32 0, i32 0, void @empty_25, void @empty_25, void @empty_25, i32 0, i32 0, i32 0, i32 0, void @empty_25, void @empty_25, i32 4294967295, i32 0"   --->   Operation 189 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 190 [1/1] (0.00ns)   --->   "%empty_86 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_arg1_streams_4_str, i32 1, void @p_str, void @p_str, i32 10, i32 10, i256 %arg0_arg1_streams_4, i256 %arg0_arg1_streams_4"   --->   Operation 190 'specchannel' 'empty_86' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 191 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_4, void @empty_16, i32 0, i32 0, void @empty_25, i32 0, i32 0, void @empty_25, void @empty_25, void @empty_25, i32 0, i32 0, i32 0, i32 0, void @empty_25, void @empty_25, i32 4294967295, i32 0"   --->   Operation 191 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 192 [1/1] (0.00ns)   --->   "%empty_87 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_arg1_streams_5_str, i32 1, void @p_str, void @p_str, i32 10, i32 10, i256 %arg0_arg1_streams_5, i256 %arg0_arg1_streams_5"   --->   Operation 192 'specchannel' 'empty_87' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 193 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_5, void @empty_16, i32 0, i32 0, void @empty_25, i32 0, i32 0, void @empty_25, void @empty_25, void @empty_25, i32 0, i32 0, i32 0, i32 0, void @empty_25, void @empty_25, i32 4294967295, i32 0"   --->   Operation 193 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 194 [1/1] (0.00ns)   --->   "%empty_88 = specchannel i32 @_ssdm_op_SpecChannel, void @arg0_arg1_streams_6_str, i32 1, void @p_str, void @p_str, i32 10, i32 10, i256 %arg0_arg1_streams_6, i256 %arg0_arg1_streams_6"   --->   Operation 194 'specchannel' 'empty_88' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 195 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_6, void @empty_16, i32 0, i32 0, void @empty_25, i32 0, i32 0, void @empty_25, void @empty_25, void @empty_25, i32 0, i32 0, i32 0, i32 0, void @empty_25, void @empty_25, i32 4294967295, i32 0"   --->   Operation 195 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 196 [1/2] (0.00ns)   --->   "%call_ln73 = call void @stream2axis<256u>, i256 %arg0_arg1_streams_6, i256 %arg1_axis_out_V_data_V, i32 %arg1_axis_out_V_keep_V, i32 %arg1_axis_out_V_strb_V, i1 %arg1_axis_out_V_last_V, i32 %num_pkts_c" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:73]   --->   Operation 196 'call' 'call_ln73' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_16 : Operation 197 [1/1] (0.00ns)   --->   "%ret_ln75 = ret" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p60/hls/device/src/kernel_outerloop_0_0.cpp:75]   --->   Operation 197 'ret' 'ret_ln75' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 1.22ns
+The critical path consists of the following:
+	wire read operation ('p_read_8') on port 'p_read6' [18]  (0 ns)
+	'call' operation ('call_ln0') to 'entry_proc' [180]  (1.22 ns)
+
+ <State 2>: 0ns
+The critical path consists of the following:
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+ <State 6>: 0ns
+The critical path consists of the following:
+
+ <State 7>: 0ns
+The critical path consists of the following:
+
+ <State 8>: 0ns
+The critical path consists of the following:
+
+ <State 9>: 0ns
+The critical path consists of the following:
+
+ <State 10>: 0ns
+The critical path consists of the following:
+
+ <State 11>: 0ns
+The critical path consists of the following:
+
+ <State 12>: 0ns
+The critical path consists of the following:
+
+ <State 13>: 0ns
+The critical path consists of the following:
+
+ <State 14>: 0ns
+The critical path consists of the following:
+
+ <State 15>: 0ns
+The critical path consists of the following:
+
+ <State 16>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
