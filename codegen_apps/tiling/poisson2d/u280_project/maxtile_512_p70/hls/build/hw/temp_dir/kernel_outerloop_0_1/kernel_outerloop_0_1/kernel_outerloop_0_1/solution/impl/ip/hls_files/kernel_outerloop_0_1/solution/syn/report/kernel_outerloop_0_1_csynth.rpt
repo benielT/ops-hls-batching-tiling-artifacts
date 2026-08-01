@@ -1,0 +1,218 @@
+
+
+================================================================
+== Vitis HLS Report for 'kernel_outerloop_0_1'
+================================================================
+* Date:           Fri Jul 31 13:59:07 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        kernel_outerloop_0_1
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------------------------------+------------------------------------+---------+---------+----------+----------+-----+-----+----------+
+        |                                               |                                    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+        |                    Instance                   |               Module               |   min   |   max   |    min   |    max   | min | max |   Type   |
+        +-----------------------------------------------+------------------------------------+---------+---------+----------+----------+-----+-----+----------+
+        |grp_kernel_outerloop_0_dataflow_region_fu_190  |kernel_outerloop_0_dataflow_region  |        ?|        ?|         ?|         ?|    ?|    ?|  dataflow|
+        +-----------------------------------------------+------------------------------------+---------+---------+----------+----------+-----+-----+----------+
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_150_1   |        ?|        ?|         ?|          -|          -|     ?|        no|
+        | + VITIS_LOOP_151_2  |        ?|        ?|         ?|          -|          -|     ?|        no|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     1|        -|        -|    -|
+|Expression           |        -|     -|        0|      298|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |      216|  1782|   497612|   345686|  108|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|       99|    -|
+|Register             |        -|     -|      243|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |      216|  1783|   497855|   346083|  108|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |       16|    59|       57|       79|   33|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        5|    19|       19|       26|   11|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +-----------------------------------------------+------------------------------------+---------+------+--------+--------+-----+
+    |                    Instance                   |               Module               | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
+    +-----------------------------------------------+------------------------------------+---------+------+--------+--------+-----+
+    |control_s_axi_U                                |control_s_axi                       |        0|     0|     348|     520|    0|
+    |grp_kernel_outerloop_0_dataflow_region_fu_190  |kernel_outerloop_0_dataflow_region  |      216|  1782|  497264|  345166|  108|
+    +-----------------------------------------------+------------------------------------+---------+------+--------+--------+-----+
+    |Total                                          |                                    |      216|  1782|  497612|  345686|  108|
+    +-----------------------------------------------+------------------------------------+---------+------+--------+--------+-----+
+
+    * DSP: 
+    +-------------------------------+--------------------------+-----------+
+    |            Instance           |          Module          | Expression|
+    +-------------------------------+--------------------------+-----------+
+    |mul_mul_16ns_16ns_32_4_1_U789  |mul_mul_16ns_16ns_32_4_1  |    i0 * i1|
+    +-------------------------------+--------------------------+-----------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |                            Variable Name                           | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |i_4_fu_251_p2                                                       |         +|   0|  0|  39|          32|           1|
+    |sub26_i_fu_228_p2                                                   |         +|   0|  0|  24|          17|           2|
+    |tileConfig_line_diff_fu_335_p2                                      |         +|   0|  0|  23|          16|           2|
+    |tile_id_1_fu_262_p2                                                 |         +|   0|  0|  23|          16|           1|
+    |tile_x_1_fu_274_p2                                                  |         +|   0|  0|  23|          16|           1|
+    |y_diff_fu_222_p2                                                    |         +|   0|  0|  23|          16|           2|
+    |grp_kernel_outerloop_0_dataflow_region_fu_190_arg1_axis_out_TREADY  |       and|   0|  0|   2|           1|           1|
+    |icmp_ln150_fu_246_p2                                                |      icmp|   0|  0|  20|          32|          32|
+    |icmp_ln151_fu_257_p2                                                |      icmp|   0|  0|  13|          16|          16|
+    |icmp_ln153_fu_268_p2                                                |      icmp|   0|  0|  13|          16|           1|
+    |icmp_ln155_fu_280_p2                                                |      icmp|   0|  0|  13|          16|          16|
+    |is_last_tile_x_fu_311_p2                                            |      icmp|   0|  0|  13|          17|          17|
+    |tileConfig_is_first_0_fu_316_p2                                     |      icmp|   0|  0|  13|          16|           1|
+    |ap_block_state1                                                     |        or|   0|  0|   2|           1|           1|
+    |ap_sync_grp_kernel_outerloop_0_dataflow_region_fu_190_ap_done       |        or|   0|  0|   2|           1|           1|
+    |ap_sync_grp_kernel_outerloop_0_dataflow_region_fu_190_ap_ready      |        or|   0|  0|   2|           1|           1|
+    |tile_size_x_2_fu_326_p3                                             |    select|   0|  0|  16|           1|          16|
+    |tile_x_2_fu_291_p3                                                  |    select|   0|  0|  16|           1|           1|
+    |tile_x_3_fu_299_p3                                                  |    select|   0|  0|  16|           1|          16|
+    |xor_ln155_fu_285_p2                                                 |       xor|   0|  0|   2|           1|           2|
+    +--------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                                               |          |   0|  0| 298|         234|         131|
+    +--------------------------------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                         |  54|         10|    1|         10|
+    |ap_done                           |   9|          2|    1|          2|
+    |arg0_axis_in_TREADY_int_regslice  |   9|          2|    1|          2|
+    |i_fu_122                          |   9|          2|   32|         64|
+    |tile_id_reg_168                   |   9|          2|   16|         32|
+    |tile_x_reg_179                    |   9|          2|   16|         32|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             |  99|         20|   67|        142|
+    +----------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------------------------+----+----+-----+-----------+
+    |                                Name                                | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                           |   9|   0|    9|          0|
+    |ap_done_reg                                                         |   1|   0|    1|          0|
+    |ap_rst_n_inv                                                        |   1|   0|    1|          0|
+    |ap_rst_reg_1                                                        |   1|   0|    1|          0|
+    |ap_rst_reg_2                                                        |   1|   0|    1|          0|
+    |ap_sync_reg_grp_kernel_outerloop_0_dataflow_region_fu_190_ap_done   |   1|   0|    1|          0|
+    |ap_sync_reg_grp_kernel_outerloop_0_dataflow_region_fu_190_ap_ready  |   1|   0|    1|          0|
+    |conv31_i_reg_395                                                    |  16|   0|   32|         16|
+    |grp_kernel_outerloop_0_dataflow_region_fu_190_ap_start_reg          |   1|   0|    1|          0|
+    |i_4_reg_403                                                         |  32|   0|   32|          0|
+    |i_fu_122                                                            |  32|   0|   32|          0|
+    |is_last_tile_x_reg_421                                              |   1|   0|    1|          0|
+    |num_pkts_reg_443                                                    |  32|   0|   32|          0|
+    |sub26_i_reg_390                                                     |  17|   0|   17|          0|
+    |tileConfig_is_first_0_reg_427                                       |   1|   0|    1|          0|
+    |tileConfig_line_diff_reg_448                                        |  16|   0|   16|          0|
+    |tile_id_1_reg_411                                                   |  16|   0|   16|          0|
+    |tile_id_reg_168                                                     |  16|   0|   16|          0|
+    |tile_size_x_2_reg_432                                               |  16|   0|   16|          0|
+    |tile_x_3_reg_416                                                    |  16|   0|   16|          0|
+    |tile_x_reg_179                                                      |  16|   0|   16|          0|
+    +--------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                               | 243|   0|  259|         16|
+    +--------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+---------------+------------------------+--------------+
+|       RTL Ports       | Dir | Bits|    Protocol   |      Source Object     |    C Type    |
++-----------------------+-----+-----+---------------+------------------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|          s_axi|                 control|        scalar|
+|s_axi_control_AWREADY  |  out|    1|          s_axi|                 control|        scalar|
+|s_axi_control_AWADDR   |   in|    7|          s_axi|                 control|        scalar|
+|s_axi_control_WVALID   |   in|    1|          s_axi|                 control|        scalar|
+|s_axi_control_WREADY   |  out|    1|          s_axi|                 control|        scalar|
+|s_axi_control_WDATA    |   in|   32|          s_axi|                 control|        scalar|
+|s_axi_control_WSTRB    |   in|    4|          s_axi|                 control|        scalar|
+|s_axi_control_ARVALID  |   in|    1|          s_axi|                 control|        scalar|
+|s_axi_control_ARREADY  |  out|    1|          s_axi|                 control|        scalar|
+|s_axi_control_ARADDR   |   in|    7|          s_axi|                 control|        scalar|
+|s_axi_control_RVALID   |  out|    1|          s_axi|                 control|        scalar|
+|s_axi_control_RREADY   |   in|    1|          s_axi|                 control|        scalar|
+|s_axi_control_RDATA    |  out|   32|          s_axi|                 control|        scalar|
+|s_axi_control_RRESP    |  out|    2|          s_axi|                 control|        scalar|
+|s_axi_control_BVALID   |  out|    1|          s_axi|                 control|        scalar|
+|s_axi_control_BREADY   |   in|    1|          s_axi|                 control|        scalar|
+|s_axi_control_BRESP    |  out|    2|          s_axi|                 control|        scalar|
+|ap_clk                 |   in|    1|  ap_ctrl_chain|    kernel_outerloop_0_1|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_chain|    kernel_outerloop_0_1|  return value|
+|interrupt              |  out|    1|  ap_ctrl_chain|    kernel_outerloop_0_1|  return value|
+|arg0_axis_in_TDATA     |   in|  256|           axis|   arg0_axis_in_V_data_V|       pointer|
+|arg0_axis_in_TVALID    |   in|    1|           axis|   arg0_axis_in_V_last_V|       pointer|
+|arg0_axis_in_TREADY    |  out|    1|           axis|   arg0_axis_in_V_last_V|       pointer|
+|arg0_axis_in_TLAST     |   in|    1|           axis|   arg0_axis_in_V_last_V|       pointer|
+|arg0_axis_in_TKEEP     |   in|   32|           axis|   arg0_axis_in_V_keep_V|       pointer|
+|arg0_axis_in_TSTRB     |   in|   32|           axis|   arg0_axis_in_V_strb_V|       pointer|
+|arg1_axis_out_TDATA    |  out|  256|           axis|  arg1_axis_out_V_data_V|       pointer|
+|arg1_axis_out_TVALID   |  out|    1|           axis|  arg1_axis_out_V_last_V|       pointer|
+|arg1_axis_out_TREADY   |   in|    1|           axis|  arg1_axis_out_V_last_V|       pointer|
+|arg1_axis_out_TLAST    |  out|    1|           axis|  arg1_axis_out_V_last_V|       pointer|
+|arg1_axis_out_TKEEP    |  out|   32|           axis|  arg1_axis_out_V_keep_V|       pointer|
+|arg1_axis_out_TSTRB    |  out|   32|           axis|  arg1_axis_out_V_strb_V|       pointer|
++-----------------------+-----+-----+---------------+------------------------+--------------+
+

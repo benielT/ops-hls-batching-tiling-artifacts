@@ -1,0 +1,294 @@
+
+
+================================================================
+== Vitis HLS Report for 'stridedTileStream2mem2D_7'
+================================================================
+* Date:           Fri Jul 31 13:51:04 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+----------------+----------+-------------+-----+----------------+---------+
+    |     Latency (cycles)     |   Latency (absolute)   |       Interval       | Pipeline|
+    |   min   |       max      |    min   |     max     | min |       max      |   Type  |
+    +---------+----------------+----------+-------------+-----+----------------+---------+
+    |        2|  35183302090697|  6.666 ns|  1.2e+05 sec|    2|  35183302090697|       no|
+    +---------+----------------+----------+-------------+-----+----------------+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------------------------------------------------+------------------------------------------------------+---------+-----------+----------+-----------+-----+-----------+---------+
+        |                                                                 |                                                      |   Latency (cycles)  |  Latency (absolute)  |     Interval    | Pipeline|
+        |                             Instance                            |                        Module                        |   min   |    max    |    min   |    max    | min |    max    |   Type  |
+        +-----------------------------------------------------------------+------------------------------------------------------+---------+-----------+----------+-----------+-----+-----------+---------+
+        |grp_stridedTileStream2mem2D_7_Pipeline_VITIS_LOOP_1080_1_fu_156  |stridedTileStream2mem2D_7_Pipeline_VITIS_LOOP_1080_1  |        2|  536862771|  6.666 ns|  1.789 sec|    2|  536862771|       no|
+        +-----------------------------------------------------------------+------------------------------------------------------+---------+-----------+----------+-----------+-----+-----------+---------+
+
+        * Loop: 
+        +---------------------+---------+----------------+---------------+-----------+-----------+-----------+----------+
+        |                     |     Latency (cycles)     |   Iteration   |  Initiation Interval  |    Trip   |          |
+        |      Loop Name      |   min   |       max      |    Latency    |  achieved |   target  |   Count   | Pipelined|
+        +---------------------+---------+----------------+---------------+-----------+-----------+-----------+----------+
+        |- VITIS_LOOP_5186_1  |        0|  35183302090695|  8 ~ 536862777|          -|          -|  0 ~ 65535|        no|
+        +---------------------+---------+----------------+---------------+-----------+-----------+-----------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     2|        -|        -|    -|
+|Expression           |        -|     -|        0|      230|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     1|      764|      526|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|      184|    -|
+|Register             |        -|     -|      383|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     3|     1147|      940|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|    ~0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|    ~0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +-----------------------------------------------------------------+------------------------------------------------------+---------+----+-----+-----+-----+
+    |                             Instance                            |                        Module                        | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-----------------------------------------------------------------+------------------------------------------------------+---------+----+-----+-----+-----+
+    |grp_stridedTileStream2mem2D_7_Pipeline_VITIS_LOOP_1080_1_fu_156  |stridedTileStream2mem2D_7_Pipeline_VITIS_LOOP_1080_1  |        0|   1|  764|  526|    0|
+    +-----------------------------------------------------------------+------------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                            |                                                      |        0|   1|  764|  526|    0|
+    +-----------------------------------------------------------------+------------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    +-------------------------------+--------------------------+-----------+
+    |            Instance           |          Module          | Expression|
+    +-------------------------------+--------------------------+-----------+
+    |mul_mul_14ns_16ns_29_4_1_U353  |mul_mul_14ns_16ns_29_4_1  |    i0 * i1|
+    |mul_mul_16ns_16ns_32_4_1_U352  |mul_mul_16ns_16ns_32_4_1  |    i0 * i1|
+    +-------------------------------+--------------------------+-----------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------------+----------+----+---+----+------------+------------+
+    |        Variable Name        | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------+----------+----+---+----+------------+------------+
+    |add_ln5184_fu_214_p2         |         +|   0|  0|  21|          14|          14|
+    |add_ln5186_fu_244_p2         |         +|   0|  0|  23|          16|           1|
+    |sub_fu_223_p2                |         +|   0|  0|  24|          17|           2|
+    |sub_ln1080_fu_302_p2         |         -|   0|  0|  24|          17|          17|
+    |cmp2_i_fu_291_p2             |      icmp|   0|  0|  13|          16|           1|
+    |icmp_ln5186_fu_239_p2        |      icmp|   0|  0|  13|          16|          16|
+    |icmp_ln5188_fu_258_p2        |      icmp|   0|  0|  13|          16|           1|
+    |icmp_ln5190_fu_271_p2        |      icmp|   0|  0|  13|          17|          17|
+    |icmp_ln5193_fu_312_p2        |      icmp|   0|  0|  13|          17|           1|
+    |is_additional_row_fu_177_p2  |      icmp|   0|  0|   8|           3|           1|
+    |ap_block_state1              |        or|   0|  0|   2|           1|           1|
+    |avoid_x_fu_264_p3            |    select|   0|  0|  15|           1|           1|
+    |select_ln1080_fu_318_p3      |    select|   0|  0|  16|           1|          16|
+    |select_ln5193_fu_326_p3      |    select|   0|  0|  16|           1|          16|
+    |tile_size_x_fu_276_p3        |    select|   0|  0|  16|           1|          16|
+    +-----------------------------+----------+----+---+----+------------+------------+
+    |Total                        |          |   0|  0| 230|         154|         121|
+    +-----------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------------+----+-----------+-----+-----------+
+    |                Name                | LUT| Input Size| Bits| Total Bits|
+    +------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                           |  49|          9|    1|          9|
+    |ap_done                             |   9|          2|    1|          2|
+    |arg1_write_mem_strm_0_read          |   9|          2|    1|          2|
+    |config_effective_tile_size_x_blk_n  |   9|          2|    1|          2|
+    |config_grid_size_y_blk_n            |   9|          2|    1|          2|
+    |config_grid_xblocks_blk_n           |   9|          2|    1|          2|
+    |config_last_tile_size_x_blk_n       |   9|          2|    1|          2|
+    |config_start_offset_blk_n           |   9|          2|    1|          2|
+    |config_tile_count_x_blk_n           |   9|          2|    1|          2|
+    |config_tile_overlap_size_x_blk_n    |   9|          2|    1|          2|
+    |config_tile_size_x_blk_n            |   9|          2|    1|          2|
+    |m_axi_gmem8_AWVALID                 |   9|          2|    1|          2|
+    |m_axi_gmem8_BREADY                  |   9|          2|    1|          2|
+    |m_axi_gmem8_WVALID                  |   9|          2|    1|          2|
+    |mem_out_blk_n                       |   9|          2|    1|          2|
+    |tile_x_fu_98                        |   9|          2|   16|         32|
+    +------------------------------------+----+-----------+-----+-----------+
+    |Total                               | 184|         39|   31|         69|
+    +------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                     Name                                     | FF | LUT| Bits| Const Bits|
+    +------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                     |   8|   0|    8|          0|
+    |ap_done_reg                                                                   |   1|   0|    1|          0|
+    |avoid_x_reg_426                                                               |  15|   0|   15|          0|
+    |config_effective_tile_size_x_load_cast_reg_408                                |  16|   0|   32|         16|
+    |config_effective_tile_size_x_read_reg_367                                     |  16|   0|   16|          0|
+    |config_grid_xblocks_read_reg_383                                              |  13|   0|   13|          0|
+    |config_last_tile_size_x_read_reg_362                                          |  16|   0|   16|          0|
+    |config_start_offset_read_reg_357                                              |  32|   0|   32|          0|
+    |config_tile_count_x_read_reg_377                                              |  16|   0|   16|          0|
+    |config_tile_size_x_read_reg_372                                               |  16|   0|   16|          0|
+    |grp_stridedTileStream2mem2D_7_Pipeline_VITIS_LOOP_1080_1_fu_156_ap_start_reg  |   1|   0|    1|          0|
+    |is_additional_row_reg_388                                                     |   1|   0|    1|          0|
+    |lshr_ln5188_cast_reg_398                                                      |  15|   0|   15|          0|
+    |mem_out_read_reg_352                                                          |  64|   0|   64|          0|
+    |mul_ln5188_reg_445                                                            |  32|   0|   32|          0|
+    |mul_ln5193_reg_450                                                            |  29|   0|   29|          0|
+    |select_ln5193_reg_455                                                         |  16|   0|   16|          0|
+    |sub_reg_403                                                                   |  17|   0|   17|          0|
+    |tile_size_x_reg_433                                                           |  16|   0|   16|          0|
+    |tile_x_fu_98                                                                  |  16|   0|   16|          0|
+    |trunc_ln1_reg_393                                                             |  13|   0|   13|          0|
+    |zext_ln5193_reg_413                                                           |  14|   0|   29|         15|
+    +------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                         | 383|   0|  414|         31|
+    +------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------------------------+-----+-----+------------+------------------------------+--------------+
+|                  RTL Ports                  | Dir | Bits|  Protocol  |         Source Object        |    C Type    |
++---------------------------------------------+-----+-----+------------+------------------------------+--------------+
+|ap_clk                                       |   in|    1|  ap_ctrl_hs|     stridedTileStream2mem2D.7|  return value|
+|ap_rst                                       |   in|    1|  ap_ctrl_hs|     stridedTileStream2mem2D.7|  return value|
+|ap_start                                     |   in|    1|  ap_ctrl_hs|     stridedTileStream2mem2D.7|  return value|
+|ap_done                                      |  out|    1|  ap_ctrl_hs|     stridedTileStream2mem2D.7|  return value|
+|ap_continue                                  |   in|    1|  ap_ctrl_hs|     stridedTileStream2mem2D.7|  return value|
+|ap_idle                                      |  out|    1|  ap_ctrl_hs|     stridedTileStream2mem2D.7|  return value|
+|ap_ready                                     |  out|    1|  ap_ctrl_hs|     stridedTileStream2mem2D.7|  return value|
+|arg1_write_mem_strm_0_dout                   |   in|  256|     ap_fifo|         arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_num_data_valid         |   in|    5|     ap_fifo|         arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_fifo_cap               |   in|    5|     ap_fifo|         arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_empty_n                |   in|    1|     ap_fifo|         arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_read                   |  out|    1|     ap_fifo|         arg1_write_mem_strm_0|       pointer|
+|m_axi_gmem8_AWVALID                          |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWREADY                          |   in|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWADDR                           |  out|   64|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWID                             |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWLEN                            |  out|   32|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWSIZE                           |  out|    3|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWBURST                          |  out|    2|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWLOCK                           |  out|    2|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWCACHE                          |  out|    4|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWPROT                           |  out|    3|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWQOS                            |  out|    4|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWREGION                         |  out|    4|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_AWUSER                           |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_WVALID                           |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_WREADY                           |   in|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_WDATA                            |  out|  256|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_WSTRB                            |  out|   32|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_WLAST                            |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_WID                              |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_WUSER                            |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARVALID                          |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARREADY                          |   in|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARADDR                           |  out|   64|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARID                             |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARLEN                            |  out|   32|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARSIZE                           |  out|    3|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARBURST                          |  out|    2|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARLOCK                           |  out|    2|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARCACHE                          |  out|    4|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARPROT                           |  out|    3|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARQOS                            |  out|    4|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARREGION                         |  out|    4|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_ARUSER                           |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_RVALID                           |   in|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_RREADY                           |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_RDATA                            |   in|  256|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_RLAST                            |   in|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_RID                              |   in|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_RFIFONUM                         |   in|    7|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_RUSER                            |   in|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_RRESP                            |   in|    2|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_BVALID                           |   in|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_BREADY                           |  out|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_BRESP                            |   in|    2|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_BID                              |   in|    1|       m_axi|                         gmem0|       pointer|
+|m_axi_gmem8_BUSER                            |   in|    1|       m_axi|                         gmem0|       pointer|
+|mem_out_dout                                 |   in|   64|     ap_fifo|                       mem_out|       pointer|
+|mem_out_num_data_valid                       |   in|    3|     ap_fifo|                       mem_out|       pointer|
+|mem_out_fifo_cap                             |   in|    3|     ap_fifo|                       mem_out|       pointer|
+|mem_out_empty_n                              |   in|    1|     ap_fifo|                       mem_out|       pointer|
+|mem_out_read                                 |  out|    1|     ap_fifo|                       mem_out|       pointer|
+|config_grid_xblocks_dout                     |   in|   13|     ap_fifo|           config_grid_xblocks|       pointer|
+|config_grid_xblocks_num_data_valid           |   in|    3|     ap_fifo|           config_grid_xblocks|       pointer|
+|config_grid_xblocks_fifo_cap                 |   in|    3|     ap_fifo|           config_grid_xblocks|       pointer|
+|config_grid_xblocks_empty_n                  |   in|    1|     ap_fifo|           config_grid_xblocks|       pointer|
+|config_grid_xblocks_read                     |  out|    1|     ap_fifo|           config_grid_xblocks|       pointer|
+|config_grid_size_y_dout                      |   in|   16|     ap_fifo|            config_grid_size_y|       pointer|
+|config_grid_size_y_num_data_valid            |   in|    2|     ap_fifo|            config_grid_size_y|       pointer|
+|config_grid_size_y_fifo_cap                  |   in|    2|     ap_fifo|            config_grid_size_y|       pointer|
+|config_grid_size_y_empty_n                   |   in|    1|     ap_fifo|            config_grid_size_y|       pointer|
+|config_grid_size_y_read                      |  out|    1|     ap_fifo|            config_grid_size_y|       pointer|
+|config_tile_count_x_dout                     |   in|   16|     ap_fifo|           config_tile_count_x|       pointer|
+|config_tile_count_x_num_data_valid           |   in|    2|     ap_fifo|           config_tile_count_x|       pointer|
+|config_tile_count_x_fifo_cap                 |   in|    2|     ap_fifo|           config_tile_count_x|       pointer|
+|config_tile_count_x_empty_n                  |   in|    1|     ap_fifo|           config_tile_count_x|       pointer|
+|config_tile_count_x_read                     |  out|    1|     ap_fifo|           config_tile_count_x|       pointer|
+|config_tile_size_x_dout                      |   in|   16|     ap_fifo|            config_tile_size_x|       pointer|
+|config_tile_size_x_num_data_valid            |   in|    2|     ap_fifo|            config_tile_size_x|       pointer|
+|config_tile_size_x_fifo_cap                  |   in|    2|     ap_fifo|            config_tile_size_x|       pointer|
+|config_tile_size_x_empty_n                   |   in|    1|     ap_fifo|            config_tile_size_x|       pointer|
+|config_tile_size_x_read                      |  out|    1|     ap_fifo|            config_tile_size_x|       pointer|
+|config_tile_overlap_size_x_dout              |   in|   16|     ap_fifo|    config_tile_overlap_size_x|       pointer|
+|config_tile_overlap_size_x_num_data_valid    |   in|    3|     ap_fifo|    config_tile_overlap_size_x|       pointer|
+|config_tile_overlap_size_x_fifo_cap          |   in|    3|     ap_fifo|    config_tile_overlap_size_x|       pointer|
+|config_tile_overlap_size_x_empty_n           |   in|    1|     ap_fifo|    config_tile_overlap_size_x|       pointer|
+|config_tile_overlap_size_x_read              |  out|    1|     ap_fifo|    config_tile_overlap_size_x|       pointer|
+|config_effective_tile_size_x_dout            |   in|   16|     ap_fifo|  config_effective_tile_size_x|       pointer|
+|config_effective_tile_size_x_num_data_valid  |   in|    3|     ap_fifo|  config_effective_tile_size_x|       pointer|
+|config_effective_tile_size_x_fifo_cap        |   in|    3|     ap_fifo|  config_effective_tile_size_x|       pointer|
+|config_effective_tile_size_x_empty_n         |   in|    1|     ap_fifo|  config_effective_tile_size_x|       pointer|
+|config_effective_tile_size_x_read            |  out|    1|     ap_fifo|  config_effective_tile_size_x|       pointer|
+|config_last_tile_size_x_dout                 |   in|   16|     ap_fifo|       config_last_tile_size_x|       pointer|
+|config_last_tile_size_x_num_data_valid       |   in|    2|     ap_fifo|       config_last_tile_size_x|       pointer|
+|config_last_tile_size_x_fifo_cap             |   in|    2|     ap_fifo|       config_last_tile_size_x|       pointer|
+|config_last_tile_size_x_empty_n              |   in|    1|     ap_fifo|       config_last_tile_size_x|       pointer|
+|config_last_tile_size_x_read                 |  out|    1|     ap_fifo|       config_last_tile_size_x|       pointer|
+|config_start_offset_dout                     |   in|   32|     ap_fifo|           config_start_offset|       pointer|
+|config_start_offset_num_data_valid           |   in|    3|     ap_fifo|           config_start_offset|       pointer|
+|config_start_offset_fifo_cap                 |   in|    3|     ap_fifo|           config_start_offset|       pointer|
+|config_start_offset_empty_n                  |   in|    1|     ap_fifo|           config_start_offset|       pointer|
+|config_start_offset_read                     |  out|    1|     ap_fifo|           config_start_offset|       pointer|
++---------------------------------------------+-----+-----+------------+------------------------------+--------------+
+

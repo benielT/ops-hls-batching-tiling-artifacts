@@ -1,0 +1,181 @@
+
+
+================================================================
+== Vitis HLS Report for 'stencilRun'
+================================================================
+* Date:           Fri Jul 31 14:01:38 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        kernel_outerloop_0_2
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.342 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.53>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%p_read_6 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read2"   --->   Operation 6 'read' 'p_read_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%p_read_7 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read1"   --->   Operation 7 'read' 'p_read_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%p_read25 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read"   --->   Operation 8 'read' 'p_read25' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%arg0_buf_r0_1_p0_V = alloca i64 1" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:252]   --->   Operation 9 'alloca' 'arg0_buf_r0_1_p0_V' <Predicate = true> <Delay = 0.00> <CoreInst = "RAM_S2P_URAM">   --->   Core 98 'RAM_S2P_URAM' <Latency = 2> <II = 1> <Delay = 1.64> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 64> <RAM>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%arg0_buf_r1_2_p0_V = alloca i64 1" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:258]   --->   Operation 10 'alloca' 'arg0_buf_r1_2_p0_V' <Predicate = true> <Delay = 0.00> <CoreInst = "RAM_S2P_BRAM">   --->   Core 97 'RAM_S2P_BRAM' <Latency = 2> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 64> <RAM>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%zext_ln116 = zext i16 %p_read25" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:116]   --->   Operation 11 'zext' 'zext_ln116' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%zext_ln146 = zext i16 %p_read_6" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:146]   --->   Operation 12 'zext' 'zext_ln146' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%zext_ln213 = zext i16 %p_read_7" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:213]   --->   Operation 13 'zext' 'zext_ln213' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [4/4] (0.53ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i32 %zext_ln213, i32 %zext_ln116" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:213]   --->   Operation 14 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 15 [4/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln284 = mul i32 %zext_ln146, i32 %zext_ln116" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:284]   --->   Operation 15 'mul' 'mul_ln284' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 2 <SV = 1> <Delay = 0.53>
+ST_2 : Operation 16 [3/4] (0.53ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i32 %zext_ln213, i32 %zext_ln116" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:213]   --->   Operation 16 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 17 [3/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln284 = mul i32 %zext_ln146, i32 %zext_ln116" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:284]   --->   Operation 17 'mul' 'mul_ln284' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 3 <SV = 2> <Delay = 1.02>
+ST_3 : Operation 18 [1/1] (0.00ns)   --->   "%p_read_1 = read i7 @_ssdm_op_Read.ap_auto.i7, i7 %p_read3"   --->   Operation 18 'read' 'p_read_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 19 [1/1] (0.00ns)   --->   "%p_read_2 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read26"   --->   Operation 19 'read' 'p_read_2' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 20 [1/1] (0.00ns)   --->   "%p_read_3 = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %p_read5"   --->   Operation 20 'read' 'p_read_3' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 21 [1/1] (0.00ns)   --->   "%p_read_4 = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %p_read4"   --->   Operation 21 'read' 'p_read_4' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 22 [1/1] (0.00ns)   --->   "%p_read_5 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read13"   --->   Operation 22 'read' 'p_read_5' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 23 [1/1] (0.00ns)   --->   "%p_read3_cast1 = zext i7 %p_read_1"   --->   Operation 23 'zext' 'p_read3_cast1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%true_tile_size_x = shl i16 %p_read25, i16 3" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:116]   --->   Operation 24 'shl' 'true_tile_size_x' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 25 [1/1] (0.78ns)   --->   "%add_ln142 = add i16 %p_read_5, i16 65535" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:142]   --->   Operation 25 'add' 'add_ln142' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 26 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%adj_half_span_x_upper = add i16 %true_tile_size_x, i16 65535" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:128]   --->   Operation 26 'add' 'adj_half_span_x_upper' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 27 [1/1] (0.67ns) (root node of TernaryAdder)   --->   "%sub_ln142 = sub i16 %adj_half_span_x_upper, i16 %p_read3_cast1" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:142]   --->   Operation 27 'sub' 'sub_ln142' <Predicate = true> <Delay = 0.67> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 28 [1/1] (0.24ns)   --->   "%upper_limit_x = select i1 %p_read_3, i16 %add_ln142, i16 %sub_ln142" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:121]   --->   Operation 28 'select' 'upper_limit_x' <Predicate = true> <Delay = 0.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 29 [2/4] (0.53ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i32 %zext_ln213, i32 %zext_ln116" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:213]   --->   Operation 29 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 30 [2/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln284 = mul i32 %zext_ln146, i32 %zext_ln116" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:284]   --->   Operation 30 'mul' 'mul_ln284' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 4 <SV = 3> <Delay = 2.25>
+ST_4 : Operation 31 [1/1] (0.00ns)   --->   "%p_read3_cast = zext i7 %p_read_1"   --->   Operation 31 'zext' 'p_read3_cast' <Predicate = (!p_read_4)> <Delay = 0.00>
+ST_4 : Operation 32 [1/1] (0.70ns)   --->   "%add_ln126 = add i8 %p_read3_cast, i8 1" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:126]   --->   Operation 32 'add' 'add_ln126' <Predicate = (!p_read_4)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 33 [1/1] (0.30ns)   --->   "%adj_half_span_x_lower = select i1 %p_read_4, i8 1, i8 %add_ln126" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:126]   --->   Operation 33 'select' 'adj_half_span_x_lower' <Predicate = true> <Delay = 0.30> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.30> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 34 [1/1] (0.78ns)   --->   "%upper_limit_y = add i16 %p_read_6, i16 65534" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:146]   --->   Operation 34 'add' 'upper_limit_y' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 35 [1/4] (0.00ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i32 %zext_ln213, i32 %zext_ln116" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:213]   --->   Operation 35 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 36 [1/1] (0.78ns)   --->   "%cond_x_val = add i16 %p_read25, i16 65535" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:271]   --->   Operation 36 'add' 'cond_x_val' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 37 [1/1] (0.78ns)   --->   "%cond_y_val = add i16 %p_read_6, i16 65535" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:272]   --->   Operation 37 'add' 'cond_y_val' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 38 [1/4] (0.00ns) (root node of the DSP)   --->   "%mul_ln284 = mul i32 %zext_ln146, i32 %zext_ln116" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:284]   --->   Operation 38 'mul' 'mul_ln284' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 39 [1/1] (0.00ns)   --->   "%empty = wait i32 @_ssdm_op_Wait"   --->   Operation 39 'wait' 'empty' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 40 [2/2] (1.24ns)   --->   "%call_ln284 = call void @stencilRun_Pipeline_VITIS_LOOP_284_1, i32 %mul_ln284, i256 %arg0_buf_r0_1_p0_V, i256 %arg0_buf_r1_2_p0_V, i16 %p_read_2, i16 %upper_limit_y, i8 %adj_half_span_x_lower, i16 %upper_limit_x, i16 %cond_x_val, i16 %cond_y_val, i32 %S2D_00_P10_M10_0P1_0M1_read_ub_itr, i256 %arg0_arg1_streams_2626, i256 %arg0_arg1_streams_27" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:284]   --->   Operation 40 'call' 'call_ln284' <Predicate = true> <Delay = 1.24> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 41 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_2626, void @empty_25, i32 0, i32 0, void @empty_21, i32 0, i32 0, void @empty_21, void @empty_21, void @empty_21, i32 0, i32 0, i32 0, i32 0, void @empty_21, void @empty_21, i32 4294967295, i32 0"   --->   Operation 41 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 42 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_27, void @empty_25, i32 0, i32 0, void @empty_21, i32 0, i32 0, void @empty_21, void @empty_21, void @empty_21, i32 0, i32 0, i32 0, i32 0, void @empty_21, void @empty_21, i32 4294967295, i32 0"   --->   Operation 42 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 43 [1/1] (0.00ns)   --->   "%specmemcore_ln253 = specmemcore void @_ssdm_op_SpecMemCore, i256 %arg0_buf_r0_1_p0_V, i64 666, i64 28, i64 2" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:253]   --->   Operation 43 'specmemcore' 'specmemcore_ln253' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 44 [1/1] (0.00ns)   --->   "%specmemcore_ln259 = specmemcore void @_ssdm_op_SpecMemCore, i256 %arg0_buf_r1_2_p0_V, i64 666, i64 25, i64 2" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:259]   --->   Operation 44 'specmemcore' 'specmemcore_ln259' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 45 [1/2] (0.00ns)   --->   "%call_ln284 = call void @stencilRun_Pipeline_VITIS_LOOP_284_1, i32 %mul_ln284, i256 %arg0_buf_r0_1_p0_V, i256 %arg0_buf_r1_2_p0_V, i16 %p_read_2, i16 %upper_limit_y, i8 %adj_half_span_x_lower, i16 %upper_limit_x, i16 %cond_x_val, i16 %cond_y_val, i32 %S2D_00_P10_M10_0P1_0M1_read_ub_itr, i256 %arg0_arg1_streams_2626, i256 %arg0_arg1_streams_27" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:284]   --->   Operation 45 'call' 'call_ln284' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 46 [1/1] (0.00ns)   --->   "%ret_ln502 = ret" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:502]   --->   Operation 46 'ret' 'ret_ln502' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 0.535ns
+The critical path consists of the following:
+	wire read operation ('p_read_7') on port 'p_read1' [17]  (0 ns)
+	'mul' operation of DSP[36] ('S2D_00_P10_M10_0P1_0M1_read_ub_itr', /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:213) [36]  (0.535 ns)
+
+ <State 2>: 0.535ns
+The critical path consists of the following:
+	'mul' operation of DSP[36] ('S2D_00_P10_M10_0P1_0M1_read_ub_itr', /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:213) [36]  (0.535 ns)
+
+ <State 3>: 1.03ns
+The critical path consists of the following:
+	wire read operation ('p_read_5') on port 'p_read13' [15]  (0 ns)
+	'add' operation ('add_ln142', /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:142) [29]  (0.785 ns)
+	'select' operation ('upper_limit_x', /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:121) [32]  (0.243 ns)
+
+ <State 4>: 2.25ns
+The critical path consists of the following:
+	'add' operation ('add_ln126', /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:126) [27]  (0.706 ns)
+	'select' operation ('adj_half_span_x_lower', /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:126) [28]  (0.303 ns)
+	'call' operation ('call_ln284', /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_512_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:284) to 'stencilRun_Pipeline_VITIS_LOOP_284_1' [43]  (1.25 ns)
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
