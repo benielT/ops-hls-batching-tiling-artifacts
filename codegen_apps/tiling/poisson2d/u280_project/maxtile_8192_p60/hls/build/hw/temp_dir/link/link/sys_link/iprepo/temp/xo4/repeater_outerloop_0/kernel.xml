@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root versionMajor="1" versionMinor="5">
+  <kernel name="repeater_outerloop_0" language="c" vlnv="xilinx.com:hls:repeater_outerloop_0:1.0" attributes="" hash="" preferredWorkGroupSizeMultiple="0" workGroupSize="1" debug="false" compileOptions=" -D OPS_TILING -D OPS_MAXTILESIZE_X=8192-DOPS_HLS_TILE_BANKS=8 -I /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device -I /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/L1/include -I /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p60/hls/device/include" profileType="" interrupt="true" hwControlProtocol="ap_ctrl_none" countedAutoRestart="0" deadlockDetection="local" mailbox="none" swReset="false">
+    <ports>
+      <port name="ARG0_AXIS_IN" mode="read_only" dataWidth="256" portType="stream"/>
+      <port name="ARG1_AXIS_OUT" mode="write_only" dataWidth="256" portType="stream"/>
+    </ports>
+    <args>
+      <arg name="arg0_axis_in" addressQualifier="4" id="0" port="ARG0_AXIS_IN" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;256>, 0, 0, 0>, 0>&amp;" memSize="0x20" origName="arg0_axis_in" origUse="variable"/>
+      <arg name="arg1_axis_out" addressQualifier="4" id="1" port="ARG1_AXIS_OUT" size="0x0" offset="0x0" hostOffset="0x0" hostSize="0x8" type="stream&lt;hls::axis&lt;ap_uint&lt;256>, 0, 0, 0>, 0>&amp;" memSize="0x20" origName="arg1_axis_out" origUse="variable"/>
+    </args>
+    <compileWorkGroupSize x="1" y="1" z="1"/>
+    <maxWorkGroupSize x="1" y="1" z="1"/>
+  </kernel>
+  <profile>
+    <RTLDesignHierarchy>
+      <TopModule>
+        <ModuleName>repeater_outerloop_0</ModuleName>
+      </TopModule>
+    </RTLDesignHierarchy>
+    <ModuleInformation>
+      <Module>
+        <Name>repeater_outerloop_0</Name>
+        <PerformanceEstimates>
+          <SummaryOfTimingAnalysis>
+            <TargetClockPeriod>3.33</TargetClockPeriod>
+            <ClockUncertainty>0.9</ClockUncertainty>
+            <EstimatedClockPeriod>0</EstimatedClockPeriod>
+          </SummaryOfTimingAnalysis>
+          <SummaryOfOverallLatency>
+            <Best-caseLatency>1</Best-caseLatency>
+            <Average-caseLatency>1</Average-caseLatency>
+            <Worst-caseLatency>1</Worst-caseLatency>
+            <Best-caseRealTimeLatency>3.333 ns</Best-caseRealTimeLatency>
+            <Average-caseRealTimeLatency>3.333 ns</Average-caseRealTimeLatency>
+            <Worst-caseRealTimeLatency>3.333 ns</Worst-caseRealTimeLatency>
+            <PipelineInitiationInterval>1</PipelineInitiationInterval>
+            <PipelineType>yes(flp)</PipelineType>
+          </SummaryOfOverallLatency>
+        </PerformanceEstimates>
+        <AreaEstimates>
+          <Resources>
+            <FF>6</FF>
+            <LUT>36</LUT>
+          </Resources>
+        </AreaEstimates>
+        <InterfaceSummary>
+          <RtlPorts>
+            <name>ap_clk</name>
+            <Object>repeater_outerloop_0</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+          </RtlPorts>
+          <RtlPorts>
+            <name>ap_rst_n</name>
+            <Object>repeater_outerloop_0</Object>
+            <Type>return value</Type>
+            <Scope/>
+            <IOProtocol>ap_ctrl_none</IOProtocol>
+            <IOConfig/>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg0_axis_in_TDATA</name>
+            <Object>arg0_axis_in_V_data_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>256</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg0_axis_in_TVALID</name>
+            <Object>arg0_axis_in_V_last_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg0_axis_in_TREADY</name>
+            <Object>arg0_axis_in_V_last_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg0_axis_in_TLAST</name>
+            <Object>arg0_axis_in_V_last_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg0_axis_in_TKEEP</name>
+            <Object>arg0_axis_in_V_keep_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg0_axis_in_TSTRB</name>
+            <Object>arg0_axis_in_V_strb_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg1_axis_out_TDATA</name>
+            <Object>arg1_axis_out_V_data_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>256</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg1_axis_out_TVALID</name>
+            <Object>arg1_axis_out_V_last_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg1_axis_out_TREADY</name>
+            <Object>arg1_axis_out_V_last_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>in</Dir>
+            <Bits>1</Bits>
+            <Attribute>control</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg1_axis_out_TLAST</name>
+            <Object>arg1_axis_out_V_last_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>1</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg1_axis_out_TKEEP</name>
+            <Object>arg1_axis_out_V_keep_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+          <RtlPorts>
+            <name>arg1_axis_out_TSTRB</name>
+            <Object>arg1_axis_out_V_strb_V</Object>
+            <Type>pointer</Type>
+            <Scope/>
+            <IOProtocol>axis</IOProtocol>
+            <IOConfig>register, both mode</IOConfig>
+            <Dir>out</Dir>
+            <Bits>32</Bits>
+            <Attribute>data</Attribute>
+            <CType>int</CType>
+          </RtlPorts>
+        </InterfaceSummary>
+      </Module>
+    </ModuleInformation>
+    <FIFOInformation/>
+  </profile>
+</root>

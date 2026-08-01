@@ -1,0 +1,230 @@
+
+
+================================================================
+== Vitis HLS Report for 'stridedTileMem2stream2D_1'
+================================================================
+* Date:           Fri Jul 31 14:04:43 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+----------------+----------+-------------+-----+----------------+---------+
+    |     Latency (cycles)     |   Latency (absolute)   |       Interval       | Pipeline|
+    |   min   |       max      |    min   |     max     | min |       max      |   Type  |
+    +---------+----------------+----------+-------------+-----+----------------+---------+
+    |        1|  35183302221766|  3.333 ns|  1.2e+05 sec|    1|  35183302221766|       no|
+    +---------+----------------+----------+-------------+-----+----------------+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------------------------+-----------------------------------------------------+---------+-----------+----------+-----------+-----+-----------+---------+
+        |                                                                |                                                     |   Latency (cycles)  |  Latency (absolute)  |     Interval    | Pipeline|
+        |                            Instance                            |                        Module                       |   min   |    max    |    min   |    max    | min |    max    |   Type  |
+        +----------------------------------------------------------------+-----------------------------------------------------+---------+-----------+----------+-----------+-----+-----------+---------+
+        |grp_stridedTileMem2stream2D_1_Pipeline_VITIS_LOOP_529_1_fu_138  |stridedTileMem2stream2D_1_Pipeline_VITIS_LOOP_529_1  |        2|  536862773|  6.666 ns|  1.789 sec|    2|  536862773|       no|
+        +----------------------------------------------------------------+-----------------------------------------------------+---------+-----------+----------+-----------+-----+-----------+---------+
+
+        * Loop: 
+        +---------------------+---------+----------------+---------------+-----------+-----------+-----------+----------+
+        |                     |     Latency (cycles)     |   Iteration   |  Initiation Interval  |    Trip   |          |
+        |      Loop Name      |   min   |       max      |    Latency    |  achieved |   target  |   Count   | Pipelined|
+        +---------------------+---------+----------------+---------------+-----------+-----------+-----------+----------+
+        |- VITIS_LOOP_2054_1  |        0|  35183302221765|  8 ~ 536862779|          -|          -|  0 ~ 65535|        no|
+        +---------------------+---------+----------------+---------------+-----------+-----------+-----------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     1|        -|        -|    -|
+|Expression           |        -|     -|        0|      159|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     1|      672|      419|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|       97|    -|
+|Register             |        -|     -|      181|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     2|      853|      675|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|    ~0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|    ~0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------------------------------+-----------------------------------------------------+---------+----+-----+-----+-----+
+    |                            Instance                            |                        Module                       | BRAM_18K| DSP|  FF | LUT | URAM|
+    +----------------------------------------------------------------+-----------------------------------------------------+---------+----+-----+-----+-----+
+    |grp_stridedTileMem2stream2D_1_Pipeline_VITIS_LOOP_529_1_fu_138  |stridedTileMem2stream2D_1_Pipeline_VITIS_LOOP_529_1  |        0|   1|  672|  419|    0|
+    +----------------------------------------------------------------+-----------------------------------------------------+---------+----+-----+-----+-----+
+    |Total                                                           |                                                     |        0|   1|  672|  419|    0|
+    +----------------------------------------------------------------+-----------------------------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    +-------------------------------+--------------------------+-----------+
+    |            Instance           |          Module          | Expression|
+    +-------------------------------+--------------------------+-----------+
+    |mul_mul_14ns_16ns_29_4_1_U205  |mul_mul_14ns_16ns_29_4_1  |    i0 * i1|
+    +-------------------------------+--------------------------+-----------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------------+----------+----+---+----+------------+------------+
+    |        Variable Name        | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------+----------+----+---+----+------------+------------+
+    |add_ln2047_fu_181_p2         |         +|   0|  0|  21|          14|          14|
+    |add_ln2054_7_fu_221_p2       |         +|   0|  0|  39|          32|          32|
+    |add_ln2054_fu_231_p2         |         +|   0|  0|  23|          16|           1|
+    |sub_fu_191_p2                |         +|   0|  0|  24|          17|           2|
+    |icmp_ln2054_fu_226_p2        |      icmp|   0|  0|  13|          16|          16|
+    |icmp_ln2057_fu_241_p2        |      icmp|   0|  0|  13|          17|          17|
+    |is_additional_row_fu_157_p2  |      icmp|   0|  0|   8|           3|           2|
+    |ap_block_state1              |        or|   0|  0|   2|           1|           1|
+    |tile_size_x_fu_246_p3        |    select|   0|  0|  16|           1|          16|
+    +-----------------------------+----------+----+---+----+------------+------------+
+    |Total                        |          |   0|  0| 159|         117|         101|
+    +-----------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------+----+-----------+-----+-----------+
+    |            Name            | LUT| Input Size| Bits| Total Bits|
+    +----------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                   |  43|          8|    1|          8|
+    |ap_done                     |   9|          2|    1|          2|
+    |arg0_read_mem_strm_6_write  |   9|          2|    1|          2|
+    |m_axi_gmem6_ARVALID         |   9|          2|    1|          2|
+    |m_axi_gmem6_RREADY          |   9|          2|    1|          2|
+    |phi_mul_fu_82               |   9|          2|   32|         64|
+    |tile_x_fu_86                |   9|          2|   16|         32|
+    +----------------------------+----+-----------+-----+-----------+
+    |Total                       |  97|         20|   53|        112|
+    +----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                     Name                                    | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                    |   7|   0|    7|          0|
+    |ap_done_reg                                                                  |   1|   0|    1|          0|
+    |config_effective_tile_size_x_load_cast_reg_320                               |  16|   0|   32|         16|
+    |grp_stridedTileMem2stream2D_1_Pipeline_VITIS_LOOP_529_1_fu_138_ap_start_reg  |   1|   0|    1|          0|
+    |mul_ln2060_reg_349                                                           |  29|   0|   29|          0|
+    |phi_mul_fu_82                                                                |  32|   0|   32|          0|
+    |phi_mul_load_reg_330                                                         |  32|   0|   32|          0|
+    |sub_reg_315                                                                  |  17|   0|   17|          0|
+    |tile_size_x_reg_338                                                          |  16|   0|   16|          0|
+    |tile_x_fu_86                                                                 |  16|   0|   16|          0|
+    |zext_ln2060_reg_325                                                          |  14|   0|   29|         15|
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                        | 181|   0|  212|         31|
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------------+-----+-----+------------+---------------------------+--------------+
+|              RTL Ports              | Dir | Bits|  Protocol  |       Source Object       |    C Type    |
++-------------------------------------+-----+-----+------------+---------------------------+--------------+
+|ap_clk                               |   in|    1|  ap_ctrl_hs|  stridedTileMem2stream2D.1|  return value|
+|ap_rst                               |   in|    1|  ap_ctrl_hs|  stridedTileMem2stream2D.1|  return value|
+|ap_start                             |   in|    1|  ap_ctrl_hs|  stridedTileMem2stream2D.1|  return value|
+|ap_done                              |  out|    1|  ap_ctrl_hs|  stridedTileMem2stream2D.1|  return value|
+|ap_continue                          |   in|    1|  ap_ctrl_hs|  stridedTileMem2stream2D.1|  return value|
+|ap_idle                              |  out|    1|  ap_ctrl_hs|  stridedTileMem2stream2D.1|  return value|
+|ap_ready                             |  out|    1|  ap_ctrl_hs|  stridedTileMem2stream2D.1|  return value|
+|m_axi_gmem6_AWVALID                  |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWREADY                  |   in|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWADDR                   |  out|   64|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWID                     |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWLEN                    |  out|   32|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWSIZE                   |  out|    3|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWBURST                  |  out|    2|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWLOCK                   |  out|    2|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWCACHE                  |  out|    4|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWPROT                   |  out|    3|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWQOS                    |  out|    4|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWREGION                 |  out|    4|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_AWUSER                   |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_WVALID                   |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_WREADY                   |   in|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_WDATA                    |  out|  256|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_WSTRB                    |  out|   32|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_WLAST                    |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_WID                      |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_WUSER                    |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARVALID                  |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARREADY                  |   in|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARADDR                   |  out|   64|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARID                     |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARLEN                    |  out|   32|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARSIZE                   |  out|    3|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARBURST                  |  out|    2|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARLOCK                   |  out|    2|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARCACHE                  |  out|    4|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARPROT                   |  out|    3|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARQOS                    |  out|    4|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARREGION                 |  out|    4|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_ARUSER                   |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_RVALID                   |   in|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_RREADY                   |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_RDATA                    |   in|  256|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_RLAST                    |   in|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_RID                      |   in|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_RFIFONUM                 |   in|    7|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_RUSER                    |   in|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_RRESP                    |   in|    2|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_BVALID                   |   in|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_BREADY                   |  out|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_BRESP                    |   in|    2|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_BID                      |   in|    1|       m_axi|                      gmem6|       pointer|
+|m_axi_gmem6_BUSER                    |   in|    1|       m_axi|                      gmem6|       pointer|
+|mem_in                               |   in|   64|     ap_none|                     mem_in|        scalar|
+|arg0_read_mem_strm_6_din             |  out|  256|     ap_fifo|       arg0_read_mem_strm_6|       pointer|
+|arg0_read_mem_strm_6_num_data_valid  |   in|    5|     ap_fifo|       arg0_read_mem_strm_6|       pointer|
+|arg0_read_mem_strm_6_fifo_cap        |   in|    5|     ap_fifo|       arg0_read_mem_strm_6|       pointer|
+|arg0_read_mem_strm_6_full_n          |   in|    1|     ap_fifo|       arg0_read_mem_strm_6|       pointer|
+|arg0_read_mem_strm_6_write           |  out|    1|     ap_fifo|       arg0_read_mem_strm_6|       pointer|
+|p_read                               |   in|   13|     ap_none|                     p_read|        scalar|
+|p_read1                              |   in|   16|     ap_none|                    p_read1|        scalar|
+|p_read2                              |   in|   16|     ap_none|                    p_read2|        scalar|
+|p_read3                              |   in|   16|     ap_none|                    p_read3|        scalar|
+|p_read4                              |   in|   16|     ap_none|                    p_read4|        scalar|
+|p_read5                              |   in|   16|     ap_none|                    p_read5|        scalar|
+|p_read6                              |   in|   32|     ap_none|                    p_read6|        scalar|
++-------------------------------------+-----+-----+------------+---------------------------+--------------+
+
