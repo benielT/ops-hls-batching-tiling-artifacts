@@ -1,0 +1,145 @@
+
+
+================================================================
+== Vitis HLS Report for 'kernel_poisson_kernel_stencil_PE_9'
+================================================================
+* Date:           Sat Aug  1 02:54:28 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        kernel_outerloop_0_1
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.43>
+ST_1 : Operation 3 [1/1] (1.21ns)   --->   "%stencil_m_stencilConfig_line_diff = read i16 @_ssdm_op_Read.ap_fifo.i16P0A, i16 %stencilConfig_line_diff"   --->   Operation 3 'read' 'stencil_m_stencilConfig_line_diff' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 4 [1/1] (1.21ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_6_c232, i16 %stencil_m_stencilConfig_line_diff"   --->   Operation 4 'write' 'write_ln0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 5 [1/1] (1.21ns)   --->   "%stencil_m_stencilConfig_is_last_0 = read i1 @_ssdm_op_Read.ap_fifo.i1P0A, i1 %stencilConfig_is_last_0"   --->   Operation 5 'read' 'stencil_m_stencilConfig_is_last_0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 6 [1/1] (1.21ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i1P0A, i1 %stencilConfig_5_0_c206, i1 %stencil_m_stencilConfig_is_last_0"   --->   Operation 6 'write' 'write_ln0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 7 [1/1] (1.21ns)   --->   "%stencil_m_stencilConfig_is_first_0 = read i1 @_ssdm_op_Read.ap_fifo.i1P0A, i1 %stencilConfig_is_first_0"   --->   Operation 7 'read' 'stencil_m_stencilConfig_is_first_0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 8 [1/1] (1.21ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i1P0A, i1 %stencilConfig_4_0_c180, i1 %stencil_m_stencilConfig_is_first_0"   --->   Operation 8 'write' 'write_ln0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 1> <Depth = 2> <FIFO>
+ST_1 : Operation 9 [1/1] (1.21ns)   --->   "%stencil_m_stencilConfig_last_tile_upper_limit_x = read i16 @_ssdm_op_Read.ap_fifo.i16P0A, i16 %stencilConfig_last_tile_upper_limit_x"   --->   Operation 9 'read' 'stencil_m_stencilConfig_last_tile_upper_limit_x' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 10 [1/1] (1.21ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_3_c154, i16 %stencil_m_stencilConfig_last_tile_upper_limit_x"   --->   Operation 10 'write' 'write_ln0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 11 [1/1] (1.21ns)   --->   "%stencil_m_stencilConfig_outer_loop_limit = read i16 @_ssdm_op_Read.ap_fifo.i16P0A, i16 %stencilConfig_outer_loop_limit"   --->   Operation 11 'read' 'stencil_m_stencilConfig_outer_loop_limit' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 12 [1/1] (1.21ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_2_c128, i16 %stencil_m_stencilConfig_outer_loop_limit"   --->   Operation 12 'write' 'write_ln0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 13 [1/1] (1.21ns)   --->   "%stencil_m_stencilConfig_tile_size_1 = read i16 @_ssdm_op_Read.ap_fifo.i16P0A, i16 %stencilConfig_tile_size_1"   --->   Operation 13 'read' 'stencil_m_stencilConfig_tile_size_1' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 14 [1/1] (1.21ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_0_1_c102, i16 %stencil_m_stencilConfig_tile_size_1"   --->   Operation 14 'write' 'write_ln0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 15 [1/1] (1.21ns)   --->   "%stencil_m_stencilConfig_tile_size_0 = read i16 @_ssdm_op_Read.ap_fifo.i16P0A, i16 %stencilConfig_tile_size_0"   --->   Operation 15 'read' 'stencil_m_stencilConfig_tile_size_0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 16 [1/1] (1.21ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_fifo.i16P0A, i16 %stencilConfig_0_0_c76, i16 %stencil_m_stencilConfig_tile_size_0"   --->   Operation 16 'write' 'write_ln0' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.34> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 2> <FIFO>
+ST_1 : Operation 17 [2/2] (1.02ns)   --->   "%call_ln530 = call void @stencilRun, i16 %stencil_m_stencilConfig_tile_size_0, i16 %stencil_m_stencilConfig_tile_size_1, i16 %stencil_m_stencilConfig_outer_loop_limit, i16 %stencil_m_stencilConfig_last_tile_upper_limit_x, i1 %stencil_m_stencilConfig_is_first_0, i1 %stencil_m_stencilConfig_is_last_0, i16 %stencil_m_stencilConfig_line_diff, i6 19, i256 %arg0_arg1_streams_9, i256 %arg0_arg1_streams_10" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p64/hls/device/include/PE_poisson_kernel_stencil.hpp:530]   --->   Operation 17 'call' 'call_ln530' <Predicate = true> <Delay = 1.02> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_line_diff, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 18 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_6_c232, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_is_last_0, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_5_0_c206, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 21 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_is_first_0, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %stencilConfig_4_0_c180, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_last_tile_upper_limit_x, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 24 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_3_c154, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 25 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_outer_loop_limit, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 26 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_2_c128, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 27 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_tile_size_1, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 28 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_1_c102, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 29 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_tile_size_0, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 30 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i16 %stencilConfig_0_0_c76, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 31 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_10, void @empty_25, i32 0, i32 0, void @empty_21, i32 0, i32 0, void @empty_21, void @empty_21, void @empty_21, i32 0, i32 0, i32 0, i32 0, void @empty_21, void @empty_21, i32 4294967295, i32 0"   --->   Operation 32 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_arg1_streams_9, void @empty_25, i32 0, i32 0, void @empty_21, i32 0, i32 0, void @empty_21, void @empty_21, void @empty_21, i32 0, i32 0, i32 0, i32 0, void @empty_21, void @empty_21, i32 4294967295, i32 0"   --->   Operation 33 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 34 [1/2] (0.00ns)   --->   "%call_ln530 = call void @stencilRun, i16 %stencil_m_stencilConfig_tile_size_0, i16 %stencil_m_stencilConfig_tile_size_1, i16 %stencil_m_stencilConfig_outer_loop_limit, i16 %stencil_m_stencilConfig_last_tile_upper_limit_x, i1 %stencil_m_stencilConfig_is_first_0, i1 %stencil_m_stencilConfig_is_last_0, i16 %stencil_m_stencilConfig_line_diff, i6 19, i256 %arg0_arg1_streams_9, i256 %arg0_arg1_streams_10" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p64/hls/device/include/PE_poisson_kernel_stencil.hpp:530]   --->   Operation 34 'call' 'call_ln530' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 35 [1/1] (0.00ns)   --->   "%ret_ln537 = ret" [/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p64/hls/device/include/PE_poisson_kernel_stencil.hpp:537]   --->   Operation 35 'ret' 'ret_ln537' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 2.43ns
+The critical path consists of the following:
+	fifo read operation ('stencil.m_stencilConfig.line_diff') on port 'stencilConfig_line_diff' [18]  (1.22 ns)
+	fifo write operation ('write_ln0') on port 'stencilConfig_6_c232' [20]  (1.22 ns)
+
+ <State 2>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
