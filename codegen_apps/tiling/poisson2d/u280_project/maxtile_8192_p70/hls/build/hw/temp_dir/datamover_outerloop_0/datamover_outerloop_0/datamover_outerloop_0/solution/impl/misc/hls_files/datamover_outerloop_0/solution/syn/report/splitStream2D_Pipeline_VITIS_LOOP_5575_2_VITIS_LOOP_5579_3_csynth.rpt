@@ -1,0 +1,208 @@
+
+
+================================================================
+== Vitis HLS Report for 'splitStream2D_Pipeline_VITIS_LOOP_5575_2_VITIS_LOOP_5579_3'
+================================================================
+* Date:           Fri Jul 31 14:19:12 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.356 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                       |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |               Loop Name               |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_5575_2_VITIS_LOOP_5579_3  |        ?|        ?|         2|          1|          1|     ?|       yes|
+        +---------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|      156|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|        -|        -|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|      135|    -|
+|Register             |        -|     -|       71|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|       71|      291|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |add_ln5575_1_fu_197_p2            |         +|   0|  0|  23|          16|           1|
+    |add_ln5575_fu_188_p2              |         +|   0|  0|  39|          32|           1|
+    |add_ln5579_fu_220_p2              |         +|   0|  0|  23|          16|           1|
+    |ap_block_pp0_stage0_01001         |       and|   0|  0|   2|           1|           1|
+    |icmp_ln5575_fu_183_p2             |      icmp|   0|  0|  20|          32|          32|
+    |icmp_ln5579_fu_203_p2             |      icmp|   0|  0|  13|          16|          16|
+    |ap_block_state3_pp0_stage0_iter2  |        or|   0|  0|   2|           1|           1|
+    |i_3_fu_226_p3                     |    select|   0|  0|  16|           1|           1|
+    |select_ln5575_fu_208_p3           |    select|   0|  0|  16|           1|          16|
+    |ap_enable_pp0                     |       xor|   0|  0|   2|           1|           2|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |Total                             |          |   0|  0| 156|         117|          72|
+    +----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------------+----+-----------+-----+-----------+
+    |                 Name                | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                          |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter2              |   9|          2|    1|          2|
+    |arg1_combined_write_mem_strm2_blk_n  |   9|          2|    1|          2|
+    |arg1_write_mem_strm_0_blk_n          |   9|          2|    1|          2|
+    |arg1_write_mem_strm_1_blk_n          |   9|          2|    1|          2|
+    |arg1_write_mem_strm_2_blk_n          |   9|          2|    1|          2|
+    |arg1_write_mem_strm_3_blk_n          |   9|          2|    1|          2|
+    |arg1_write_mem_strm_4_blk_n          |   9|          2|    1|          2|
+    |arg1_write_mem_strm_5_blk_n          |   9|          2|    1|          2|
+    |arg1_write_mem_strm_6_blk_n          |   9|          2|    1|          2|
+    |arg1_write_mem_strm_7_blk_n          |   9|          2|    1|          2|
+    |bank_id_fu_72                        |   9|          2|   16|         32|
+    |i_fu_68                              |   9|          2|   16|         32|
+    |indvar_flatten_fu_76                 |   9|          2|   32|         64|
+    +-------------------------------------+----+-----------+-----+-----------+
+    |Total                                | 135|         30|   76|        152|
+    +-------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2  |   1|   0|    1|          0|
+    |bank_id_fu_72            |  16|   0|   16|          0|
+    |i_fu_68                  |  16|   0|   16|          0|
+    |indvar_flatten_fu_76     |  32|   0|   32|          0|
+    |trunc_ln5575_reg_283     |   3|   0|    3|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  71|   0|   71|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------------------------+-----+-----+------------+------------------------------------------------------------+--------------+
+|                   RTL Ports                  | Dir | Bits|  Protocol  |                        Source Object                       |    C Type    |
++----------------------------------------------+-----+-----+------------+------------------------------------------------------------+--------------+
+|ap_clk                                        |   in|    1|  ap_ctrl_hs|  splitStream2D_Pipeline_VITIS_LOOP_5575_2_VITIS_LOOP_5579_3|  return value|
+|ap_rst                                        |   in|    1|  ap_ctrl_hs|  splitStream2D_Pipeline_VITIS_LOOP_5575_2_VITIS_LOOP_5579_3|  return value|
+|ap_start                                      |   in|    1|  ap_ctrl_hs|  splitStream2D_Pipeline_VITIS_LOOP_5575_2_VITIS_LOOP_5579_3|  return value|
+|ap_done                                       |  out|    1|  ap_ctrl_hs|  splitStream2D_Pipeline_VITIS_LOOP_5575_2_VITIS_LOOP_5579_3|  return value|
+|ap_idle                                       |  out|    1|  ap_ctrl_hs|  splitStream2D_Pipeline_VITIS_LOOP_5575_2_VITIS_LOOP_5579_3|  return value|
+|ap_ready                                      |  out|    1|  ap_ctrl_hs|  splitStream2D_Pipeline_VITIS_LOOP_5575_2_VITIS_LOOP_5579_3|  return value|
+|arg1_combined_write_mem_strm2_dout            |   in|  256|     ap_fifo|                               arg1_combined_write_mem_strm2|       pointer|
+|arg1_combined_write_mem_strm2_num_data_valid  |   in|    2|     ap_fifo|                               arg1_combined_write_mem_strm2|       pointer|
+|arg1_combined_write_mem_strm2_fifo_cap        |   in|    2|     ap_fifo|                               arg1_combined_write_mem_strm2|       pointer|
+|arg1_combined_write_mem_strm2_empty_n         |   in|    1|     ap_fifo|                               arg1_combined_write_mem_strm2|       pointer|
+|arg1_combined_write_mem_strm2_read            |  out|    1|     ap_fifo|                               arg1_combined_write_mem_strm2|       pointer|
+|arg1_write_mem_strm_6_din                     |  out|  256|     ap_fifo|                                       arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_6_num_data_valid          |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_6_fifo_cap                |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_6_full_n                  |   in|    1|     ap_fifo|                                       arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_6_write                   |  out|    1|     ap_fifo|                                       arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_5_din                     |  out|  256|     ap_fifo|                                       arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_5_num_data_valid          |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_5_fifo_cap                |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_5_full_n                  |   in|    1|     ap_fifo|                                       arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_5_write                   |  out|    1|     ap_fifo|                                       arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_4_din                     |  out|  256|     ap_fifo|                                       arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_4_num_data_valid          |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_4_fifo_cap                |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_4_full_n                  |   in|    1|     ap_fifo|                                       arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_4_write                   |  out|    1|     ap_fifo|                                       arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_3_din                     |  out|  256|     ap_fifo|                                       arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_3_num_data_valid          |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_3_fifo_cap                |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_3_full_n                  |   in|    1|     ap_fifo|                                       arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_3_write                   |  out|    1|     ap_fifo|                                       arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_2_din                     |  out|  256|     ap_fifo|                                       arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_2_num_data_valid          |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_2_fifo_cap                |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_2_full_n                  |   in|    1|     ap_fifo|                                       arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_2_write                   |  out|    1|     ap_fifo|                                       arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_1_din                     |  out|  256|     ap_fifo|                                       arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_1_num_data_valid          |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_1_fifo_cap                |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_1_full_n                  |   in|    1|     ap_fifo|                                       arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_1_write                   |  out|    1|     ap_fifo|                                       arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_0_din                     |  out|  256|     ap_fifo|                                       arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_num_data_valid          |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_fifo_cap                |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_full_n                  |   in|    1|     ap_fifo|                                       arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_write                   |  out|    1|     ap_fifo|                                       arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_7_din                     |  out|  256|     ap_fifo|                                       arg1_write_mem_strm_7|       pointer|
+|arg1_write_mem_strm_7_num_data_valid          |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_7|       pointer|
+|arg1_write_mem_strm_7_fifo_cap                |   in|    5|     ap_fifo|                                       arg1_write_mem_strm_7|       pointer|
+|arg1_write_mem_strm_7_full_n                  |   in|    1|     ap_fifo|                                       arg1_write_mem_strm_7|       pointer|
+|arg1_write_mem_strm_7_write                   |  out|    1|     ap_fifo|                                       arg1_write_mem_strm_7|       pointer|
+|mul_ln5571                                    |   in|   32|     ap_none|                                                  mul_ln5571|        scalar|
+|tile_size_x                                   |   in|   16|     ap_none|                                                 tile_size_x|        scalar|
++----------------------------------------------+-----+-----+------------+------------------------------------------------------------+--------------+
+

@@ -1,0 +1,1232 @@
+
+*** Running vitis_hls
+    with args -f kernel_outerloop_0_1.tcl -messageDb vitis_hls.pb
+
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.2 (64-bit)
+  **** SW Build 3670227 on Oct 13 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source /opt/software/FPGA/Xilinx/Vitis_HLS/2022.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/opt/software/FPGA/Xilinx/Vitis_HLS/2022.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'acgasm01' on host 'n2cn0259' (Linux_x86_64 version 4.18.0-553.144.1.el8_10.x86_64) on Fri Jul 31 14:24:17 CEST 2026
+INFO: [HLS 200-10] On os "Red Hat Enterprise Linux release 8.10 (Ootpa)"
+INFO: [HLS 200-10] In directory '/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/build/hw/temp_dir/kernel_outerloop_0_1/kernel_outerloop_0_1'
+WARNING: [HLS 200-40] Environment variable 'C_INCLUDE_PATH' is set to /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/source_files/../opsc/include/:/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/source_files/../opsc/include/:.
+WARNING: [HLS 200-40] Environment variable 'CPLUS_INCLUDE_PATH' is set to /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/source_files/../opsc/include/:/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/source_files/../opsc/include/:.
+Sourcing Tcl script 'kernel_outerloop_0_1.tcl'
+INFO: [HLS 200-1510] Running: open_project kernel_outerloop_0_1 
+INFO: [HLS 200-10] Creating and opening project '/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/build/hw/temp_dir/kernel_outerloop_0_1/kernel_outerloop_0_1/kernel_outerloop_0_1'.
+INFO: [HLS 200-1510] Running: set_top kernel_outerloop_0_1 
+INFO: [HLS 200-1510] Running: add_files /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp -cflags  -D OPS_TILING -D OPS_MAXTILESIZE_X=8192-DOPS_HLS_TILE_BANKS=8 -I /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device -I /pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/L1/include -I /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include 
+INFO: [HLS 200-10] Adding design file '/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution -flow_target vitis solution 
+INFO: [HLS 200-10] Creating and opening solution '/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/build/hw/temp_dir/kernel_outerloop_0_1/kernel_outerloop_0_1/kernel_outerloop_0_1/solution'.
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2022.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+INFO: [HLS 200-1510] Running: config_dataflow -strict_mode warning 
+INFO: [HLS 200-1510] Running: config_export -deadlock_detection sim 
+WARNING: [HLS 200-483] The 'config_export -deadlock_detection' command is deprecated and will be removed in a future release. Use 'config_rtl -deadlock_detection' as its replacement.
+INFO: [HLS 200-1907] Replacing 'config_export -deadlock_detection=sim' with 'config_rtl -deadlock_detection=sim' in current solution file
+INFO: [HLS 200-1510] Running: config_interface -m_axi_conservative_mode=1 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
+INFO: [HLS 200-1510] Running: config_export -format xo -ipname kernel_outerloop_0_1 
+INFO: [HLS 200-1907] Replacing 'config_export -deadlock_detection=sim' with 'config_rtl -deadlock_detection=sim' in current solution file
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 725.102 MB.
+INFO: [HLS 200-10] Analyzing design file '/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp' ... 
+WARNING: [HLS 207-4785] attribute 'deprecated' is ignored, place it after "struct" to apply attribute to type declaration (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../common/include/ops_hls_defs.hpp:107:16)
+WARNING: [HLS 207-5548] missing argument for 'max' (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:261:9)
+WARNING: [HLS 207-5548] missing argument for 'max' (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:392:9)
+WARNING: [HLS 207-5548] missing argument for 'max' (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6656:9)
+WARNING: [HLS 207-5548] missing argument for 'max' (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:7279:9)
+WARNING: [HLS 207-4949] logical not is only applied to the left hand side of this comparison (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:7384:80)
+INFO: [HLS 207-4281] add parentheses after the '!' to evaluate the comparison first (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:7384:80)
+INFO: [HLS 207-4282] add parentheses around left hand side expression to silence this warning (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:7384:80)
+WARNING: [HLS 207-4949] logical not is only applied to the left hand side of this comparison (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:7655:80)
+INFO: [HLS 207-4281] add parentheses after the '!' to evaluate the comparison first (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:7655:80)
+INFO: [HLS 207-4282] add parentheses around left hand side expression to silence this warning (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:7655:80)
+WARNING: [HLS 207-5292] unused parameter 'size' (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:220:20)
+WARNING: [HLS 207-5292] unused parameter 'size' (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:349:20)
+WARNING: [HLS 207-5292] unused parameter 'is_small_tile' (/pc2/users/a/acgasm01/scratch/beniel/ops-hls-batching-tiling-artifacts/OPS/ops/hls/include/device/../../L1/include/ops_hls_stencil_core_v2.hpp:265:173)
+WARNING: [HLS 207-5292] unused parameter 'slr_region' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:33:26)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 6.72 seconds. CPU system time: 0.46 seconds. Elapsed time: 7.36 seconds; current allocated memory: 738.566 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-377] Adding 'stencilConfig' into disaggregation list because there's array-partition pragma applied on the struct field (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:107:9)
+INFO: [HLS 214-377] Adding 'stencilConfig' into disaggregation list because there's array-partition pragma applied on the struct field (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:106:9)
+INFO: [HLS 214-377] Adding 'stencilConfig' into disaggregation list because there's array-partition pragma applied on the struct field (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:103:9)
+INFO: [HLS 214-210] Disaggregating variable 'stencilConfig' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:102:45)
+Resolution: For help on HLS 214-210 see www.xilinx.com/cgi-bin/docs/rdoc?v=2022.2;t=hls+guidance;d=214-210.html
+INFO: [HLS 214-291] Loop 'vec2arr' is marked as complete unroll implied by the pipeline pragma (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:412:7)
+INFO: [HLS 214-291] Loop 'process' is marked as complete unroll implied by the pipeline pragma (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:442:7)
+INFO: [HLS 214-186] Unrolling loop 'vec2arr' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:412:7) in function 'Stencil_poisson_kernel_stencil::stencilRun' completely with a factor of 8 (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:101:0)
+INFO: [HLS 214-186] Unrolling loop 'process' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:442:7) in function 'Stencil_poisson_kernel_stencil::stencilRun' completely with a factor of 8 (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:101:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'int generic_isnan<float>(float)' (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h:16:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::data() const (.51.61.70.81.90.101.110.121.130.141)' into 'fp_struct<float>::to_float() const (.48.58.67.78.87.98.107.118.127.138)' (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:351:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::to_float() const (.48.58.67.78.87.98.107.118.127.138)' into 'fp_struct<float>::to_ieee() const' (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:375:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'float generic_copysign<float>(float, float)' (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_copysign.h:10:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::to_ieee() const' into 'float generic_copysign<float>(float, float)' (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_copysign.h:10:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::fp_struct(float)' into 'float generic_ldexp<float>(float, int)' (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:13:0)
+INFO: [HLS 214-178] Inlining function 'int generic_isnan<float>(float)' into 'float generic_ldexp<float>(float, int)' (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:13:0)
+INFO: [HLS 214-178] Inlining function 'float generic_copysign<float>(float, float)' into 'float generic_ldexp<float>(float, int)' (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:13:0)
+INFO: [HLS 214-178] Inlining function 'fp_struct<float>::to_ieee() const' into 'float generic_ldexp<float>(float, int)' (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:13:0)
+INFO: [HLS 214-178] Inlining function 'ldexpf' into 'kernel_poisson_kernel_stencil_core(float const&, float const&, float const&, float const&, float const&, float&)' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:52:0)
+INFO: [HLS 214-178] Inlining function 'ops::hls::StencilCoreV2<float, (unsigned short)5, (unsigned short)8, (ops::hls::CoefTypes)0, (unsigned short)3, (unsigned short)2, true>::setConfig(short const&, ops::hls::StencilConfigCoreSingleTile const&) (.173)' into 'kernel_poisson_kernel_stencil_PE(unsigned short const&, unsigned short const&, ops::hls::StencilConfigCoreSingleTile const&, hls::stream<ap_uint<256>, 0>&, hls::stream<ap_uint<256>, 0>&)' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:511:0)
+INFO: [HLS 214-178] Inlining function 'kernel_outerloop_0_main_region(unsigned short, unsigned int, ops::hls::StencilConfigCoreTiled const&, hls::stream<hls::axis<ap_uint<256>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<256>, 0ul, 0ul, 0ul>, 0>&)' into 'kernel_outerloop_0_1' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:241:0)
+INFO: [HLS 214-248] Applying array_partition to 'arg0_rowArr_0_0': Complete partitioning on dimension 1. (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:264:15)
+INFO: [HLS 214-248] Applying array_partition to 'arg0_rowArr_1_0': Complete partitioning on dimension 1. (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:266:15)
+INFO: [HLS 214-248] Applying array_partition to 'arg0_rowArr_2_0': Complete partitioning on dimension 1. (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:268:15)
+INFO: [HLS 214-248] Applying array_partition to 'arg0_arg1_streams': Complete partitioning on dimension 1. (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_0' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_1' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_2' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_3' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_4' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_5' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_6' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_7' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_8' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_9' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_10' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_11' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_12' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_13' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_14' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_15' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_16' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_17' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_18' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_19' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_20' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_21' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_22' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_23' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_24' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_25' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_26' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'arg0_arg1_streams_27' with compact=bit mode in 256-bits (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:40:7)
+INFO: [HLS 214-364] Automatically inlining function 'kernel_poisson_kernel_stencil_core(float const&, float const&, float const&, float const&, float const&, float&)' to improve effectiveness of pipeline pragma in function 'Stencil_poisson_kernel_stencil::stencilRun(hls::stream<ap_uint<256>, 0>&, hls::stream<ap_uint<256>, 0>&)' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:458:9)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 4.12 seconds. CPU system time: 0.48 seconds. Elapsed time: 4.75 seconds; current allocated memory: 738.703 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 738.703 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.24 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.25 seconds; current allocated memory: 789.270 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.46 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.49 seconds; current allocated memory: 868.590 MB.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'stencil.m_stencilConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:513) automatically.
+INFO: [XFORM 203-102] Partitioning array 'tileConfig.tile_size' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:174) automatically.
+INFO: [XFORM 203-102] Partitioning array 'tileConfig.is_first' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:174) automatically.
+INFO: [XFORM 203-102] Partitioning array 'tileConfig.is_last' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:174) automatically.
+INFO: [XFORM 203-712] Applying dataflow to function 'kernel_outerloop_0_dataflow_region' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:43:1), detected/extracted 30 process function(s): 
+	 'entry_proc'
+	 'ops::hls::axis2stream<256u>'
+	 'kernel_poisson_kernel_stencil_PE'
+	 'kernel_poisson_kernel_stencil_PE.1'
+	 'kernel_poisson_kernel_stencil_PE.2'
+	 'kernel_poisson_kernel_stencil_PE.3'
+	 'kernel_poisson_kernel_stencil_PE.4'
+	 'kernel_poisson_kernel_stencil_PE.5'
+	 'kernel_poisson_kernel_stencil_PE.6'
+	 'kernel_poisson_kernel_stencil_PE.7'
+	 'kernel_poisson_kernel_stencil_PE.8'
+	 'kernel_poisson_kernel_stencil_PE.9'
+	 'kernel_poisson_kernel_stencil_PE.10'
+	 'kernel_poisson_kernel_stencil_PE.11'
+	 'kernel_poisson_kernel_stencil_PE.12'
+	 'kernel_poisson_kernel_stencil_PE.13'
+	 'kernel_poisson_kernel_stencil_PE.14'
+	 'kernel_poisson_kernel_stencil_PE.15'
+	 'kernel_poisson_kernel_stencil_PE.16'
+	 'kernel_poisson_kernel_stencil_PE.17'
+	 'kernel_poisson_kernel_stencil_PE.18'
+	 'kernel_poisson_kernel_stencil_PE.19'
+	 'kernel_poisson_kernel_stencil_PE.20'
+	 'kernel_poisson_kernel_stencil_PE.21'
+	 'kernel_poisson_kernel_stencil_PE.22'
+	 'kernel_poisson_kernel_stencil_PE.23'
+	 'kernel_poisson_kernel_stencil_PE.24'
+	 'kernel_poisson_kernel_stencil_PE.25'
+	 'kernel_poisson_kernel_stencil_PE.26'
+	 'ops::hls::stream2axis<256u>'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:147:18) to (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp:151:23) in function 'kernel_outerloop_0_1'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:33:1) in function 'generic_ldexp<float>'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:335:11) to (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:481:11) in function 'Stencil_poisson_kernel_stencil::stencilRun'... converting 17 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:284:23) in function 'Stencil_poisson_kernel_stencil::stencilRun'... converting 4 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.94 seconds. CPU system time: 0.05 seconds. Elapsed time: 1.07 seconds; current allocated memory: 964.559 MB.
+INFO: [HLS 200-472] Inferring partial write operation for 'arg0_buf_r0_1_p0.V' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:340:63)
+INFO: [HLS 200-472] Inferring partial write operation for 'arg0_buf_r1_2_p0.V' (/scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/include/PE_poisson_kernel_stencil.hpp:343:63)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.65 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.7 seconds; current allocated memory: 1.318 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel_outerloop_0_1' ...
+WARNING: [SYN 201-103] Legalizing function name 'axis2stream<256u>_Pipeline_VITIS_LOOP_6156_1' to 'axis2stream_256u_Pipeline_VITIS_LOOP_6156_1'.
+WARNING: [SYN 201-103] Legalizing function name 'axis2stream<256u>' to 'axis2stream_256u_s'.
+WARNING: [SYN 201-103] Legalizing function name 'generic_ldexp<float>' to 'generic_ldexp_float_s'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.1' to 'kernel_poisson_kernel_stencil_PE_1'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.2' to 'kernel_poisson_kernel_stencil_PE_2'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.3' to 'kernel_poisson_kernel_stencil_PE_3'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.4' to 'kernel_poisson_kernel_stencil_PE_4'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.5' to 'kernel_poisson_kernel_stencil_PE_5'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.6' to 'kernel_poisson_kernel_stencil_PE_6'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.7' to 'kernel_poisson_kernel_stencil_PE_7'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.8' to 'kernel_poisson_kernel_stencil_PE_8'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.9' to 'kernel_poisson_kernel_stencil_PE_9'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.10' to 'kernel_poisson_kernel_stencil_PE_10'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.11' to 'kernel_poisson_kernel_stencil_PE_11'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.12' to 'kernel_poisson_kernel_stencil_PE_12'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.13' to 'kernel_poisson_kernel_stencil_PE_13'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.14' to 'kernel_poisson_kernel_stencil_PE_14'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.15' to 'kernel_poisson_kernel_stencil_PE_15'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.16' to 'kernel_poisson_kernel_stencil_PE_16'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.17' to 'kernel_poisson_kernel_stencil_PE_17'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.18' to 'kernel_poisson_kernel_stencil_PE_18'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.19' to 'kernel_poisson_kernel_stencil_PE_19'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.20' to 'kernel_poisson_kernel_stencil_PE_20'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.21' to 'kernel_poisson_kernel_stencil_PE_21'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.22' to 'kernel_poisson_kernel_stencil_PE_22'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.23' to 'kernel_poisson_kernel_stencil_PE_23'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.24' to 'kernel_poisson_kernel_stencil_PE_24'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.25' to 'kernel_poisson_kernel_stencil_PE_25'.
+WARNING: [SYN 201-103] Legalizing function name 'kernel_poisson_kernel_stencil_PE.26' to 'kernel_poisson_kernel_stencil_PE_26'.
+WARNING: [SYN 201-103] Legalizing function name 'stream2axis<256u>_Pipeline_VITIS_LOOP_6103_1' to 'stream2axis_256u_Pipeline_VITIS_LOOP_6103_1'.
+WARNING: [SYN 201-103] Legalizing function name 'stream2axis<256u>' to 'stream2axis_256u_s'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'entry_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.2 seconds. CPU system time: 0.05 seconds. Elapsed time: 0.31 seconds; current allocated memory: 1.318 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.322 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'axis2stream_256u_Pipeline_VITIS_LOOP_6156_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_6156_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_6156_1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.322 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.322 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'axis2stream_256u_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.322 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.322 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'generic_ldexp_float_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'generic_ldexp<float>'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 0, Final II = 1, Depth = 1, function 'generic_ldexp<float>'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.322 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.322 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'stencilRun_Pipeline_VITIS_LOOP_284_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_284_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 28, loop 'VITIS_LOOP_284_1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.25 seconds. CPU system time: 0 seconds. Elapsed time: 0.33 seconds; current allocated memory: 1.322 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.6 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.61 seconds; current allocated memory: 1.323 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'stencilRun' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-486] Changing DSP latency (root=mul_ln284) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=S2D_00_P10_M10_0P1_0M1_read_ub_itr) to 3 in order to utilize available DSP registers.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.1 seconds; current allocated memory: 1.324 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.32 seconds. CPU system time: 0 seconds. Elapsed time: 0.34 seconds; current allocated memory: 1.324 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.82 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.84 seconds; current allocated memory: 1.325 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.325 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.84 seconds; current allocated memory: 1.325 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.31 seconds; current allocated memory: 1.325 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.325 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0 seconds. Elapsed time: 0.34 seconds; current allocated memory: 1.326 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.84 seconds; current allocated memory: 1.326 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.326 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.84 seconds; current allocated memory: 1.326 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0 seconds. Elapsed time: 0.31 seconds; current allocated memory: 1.326 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.327 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.327 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_6' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.86 seconds; current allocated memory: 1.327 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0 seconds. Elapsed time: 0.33 seconds; current allocated memory: 1.327 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_7' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.84 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.87 seconds; current allocated memory: 1.327 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0 seconds. Elapsed time: 0.33 seconds; current allocated memory: 1.327 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_8' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.328 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.31 seconds; current allocated memory: 1.328 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_9' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.328 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0 seconds. Elapsed time: 0.33 seconds; current allocated memory: 1.328 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_10' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.328 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.329 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_11' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.84 seconds; current allocated memory: 1.329 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.329 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_12' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.84 seconds; current allocated memory: 1.329 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.329 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_13' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.82 seconds. CPU system time: 0 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.329 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.330 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_14' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.330 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.330 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_15' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.330 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.331 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_16' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.84 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.331 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.331 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_17' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.331 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.331 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_18' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.86 seconds; current allocated memory: 1.331 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.332 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_19' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.84 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.87 seconds; current allocated memory: 1.332 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.332 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_20' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.87 seconds; current allocated memory: 1.332 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.332 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_21' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.333 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.333 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_22' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.86 seconds; current allocated memory: 1.333 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.333 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_23' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.84 seconds; current allocated memory: 1.333 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.3 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.334 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_24' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.334 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.334 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_25' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.84 seconds. CPU system time: 0 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.334 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.34 seconds; current allocated memory: 1.334 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_poisson_kernel_stencil_PE_26' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.83 seconds. CPU system time: 0 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.335 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.335 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'stream2axis_256u_Pipeline_VITIS_LOOP_6103_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_6103_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'VITIS_LOOP_6103_1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.84 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.87 seconds; current allocated memory: 1.335 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.335 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'stream2axis_256u_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.335 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.07 seconds; current allocated memory: 1.335 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_outerloop_0_dataflow_region' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.25 seconds. CPU system time: 0 seconds. Elapsed time: 0.29 seconds; current allocated memory: 1.335 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 7.51 seconds. CPU system time: 0 seconds. Elapsed time: 7.54 seconds; current allocated memory: 1.339 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'kernel_outerloop_0_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-486] Changing DSP latency (root=num_pkts) to 3 in order to utilize available DSP registers.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 21.77 seconds. CPU system time: 0.01 seconds. Elapsed time: 21.84 seconds; current allocated memory: 1.341 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 7.29 seconds. CPU system time: 0.01 seconds. Elapsed time: 7.33 seconds; current allocated memory: 1.342 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'entry_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'entry_proc'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 21.68 seconds. CPU system time: 0.01 seconds. Elapsed time: 21.8 seconds; current allocated memory: 1.342 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'axis2stream_256u_Pipeline_VITIS_LOOP_6156_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'axis2stream_256u_Pipeline_VITIS_LOOP_6156_1' pipeline 'VITIS_LOOP_6156_1' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'axis2stream_256u_Pipeline_VITIS_LOOP_6156_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.342 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'axis2stream_256u_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'axis2stream_256u_s'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 1.343 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'generic_ldexp_float_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'generic_ldexp_float_s'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.1 seconds; current allocated memory: 1.343 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'stencilRun_Pipeline_VITIS_LOOP_284_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'stencilRun_Pipeline_VITIS_LOOP_284_1' pipeline 'VITIS_LOOP_284_1' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-104] Estimated max fanout for 'stencilRun_Pipeline_VITIS_LOOP_284_1' is 12859 from HDL expression: (1'b0 == ap_block_pp0_stage0_11001)
+INFO: [RTGEN 206-100] Generating core module 'fadd_32ns_32ns_32_7_full_dsp_1': 32 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'stencilRun_Pipeline_VITIS_LOOP_284_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.19 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.25 seconds; current allocated memory: 1.346 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'stencilRun' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'mul_mul_16ns_16ns_32_4_1': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'stencilRun'.
+INFO: [RTMG 210-278] Implementing memory 'kernel_outerloop_0_1_stencilRun_arg0_buf_r0_1_p0_V_RAM_S2P_URAM_2R1W' using ultra RAMs.
+INFO: [RTMG 210-278] Implementing memory 'kernel_outerloop_0_1_stencilRun_arg0_buf_r1_2_p0_V_RAM_S2P_BRAM_2R1W' using block RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.84 seconds. CPU system time: 0.05 seconds. Elapsed time: 1.97 seconds; current allocated memory: 1.351 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.9 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.96 seconds; current allocated memory: 1.355 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.356 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0 seconds. Elapsed time: 0.88 seconds; current allocated memory: 1.357 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_3'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.84 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.358 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.359 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_5'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.360 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_6' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_6'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.9 seconds; current allocated memory: 1.361 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_7' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_7'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.362 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_8' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_8'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.363 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_9' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_9'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0 seconds. Elapsed time: 0.87 seconds; current allocated memory: 1.364 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_10' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_10'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.88 seconds; current allocated memory: 1.365 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_11' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_11'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.92 seconds; current allocated memory: 1.366 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_12' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_12'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.367 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_13' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_13'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.88 seconds; current allocated memory: 1.368 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_14' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_14'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.369 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_15' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_15'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.88 seconds; current allocated memory: 1.370 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_16' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_16'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.86 seconds. CPU system time: 0 seconds. Elapsed time: 0.88 seconds; current allocated memory: 1.371 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_17' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_17'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.86 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.371 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_18' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_18'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.88 seconds; current allocated memory: 1.371 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_19' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_19'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0 seconds. Elapsed time: 0.9 seconds; current allocated memory: 1.372 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_20' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_20'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0 seconds. Elapsed time: 0.9 seconds; current allocated memory: 1.376 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_21' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_21'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.86 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.91 seconds; current allocated memory: 1.377 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_22' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_22'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.92 seconds; current allocated memory: 1.378 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_23' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_23'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.88 seconds; current allocated memory: 1.379 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_24' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_24'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0 seconds. Elapsed time: 0.9 seconds; current allocated memory: 1.380 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_25' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_25'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.9 seconds; current allocated memory: 1.381 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_poisson_kernel_stencil_PE_26' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_poisson_kernel_stencil_PE_26'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.382 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'stream2axis_256u_Pipeline_VITIS_LOOP_6103_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'stream2axis_256u_Pipeline_VITIS_LOOP_6103_1' pipeline 'VITIS_LOOP_6103_1' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'stream2axis_256u_Pipeline_VITIS_LOOP_6103_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.85 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.9 seconds; current allocated memory: 1.383 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'stream2axis_256u_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'stream2axis_256u_s'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.1 seconds; current allocated memory: 1.384 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_outerloop_0_dataflow_region' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_outerloop_0_dataflow_region'.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c86_U(kernel_outerloop_0_1_fifo_w16_d3_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c112_U(kernel_outerloop_0_1_fifo_w16_d3_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c138_U(kernel_outerloop_0_1_fifo_w16_d3_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c164_U(kernel_outerloop_0_1_fifo_w16_d3_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c190_U(kernel_outerloop_0_1_fifo_w1_d3_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c216_U(kernel_outerloop_0_1_fifo_w1_d3_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c242_U(kernel_outerloop_0_1_fifo_w16_d3_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_0_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'num_pkts_c_U(kernel_outerloop_0_1_fifo_w32_d29_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_1_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c85_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c111_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c137_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c163_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c189_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c215_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c241_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_2_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c84_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c110_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c136_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c162_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c188_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c214_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c240_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_3_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c83_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c109_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c135_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c161_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c187_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c213_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c239_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_4_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c82_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c108_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c134_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c160_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c186_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c212_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c238_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_5_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c81_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c107_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c133_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c159_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c185_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c211_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c237_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_6_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c80_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c106_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c132_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c158_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c184_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c210_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c236_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_7_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c79_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c105_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c131_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c157_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c183_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c209_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c235_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_8_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c78_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c104_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c130_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c156_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c182_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c208_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c234_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_9_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c77_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c103_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c129_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c155_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c181_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c207_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c233_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_10_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c76_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c102_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c128_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c154_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c180_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c206_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c232_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_11_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c75_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c101_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c127_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c153_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c179_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c205_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c231_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_12_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c74_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c100_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c126_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c152_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c178_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c204_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c230_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_13_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c73_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c99_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c125_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c151_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c177_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c203_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c229_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_14_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c72_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c98_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c124_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c150_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c176_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c202_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c228_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_15_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c71_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c97_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c123_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c149_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c175_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c201_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c227_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_16_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c70_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c96_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c122_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c148_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c174_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c200_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c226_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_17_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c69_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c95_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c121_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c147_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c173_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c199_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c225_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_18_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c68_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c94_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c120_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c146_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c172_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c198_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c224_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_19_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c67_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c93_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c119_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c145_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c171_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c197_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c223_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_20_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c66_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c92_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c118_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c144_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c170_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c196_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c222_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_21_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c65_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c91_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c117_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c143_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c169_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c195_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c221_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_22_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c64_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c90_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c116_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c142_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c168_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c194_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c220_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_23_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c63_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c89_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c115_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c141_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c167_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c193_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c219_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_24_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c62_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c88_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c114_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c140_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c166_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c192_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c218_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_25_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c61_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c87_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c113_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c139_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c165_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c191_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c217_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_26_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_0_c_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_0_1_c_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_2_c_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_3_c_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_4_0_c_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_5_0_c_U(kernel_outerloop_0_1_fifo_w1_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'stencilConfig_6_c_U(kernel_outerloop_0_1_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'arg0_arg1_streams_27_U(kernel_outerloop_0_1_fifo_w256_d10_A)' using Vivado Default RAMs.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_stream2axis_256u_U0_U(kernel_outerloop_0_1_start_for_stream2axis_256u_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_1_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_1_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_2_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_2_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_3_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_3_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_4_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_4_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_5_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_5_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_6_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_6_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_7_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_7_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_8_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_8_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_9_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_9_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_10_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_10_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_11_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_11_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_12_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_12_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_13_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_13_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_14_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_14_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_15_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_15_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_16_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_16_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_17_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_17_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_18_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_18_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_19_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_19_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_20_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_20_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_21_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_21_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_22_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_22_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_23_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_23_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_24_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_24_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_25_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_25_U0)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_kernel_poisson_kernel_stencil_PE_26_U0_U(kernel_outerloop_0_1_start_for_kernel_poisson_kernel_stencil_PE_26_U0)' using Shift Registers.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.4 seconds. CPU system time: 0.19 seconds. Elapsed time: 2.42 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_outerloop_0_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/slr_region' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/outer_itr' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/stencilConfig_grid_size_0' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/stencilConfig_grid_size_1' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/stencilConfig_dim' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/stencilConfig_total_itr' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/stencilConfig_outer_loop_limit' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/tile_size_x' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/last_tile_size_x' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/tile_count_x' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/total_xblocks' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/last_tile_upper_limit_x' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/arg0_axis_in_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/arg0_axis_in_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/arg0_axis_in_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/arg0_axis_in_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/arg1_axis_out_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/arg1_axis_out_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/arg1_axis_out_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_outerloop_0_1/arg1_axis_out_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel_outerloop_0_1' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'slr_region', 'outer_itr', 'stencilConfig_grid_size_0', 'stencilConfig_grid_size_1', 'stencilConfig_dim', 'stencilConfig_total_itr', 'stencilConfig_outer_loop_limit', 'tile_size_x', 'last_tile_size_x', 'tile_count_x', 'total_xblocks', 'last_tile_upper_limit_x' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Generating core module 'mul_mul_16ns_16ns_32_4_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_outerloop_0_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 22.52 seconds. CPU system time: 0.03 seconds. Elapsed time: 22.66 seconds; current allocated memory: 1.404 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 22.79 seconds. CPU system time: 0.26 seconds. Elapsed time: 23.86 seconds; current allocated memory: 1.419 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 2.07 seconds. CPU system time: 0.11 seconds. Elapsed time: 2.34 seconds; current allocated memory: 1.427 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel_outerloop_0_1.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel_outerloop_0_1.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 411.00 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 181 seconds. CPU system time: 2.43 seconds. Elapsed time: 188.5 seconds; current allocated memory: 737.484 MB.
+INFO: [HLS 200-1510] Running: export_design 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to '/pc2/users/a/acgasm01/.Xilinx'.
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/software/FPGA/Xilinx/Vivado/2022.2/data/ip'.
+WARNING: [IP_Flow 19-4832] The IP name 'kernel_outerloop_0_1_fadd_32ns_32ns_32_7_full_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kernel_outerloop_0_1_fadd_32ns_32ns_32_7_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kernel_outerloop_0_1_fadd_32ns_32ns_32_7_full_dsp_1_ip'...
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/software/FPGA/Xilinx/Vivado/2022.2/data/ip'.
+Running package_xo -xo_path /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/build/hw/temp_dir/kernel_outerloop_0_1/kernel_outerloop_0_1/kernel_outerloop_0_1/solution/impl/export.xo -kernel_name kernel_outerloop_0_1 -kernel_xml /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/build/hw/temp_dir/kernel_outerloop_0_1/kernel_outerloop_0_1/kernel_outerloop_0_1/solution/impl/ip/../kernel/kernel.xml -kernel_files /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/device/src/kernel_outerloop_0_1.cpp -ip_directory /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/build/hw/temp_dir/kernel_outerloop_0_1/kernel_outerloop_0_1/kernel_outerloop_0_1/solution/impl/ip/ip_unzip_dir -design_xml /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/build/hw/temp_dir/kernel_outerloop_0_1/kernel_outerloop_0_1/kernel_outerloop_0_1/solution/.autopilot/db/kernel_outerloop_0_1.design.xml -debug_directory /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/build/hw/temp_dir/kernel_outerloop_0_1/kernel_outerloop_0_1/kernel_outerloop_0_1/solution/.debug -hls_directory /scratch/hpc-prf-acgasm/beniel/ops-hls-batching-tiling-artifacts/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_p70/hls/build/hw/temp_dir/kernel_outerloop_0_1/kernel_outerloop_0_1/kernel_outerloop_0_1/solution/impl/ip/hls_files
+INFO: [Common 17-206] Exiting Vivado at Fri Jul 31 14:28:44 2026...
+INFO: [HLS 200-802] Generated output file kernel_outerloop_0_1/solution/impl/export.xo
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 73.34 seconds. CPU system time: 1.74 seconds. Elapsed time: 87.45 seconds; current allocated memory: 32.043 MB.
+INFO: [HLS 200-1510] Running: close_project 
+HLS completed successfully
+INFO: [HLS 200-112] Total CPU user time: 256.33 seconds. Total CPU system time: 4.51 seconds. Total elapsed time: 278.35 seconds; peak allocated memory: 1.460 GB.
+INFO: [Common 17-206] Exiting vitis_hls at Fri Jul 31 14:28:55 2026...
