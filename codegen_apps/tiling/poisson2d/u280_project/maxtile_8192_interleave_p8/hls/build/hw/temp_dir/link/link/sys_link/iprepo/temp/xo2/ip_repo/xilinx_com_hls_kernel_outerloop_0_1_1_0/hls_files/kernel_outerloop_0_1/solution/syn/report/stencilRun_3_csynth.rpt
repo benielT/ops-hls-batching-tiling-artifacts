@@ -1,0 +1,197 @@
+
+
+================================================================
+== Vitis HLS Report for 'stencilRun_3'
+================================================================
+* Date:           Tue Aug 11 20:37:25 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        kernel_outerloop_0_1
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.342 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------------------------------+----------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                                   |                                        |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                      Instance                     |                 Module                 |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +---------------------------------------------------+----------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_stencilRun_3_Pipeline_VITIS_LOOP_239_1_fu_126  |stencilRun_3_Pipeline_VITIS_LOOP_239_1  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +---------------------------------------------------+----------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     2|        -|        -|    -|
+|Expression           |        -|     -|        0|      146|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|   128|    33102|    23085|    -|
+|Memory               |        8|     -|        0|        0|    8|
+|Multiplexer          |        -|     -|        -|       67|    -|
+|Register             |        -|     -|      143|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        8|   130|    33245|    23298|    8|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |       ~0|     4|        3|        5|    2|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |       ~0|     1|        1|        1|   ~0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------------------------------+----------------------------------------+---------+-----+-------+-------+-----+
+    |                      Instance                     |                 Module                 | BRAM_18K| DSP |   FF  |  LUT  | URAM|
+    +---------------------------------------------------+----------------------------------------+---------+-----+-------+-------+-----+
+    |grp_stencilRun_3_Pipeline_VITIS_LOOP_239_1_fu_126  |stencilRun_3_Pipeline_VITIS_LOOP_239_1  |        0|  128|  33102|  23085|    0|
+    +---------------------------------------------------+----------------------------------------+---------+-----+-------+-------+-----+
+    |Total                                              |                                        |        0|  128|  33102|  23085|    0|
+    +---------------------------------------------------+----------------------------------------+---------+-----+-------+-------+-----+
+
+    * DSP: 
+    +-------------------------------+--------------------------+-----------+
+    |            Instance           |          Module          | Expression|
+    +-------------------------------+--------------------------+-----------+
+    |mul_mul_16ns_14ns_30_4_1_U206  |mul_mul_16ns_14ns_30_4_1  |    i0 * i1|
+    |mul_mul_16ns_14ns_30_4_1_U207  |mul_mul_16ns_14ns_30_4_1  |    i0 * i1|
+    +-------------------------------+--------------------------+-----------+
+
+    * Memory: 
+    +----------------------+---------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |        Memory        |                       Module                      | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +----------------------+---------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |arg0_buf_r0_1_p0_V_U  |stencilRun_3_arg0_buf_r0_1_p0_V_RAM_S2P_URAM_2R1W  |        0|  0|   0|    8|   128|  544|     1|        69632|
+    |arg0_buf_r1_2_p0_V_U  |stencilRun_3_arg0_buf_r1_2_p0_V_RAM_S2P_BRAM_2R1W  |        8|  0|   0|    0|   128|  576|     1|        73728|
+    +----------------------+---------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total                 |                                                   |        8|  0|   0|    8|   256| 1120|     2|       143360|
+    +----------------------+---------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |add_ln136_fu_193_p2              |         +|   0|  0|  23|          16|           2|
+    |adj_half_span_x_upper_fu_175_p2  |         +|   0|  0|  12|           4|           1|
+    |cond_x_val_fu_222_p2             |         +|   0|  0|  22|          15|           2|
+    |cond_y_val_fu_229_p2             |         +|   0|  0|  23|          16|           2|
+    |upper_limit_y_fu_216_p2          |         +|   0|  0|  23|          16|           3|
+    |sub_ln136_fu_199_p2              |         -|   0|  0|  23|          16|          16|
+    |adj_half_span_x_lower_fu_185_p3  |    select|   0|  0|   4|           1|           1|
+    |upper_limit_x_fu_205_p3          |    select|   0|  0|  16|           1|          16|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |Total                            |          |   0|  0| 146|          85|          43|
+    +---------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------------------------------+----+-----------+-----+-----------+
+    |                           Name                           | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                                                 |  31|          6|    1|          6|
+    |arg0_poisson_kernel_stencil_in_subtile_stream_2_0_read    |   9|          2|    1|          2|
+    |arg0_poisson_kernel_stencil_in_subtile_stream_2_1_read    |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_2_0_write  |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_2_1_write  |   9|          2|    1|          2|
+    +----------------------------------------------------------+----+-----------+-----+-----------+
+    |Total                                                     |  67|         14|    5|         14|
+    +----------------------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |                              Name                              | FF | LUT| Bits| Const Bits|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |S2D_00_P10_M10_0P1_0M1_read_ub_itr_reg_301                      |  30|   0|   30|          0|
+    |adj_half_span_x_lower_reg_286                                   |   4|   0|    4|          0|
+    |ap_CS_fsm                                                       |   5|   0|    5|          0|
+    |cond_x_val_reg_306                                              |  15|   0|   15|          0|
+    |cond_y_val_reg_311                                              |  16|   0|   16|          0|
+    |grp_stencilRun_3_Pipeline_VITIS_LOOP_239_1_fu_126_ap_start_reg  |   1|   0|    1|          0|
+    |mul_ln239_reg_316                                               |  30|   0|   30|          0|
+    |trunc_ln115_reg_266                                             |  10|   0|   10|          0|
+    |upper_limit_x_reg_291                                           |  16|   0|   16|          0|
+    |upper_limit_y_reg_296                                           |  16|   0|   16|          0|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                           | 143|   0|  143|          0|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------------------------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|                             RTL Ports                             | Dir | Bits|  Protocol  |                    Source Object                   |    C Type    |
++-------------------------------------------------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|ap_clk                                                             |   in|    1|  ap_ctrl_hs|                                        stencilRun.3|  return value|
+|ap_rst                                                             |   in|    1|  ap_ctrl_hs|                                        stencilRun.3|  return value|
+|ap_start                                                           |   in|    1|  ap_ctrl_hs|                                        stencilRun.3|  return value|
+|ap_done                                                            |  out|    1|  ap_ctrl_hs|                                        stencilRun.3|  return value|
+|ap_idle                                                            |  out|    1|  ap_ctrl_hs|                                        stencilRun.3|  return value|
+|ap_ready                                                           |  out|    1|  ap_ctrl_hs|                                        stencilRun.3|  return value|
+|p_read                                                             |   in|   14|     ap_none|                                              p_read|        scalar|
+|p_read1                                                            |   in|   16|     ap_none|                                             p_read1|        scalar|
+|p_read2                                                            |   in|   16|     ap_none|                                             p_read2|        scalar|
+|p_read13                                                           |   in|   16|     ap_none|                                            p_read13|        scalar|
+|p_read4                                                            |   in|    1|     ap_none|                                             p_read4|        scalar|
+|p_read5                                                            |   in|    1|     ap_none|                                             p_read5|        scalar|
+|p_read26                                                           |   in|   14|     ap_none|                                            p_read26|        scalar|
+|p_read3                                                            |   in|    3|     ap_none|                                             p_read3|        scalar|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_0_dout             |   in|  288|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_0|       pointer|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_0_num_data_valid   |   in|    2|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_0|       pointer|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_0_fifo_cap         |   in|    2|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_0|       pointer|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_0_empty_n          |   in|    1|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_0|       pointer|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_0_read             |  out|    1|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_0|       pointer|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_1_dout             |   in|  288|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_1|       pointer|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_1_num_data_valid   |   in|    2|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_1|       pointer|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_1_fifo_cap         |   in|    2|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_1|       pointer|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_1_empty_n          |   in|    1|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_1|       pointer|
+|arg0_poisson_kernel_stencil_in_subtile_stream_2_1_read             |  out|    1|     ap_fifo|   arg0_poisson_kernel_stencil_in_subtile_stream_2_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_0_din             |  out|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_0_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_0_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_0_full_n          |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_0_write           |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_1_din             |  out|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_1_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_1_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_1_full_n          |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_2_1_write           |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_2_1|       pointer|
++-------------------------------------------------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+

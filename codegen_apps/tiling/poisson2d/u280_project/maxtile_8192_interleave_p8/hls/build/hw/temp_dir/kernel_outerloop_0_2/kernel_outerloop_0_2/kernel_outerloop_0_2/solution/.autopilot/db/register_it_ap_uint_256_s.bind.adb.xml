@@ -1,0 +1,63 @@
+<stg><name>register_it<ap_uint<256> ></name>
+
+
+<trans_list>
+</trans_list>
+
+
+
+<state_list>
+
+<state id="1" st_id="1">
+
+<operation id="2" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="2" bw="256" op_0_bw="256" op_1_bw="256">
+<![CDATA[
+entry:0 %x_read = read i256 @_ssdm_op_Read.ap_auto.i256, i256 %x
+
+]]></Node>
+<StgValue><ssdm name="x_read"/></StgValue>
+</operation>
+
+<operation id="3" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="3" bw="0" op_0_bw="256">
+<![CDATA[
+entry:1 %ret_ln55 = ret i256 %x_read
+
+]]></Node>
+<StgValue><ssdm name="ret_ln55"/></StgValue>
+</operation>
+</state>
+</state_list>
+
+
+<ports>
+<port id="5" name="x" dir="0" iftype="0">
+<core>NULL</core><StgValue><ssdm name="x"/></StgValue>
+</port>
+</ports>
+
+
+<dataflows>
+<dataflow id="7" from="_ssdm_op_Read.ap_auto.i256" to="x_read" fromId="6" toId="2">
+</dataflow>
+<dataflow id="8" from="x" to="x_read" fromId="5" toId="2">
+</dataflow>
+<dataflow id="9" from="x_read" to="ret_ln55" fromId="2" toId="3">
+</dataflow>
+</dataflows>
+
+
+</stg>

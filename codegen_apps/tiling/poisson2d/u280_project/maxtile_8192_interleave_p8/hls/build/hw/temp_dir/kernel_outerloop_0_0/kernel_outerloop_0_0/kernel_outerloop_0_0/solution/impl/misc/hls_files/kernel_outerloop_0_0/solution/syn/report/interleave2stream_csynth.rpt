@@ -1,0 +1,297 @@
+
+
+================================================================
+== Vitis HLS Report for 'interleave2stream'
+================================================================
+* Date:           Tue Aug 11 20:32:58 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        kernel_outerloop_0_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------------------------------------+----------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                                         |                                              |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                         Instance                        |                    Module                    |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +---------------------------------------------------------+----------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_interleave2stream_Pipeline_VITIS_LOOP_1598_1_fu_148  |interleave2stream_Pipeline_VITIS_LOOP_1598_1  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +---------------------------------------------------------+----------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|        2|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|       32|      240|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|      263|    -|
+|Register             |        -|     -|       35|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|       67|      505|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------------------------------------+----------------------------------------------+---------+----+----+-----+-----+
+    |                         Instance                        |                    Module                    | BRAM_18K| DSP| FF | LUT | URAM|
+    +---------------------------------------------------------+----------------------------------------------+---------+----+----+-----+-----+
+    |grp_interleave2stream_Pipeline_VITIS_LOOP_1598_1_fu_148  |interleave2stream_Pipeline_VITIS_LOOP_1598_1  |        0|   0|  32|  240|    0|
+    +---------------------------------------------------------+----------------------------------------------+---------+----+----+-----+-----+
+    |Total                                                    |                                              |        0|   0|  32|  240|    0|
+    +---------------------------------------------------------+----------------------------------------------+---------+----+----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------------------------------------+----+-----------+-----+-----------+
+    |                           Name                          | LUT| Input Size| Bits| Total Bits|
+    +---------------------------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                                                |  20|          4|    1|          4|
+    |ap_done                                                  |   9|          2|    1|          2|
+    |arg0_arg1_streams_1_0_write                              |   9|          2|    1|          2|
+    |arg0_arg1_streams_1_1_write                              |   9|          2|    1|          2|
+    |arg0_arg1_streams_1_2_write                              |   9|          2|    1|          2|
+    |arg0_arg1_streams_1_3_write                              |   9|          2|    1|          2|
+    |arg0_arg1_streams_1_4_write                              |   9|          2|    1|          2|
+    |arg0_arg1_streams_1_5_write                              |   9|          2|    1|          2|
+    |arg0_arg1_streams_1_6_write                              |   9|          2|    1|          2|
+    |arg0_arg1_streams_1_7_write                              |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_1_0_read  |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_1_1_read  |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_1_2_read  |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_1_3_read  |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_1_4_read  |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_1_5_read  |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_1_6_read  |   9|          2|    1|          2|
+    |arg1_poisson_kernel_stencil_out_subtile_stream_1_7_read  |   9|          2|    1|          2|
+    |num_pkts_blk_n                                           |   9|          2|    1|          2|
+    |num_pkts_c100_blk_n                                      |   9|          2|    1|          2|
+    |num_pkts_c101_blk_n                                      |   9|          2|    1|          2|
+    |num_pkts_c102_blk_n                                      |   9|          2|    1|          2|
+    |num_pkts_c103_blk_n                                      |   9|          2|    1|          2|
+    |num_pkts_c104_blk_n                                      |   9|          2|    1|          2|
+    |num_pkts_c105_blk_n                                      |   9|          2|    1|          2|
+    |num_pkts_c106_blk_n                                      |   9|          2|    1|          2|
+    |num_pkts_c_blk_n                                         |   9|          2|    1|          2|
+    |real_start                                               |   9|          2|    1|          2|
+    +---------------------------------------------------------+----+-----------+-----+-----------+
+    |Total                                                    | 263|         58|   28|         58|
+    +---------------------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------------------------------+----+----+-----+-----------+
+    |                                 Name                                 | FF | LUT| Bits| Const Bits|
+    +----------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                             |   3|   0|    3|          0|
+    |ap_done_reg                                                           |   1|   0|    1|          0|
+    |grp_interleave2stream_Pipeline_VITIS_LOOP_1598_1_fu_148_ap_start_reg  |   1|   0|    1|          0|
+    |num_pkts_read_reg_185                                                 |  29|   0|   29|          0|
+    |start_once_reg                                                        |   1|   0|    1|          0|
+    +----------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                 |  35|   0|   35|          0|
+    +----------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------------------------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|                             RTL Ports                             | Dir | Bits|  Protocol  |                    Source Object                   |    C Type    |
++-------------------------------------------------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|ap_clk                                                             |   in|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|ap_rst                                                             |   in|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|ap_start                                                           |   in|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|start_full_n                                                       |   in|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|ap_done                                                            |  out|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|ap_continue                                                        |   in|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|ap_idle                                                            |  out|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|ap_ready                                                           |  out|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|start_out                                                          |  out|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|start_write                                                        |  out|    1|  ap_ctrl_hs|                                   interleave2stream|  return value|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_0_dout            |   in|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_0_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_0_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_0_empty_n         |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_0_read            |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_0|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_1_dout            |   in|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_1_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_1_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_1_empty_n         |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_1_read            |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_1|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_2_dout            |   in|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_2|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_2_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_2|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_2_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_2|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_2_empty_n         |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_2|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_2_read            |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_2|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_3_dout            |   in|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_3|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_3_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_3|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_3_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_3|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_3_empty_n         |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_3|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_3_read            |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_3|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_4_dout            |   in|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_4|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_4_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_4|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_4_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_4|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_4_empty_n         |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_4|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_4_read            |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_4|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_5_dout            |   in|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_5|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_5_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_5|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_5_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_5|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_5_empty_n         |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_5|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_5_read            |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_5|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_6_dout            |   in|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_6|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_6_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_6|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_6_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_6|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_6_empty_n         |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_6|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_6_read            |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_6|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_7_dout            |   in|  288|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_7|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_7_num_data_valid  |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_7|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_7_fifo_cap        |   in|    2|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_7|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_7_empty_n         |   in|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_7|       pointer|
+|arg1_poisson_kernel_stencil_out_subtile_stream_1_7_read            |  out|    1|     ap_fifo|  arg1_poisson_kernel_stencil_out_subtile_stream_1_7|       pointer|
+|arg0_arg1_streams_1_0_din                                          |  out|  256|     ap_fifo|                               arg0_arg1_streams_1_0|       pointer|
+|arg0_arg1_streams_1_0_num_data_valid                               |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_0|       pointer|
+|arg0_arg1_streams_1_0_fifo_cap                                     |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_0|       pointer|
+|arg0_arg1_streams_1_0_full_n                                       |   in|    1|     ap_fifo|                               arg0_arg1_streams_1_0|       pointer|
+|arg0_arg1_streams_1_0_write                                        |  out|    1|     ap_fifo|                               arg0_arg1_streams_1_0|       pointer|
+|arg0_arg1_streams_1_1_din                                          |  out|  256|     ap_fifo|                               arg0_arg1_streams_1_1|       pointer|
+|arg0_arg1_streams_1_1_num_data_valid                               |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_1|       pointer|
+|arg0_arg1_streams_1_1_fifo_cap                                     |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_1|       pointer|
+|arg0_arg1_streams_1_1_full_n                                       |   in|    1|     ap_fifo|                               arg0_arg1_streams_1_1|       pointer|
+|arg0_arg1_streams_1_1_write                                        |  out|    1|     ap_fifo|                               arg0_arg1_streams_1_1|       pointer|
+|arg0_arg1_streams_1_2_din                                          |  out|  256|     ap_fifo|                               arg0_arg1_streams_1_2|       pointer|
+|arg0_arg1_streams_1_2_num_data_valid                               |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_2|       pointer|
+|arg0_arg1_streams_1_2_fifo_cap                                     |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_2|       pointer|
+|arg0_arg1_streams_1_2_full_n                                       |   in|    1|     ap_fifo|                               arg0_arg1_streams_1_2|       pointer|
+|arg0_arg1_streams_1_2_write                                        |  out|    1|     ap_fifo|                               arg0_arg1_streams_1_2|       pointer|
+|arg0_arg1_streams_1_3_din                                          |  out|  256|     ap_fifo|                               arg0_arg1_streams_1_3|       pointer|
+|arg0_arg1_streams_1_3_num_data_valid                               |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_3|       pointer|
+|arg0_arg1_streams_1_3_fifo_cap                                     |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_3|       pointer|
+|arg0_arg1_streams_1_3_full_n                                       |   in|    1|     ap_fifo|                               arg0_arg1_streams_1_3|       pointer|
+|arg0_arg1_streams_1_3_write                                        |  out|    1|     ap_fifo|                               arg0_arg1_streams_1_3|       pointer|
+|arg0_arg1_streams_1_4_din                                          |  out|  256|     ap_fifo|                               arg0_arg1_streams_1_4|       pointer|
+|arg0_arg1_streams_1_4_num_data_valid                               |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_4|       pointer|
+|arg0_arg1_streams_1_4_fifo_cap                                     |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_4|       pointer|
+|arg0_arg1_streams_1_4_full_n                                       |   in|    1|     ap_fifo|                               arg0_arg1_streams_1_4|       pointer|
+|arg0_arg1_streams_1_4_write                                        |  out|    1|     ap_fifo|                               arg0_arg1_streams_1_4|       pointer|
+|arg0_arg1_streams_1_5_din                                          |  out|  256|     ap_fifo|                               arg0_arg1_streams_1_5|       pointer|
+|arg0_arg1_streams_1_5_num_data_valid                               |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_5|       pointer|
+|arg0_arg1_streams_1_5_fifo_cap                                     |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_5|       pointer|
+|arg0_arg1_streams_1_5_full_n                                       |   in|    1|     ap_fifo|                               arg0_arg1_streams_1_5|       pointer|
+|arg0_arg1_streams_1_5_write                                        |  out|    1|     ap_fifo|                               arg0_arg1_streams_1_5|       pointer|
+|arg0_arg1_streams_1_6_din                                          |  out|  256|     ap_fifo|                               arg0_arg1_streams_1_6|       pointer|
+|arg0_arg1_streams_1_6_num_data_valid                               |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_6|       pointer|
+|arg0_arg1_streams_1_6_fifo_cap                                     |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_6|       pointer|
+|arg0_arg1_streams_1_6_full_n                                       |   in|    1|     ap_fifo|                               arg0_arg1_streams_1_6|       pointer|
+|arg0_arg1_streams_1_6_write                                        |  out|    1|     ap_fifo|                               arg0_arg1_streams_1_6|       pointer|
+|arg0_arg1_streams_1_7_din                                          |  out|  256|     ap_fifo|                               arg0_arg1_streams_1_7|       pointer|
+|arg0_arg1_streams_1_7_num_data_valid                               |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_7|       pointer|
+|arg0_arg1_streams_1_7_fifo_cap                                     |   in|    5|     ap_fifo|                               arg0_arg1_streams_1_7|       pointer|
+|arg0_arg1_streams_1_7_full_n                                       |   in|    1|     ap_fifo|                               arg0_arg1_streams_1_7|       pointer|
+|arg0_arg1_streams_1_7_write                                        |  out|    1|     ap_fifo|                               arg0_arg1_streams_1_7|       pointer|
+|num_pkts_dout                                                      |   in|   29|     ap_fifo|                                            num_pkts|       pointer|
+|num_pkts_num_data_valid                                            |   in|    3|     ap_fifo|                                            num_pkts|       pointer|
+|num_pkts_fifo_cap                                                  |   in|    3|     ap_fifo|                                            num_pkts|       pointer|
+|num_pkts_empty_n                                                   |   in|    1|     ap_fifo|                                            num_pkts|       pointer|
+|num_pkts_read                                                      |  out|    1|     ap_fifo|                                            num_pkts|       pointer|
+|num_pkts_c_din                                                     |  out|   29|     ap_fifo|                                          num_pkts_c|       pointer|
+|num_pkts_c_num_data_valid                                          |   in|    2|     ap_fifo|                                          num_pkts_c|       pointer|
+|num_pkts_c_fifo_cap                                                |   in|    2|     ap_fifo|                                          num_pkts_c|       pointer|
+|num_pkts_c_full_n                                                  |   in|    1|     ap_fifo|                                          num_pkts_c|       pointer|
+|num_pkts_c_write                                                   |  out|    1|     ap_fifo|                                          num_pkts_c|       pointer|
+|num_pkts_c100_din                                                  |  out|   29|     ap_fifo|                                       num_pkts_c100|       pointer|
+|num_pkts_c100_num_data_valid                                       |   in|    2|     ap_fifo|                                       num_pkts_c100|       pointer|
+|num_pkts_c100_fifo_cap                                             |   in|    2|     ap_fifo|                                       num_pkts_c100|       pointer|
+|num_pkts_c100_full_n                                               |   in|    1|     ap_fifo|                                       num_pkts_c100|       pointer|
+|num_pkts_c100_write                                                |  out|    1|     ap_fifo|                                       num_pkts_c100|       pointer|
+|num_pkts_c101_din                                                  |  out|   29|     ap_fifo|                                       num_pkts_c101|       pointer|
+|num_pkts_c101_num_data_valid                                       |   in|    2|     ap_fifo|                                       num_pkts_c101|       pointer|
+|num_pkts_c101_fifo_cap                                             |   in|    2|     ap_fifo|                                       num_pkts_c101|       pointer|
+|num_pkts_c101_full_n                                               |   in|    1|     ap_fifo|                                       num_pkts_c101|       pointer|
+|num_pkts_c101_write                                                |  out|    1|     ap_fifo|                                       num_pkts_c101|       pointer|
+|num_pkts_c102_din                                                  |  out|   29|     ap_fifo|                                       num_pkts_c102|       pointer|
+|num_pkts_c102_num_data_valid                                       |   in|    2|     ap_fifo|                                       num_pkts_c102|       pointer|
+|num_pkts_c102_fifo_cap                                             |   in|    2|     ap_fifo|                                       num_pkts_c102|       pointer|
+|num_pkts_c102_full_n                                               |   in|    1|     ap_fifo|                                       num_pkts_c102|       pointer|
+|num_pkts_c102_write                                                |  out|    1|     ap_fifo|                                       num_pkts_c102|       pointer|
+|num_pkts_c103_din                                                  |  out|   29|     ap_fifo|                                       num_pkts_c103|       pointer|
+|num_pkts_c103_num_data_valid                                       |   in|    2|     ap_fifo|                                       num_pkts_c103|       pointer|
+|num_pkts_c103_fifo_cap                                             |   in|    2|     ap_fifo|                                       num_pkts_c103|       pointer|
+|num_pkts_c103_full_n                                               |   in|    1|     ap_fifo|                                       num_pkts_c103|       pointer|
+|num_pkts_c103_write                                                |  out|    1|     ap_fifo|                                       num_pkts_c103|       pointer|
+|num_pkts_c104_din                                                  |  out|   29|     ap_fifo|                                       num_pkts_c104|       pointer|
+|num_pkts_c104_num_data_valid                                       |   in|    2|     ap_fifo|                                       num_pkts_c104|       pointer|
+|num_pkts_c104_fifo_cap                                             |   in|    2|     ap_fifo|                                       num_pkts_c104|       pointer|
+|num_pkts_c104_full_n                                               |   in|    1|     ap_fifo|                                       num_pkts_c104|       pointer|
+|num_pkts_c104_write                                                |  out|    1|     ap_fifo|                                       num_pkts_c104|       pointer|
+|num_pkts_c105_din                                                  |  out|   29|     ap_fifo|                                       num_pkts_c105|       pointer|
+|num_pkts_c105_num_data_valid                                       |   in|    2|     ap_fifo|                                       num_pkts_c105|       pointer|
+|num_pkts_c105_fifo_cap                                             |   in|    2|     ap_fifo|                                       num_pkts_c105|       pointer|
+|num_pkts_c105_full_n                                               |   in|    1|     ap_fifo|                                       num_pkts_c105|       pointer|
+|num_pkts_c105_write                                                |  out|    1|     ap_fifo|                                       num_pkts_c105|       pointer|
+|num_pkts_c106_din                                                  |  out|   29|     ap_fifo|                                       num_pkts_c106|       pointer|
+|num_pkts_c106_num_data_valid                                       |   in|    2|     ap_fifo|                                       num_pkts_c106|       pointer|
+|num_pkts_c106_fifo_cap                                             |   in|    2|     ap_fifo|                                       num_pkts_c106|       pointer|
+|num_pkts_c106_full_n                                               |   in|    1|     ap_fifo|                                       num_pkts_c106|       pointer|
+|num_pkts_c106_write                                                |  out|    1|     ap_fifo|                                       num_pkts_c106|       pointer|
++-------------------------------------------------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+

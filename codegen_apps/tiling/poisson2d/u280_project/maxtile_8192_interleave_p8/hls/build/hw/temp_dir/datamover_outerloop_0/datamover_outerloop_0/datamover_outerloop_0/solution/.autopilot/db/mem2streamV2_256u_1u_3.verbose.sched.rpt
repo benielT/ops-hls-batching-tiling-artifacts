@@ -1,0 +1,538 @@
+
+
+================================================================
+== Vitis HLS Report for 'mem2streamV2_256u_1u_3'
+================================================================
+* Date:           Tue Aug 11 20:27:32 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 48
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 35 
+35 --> 36 
+36 --> 37 
+37 --> 38 
+38 --> 39 
+39 --> 40 
+40 --> 41 
+41 --> 42 
+42 --> 43 
+43 --> 44 
+44 --> 45 
+45 --> 46 
+46 --> 47 
+47 --> 48 
+48 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.43>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%num_beats_read = read i14 @_ssdm_op_Read.ap_auto.i14, i14 %num_beats"   --->   Operation 49 'read' 'num_beats_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%mem_in_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %mem_in"   --->   Operation 50 'read' 'mem_in_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%num_beats_cast1 = zext i14 %num_beats_read"   --->   Operation 51 'zext' 'num_beats_cast1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%trunc_ln = partselect i59 @_ssdm_op_PartSelect.i59.i64.i32.i32, i64 %mem_in_read, i32 5, i32 63" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 52 'partselect' 'trunc_ln' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%sext_ln533 = sext i59 %trunc_ln" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 53 'sext' 'sext_ln533' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%gmem3_addr = getelementptr i256 %gmem3, i64 %sext_ln533" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 54 'getelementptr' 'gmem3_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 55 [46/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 55 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 2 <SV = 1> <Delay = 2.43>
+ST_2 : Operation 56 [45/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 56 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 3 <SV = 2> <Delay = 2.43>
+ST_3 : Operation 57 [44/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 57 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 4 <SV = 3> <Delay = 2.43>
+ST_4 : Operation 58 [43/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 58 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 5 <SV = 4> <Delay = 2.43>
+ST_5 : Operation 59 [42/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 59 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 6 <SV = 5> <Delay = 2.43>
+ST_6 : Operation 60 [41/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 60 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 7 <SV = 6> <Delay = 2.43>
+ST_7 : Operation 61 [40/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 61 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 8 <SV = 7> <Delay = 2.43>
+ST_8 : Operation 62 [39/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 62 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 9 <SV = 8> <Delay = 2.43>
+ST_9 : Operation 63 [38/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 63 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 10 <SV = 9> <Delay = 2.43>
+ST_10 : Operation 64 [37/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 64 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 11 <SV = 10> <Delay = 2.43>
+ST_11 : Operation 65 [36/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 65 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 12 <SV = 11> <Delay = 2.43>
+ST_12 : Operation 66 [35/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 66 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 13 <SV = 12> <Delay = 2.43>
+ST_13 : Operation 67 [34/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 67 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 14 <SV = 13> <Delay = 2.43>
+ST_14 : Operation 68 [33/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 68 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 15 <SV = 14> <Delay = 2.43>
+ST_15 : Operation 69 [32/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 69 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 16 <SV = 15> <Delay = 2.43>
+ST_16 : Operation 70 [31/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 70 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 17 <SV = 16> <Delay = 2.43>
+ST_17 : Operation 71 [30/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 71 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 18 <SV = 17> <Delay = 2.43>
+ST_18 : Operation 72 [29/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 72 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 19 <SV = 18> <Delay = 2.43>
+ST_19 : Operation 73 [28/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 73 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 20 <SV = 19> <Delay = 2.43>
+ST_20 : Operation 74 [27/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 74 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 21 <SV = 20> <Delay = 2.43>
+ST_21 : Operation 75 [26/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 75 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 22 <SV = 21> <Delay = 2.43>
+ST_22 : Operation 76 [25/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 76 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 23 <SV = 22> <Delay = 2.43>
+ST_23 : Operation 77 [24/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 77 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 24 <SV = 23> <Delay = 2.43>
+ST_24 : Operation 78 [23/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 78 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 25 <SV = 24> <Delay = 2.43>
+ST_25 : Operation 79 [22/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 79 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 26 <SV = 25> <Delay = 2.43>
+ST_26 : Operation 80 [21/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 80 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 27 <SV = 26> <Delay = 2.43>
+ST_27 : Operation 81 [20/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 81 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 28 <SV = 27> <Delay = 2.43>
+ST_28 : Operation 82 [19/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 82 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 29 <SV = 28> <Delay = 2.43>
+ST_29 : Operation 83 [18/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 83 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 30 <SV = 29> <Delay = 2.43>
+ST_30 : Operation 84 [17/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 84 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 31 <SV = 30> <Delay = 2.43>
+ST_31 : Operation 85 [16/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 85 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 32 <SV = 31> <Delay = 2.43>
+ST_32 : Operation 86 [15/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 86 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 33 <SV = 32> <Delay = 2.43>
+ST_33 : Operation 87 [14/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 87 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 34 <SV = 33> <Delay = 2.43>
+ST_34 : Operation 88 [13/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 88 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 35 <SV = 34> <Delay = 2.43>
+ST_35 : Operation 89 [12/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 89 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 36 <SV = 35> <Delay = 2.43>
+ST_36 : Operation 90 [11/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 90 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 37 <SV = 36> <Delay = 2.43>
+ST_37 : Operation 91 [10/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 91 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 38 <SV = 37> <Delay = 2.43>
+ST_38 : Operation 92 [9/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 92 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 39 <SV = 38> <Delay = 2.43>
+ST_39 : Operation 93 [8/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 93 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 40 <SV = 39> <Delay = 2.43>
+ST_40 : Operation 94 [7/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 94 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 41 <SV = 40> <Delay = 2.43>
+ST_41 : Operation 95 [6/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 95 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 42 <SV = 41> <Delay = 2.43>
+ST_42 : Operation 96 [5/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 96 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 43 <SV = 42> <Delay = 2.43>
+ST_43 : Operation 97 [4/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 97 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 44 <SV = 43> <Delay = 2.43>
+ST_44 : Operation 98 [3/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 98 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 45 <SV = 44> <Delay = 2.43>
+ST_45 : Operation 99 [2/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 99 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 46 <SV = 45> <Delay = 2.43>
+ST_46 : Operation 100 [1/46] (2.43ns)   --->   "%empty = readreq i1 @_ssdm_op_ReadReq.m_axi.p1i256, i256 %gmem3_addr, i32 %num_beats_cast1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 100 'readreq' 'empty' <Predicate = true> <Delay = 2.43> <CoreInst = "m_axi">   --->   Core 121 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 47 <SV = 46> <Delay = 1.03>
+ST_47 : Operation 101 [1/1] (0.00ns)   --->   "%empty_135 = wait i32 @_ssdm_op_Wait"   --->   Operation 101 'wait' 'empty_135' <Predicate = true> <Delay = 0.00>
+ST_47 : Operation 102 [2/2] (1.03ns)   --->   "%call_ln533 = call void @mem2streamV2<256u, 1u>.3_Pipeline_VITIS_LOOP_533_1, i256 %gmem3, i59 %trunc_ln, i14 %num_beats_read, i256 %arg0_read_mem_strm_g1_1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 102 'call' 'call_ln533' <Predicate = true> <Delay = 1.03> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 48 <SV = 47> <Delay = 0.00>
+ST_48 : Operation 103 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_g1_1, void @empty_42, i32 0, i32 0, void @empty_11, i32 0, i32 0, void @empty_11, void @empty_11, void @empty_11, i32 0, i32 0, i32 0, i32 0, void @empty_11, void @empty_11, i32 4294967295, i32 0"   --->   Operation 103 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_48 : Operation 104 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %gmem3, void @empty_2, i32 0, i32 0, void @empty_11, i32 40, i32 8192, void @empty_43, void @empty_57, void @empty_11, i32 4, i32 4, i32 16, i32 16, void @empty_11, void @empty_11, i32 4294967295, i32 0"   --->   Operation 104 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_48 : Operation 105 [1/2] (0.00ns)   --->   "%call_ln533 = call void @mem2streamV2<256u, 1u>.3_Pipeline_VITIS_LOOP_533_1, i256 %gmem3, i59 %trunc_ln, i14 %num_beats_read, i256 %arg0_read_mem_strm_g1_1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533]   --->   Operation 105 'call' 'call_ln533' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_48 : Operation 106 [1/1] (0.00ns)   --->   "%ret_ln553 = ret" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:553]   --->   Operation 106 'ret' 'ret_ln553' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 2.43ns
+The critical path consists of the following:
+	wire read operation ('num_beats_read') on port 'num_beats' [5]  (0 ns)
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 2>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 3>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 4>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 5>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 6>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 7>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 8>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 9>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 10>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 11>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 12>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 13>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 14>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 15>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 16>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 17>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 18>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 19>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 20>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 21>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 22>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 23>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 24>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 25>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 26>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 27>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 28>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 29>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 30>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 31>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 32>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 33>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 34>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 35>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 36>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 37>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 38>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 39>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 40>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 41>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 42>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 43>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 44>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 45>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 46>: 2.43ns
+The critical path consists of the following:
+	bus request operation ('empty', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) on port 'gmem3' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) [13]  (2.43 ns)
+
+ <State 47>: 1.04ns
+The critical path consists of the following:
+	'call' operation ('call_ln533', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:533) to 'mem2streamV2<256u, 1u>.3_Pipeline_VITIS_LOOP_533_1' [15]  (1.04 ns)
+
+ <State 48>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+	State 40
+	State 41
+	State 42
+	State 43
+	State 44
+	State 45
+	State 46
+	State 47
+	State 48
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
