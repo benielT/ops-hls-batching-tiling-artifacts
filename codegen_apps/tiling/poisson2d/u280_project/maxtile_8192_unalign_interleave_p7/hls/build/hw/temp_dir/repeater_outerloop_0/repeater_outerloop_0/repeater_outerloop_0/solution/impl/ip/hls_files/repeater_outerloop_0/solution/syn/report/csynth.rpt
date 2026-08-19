@@ -1,0 +1,449 @@
+
+
+================================================================
+== Synthesis Summary Report of 'repeater_outerloop_0'
+================================================================
++ General Information: 
+    * Date:           Thu Aug 13 05:48:36 2026
+    * Version:        2022.2 (Build 3670227 on Oct 13 2022)
+    * Project:        repeater_outerloop_0
+    * Solution:       solution (Vitis Kernel Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcu280-fsvh2892-2L-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------------+------+------+---------+--------+----------+---------+------+----------+------+----+---------+-----------+-----+
+    |         Modules        | Issue|      | Latency | Latency| Iteration|         | Trip |          |      |    |         |           |     |
+    |         & Loops        | Type | Slack| (cycles)|  (ns)  |  Latency | Interval| Count| Pipelined| BRAM | DSP|    FF   |    LUT    | URAM|
+    +------------------------+------+------+---------+--------+----------+---------+------+----------+------+----+---------+-----------+-----+
+    |+ repeater_outerloop_0  |     -|  2.43|        1|   3.333|         -|        1|     -|  yes(flp)|     -|   -|  6 (~0%)|  164 (~0%)|    -|
+    +------------------------+------+------+---------+--------+----------+---------+------+----------+------+----+---------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AXIS
++-----------------+---------------+-------+-------+-------+--------+-------+--------+
+| Interface       | Register Mode | TDATA | TKEEP | TLAST | TREADY | TSTRB | TVALID |
++-----------------+---------------+-------+-------+-------+--------+-------+--------+
+| arg0_0_axis_in  | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg0_1_axis_in  | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg0_2_axis_in  | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg0_3_axis_in  | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg0_4_axis_in  | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg0_5_axis_in  | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg0_6_axis_in  | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg0_7_axis_in  | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg1_0_axis_out | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg1_1_axis_out | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg1_2_axis_out | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg1_3_axis_out | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg1_4_axis_out | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg1_5_axis_out | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg1_6_axis_out | both          | 256   | 32    | 1     | 1      | 32    | 1      |
+| arg1_7_axis_out | both          | 256   | 32    | 1     | 1      | 32    | 1      |
++-----------------+---------------+-------+-------+-------+--------+-------+--------+
+
+* TOP LEVEL CONTROL
++-----------+--------------+----------+
+| Interface | Type         | Ports    |
++-----------+--------------+----------+
+| ap_clk    | clock        | ap_clk   |
+| ap_rst_n  | reset        | ap_rst_n |
+| ap_ctrl   | ap_ctrl_none |          |
++-----------+--------------+----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-----------------+-----------+----------------------------------------------+
+| Argument        | Direction | Datatype                                     |
++-----------------+-----------+----------------------------------------------+
+| arg0_0_axis_in  | in        | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg0_1_axis_in  | in        | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg0_2_axis_in  | in        | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg0_3_axis_in  | in        | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg0_4_axis_in  | in        | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg0_5_axis_in  | in        | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg0_6_axis_in  | in        | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg0_7_axis_in  | in        | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg1_0_axis_out | out       | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg1_1_axis_out | out       | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg1_2_axis_out | out       | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg1_3_axis_out | out       | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg1_4_axis_out | out       | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg1_5_axis_out | out       | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg1_6_axis_out | out       | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
+| arg1_7_axis_out | out       | stream<hls::axis<ap_uint<256>, 0, 0, 0>, 0>& |
++-----------------+-----------+----------------------------------------------+
+
+* SW-to-HW Mapping
++-----------------+-----------------+-----------+
+| Argument        | HW Interface    | HW Type   |
++-----------------+-----------------+-----------+
+| arg0_0_axis_in  | arg0_0_axis_in  | interface |
+| arg0_1_axis_in  | arg0_1_axis_in  | interface |
+| arg0_2_axis_in  | arg0_2_axis_in  | interface |
+| arg0_3_axis_in  | arg0_3_axis_in  | interface |
+| arg0_4_axis_in  | arg0_4_axis_in  | interface |
+| arg0_5_axis_in  | arg0_5_axis_in  | interface |
+| arg0_6_axis_in  | arg0_6_axis_in  | interface |
+| arg0_7_axis_in  | arg0_7_axis_in  | interface |
+| arg1_0_axis_out | arg1_0_axis_out | interface |
+| arg1_1_axis_out | arg1_1_axis_out | interface |
+| arg1_2_axis_out | arg1_2_axis_out | interface |
+| arg1_3_axis_out | arg1_3_axis_out | interface |
+| arg1_4_axis_out | arg1_4_axis_out | interface |
+| arg1_5_axis_out | arg1_5_axis_out | interface |
+| arg1_6_axis_out | arg1_6_axis_out | interface |
+| arg1_7_axis_out | arg1_7_axis_out | interface |
++-----------------+-----------------+-----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
+  No bind op info in design
+
+================================================================
+== Bind Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+* Ignored Pragmas
++----------------+---------------------------------------+------------------------------------------------------------------------------------------------------------------+----------------------------------------------------+
+| Type           | Options                               | Location                                                                                                         | Messages                                           |
++----------------+---------------------------------------+------------------------------------------------------------------------------------------------------------------+----------------------------------------------------+
+| loop_tripcount | avg=avg_num_data_per_axis_pkt         | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:261 in convaxispkt2membeatmasked   | missing argument for 'max'                         |
+| loop_tripcount | avg=avg_num_data_per_axis_pkt         | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:392 in convstreampkt2membeatmasked | missing argument for 'max'                         |
+| loop_tripcount | min=1 avg=8                           | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7997 in axis2memmasked             | missing argument for 'max'                         |
+| loop_tripcount | min=1 avg=8                           | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8620 in stream2memmasked           | missing argument for 'max'                         |
+| interface      | axis port = arg0_0_axis_in register # | ../../../../../device/src/repeater_outerloop_0.cpp:28 in repeater_outerloop_0                                    | unexpected pragma argument '#', expects identifier |
++----------------+---------------------------------------+------------------------------------------------------------------------------------------------------------------+----------------------------------------------------+
+
+* Valid Pragma Syntax
++-----------------+----------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Type            | Options                                                                          | Location                                                                                                                        |
++-----------------+----------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| inline          | off                                                                              | ../../../../../../../../../../../OPS/ops/hls/common/include/ops_hls_utils.hpp:53 in register_it                                 |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:128 in convmembeat2axispkt                        |
+| loop_tripcount  | min=min_strm_pkts_per_beat avg=avg_strm_pkts_per_beat max=max_strm_pkts_per_beat | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:129 in convmembeat2axispkt                        |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:182 in convaxispkt2membeat                        |
+| loop_tripcount  | min=min_strm_pkts_per_beat avg=avg_strm_pkts_per_beat max=max_strm_pkts_per_beat | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:183 in convaxispkt2membeat                        |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:260 in convaxispkt2membeatmasked                  |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:309 in convstreampkt2membeat                      |
+| loop_tripcount  | min=min_strm_pkts_per_beat avg=avg_strm_pkts_per_beat max=max_strm_pkts_per_beat | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:310 in convstreampkt2membeat                      |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:391 in convstreampkt2membeatmasked                |
+| pipeline        | II=ii                                                                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:458 in mem2stream                                 |
+| pipeline        | II=ii                                                                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:480 in mem2stream                                 |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:535 in mem2streamv2                               |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:608 in mem2stream                                 |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:614 in mem2stream                                 |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:636 in mem2stream                                 |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:642 in mem2stream                                 |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:792 in mem2stream                                 |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:813 in stream2streambuffered                      |
+| pipeline        | II=ii                                                                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:860 in stream2mem                                 |
+| pipeline        | II=ii                                                                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:881 in stream2mem                                 |
+| pipeline        | II=II                                                                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:922 in hlsterminate                               |
+| pipeline        | II=ii                                                                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:985 in stream2memwithavoid                        |
+| pipeline        | II=ii                                                                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1006 in stream2memwithavoid                       |
+| pipeline        | II=ii                                                                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1028 in stream2memwithavoid                       |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1086 in stream2memwithavoidv2                     |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1151 in stream2memwithavoidv3                     |
+| loop_tripcount  | min=1 max=64                                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1152 in stream2memwithavoidv3                     |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1174 in stream2memwithavoidv3                     |
+| loop_tripcount  | min=1 max=256                                                                    | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1175 in stream2memwithavoidv3                     |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1261 in stream2memwithavoid                       |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1267 in stream2memwithavoid                       |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1291 in stream2memwithavoid                       |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1298 in stream2memwithavoid                       |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1323 in stream2memwithavoid                       |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1330 in stream2memwithavoid                       |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1394 in stream2mem                                |
+| array_partition | variable=data_front dim=0 complete                                               | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1466 in stream2interleave, data_front             |
+| array_partition | variable=data dim=0 complete                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1467 in stream2interleave, data                   |
+| array_partition | variable=data_back dim=0 complete                                                | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1468 in stream2interleave, data_back              |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1472 in stream2interleave                         |
+| array_partition | variable=tmp dim=0 complete                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1475 in stream2interleave, tmp                    |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1480 in stream2interleave                         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1501 in stream2interleave                         |
+| array_partition | variable=tmp_out dim=1 complete                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1508 in stream2interleave, tmp_out                |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1514 in stream2interleave                         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1533 in stream2interleave                         |
+| array_partition | variable = tmp_in dim=0 complete                                                 | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1593 in interleave2stream                         |
+| array_partition | variable = tmp_out dim=0 complete                                                | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1595 in interleave2stream                         |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1599 in interleave2stream                         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1603 in interleave2stream                         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1623 in interleave2stream                         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1630 in interleave2stream                         |
+| array_partition | variable=data_front dim=0 complete                                               | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1695 in updateinterleaveboundaries, data_front    |
+| array_partition | variable=data dim=0 complete                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1696 in updateinterleaveboundaries, data          |
+| array_partition | variable=data_back dim=0 complete                                                | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1697 in updateinterleaveboundaries, data_back     |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1701 in updateinterleaveboundaries                |
+| array_partition | variable=tmp dim=0 complete                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1704 in updateinterleaveboundaries, tmp           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1709 in updateinterleaveboundaries                |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1716 in updateinterleaveboundaries                |
+| array_partition | variable=tmp_out dim=0 complete                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1723 in updateinterleaveboundaries, tmp_out       |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1729 in updateinterleaveboundaries                |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1758 in updateinterleaveboundaries                |
+| pipeline        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1859 in tilemem2stream                            |
+| pipeline        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1888 in tilestream2mem                            |
+| pipeline        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1918 in tilestream2memwithavoid                   |
+| pipeline        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:1988 in tilemem2stream                            |
+| pipeline        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2074 in tilestream2mem                            |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2339 in readconfigstreamgenerator                 |
+| array_partition | variable=initial_bank_offsets complete                                           | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2582 in offsetgenerator, initial_bank_offsets     |
+| array_partition | variable=grid_size_x_banks complete                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2585 in offsetgenerator, grid_size_x_banks        |
+| array_partition | variable=bank_stride_z complete                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2588 in offsetgenerator, bank_stride_z            |
+| array_partition | variable=bank_tile_size_x complete                                               | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2591 in offsetgenerator, bank_tile_size_x         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2595 in offsetgenerator                           |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2613 in offsetgenerator                           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2617 in offsetgenerator                           |
+| array_partition | variable=initial_bank_offsets complete                                           | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2688 in offsetgenerator, initial_bank_offsets     |
+| array_partition | variable=grid_size_x_banks complete                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2691 in offsetgenerator, grid_size_x_banks        |
+| array_partition | variable=bank_tile_size_x complete                                               | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2694 in offsetgenerator, bank_tile_size_x         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2698 in offsetgenerator                           |
+| pipeline        | II = IN_ITR                                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2712 in offsetgenerator                           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2715 in offsetgenerator                           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2818 in writeconfigstreamgenerator                |
+| loop_flatten    | off                                                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2967 in stridedtilemem2streamv3                   |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:2968 in stridedtilemem2streamv3                   |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3038 in stridedtilemem2streamv4                   |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3039 in stridedtilemem2streamv4                   |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3128 in stridedtilemem2streamv5                   |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3129 in stridedtilemem2streamv5                   |
+| loop_flatten    | off                                                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3255 in stridedtilestream2memwithavoidv3          |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3256 in stridedtilestream2memwithavoidv3          |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3355 in stridedtilestream2memwithavoidv4          |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3356 in stridedtilestream2memwithavoidv4          |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3446 in stridedtilestream2memwithavoidv4          |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3447 in stridedtilestream2memwithavoidv4          |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3548 in stridedtilestream2memwithavoidv5          |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3549 in stridedtilestream2memwithavoidv5          |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3664 in redirect                                  |
+| array_partition | variable=bank_cond complete dim=1                                                | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3676 in redirect, bank_cond                       |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3680 in redirect                                  |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3693 in redirect                                  |
+| array_partition | variable=tmp complete dim=1                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3698 in redirect, tmp                             |
+| array_partition | variable=swap complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3699 in redirect, swap                            |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3706 in redirect                                  |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3731 in redirect                                  |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3739 in redirect                                  |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3828 in redirectv2                                |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3857 in redirectv2                                |
+| array_partition | variable=tmp complete dim=1                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3862 in redirectv2, tmp                           |
+| array_partition | variable=swap complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3863 in redirectv2, swap                          |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3870 in redirectv2                                |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3895 in redirectv2                                |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3903 in redirectv2                                |
+| array_partition | variable=read_val                                                                | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3977 in aggregatedstream2streamstepdown, read_val |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3981 in aggregatedstream2streamstepdown           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:3989 in aggregatedstream2streamstepdown           |
+| pipeline        | II=ii_out                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4008 in aggregatedstream2streamstepdown           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4015 in aggregatedstream2streamstepdown           |
+| array_partition | variable=read_val                                                                | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4093 in aggregatedstream2streamstepdown, read_val |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4097 in aggregatedstream2streamstepdown           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4105 in aggregatedstream2streamstepdown           |
+| pipeline        | II=ii_out                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4125 in aggregatedstream2streamstepdown           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4132 in aggregatedstream2streamstepdown           |
+| pipeline        | II=ii_out                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4156 in aggregatedstream2streamstepdown           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4163 in aggregatedstream2streamstepdown           |
+| array_partition | variable=chunks dim=0 complete                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4240 in aggregatedstream2streamstepup, chunks     |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4244 in aggregatedstream2streamstepup             |
+| pipeline        | II=ii_out                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4254 in aggregatedstream2streamstepup             |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4261 in aggregatedstream2streamstepup             |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4284 in aggregatedstream2streamstepup             |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4288 in aggregatedstream2streamstepup             |
+| array_partition | variable=chunks dim=0 complete                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4362 in aggregatedstream2streamstepup, chunks     |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4366 in aggregatedstream2streamstepup             |
+| pipeline        | II=ii_out                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4377 in aggregatedstream2streamstepup             |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4384 in aggregatedstream2streamstepup             |
+| pipeline        | II=ii_out                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4406 in aggregatedstream2streamstepup             |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4413 in aggregatedstream2streamstepup             |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4436 in aggregatedstream2streamstepup             |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4440 in aggregatedstream2streamstepup             |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4542 in redirect                                  |
+| array_partition | variable=bank_cond complete dim=1                                                | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4554 in redirect, bank_cond                       |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4558 in redirect                                  |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4571 in redirect                                  |
+| array_partition | variable=tmp complete dim=1                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4576 in redirect, tmp                             |
+| array_partition | variable=swap complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4577 in redirect, swap                            |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4584 in redirect                                  |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4589 in redirect                                  |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4614 in redirect                                  |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4622 in redirect                                  |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4625 in redirect                                  |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4717 in reverseredirect                           |
+| array_partition | variable=bank_cond complete dim=1                                                | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4728 in reverseredirect, bank_cond                |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4732 in reverseredirect                           |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4745 in reverseredirect                           |
+| array_partition | variable=tmp complete dim=1                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4749 in reverseredirect, tmp                      |
+| array_partition | variable=swap complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4750 in reverseredirect, swap                     |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4757 in reverseredirect                           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4777 in reverseredirect                           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4785 in reverseredirect                           |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4879 in reverseredirectv2                         |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4907 in reverseredirectv2                         |
+| array_partition | variable=tmp complete dim=1                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4911 in reverseredirectv2, tmp                    |
+| array_partition | variable=swap complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4912 in reverseredirectv2, swap                   |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4919 in reverseredirectv2                         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4939 in reverseredirectv2                         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:4947 in reverseredirectv2                         |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5047 in reverseredirect                           |
+| array_partition | variable=bank_cond complete dim=1                                                | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5058 in reverseredirect, bank_cond                |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5062 in reverseredirect                           |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5075 in reverseredirect                           |
+| array_partition | variable=tmp complete dim=1                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5079 in reverseredirect, tmp                      |
+| array_partition | variable=swap complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5080 in reverseredirect, swap                     |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5087 in reverseredirect                           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5090 in reverseredirect                           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5112 in reverseredirect                           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5120 in reverseredirect                           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5125 in reverseredirect                           |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5521 in combinestreams2d                          |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5606 in combinestreams3d                          |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5674 in splitstream2d                             |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5757 in splitstream3d                             |
+| inline          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5796 in mem2streamgroupexpand                     |
+| inline          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5808 in mem2streamgroupexpand                     |
+| inline          | off                                                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5830 in interleavetilemem2stream2d_inner          |
+| dataflow        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5831 in interleavetilemem2stream2d_inner          |
+| array_partition | variable=sizes.v complete dim=1                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5968 in interleavetilemem2stream2d, sizes.v       |
+| array_partition | variable=offs.v complete dim=1                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5969 in interleavetilemem2stream2d, offs.v        |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:5987 in interleavetilemem2stream2d                |
+| inline          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6017 in stream2memgroupexpand                     |
+| inline          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6030 in stream2memgroupexpand                     |
+| inline          | off                                                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6055 in interleavetilestream2mem2d_inner          |
+| dataflow        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6056 in interleavetilestream2mem2d_inner          |
+| array_partition | variable=sizes.v complete dim=1                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6209 in interleavetilestream2mem2d, sizes.v       |
+| array_partition | variable=avoids.v complete dim=1                                                 | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6210 in interleavetilestream2mem2d, avoids.v      |
+| array_partition | variable=offs.v complete dim=1                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6211 in interleavetilestream2mem2d, offs.v        |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6225 in interleavetilestream2mem2d                |
+| inline          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6267 in stepdownlaneexpand                        |
+| inline          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6279 in stepdownlaneexpand                        |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6289 in stepdownlaneexpand                        |
+| loop_tripcount  | min=1 max=64                                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6432 in stream2axistilestepdown2d                 |
+| loop_tripcount  | min=1 max=4096                                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6451 in stream2axistilestepdown2d                 |
+| loop_flatten    | off                                                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6452 in stream2axistilestepdown2d                 |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6457 in stream2axistilestepdown2d                 |
+| loop_tripcount  | min=1 max=1024                                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6458 in stream2axistilestepdown2d                 |
+| array_partition | variable=wide complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6461 in stream2axistilestepdown2d, wide           |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6466 in stream2axistilestepdown2d                 |
+| inline          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6495 in stepuplaneexpand                          |
+| inline          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6507 in stepuplaneexpand                          |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6517 in stepuplaneexpand                          |
+| loop_tripcount  | min=1 max=64                                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6640 in axis2streamtilestepup2d                   |
+| loop_tripcount  | min=1 max=4096                                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6659 in axis2streamtilestepup2d                   |
+| loop_flatten    | off                                                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6660 in axis2streamtilestepup2d                   |
+| pipeline        | II=ii_adj                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6665 in axis2streamtilestepup2d                   |
+| loop_tripcount  | min=1 max=1024                                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6666 in axis2streamtilestepup2d                   |
+| array_partition | variable=wide complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6669 in axis2streamtilestepup2d, wide             |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6677 in axis2streamtilestepup2d                   |
+| loop_tripcount  | min=1 max=64                                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6803 in redirecttile2d                            |
+| array_partition | variable=bank_extra complete dim=1                                               | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6816 in redirecttile2d, bank_extra                |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6821 in redirecttile2d                            |
+| loop_tripcount  | min=1 max=4096                                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6840 in redirecttile2d                            |
+| loop_flatten    | off                                                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6841 in redirecttile2d                            |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6846 in redirecttile2d                            |
+| loop_tripcount  | min=1 max=1024                                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6847 in redirecttile2d                            |
+| array_partition | variable=tmp complete dim=1                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6851 in redirecttile2d, tmp                       |
+| array_partition | variable=swap complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6852 in redirecttile2d, swap                      |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6860 in redirecttile2d                            |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6885 in redirecttile2d                            |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:6894 in redirecttile2d                            |
+| loop_tripcount  | min=1 max=64                                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7016 in reverseredirecttile2d                     |
+| array_partition | variable=bank_extra complete dim=1                                               | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7028 in reverseredirecttile2d, bank_extra         |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7033 in reverseredirecttile2d                     |
+| loop_tripcount  | min=1 max=4096                                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7051 in reverseredirecttile2d                     |
+| loop_flatten    | off                                                                              | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7052 in reverseredirecttile2d                     |
+| pipeline        | II=IN_ITR                                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7057 in reverseredirecttile2d                     |
+| loop_tripcount  | min=1 max=1024                                                                   | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7058 in reverseredirecttile2d                     |
+| array_partition | variable=tmp complete dim=1                                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7062 in reverseredirecttile2d, tmp                |
+| array_partition | variable=swap complete dim=1                                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7063 in reverseredirecttile2d, swap               |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7071 in reverseredirecttile2d                     |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7093 in reverseredirecttile2d                     |
+| unroll          |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7103 in reverseredirecttile2d                     |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7170 in stream2stream                             |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7171 in stream2stream                             |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7216 in stream2stream                             |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7217 in stream2stream                             |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7298 in stream2streamstepup                       |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7299 in stream2streamstepup                       |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7378 in stream2streamstepdown                     |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7379 in stream2streamstepdown                     |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7445 in stream2axis                               |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7498 in axis2stream                               |
+| loop_tripcount  | avg=avg_num_of_bursts max=max_num_of_bursts                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7573 in mem2axis                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7577 in mem2axis                                  |
+| loop_tripcount  | min=min_burst_len avg=avg_burst_len max=max_burst_len                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7578 in mem2axis                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7587 in mem2axis                                  |
+| stream          | variable = mem_strm depth = max_depth_v16                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7637 in mem2axisv2                                |
+| stream          | variable = red_mem_strm depth = max_depth_v8                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7638 in mem2axisv2                                |
+| dataflow        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7640 in mem2axisv2                                |
+| loop_tripcount  | avg=avg_num_of_bursts max=max_num_of_bursts                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7694 in mem2axis                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7698 in mem2axis                                  |
+| loop_tripcount  | min=min_burst_len avg=avg_burst_len max=max_burst_len                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7699 in mem2axis                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7708 in mem2axis                                  |
+| loop_tripcount  | avg=avg_num_of_bursts max=max_num_of_bursts                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7717 in mem2axis                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7721 in mem2axis                                  |
+| loop_tripcount  | min=min_burst_len avg=avg_burst_len max=max_burst_len                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7722 in mem2axis                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7731 in mem2axis                                  |
+| loop_tripcount  | avg=avg_num_of_bursts max=max_num_of_bursts                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7792 in axis2mem                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7796 in axis2mem                                  |
+| loop_tripcount  | min=min_burst_len avg=avg_burst_len max=max_burst_len                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7797 in axis2mem                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7806 in axis2mem                                  |
+| stream          | variable = mem_strm depth = max_depth_v16                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7857 in axis2memv2                                |
+| stream          | variable = red_mem_strm depth = max_depth_v8                                     | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7858 in axis2memv2                                |
+| dataflow        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7860 in axis2memv2                                |
+| loop_tripcount  | avg=avg_num_of_bursts max=max_num_of_bursts                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7915 in axis2mem                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7919 in axis2mem                                  |
+| loop_tripcount  | min=min_burst_len avg=avg_burst_len max=max_burst_len                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7920 in axis2mem                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7929 in axis2mem                                  |
+| loop_tripcount  | avg=avg_num_of_bursts max=max_num_of_bursts                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7938 in axis2mem                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7942 in axis2mem                                  |
+| loop_tripcount  | min=min_burst_len avg=avg_burst_len max=max_burst_len                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7943 in axis2mem                                  |
+| pipeline        | II=num_strm_pkts_per_beat                                                        | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7952 in axis2mem                                  |
+| pipeline        | II=data_per_axis_pkt                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:7996 in axis2memmasked                            |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8044 in axis2stream                               |
+| loop_flatten    |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8045 in axis2stream                               |
+| array_partition | variable=cycleBuf type=complete                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8113 in axis2streammasked, cycleBuf               |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8141 in axis2streammasked                         |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8199 in axis2streammasked                         |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8268 in axisloopbackv2                            |
+| pipeline        | II = 1                                                                           | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8339 in axisloopback                              |
+| pipeline        | II=II                                                                            | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8375 in axisterminate                             |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8434 in stream2axis                               |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8503 in stream2axismasked                         |
+| pipeline        | II=data_per_strm_pkt                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8619 in stream2memmasked                          |
+| pipeline        | II=1                                                                             | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8844 in memwritegrid                              |
+| pipeline        | II = 1                                                                           | ../../../../../../../../../../../OPS/ops/hls/L1/include/ops_hls_datamover.hpp:8923 in memwritegridsimple                        |
+| pipeline        | II = II                                                                          | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:132 in manualburstwrite                                |
+| pipeline        | II = II                                                                          | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:152 in manualburstwrite                                |
+| pipeline        | II = II                                                                          | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:254 in manualburstread                                 |
+| pipeline        | II = II                                                                          | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:291 in manualburstread                                 |
+| pipeline        | II = 1                                                                           | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:356 in configparser3dtiled                             |
+| dataflow        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:451 in read3dtiled                                     |
+| stream          | variable = r_offset depth = OUTSTANDING                                          | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:453 in read3dtiled                                     |
+| stream          | variable = r_burst depth = OUTSTANDING                                           | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:455 in read3dtiled                                     |
+| stream          | variable = e_r depth = OUTSTANDING                                               | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:457 in read3dtiled                                     |
+| dataflow        |                                                                                  | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:495 in write3dtiled                                    |
+| stream          | variable = r_offset depth = OUTSTANDING                                          | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:497 in write3dtiled                                    |
+| stream          | variable = r_burst depth = OUTSTANDING                                           | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:499 in write3dtiled                                    |
+| stream          | variable = e_r depth = OUTSTANDING                                               | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:501 in write3dtiled                                    |
+| stream          | variable = command depth = OUTSTANDING_READ                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:553 in tiledmem2stream3d                               |
+| stream          | variable = command depth = OUTSTANDING_READ                                      | ../../../../../../../../../../../OPS/ops/hls/L1/include/xf_datamover.hpp:620 in tiledstream2mem3d                               |
+| interface       | ap_ctrl_none port=return                                                         | ../../../../../device/src/repeater_outerloop_0.cpp:29 in repeater_outerloop_0, return                                           |
+| pipeline        | II=1 style=flp                                                                   | ../../../../../device/src/repeater_outerloop_0.cpp:31 in repeater_outerloop_0                                                   |
++-----------------+----------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+
+

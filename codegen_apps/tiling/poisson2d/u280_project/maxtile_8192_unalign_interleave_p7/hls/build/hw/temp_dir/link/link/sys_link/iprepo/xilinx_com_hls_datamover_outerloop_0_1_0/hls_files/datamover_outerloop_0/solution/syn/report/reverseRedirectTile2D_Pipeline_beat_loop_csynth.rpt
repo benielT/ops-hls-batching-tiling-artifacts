@@ -1,0 +1,324 @@
+
+
+================================================================
+== Vitis HLS Report for 'reverseRedirectTile2D_Pipeline_beat_loop'
+================================================================
+* Date:           Thu Aug 13 05:31:33 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  1.801 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-----+------+---------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval  | Pipeline|
+    |   min   |   max   |    min    |    max   | min |  max |   Type  |
+    +---------+---------+-----------+----------+-----+------+---------+
+    |        4|     1027|  13.332 ns|  3.423 us|    4|  1027|       no|
+    +---------+---------+-----------+----------+-----+------+---------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------------------+---------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                          |                           |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                 Instance                 |           Module          |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +------------------------------------------+---------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |tmp_V_register_it_ap_uint_256_s_fu_413    |register_it_ap_uint_256_s  |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+        |tmp_V_1_register_it_ap_uint_256_s_fu_419  |register_it_ap_uint_256_s  |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+        |tmp_V_2_register_it_ap_uint_256_s_fu_425  |register_it_ap_uint_256_s  |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+        |tmp_V_3_register_it_ap_uint_256_s_fu_431  |register_it_ap_uint_256_s  |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+        |tmp_V_4_register_it_ap_uint_256_s_fu_437  |register_it_ap_uint_256_s  |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+        |tmp_V_5_register_it_ap_uint_256_s_fu_443  |register_it_ap_uint_256_s  |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+        |tmp_V_6_register_it_ap_uint_256_s_fu_449  |register_it_ap_uint_256_s  |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+        |tmp_V_7_register_it_ap_uint_256_s_fu_455  |register_it_ap_uint_256_s  |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+        +------------------------------------------+---------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +-------------+---------+---------+----------+-----------+-----------+----------+----------+
+        |             |  Latency (cycles) | Iteration|  Initiation Interval  |   Trip   |          |
+        |  Loop Name  |   min   |   max   |  Latency |  achieved |   target  |   Count  | Pipelined|
+        +-------------+---------+---------+----------+-----------+-----------+----------+----------+
+        |- beat_loop  |        2|     1025|         3|          1|          1|  1 ~ 1024|       yes|
+        +-------------+---------+---------+----------+-----------+-----------+----------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|       69|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|        0|      344|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|      180|    -|
+|Register             |        -|     -|     2083|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|     2083|      593|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------------+---------------------------+---------+----+---+----+-----+
+    |                 Instance                 |           Module          | BRAM_18K| DSP| FF| LUT| URAM|
+    +------------------------------------------+---------------------------+---------+----+---+----+-----+
+    |mux_83_256_1_1_U447                       |mux_83_256_1_1             |        0|   0|  0|  43|    0|
+    |mux_83_256_1_1_U448                       |mux_83_256_1_1             |        0|   0|  0|  43|    0|
+    |mux_83_256_1_1_U449                       |mux_83_256_1_1             |        0|   0|  0|  43|    0|
+    |mux_83_256_1_1_U450                       |mux_83_256_1_1             |        0|   0|  0|  43|    0|
+    |mux_83_256_1_1_U451                       |mux_83_256_1_1             |        0|   0|  0|  43|    0|
+    |mux_83_256_1_1_U452                       |mux_83_256_1_1             |        0|   0|  0|  43|    0|
+    |mux_83_256_1_1_U453                       |mux_83_256_1_1             |        0|   0|  0|  43|    0|
+    |mux_83_256_1_1_U454                       |mux_83_256_1_1             |        0|   0|  0|  43|    0|
+    |tmp_V_register_it_ap_uint_256_s_fu_413    |register_it_ap_uint_256_s  |        0|   0|  0|   0|    0|
+    |tmp_V_1_register_it_ap_uint_256_s_fu_419  |register_it_ap_uint_256_s  |        0|   0|  0|   0|    0|
+    |tmp_V_2_register_it_ap_uint_256_s_fu_425  |register_it_ap_uint_256_s  |        0|   0|  0|   0|    0|
+    |tmp_V_3_register_it_ap_uint_256_s_fu_431  |register_it_ap_uint_256_s  |        0|   0|  0|   0|    0|
+    |tmp_V_4_register_it_ap_uint_256_s_fu_437  |register_it_ap_uint_256_s  |        0|   0|  0|   0|    0|
+    |tmp_V_5_register_it_ap_uint_256_s_fu_443  |register_it_ap_uint_256_s  |        0|   0|  0|   0|    0|
+    |tmp_V_6_register_it_ap_uint_256_s_fu_449  |register_it_ap_uint_256_s  |        0|   0|  0|   0|    0|
+    |tmp_V_7_register_it_ap_uint_256_s_fu_455  |register_it_ap_uint_256_s  |        0|   0|  0|   0|    0|
+    +------------------------------------------+---------------------------+---------+----+---+----+-----+
+    |Total                                     |                           |        0|   0|  0| 344|    0|
+    +------------------------------------------+---------------------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |x_4_fu_348_p2                     |         +|   0|  0|  21|          14|           1|
+    |full_beat_fu_354_p2               |      icmp|   0|  0|  12|          14|          14|
+    |icmp_ln7055_fu_342_p2             |      icmp|   0|  0|  12|          14|          14|
+    |ap_block_pp0_stage0_01001         |        or|   0|  0|   2|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1  |        or|   0|  0|   2|           1|           1|
+    |ap_block_state3_pp0_stage0_iter2  |        or|   0|  0|   2|           1|           1|
+    |write_cond_1_fu_366_p2            |        or|   0|  0|   2|           1|           1|
+    |write_cond_2_fu_372_p2            |        or|   0|  0|   2|           1|           1|
+    |write_cond_3_fu_378_p2            |        or|   0|  0|   2|           1|           1|
+    |write_cond_4_fu_384_p2            |        or|   0|  0|   2|           1|           1|
+    |write_cond_5_fu_390_p2            |        or|   0|  0|   2|           1|           1|
+    |write_cond_6_fu_396_p2            |        or|   0|  0|   2|           1|           1|
+    |write_cond_7_fu_402_p2            |        or|   0|  0|   2|           1|           1|
+    |write_cond_fu_360_p2              |        or|   0|  0|   2|           1|           1|
+    |ap_enable_pp0                     |       xor|   0|  0|   2|           1|           2|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |Total                             |          |   0|  0|  69|          54|          42|
+    +----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------+----+-----------+-----+-----------+
+    |                 Name                 | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1               |   9|          2|    1|          2|
+    |ap_sig_allocacmp_x_3                  |   9|          2|   14|         28|
+    |arg1_write_mem_redirect_strm_0_blk_n  |   9|          2|    1|          2|
+    |arg1_write_mem_redirect_strm_1_blk_n  |   9|          2|    1|          2|
+    |arg1_write_mem_redirect_strm_2_blk_n  |   9|          2|    1|          2|
+    |arg1_write_mem_redirect_strm_3_blk_n  |   9|          2|    1|          2|
+    |arg1_write_mem_redirect_strm_4_blk_n  |   9|          2|    1|          2|
+    |arg1_write_mem_redirect_strm_5_blk_n  |   9|          2|    1|          2|
+    |arg1_write_mem_redirect_strm_6_blk_n  |   9|          2|    1|          2|
+    |arg1_write_mem_redirect_strm_7_blk_n  |   9|          2|    1|          2|
+    |arg1_write_mem_strm_0_blk_n           |   9|          2|    1|          2|
+    |arg1_write_mem_strm_1_blk_n           |   9|          2|    1|          2|
+    |arg1_write_mem_strm_2_blk_n           |   9|          2|    1|          2|
+    |arg1_write_mem_strm_3_blk_n           |   9|          2|    1|          2|
+    |arg1_write_mem_strm_4_blk_n           |   9|          2|    1|          2|
+    |arg1_write_mem_strm_5_blk_n           |   9|          2|    1|          2|
+    |arg1_write_mem_strm_6_blk_n           |   9|          2|    1|          2|
+    |arg1_write_mem_strm_7_blk_n           |   9|          2|    1|          2|
+    |x_fu_114                              |   9|          2|   14|         28|
+    +--------------------------------------+----+-----------+-----+-----------+
+    |Total                                 | 180|         40|   46|         92|
+    +--------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------+-----+----+-----+-----------+
+    |                Name                |  FF | LUT| Bits| Const Bits|
+    +------------------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm                           |    1|   0|    1|          0|
+    |ap_done_reg                         |    1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1             |    1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2             |    1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg    |    1|   0|    1|          0|
+    |p_0_reg_747                         |  256|   0|  256|          0|
+    |p_1_reg_717                         |  256|   0|  256|          0|
+    |p_2_reg_722                         |  256|   0|  256|          0|
+    |p_3_reg_727                         |  256|   0|  256|          0|
+    |p_4_reg_732                         |  256|   0|  256|          0|
+    |p_5_reg_737                         |  256|   0|  256|          0|
+    |p_6_reg_742                         |  256|   0|  256|          0|
+    |p_s_reg_712                         |  256|   0|  256|          0|
+    |write_cond_1_reg_684                |    1|   0|    1|          0|
+    |write_cond_1_reg_684_pp0_iter1_reg  |    1|   0|    1|          0|
+    |write_cond_2_reg_688                |    1|   0|    1|          0|
+    |write_cond_2_reg_688_pp0_iter1_reg  |    1|   0|    1|          0|
+    |write_cond_3_reg_692                |    1|   0|    1|          0|
+    |write_cond_3_reg_692_pp0_iter1_reg  |    1|   0|    1|          0|
+    |write_cond_4_reg_696                |    1|   0|    1|          0|
+    |write_cond_4_reg_696_pp0_iter1_reg  |    1|   0|    1|          0|
+    |write_cond_5_reg_700                |    1|   0|    1|          0|
+    |write_cond_5_reg_700_pp0_iter1_reg  |    1|   0|    1|          0|
+    |write_cond_6_reg_704                |    1|   0|    1|          0|
+    |write_cond_6_reg_704_pp0_iter1_reg  |    1|   0|    1|          0|
+    |write_cond_7_reg_708                |    1|   0|    1|          0|
+    |write_cond_7_reg_708_pp0_iter1_reg  |    1|   0|    1|          0|
+    |write_cond_reg_680                  |    1|   0|    1|          0|
+    |write_cond_reg_680_pp0_iter1_reg    |    1|   0|    1|          0|
+    |x_fu_114                            |   14|   0|   14|          0|
+    +------------------------------------+-----+----+-----+-----------+
+    |Total                               | 2083|   0| 2083|          0|
+    +------------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------------------------+-----+-----+------------+------------------------------------------+--------------+
+|                   RTL Ports                   | Dir | Bits|  Protocol  |               Source Object              |    C Type    |
++-----------------------------------------------+-----+-----+------------+------------------------------------------+--------------+
+|ap_clk                                         |   in|    1|  ap_ctrl_hs|  reverseRedirectTile2D_Pipeline_beat_loop|  return value|
+|ap_rst                                         |   in|    1|  ap_ctrl_hs|  reverseRedirectTile2D_Pipeline_beat_loop|  return value|
+|ap_start                                       |   in|    1|  ap_ctrl_hs|  reverseRedirectTile2D_Pipeline_beat_loop|  return value|
+|ap_done                                        |  out|    1|  ap_ctrl_hs|  reverseRedirectTile2D_Pipeline_beat_loop|  return value|
+|ap_idle                                        |  out|    1|  ap_ctrl_hs|  reverseRedirectTile2D_Pipeline_beat_loop|  return value|
+|ap_ready                                       |  out|    1|  ap_ctrl_hs|  reverseRedirectTile2D_Pipeline_beat_loop|  return value|
+|arg1_write_mem_redirect_strm_0_dout            |   in|  256|     ap_fifo|            arg1_write_mem_redirect_strm_0|       pointer|
+|arg1_write_mem_redirect_strm_0_num_data_valid  |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_0|       pointer|
+|arg1_write_mem_redirect_strm_0_fifo_cap        |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_0|       pointer|
+|arg1_write_mem_redirect_strm_0_empty_n         |   in|    1|     ap_fifo|            arg1_write_mem_redirect_strm_0|       pointer|
+|arg1_write_mem_redirect_strm_0_read            |  out|    1|     ap_fifo|            arg1_write_mem_redirect_strm_0|       pointer|
+|arg1_write_mem_redirect_strm_1_dout            |   in|  256|     ap_fifo|            arg1_write_mem_redirect_strm_1|       pointer|
+|arg1_write_mem_redirect_strm_1_num_data_valid  |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_1|       pointer|
+|arg1_write_mem_redirect_strm_1_fifo_cap        |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_1|       pointer|
+|arg1_write_mem_redirect_strm_1_empty_n         |   in|    1|     ap_fifo|            arg1_write_mem_redirect_strm_1|       pointer|
+|arg1_write_mem_redirect_strm_1_read            |  out|    1|     ap_fifo|            arg1_write_mem_redirect_strm_1|       pointer|
+|arg1_write_mem_redirect_strm_2_dout            |   in|  256|     ap_fifo|            arg1_write_mem_redirect_strm_2|       pointer|
+|arg1_write_mem_redirect_strm_2_num_data_valid  |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_2|       pointer|
+|arg1_write_mem_redirect_strm_2_fifo_cap        |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_2|       pointer|
+|arg1_write_mem_redirect_strm_2_empty_n         |   in|    1|     ap_fifo|            arg1_write_mem_redirect_strm_2|       pointer|
+|arg1_write_mem_redirect_strm_2_read            |  out|    1|     ap_fifo|            arg1_write_mem_redirect_strm_2|       pointer|
+|arg1_write_mem_redirect_strm_3_dout            |   in|  256|     ap_fifo|            arg1_write_mem_redirect_strm_3|       pointer|
+|arg1_write_mem_redirect_strm_3_num_data_valid  |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_3|       pointer|
+|arg1_write_mem_redirect_strm_3_fifo_cap        |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_3|       pointer|
+|arg1_write_mem_redirect_strm_3_empty_n         |   in|    1|     ap_fifo|            arg1_write_mem_redirect_strm_3|       pointer|
+|arg1_write_mem_redirect_strm_3_read            |  out|    1|     ap_fifo|            arg1_write_mem_redirect_strm_3|       pointer|
+|arg1_write_mem_redirect_strm_4_dout            |   in|  256|     ap_fifo|            arg1_write_mem_redirect_strm_4|       pointer|
+|arg1_write_mem_redirect_strm_4_num_data_valid  |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_4|       pointer|
+|arg1_write_mem_redirect_strm_4_fifo_cap        |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_4|       pointer|
+|arg1_write_mem_redirect_strm_4_empty_n         |   in|    1|     ap_fifo|            arg1_write_mem_redirect_strm_4|       pointer|
+|arg1_write_mem_redirect_strm_4_read            |  out|    1|     ap_fifo|            arg1_write_mem_redirect_strm_4|       pointer|
+|arg1_write_mem_redirect_strm_5_dout            |   in|  256|     ap_fifo|            arg1_write_mem_redirect_strm_5|       pointer|
+|arg1_write_mem_redirect_strm_5_num_data_valid  |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_5|       pointer|
+|arg1_write_mem_redirect_strm_5_fifo_cap        |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_5|       pointer|
+|arg1_write_mem_redirect_strm_5_empty_n         |   in|    1|     ap_fifo|            arg1_write_mem_redirect_strm_5|       pointer|
+|arg1_write_mem_redirect_strm_5_read            |  out|    1|     ap_fifo|            arg1_write_mem_redirect_strm_5|       pointer|
+|arg1_write_mem_redirect_strm_6_dout            |   in|  256|     ap_fifo|            arg1_write_mem_redirect_strm_6|       pointer|
+|arg1_write_mem_redirect_strm_6_num_data_valid  |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_6|       pointer|
+|arg1_write_mem_redirect_strm_6_fifo_cap        |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_6|       pointer|
+|arg1_write_mem_redirect_strm_6_empty_n         |   in|    1|     ap_fifo|            arg1_write_mem_redirect_strm_6|       pointer|
+|arg1_write_mem_redirect_strm_6_read            |  out|    1|     ap_fifo|            arg1_write_mem_redirect_strm_6|       pointer|
+|arg1_write_mem_redirect_strm_7_dout            |   in|  256|     ap_fifo|            arg1_write_mem_redirect_strm_7|       pointer|
+|arg1_write_mem_redirect_strm_7_num_data_valid  |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_7|       pointer|
+|arg1_write_mem_redirect_strm_7_fifo_cap        |   in|    2|     ap_fifo|            arg1_write_mem_redirect_strm_7|       pointer|
+|arg1_write_mem_redirect_strm_7_empty_n         |   in|    1|     ap_fifo|            arg1_write_mem_redirect_strm_7|       pointer|
+|arg1_write_mem_redirect_strm_7_read            |  out|    1|     ap_fifo|            arg1_write_mem_redirect_strm_7|       pointer|
+|arg1_write_mem_strm_0_din                      |  out|  256|     ap_fifo|                     arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_num_data_valid           |   in|    5|     ap_fifo|                     arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_fifo_cap                 |   in|    5|     ap_fifo|                     arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_full_n                   |   in|    1|     ap_fifo|                     arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_0_write                    |  out|    1|     ap_fifo|                     arg1_write_mem_strm_0|       pointer|
+|arg1_write_mem_strm_1_din                      |  out|  256|     ap_fifo|                     arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_1_num_data_valid           |   in|    5|     ap_fifo|                     arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_1_fifo_cap                 |   in|    5|     ap_fifo|                     arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_1_full_n                   |   in|    1|     ap_fifo|                     arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_1_write                    |  out|    1|     ap_fifo|                     arg1_write_mem_strm_1|       pointer|
+|arg1_write_mem_strm_2_din                      |  out|  256|     ap_fifo|                     arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_2_num_data_valid           |   in|    5|     ap_fifo|                     arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_2_fifo_cap                 |   in|    5|     ap_fifo|                     arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_2_full_n                   |   in|    1|     ap_fifo|                     arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_2_write                    |  out|    1|     ap_fifo|                     arg1_write_mem_strm_2|       pointer|
+|arg1_write_mem_strm_3_din                      |  out|  256|     ap_fifo|                     arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_3_num_data_valid           |   in|    5|     ap_fifo|                     arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_3_fifo_cap                 |   in|    5|     ap_fifo|                     arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_3_full_n                   |   in|    1|     ap_fifo|                     arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_3_write                    |  out|    1|     ap_fifo|                     arg1_write_mem_strm_3|       pointer|
+|arg1_write_mem_strm_4_din                      |  out|  256|     ap_fifo|                     arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_4_num_data_valid           |   in|    5|     ap_fifo|                     arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_4_fifo_cap                 |   in|    5|     ap_fifo|                     arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_4_full_n                   |   in|    1|     ap_fifo|                     arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_4_write                    |  out|    1|     ap_fifo|                     arg1_write_mem_strm_4|       pointer|
+|arg1_write_mem_strm_5_din                      |  out|  256|     ap_fifo|                     arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_5_num_data_valid           |   in|    5|     ap_fifo|                     arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_5_fifo_cap                 |   in|    5|     ap_fifo|                     arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_5_full_n                   |   in|    1|     ap_fifo|                     arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_5_write                    |  out|    1|     ap_fifo|                     arg1_write_mem_strm_5|       pointer|
+|arg1_write_mem_strm_6_din                      |  out|  256|     ap_fifo|                     arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_6_num_data_valid           |   in|    5|     ap_fifo|                     arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_6_fifo_cap                 |   in|    5|     ap_fifo|                     arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_6_full_n                   |   in|    1|     ap_fifo|                     arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_6_write                    |  out|    1|     ap_fifo|                     arg1_write_mem_strm_6|       pointer|
+|arg1_write_mem_strm_7_din                      |  out|  256|     ap_fifo|                     arg1_write_mem_strm_7|       pointer|
+|arg1_write_mem_strm_7_num_data_valid           |   in|    5|     ap_fifo|                     arg1_write_mem_strm_7|       pointer|
+|arg1_write_mem_strm_7_fifo_cap                 |   in|    5|     ap_fifo|                     arg1_write_mem_strm_7|       pointer|
+|arg1_write_mem_strm_7_full_n                   |   in|    1|     ap_fifo|                     arg1_write_mem_strm_7|       pointer|
+|arg1_write_mem_strm_7_write                    |  out|    1|     ap_fifo|                     arg1_write_mem_strm_7|       pointer|
+|max_x                                          |   in|   14|     ap_none|                                     max_x|        scalar|
+|icmp_ln7035_7                                  |   in|    1|     ap_none|                             icmp_ln7035_7|        scalar|
+|icmp_ln7035_6                                  |   in|    1|     ap_none|                             icmp_ln7035_6|        scalar|
+|icmp_ln7035_5                                  |   in|    1|     ap_none|                             icmp_ln7035_5|        scalar|
+|icmp_ln7035_4                                  |   in|    1|     ap_none|                             icmp_ln7035_4|        scalar|
+|icmp_ln7035_3                                  |   in|    1|     ap_none|                             icmp_ln7035_3|        scalar|
+|icmp_ln7035_2                                  |   in|    1|     ap_none|                             icmp_ln7035_2|        scalar|
+|icmp_ln7035_1                                  |   in|    1|     ap_none|                             icmp_ln7035_1|        scalar|
+|zext_ln7022                                    |   in|   13|     ap_none|                               zext_ln7022|        scalar|
+|m                                              |   in|    3|     ap_none|                                         m|        scalar|
+|m_8                                            |   in|    3|     ap_none|                                       m_8|        scalar|
+|m_9                                            |   in|    3|     ap_none|                                       m_9|        scalar|
+|m_10                                           |   in|    3|     ap_none|                                      m_10|        scalar|
+|m_11                                           |   in|    3|     ap_none|                                      m_11|        scalar|
+|m_12                                           |   in|    3|     ap_none|                                      m_12|        scalar|
+|m_13                                           |   in|    3|     ap_none|                                      m_13|        scalar|
+|m_14                                           |   in|    3|     ap_none|                                      m_14|        scalar|
+|icmp_ln7035                                    |   in|    1|     ap_none|                               icmp_ln7035|        scalar|
++-----------------------------------------------+-----+-----+------------+------------------------------------------+--------------+
+

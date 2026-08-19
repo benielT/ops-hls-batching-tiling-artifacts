@@ -1,0 +1,241 @@
+
+
+================================================================
+== Vitis HLS Report for 'redirectTile2D_Pipeline_beat_loop'
+================================================================
+* Date:           Thu Aug 13 05:31:06 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  1.801 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-----+------+---------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval  | Pipeline|
+    |   min   |   max   |    min    |    max   | min |  max |   Type  |
+    +---------+---------+-----------+----------+-----+------+---------+
+    |        4|     1027|  13.332 ns|  3.423 us|    4|  1027|       no|
+    +---------+---------+-----------+----------+-----+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------+---------+---------+----------+-----------+-----------+----------+----------+
+        |             |  Latency (cycles) | Iteration|  Initiation Interval  |   Trip   |          |
+        |  Loop Name  |   min   |   max   |  Latency |  achieved |   target  |   Count  | Pipelined|
+        +-------------+---------+---------+----------+-----------+-----------+----------+----------+
+        |- beat_loop  |        2|     1025|         3|          1|          1|  1 ~ 1024|       yes|
+        +-------------+---------+---------+----------+-----------+-----------+----------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.16>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%x = alloca i32 1"   --->   Operation 6 'alloca' 'x' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%icmp_ln6824_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %icmp_ln6824"   --->   Operation 7 'read' 'icmp_ln6824_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%zext_ln6809_read = read i13 @_ssdm_op_Read.ap_auto.i13, i13 %zext_ln6809"   --->   Operation 8 'read' 'zext_ln6809_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%icmp_ln6824_1_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %icmp_ln6824_1"   --->   Operation 9 'read' 'icmp_ln6824_1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%icmp_ln6824_2_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %icmp_ln6824_2"   --->   Operation 10 'read' 'icmp_ln6824_2_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%icmp_ln6824_3_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %icmp_ln6824_3"   --->   Operation 11 'read' 'icmp_ln6824_3_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%icmp_ln6824_4_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %icmp_ln6824_4"   --->   Operation 12 'read' 'icmp_ln6824_4_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%icmp_ln6824_5_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %icmp_ln6824_5"   --->   Operation 13 'read' 'icmp_ln6824_5_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%icmp_ln6824_6_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %icmp_ln6824_6"   --->   Operation 14 'read' 'icmp_ln6824_6_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%icmp_ln6824_7_read = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %icmp_ln6824_7"   --->   Operation 15 'read' 'icmp_ln6824_7_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%trunc_ln1_read = read i3 @_ssdm_op_Read.ap_auto.i3, i3 %trunc_ln1"   --->   Operation 16 'read' 'trunc_ln1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%max_x_read = read i14 @_ssdm_op_Read.ap_auto.i14, i14 %max_x"   --->   Operation 17 'read' 'max_x_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%zext_ln6809_cast = zext i13 %zext_ln6809_read"   --->   Operation 18 'zext' 'zext_ln6809_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_0, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_1, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_2, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 21 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_3, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_4, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 23 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_5, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 24 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_6, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 25 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_7, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 26 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_redirect_strm_0, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 27 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_redirect_strm_1, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 28 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_redirect_strm_2, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 29 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_redirect_strm_3, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 30 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_redirect_strm_4, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 31 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_redirect_strm_5, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 32 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_redirect_strm_6, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 33 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_redirect_strm_7, void @empty_47, i32 0, i32 0, void @empty_49, i32 0, i32 0, void @empty_49, void @empty_49, void @empty_49, i32 0, i32 0, i32 0, i32 0, void @empty_49, void @empty_49, i32 4294967295, i32 0"   --->   Operation 34 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.38ns)   --->   "%store_ln0 = store i14 0, i14 %x"   --->   Operation 35 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.body60"   --->   Operation 36 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%x_5 = load i14 %x" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6844]   --->   Operation 37 'load' 'x_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.65ns)   --->   "%icmp_ln6844 = icmp_eq  i14 %x_5, i14 %max_x_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6844]   --->   Operation 38 'icmp' 'icmp_ln6844' <Predicate = true> <Delay = 0.65> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.65> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 39 [1/1] (0.76ns)   --->   "%x_6 = add i14 %x_5, i14 1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6844]   --->   Operation 39 'add' 'x_6' <Predicate = true> <Delay = 0.76> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.76> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%br_ln6844 = br i1 %icmp_ln6844, void %for.body60.split, void %for.inc107.loopexit.exitStub" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6844]   --->   Operation 40 'br' 'br_ln6844' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%specpipeline_ln6846 = specpipeline void @_ssdm_op_SpecPipeline, i32 1, i32 0, i32 0, i32 0, void @empty_49" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6846]   --->   Operation 41 'specpipeline' 'specpipeline_ln6846' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%speclooptripcount_ln6847 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 1, i64 1024, i64 512" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6847]   --->   Operation 42 'speclooptripcount' 'speclooptripcount_ln6847' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%specloopname_ln6844 = specloopname void @_ssdm_op_SpecLoopName, void @empty_6" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6844]   --->   Operation 43 'specloopname' 'specloopname_ln6844' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.65ns)   --->   "%full_beat = icmp_ult  i14 %x_5, i14 %zext_ln6809_cast" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6854]   --->   Operation 44 'icmp' 'full_beat' <Predicate = (!icmp_ln6844)> <Delay = 0.65> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.65> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 45 [1/1] (0.12ns)   --->   "%read_cond = or i1 %full_beat, i1 %icmp_ln6824_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6861]   --->   Operation 45 'or' 'read_cond' <Predicate = (!icmp_ln6844)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 46 [1/1] (0.38ns)   --->   "%br_ln6862 = br i1 %read_cond, void %for.inc70, void %cond.true63" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 46 'br' 'br_ln6862' <Predicate = (!icmp_ln6844)> <Delay = 0.38>
+ST_1 : Operation 47 [1/1] (0.12ns)   --->   "%read_cond_1 = or i1 %full_beat, i1 %icmp_ln6824_1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6861]   --->   Operation 47 'or' 'read_cond_1' <Predicate = (!icmp_ln6844)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 48 [1/1] (0.38ns)   --->   "%br_ln6862 = br i1 %read_cond_1, void %for.inc70.1, void %cond.true63.1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 48 'br' 'br_ln6862' <Predicate = (!icmp_ln6844)> <Delay = 0.38>
+ST_1 : Operation 49 [1/1] (0.12ns)   --->   "%read_cond_2 = or i1 %full_beat, i1 %icmp_ln6824_2_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6861]   --->   Operation 49 'or' 'read_cond_2' <Predicate = (!icmp_ln6844)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 50 [1/1] (0.38ns)   --->   "%br_ln6862 = br i1 %read_cond_2, void %for.inc70.2, void %cond.true63.2" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 50 'br' 'br_ln6862' <Predicate = (!icmp_ln6844)> <Delay = 0.38>
+ST_1 : Operation 51 [1/1] (0.12ns)   --->   "%read_cond_3 = or i1 %full_beat, i1 %icmp_ln6824_3_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6861]   --->   Operation 51 'or' 'read_cond_3' <Predicate = (!icmp_ln6844)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 52 [1/1] (0.38ns)   --->   "%br_ln6862 = br i1 %read_cond_3, void %for.inc70.3, void %cond.true63.3" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 52 'br' 'br_ln6862' <Predicate = (!icmp_ln6844)> <Delay = 0.38>
+ST_1 : Operation 53 [1/1] (0.12ns)   --->   "%read_cond_4 = or i1 %full_beat, i1 %icmp_ln6824_4_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6861]   --->   Operation 53 'or' 'read_cond_4' <Predicate = (!icmp_ln6844)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 54 [1/1] (0.38ns)   --->   "%br_ln6862 = br i1 %read_cond_4, void %for.inc70.4, void %cond.true63.4" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 54 'br' 'br_ln6862' <Predicate = (!icmp_ln6844)> <Delay = 0.38>
+ST_1 : Operation 55 [1/1] (0.12ns)   --->   "%read_cond_5 = or i1 %full_beat, i1 %icmp_ln6824_5_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6861]   --->   Operation 55 'or' 'read_cond_5' <Predicate = (!icmp_ln6844)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 56 [1/1] (0.38ns)   --->   "%br_ln6862 = br i1 %read_cond_5, void %for.inc70.5, void %cond.true63.5" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 56 'br' 'br_ln6862' <Predicate = (!icmp_ln6844)> <Delay = 0.38>
+ST_1 : Operation 57 [1/1] (0.12ns)   --->   "%read_cond_6 = or i1 %full_beat, i1 %icmp_ln6824_6_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6861]   --->   Operation 57 'or' 'read_cond_6' <Predicate = (!icmp_ln6844)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 58 [1/1] (0.38ns)   --->   "%br_ln6862 = br i1 %read_cond_6, void %for.inc70.6, void %cond.true63.6" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 58 'br' 'br_ln6862' <Predicate = (!icmp_ln6844)> <Delay = 0.38>
+ST_1 : Operation 59 [1/1] (0.12ns)   --->   "%read_cond_7 = or i1 %full_beat, i1 %icmp_ln6824_7_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6861]   --->   Operation 59 'or' 'read_cond_7' <Predicate = (!icmp_ln6844)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 60 [1/1] (0.38ns)   --->   "%br_ln6862 = br i1 %read_cond_7, void %for.inc101, void %cond.true63.7" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 60 'br' 'br_ln6862' <Predicate = (!icmp_ln6844)> <Delay = 0.38>
+ST_1 : Operation 61 [1/1] (0.38ns)   --->   "%store_ln6844 = store i14 %x_6, i14 %x" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6844]   --->   Operation 61 'store' 'store_ln6844' <Predicate = (!icmp_ln6844)> <Delay = 0.38>
+
+State 2 <SV = 1> <Delay = 1.13>
+ST_2 : Operation 62 [1/1] (1.13ns)   --->   "%arg0_read_mem_strm_0_read = read i256 @_ssdm_op_Read.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_strm_0" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 62 'read' 'arg0_read_mem_strm_0_read' <Predicate = (!icmp_ln6844 & read_cond)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_2 : Operation 63 [1/1] (0.00ns)   --->   "%call_ret1 = call i256 @register_it<ap_uint<256> >, i256 %arg0_read_mem_strm_0_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 63 'call' 'call_ret1' <Predicate = (!icmp_ln6844 & read_cond)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 64 [1/1] (0.38ns)   --->   "%br_ln6862 = br void %for.inc70" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 64 'br' 'br_ln6862' <Predicate = (!icmp_ln6844 & read_cond)> <Delay = 0.38>
+ST_2 : Operation 65 [1/1] (1.13ns)   --->   "%arg0_read_mem_strm_1_read = read i256 @_ssdm_op_Read.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_strm_1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 65 'read' 'arg0_read_mem_strm_1_read' <Predicate = (!icmp_ln6844 & read_cond_1)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_2 : Operation 66 [1/1] (0.00ns)   --->   "%call_ret2 = call i256 @register_it<ap_uint<256> >, i256 %arg0_read_mem_strm_1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 66 'call' 'call_ret2' <Predicate = (!icmp_ln6844 & read_cond_1)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 67 [1/1] (0.38ns)   --->   "%br_ln6862 = br void %for.inc70.1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 67 'br' 'br_ln6862' <Predicate = (!icmp_ln6844 & read_cond_1)> <Delay = 0.38>
+ST_2 : Operation 68 [1/1] (1.13ns)   --->   "%arg0_read_mem_strm_2_read = read i256 @_ssdm_op_Read.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_strm_2" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 68 'read' 'arg0_read_mem_strm_2_read' <Predicate = (!icmp_ln6844 & read_cond_2)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_2 : Operation 69 [1/1] (0.00ns)   --->   "%call_ret4 = call i256 @register_it<ap_uint<256> >, i256 %arg0_read_mem_strm_2_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 69 'call' 'call_ret4' <Predicate = (!icmp_ln6844 & read_cond_2)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 70 [1/1] (0.38ns)   --->   "%br_ln6862 = br void %for.inc70.2" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 70 'br' 'br_ln6862' <Predicate = (!icmp_ln6844 & read_cond_2)> <Delay = 0.38>
+ST_2 : Operation 71 [1/1] (1.13ns)   --->   "%arg0_read_mem_strm_3_read = read i256 @_ssdm_op_Read.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_strm_3" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 71 'read' 'arg0_read_mem_strm_3_read' <Predicate = (!icmp_ln6844 & read_cond_3)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_2 : Operation 72 [1/1] (0.00ns)   --->   "%call_ret9 = call i256 @register_it<ap_uint<256> >, i256 %arg0_read_mem_strm_3_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 72 'call' 'call_ret9' <Predicate = (!icmp_ln6844 & read_cond_3)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 73 [1/1] (0.38ns)   --->   "%br_ln6862 = br void %for.inc70.3" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 73 'br' 'br_ln6862' <Predicate = (!icmp_ln6844 & read_cond_3)> <Delay = 0.38>
+ST_2 : Operation 74 [1/1] (1.13ns)   --->   "%arg0_read_mem_strm_4_read = read i256 @_ssdm_op_Read.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_strm_4" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 74 'read' 'arg0_read_mem_strm_4_read' <Predicate = (!icmp_ln6844 & read_cond_4)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_2 : Operation 75 [1/1] (0.00ns)   --->   "%call_ret7 = call i256 @register_it<ap_uint<256> >, i256 %arg0_read_mem_strm_4_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 75 'call' 'call_ret7' <Predicate = (!icmp_ln6844 & read_cond_4)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 76 [1/1] (0.38ns)   --->   "%br_ln6862 = br void %for.inc70.4" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 76 'br' 'br_ln6862' <Predicate = (!icmp_ln6844 & read_cond_4)> <Delay = 0.38>
+ST_2 : Operation 77 [1/1] (1.13ns)   --->   "%arg0_read_mem_strm_5_read = read i256 @_ssdm_op_Read.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_strm_5" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 77 'read' 'arg0_read_mem_strm_5_read' <Predicate = (!icmp_ln6844 & read_cond_5)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_2 : Operation 78 [1/1] (0.00ns)   --->   "%call_ret5 = call i256 @register_it<ap_uint<256> >, i256 %arg0_read_mem_strm_5_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 78 'call' 'call_ret5' <Predicate = (!icmp_ln6844 & read_cond_5)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 79 [1/1] (0.38ns)   --->   "%br_ln6862 = br void %for.inc70.5" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 79 'br' 'br_ln6862' <Predicate = (!icmp_ln6844 & read_cond_5)> <Delay = 0.38>
+ST_2 : Operation 80 [1/1] (1.13ns)   --->   "%arg0_read_mem_strm_6_read = read i256 @_ssdm_op_Read.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_strm_6" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 80 'read' 'arg0_read_mem_strm_6_read' <Predicate = (!icmp_ln6844 & read_cond_6)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_2 : Operation 81 [1/1] (0.00ns)   --->   "%call_ret3 = call i256 @register_it<ap_uint<256> >, i256 %arg0_read_mem_strm_6_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 81 'call' 'call_ret3' <Predicate = (!icmp_ln6844 & read_cond_6)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 82 [1/1] (0.38ns)   --->   "%br_ln6862 = br void %for.inc70.6" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 82 'br' 'br_ln6862' <Predicate = (!icmp_ln6844 & read_cond_6)> <Delay = 0.38>
+ST_2 : Operation 83 [1/1] (1.13ns)   --->   "%arg0_read_mem_strm_7_read = read i256 @_ssdm_op_Read.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_strm_7" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 83 'read' 'arg0_read_mem_strm_7_read' <Predicate = (!icmp_ln6844 & read_cond_7)> <Delay = 1.13> <CoreInst = "FIFO">   --->   Core 78 'FIFO' <Latency = 0> <II = 1> <Delay = 1.13> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 16> <FIFO>
+ST_2 : Operation 84 [1/1] (0.00ns)   --->   "%call_ret = call i256 @register_it<ap_uint<256> >, i256 %arg0_read_mem_strm_7_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 84 'call' 'call_ret' <Predicate = (!icmp_ln6844 & read_cond_7)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 85 [1/1] (0.38ns)   --->   "%br_ln6862 = br void %for.inc101" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 85 'br' 'br_ln6862' <Predicate = (!icmp_ln6844 & read_cond_7)> <Delay = 0.38>
+ST_2 : Operation 111 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 111 'ret' 'ret_ln0' <Predicate = (icmp_ln6844)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 1.80>
+ST_3 : Operation 86 [1/1] (0.00ns)   --->   "%tmp_V = phi i256 %call_ret1, void %cond.true63, i256 0, void %for.body60.split" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 86 'phi' 'tmp_V' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_3 : Operation 87 [1/1] (0.00ns)   --->   "%tmp_V_8 = phi i256 %call_ret2, void %cond.true63.1, i256 0, void %for.inc70" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 87 'phi' 'tmp_V_8' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_3 : Operation 88 [1/1] (0.00ns)   --->   "%tmp_V_9 = phi i256 %call_ret4, void %cond.true63.2, i256 0, void %for.inc70.1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 88 'phi' 'tmp_V_9' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_3 : Operation 89 [1/1] (0.00ns)   --->   "%tmp_V_10 = phi i256 %call_ret9, void %cond.true63.3, i256 0, void %for.inc70.2" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 89 'phi' 'tmp_V_10' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_3 : Operation 90 [1/1] (0.00ns)   --->   "%tmp_V_11 = phi i256 %call_ret7, void %cond.true63.4, i256 0, void %for.inc70.3" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 90 'phi' 'tmp_V_11' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_3 : Operation 91 [1/1] (0.00ns)   --->   "%tmp_V_12 = phi i256 %call_ret5, void %cond.true63.5, i256 0, void %for.inc70.4" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 91 'phi' 'tmp_V_12' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_3 : Operation 92 [1/1] (0.00ns)   --->   "%tmp_V_13 = phi i256 %call_ret3, void %cond.true63.6, i256 0, void %for.inc70.5" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 92 'phi' 'tmp_V_13' <Predicate = (!icmp_ln6844)> <Delay = 0.00>
+ST_3 : Operation 93 [1/1] (0.00ns)   --->   "%tmp_V_14 = phi i256 %call_ret, void %cond.true63.7, i256 0, void %for.inc70.6" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862]   --->   Operation 93 'phi' 'tmp_V_14' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 94 [1/1] (0.58ns)   --->   "%p_s = mux i256 @_ssdm_op_Mux.ap_auto.8i256.i3, i256 %tmp_V, i256 %tmp_V_8, i256 %tmp_V_9, i256 %tmp_V_10, i256 %tmp_V_11, i256 %tmp_V_12, i256 %tmp_V_13, i256 %tmp_V_14, i3 %trunc_ln1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6887]   --->   Operation 94 'mux' 'p_s' <Predicate = true> <Delay = 0.58> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 95 [1/1] (0.58ns)   --->   "%p_7 = mux i256 @_ssdm_op_Mux.ap_auto.8i256.i3, i256 %tmp_V_8, i256 %tmp_V_9, i256 %tmp_V_10, i256 %tmp_V_11, i256 %tmp_V_12, i256 %tmp_V_13, i256 %tmp_V_14, i256 %tmp_V, i3 %trunc_ln1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6887]   --->   Operation 95 'mux' 'p_7' <Predicate = true> <Delay = 0.58> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 96 [1/1] (0.58ns)   --->   "%p_8 = mux i256 @_ssdm_op_Mux.ap_auto.8i256.i3, i256 %tmp_V_9, i256 %tmp_V_10, i256 %tmp_V_11, i256 %tmp_V_12, i256 %tmp_V_13, i256 %tmp_V_14, i256 %tmp_V, i256 %tmp_V_8, i3 %trunc_ln1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6887]   --->   Operation 96 'mux' 'p_8' <Predicate = true> <Delay = 0.58> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 97 [1/1] (0.58ns)   --->   "%p_9 = mux i256 @_ssdm_op_Mux.ap_auto.8i256.i3, i256 %tmp_V_10, i256 %tmp_V_11, i256 %tmp_V_12, i256 %tmp_V_13, i256 %tmp_V_14, i256 %tmp_V, i256 %tmp_V_8, i256 %tmp_V_9, i3 %trunc_ln1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6887]   --->   Operation 97 'mux' 'p_9' <Predicate = true> <Delay = 0.58> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 98 [1/1] (0.58ns)   --->   "%p_10 = mux i256 @_ssdm_op_Mux.ap_auto.8i256.i3, i256 %tmp_V_11, i256 %tmp_V_12, i256 %tmp_V_13, i256 %tmp_V_14, i256 %tmp_V, i256 %tmp_V_8, i256 %tmp_V_9, i256 %tmp_V_10, i3 %trunc_ln1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6887]   --->   Operation 98 'mux' 'p_10' <Predicate = true> <Delay = 0.58> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 99 [1/1] (0.58ns)   --->   "%p_11 = mux i256 @_ssdm_op_Mux.ap_auto.8i256.i3, i256 %tmp_V_12, i256 %tmp_V_13, i256 %tmp_V_14, i256 %tmp_V, i256 %tmp_V_8, i256 %tmp_V_9, i256 %tmp_V_10, i256 %tmp_V_11, i3 %trunc_ln1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6887]   --->   Operation 99 'mux' 'p_11' <Predicate = true> <Delay = 0.58> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 100 [1/1] (0.58ns)   --->   "%p_12 = mux i256 @_ssdm_op_Mux.ap_auto.8i256.i3, i256 %tmp_V_13, i256 %tmp_V_14, i256 %tmp_V, i256 %tmp_V_8, i256 %tmp_V_9, i256 %tmp_V_10, i256 %tmp_V_11, i256 %tmp_V_12, i3 %trunc_ln1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6887]   --->   Operation 100 'mux' 'p_12' <Predicate = true> <Delay = 0.58> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 101 [1/1] (0.58ns)   --->   "%p_0 = mux i256 @_ssdm_op_Mux.ap_auto.8i256.i3, i256 %tmp_V_14, i256 %tmp_V, i256 %tmp_V_8, i256 %tmp_V_9, i256 %tmp_V_10, i256 %tmp_V_11, i256 %tmp_V_12, i256 %tmp_V_13, i3 %trunc_ln1_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6887]   --->   Operation 101 'mux' 'p_0' <Predicate = true> <Delay = 0.58> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 102 [1/1] (1.21ns)   --->   "%write_ln6895 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_redirect_strm_0, i256 %p_s" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895]   --->   Operation 102 'write' 'write_ln6895' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_3 : Operation 103 [1/1] (1.21ns)   --->   "%write_ln6895 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_redirect_strm_1, i256 %p_7" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895]   --->   Operation 103 'write' 'write_ln6895' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_3 : Operation 104 [1/1] (1.21ns)   --->   "%write_ln6895 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_redirect_strm_2, i256 %p_8" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895]   --->   Operation 104 'write' 'write_ln6895' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_3 : Operation 105 [1/1] (1.21ns)   --->   "%write_ln6895 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_redirect_strm_3, i256 %p_9" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895]   --->   Operation 105 'write' 'write_ln6895' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_3 : Operation 106 [1/1] (1.21ns)   --->   "%write_ln6895 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_redirect_strm_4, i256 %p_10" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895]   --->   Operation 106 'write' 'write_ln6895' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_3 : Operation 107 [1/1] (1.21ns)   --->   "%write_ln6895 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_redirect_strm_5, i256 %p_11" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895]   --->   Operation 107 'write' 'write_ln6895' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_3 : Operation 108 [1/1] (1.21ns)   --->   "%write_ln6895 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_redirect_strm_6, i256 %p_12" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895]   --->   Operation 108 'write' 'write_ln6895' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_3 : Operation 109 [1/1] (1.21ns)   --->   "%write_ln6895 = write void @_ssdm_op_Write.ap_fifo.volatile.i256P0A, i256 %arg0_read_mem_redirect_strm_7, i256 %p_0" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895]   --->   Operation 109 'write' 'write_ln6895' <Predicate = true> <Delay = 1.21> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 1.42> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 256> <Depth = 2> <FIFO>
+ST_3 : Operation 110 [1/1] (0.00ns)   --->   "%br_ln6844 = br void %for.body60" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6844]   --->   Operation 110 'br' 'br_ln6844' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 1.16ns
+The critical path consists of the following:
+	'alloca' operation ('x') [28]  (0 ns)
+	'load' operation ('x', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6844) on local variable 'x' [60]  (0 ns)
+	'icmp' operation ('full_beat', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6854) [68]  (0.652 ns)
+	'or' operation ('read_cond', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6861) [85]  (0.122 ns)
+	multiplexor before 'phi' operation ('tmp.V', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862) with incoming values : ('call_ret4', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862) [92]  (0.387 ns)
+
+ <State 2>: 1.14ns
+The critical path consists of the following:
+	fifo read operation ('arg0_read_mem_strm_6_read', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862) on port 'arg0_read_mem_strm_6' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862) [120]  (1.14 ns)
+
+ <State 3>: 1.8ns
+The critical path consists of the following:
+	'phi' operation ('tmp.V', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862) with incoming values : ('call_ret1', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6862) [76]  (0 ns)
+	'mux' operation ('p_s', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6887) [133]  (0.584 ns)
+	fifo write operation ('write_ln6895', /home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895) on port 'arg0_read_mem_redirect_strm_0' (/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:6895) [141]  (1.22 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

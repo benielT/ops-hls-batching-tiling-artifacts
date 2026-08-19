@@ -1,0 +1,1140 @@
+
+
+================================================================
+== Vitis HLS Report for 'stencilRun'
+================================================================
+* Date:           Thu Aug 13 05:35:02 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        kernel_outerloop_0_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.342 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------------------+--------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                                 |                                      |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                     Instance                    |                Module                |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +-------------------------------------------------+--------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_stencilRun_Pipeline_VITIS_LOOP_239_1_fu_106  |stencilRun_Pipeline_VITIS_LOOP_239_1  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +-------------------------------------------------+--------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.64>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%p_read_17 = read i1 @_ssdm_op_Read.ap_auto.i1, i1 %p_read4"   --->   Operation 6 'read' 'p_read_17' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%p_read_18 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read13"   --->   Operation 7 'read' 'p_read_18' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%p_read_19 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read2"   --->   Operation 8 'read' 'p_read_19' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%p_read_20 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read1"   --->   Operation 9 'read' 'p_read_20' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%p_read21 = read i14 @_ssdm_op_Read.ap_auto.i14, i14 %p_read"   --->   Operation 10 'read' 'p_read21' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (1.64ns)   --->   "%arg0_buf_r0_1_p0_V = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:206]   --->   Operation 11 'alloca' 'arg0_buf_r0_1_p0_V' <Predicate = true> <Delay = 1.64> <CoreInst = "RAM_S2P_URAM">   --->   Core 98 'RAM_S2P_URAM' <Latency = 2> <II = 1> <Delay = 1.64> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 544> <Depth = 128> <RAM>
+ST_1 : Operation 12 [1/1] (1.20ns)   --->   "%arg0_buf_r1_2_p0_V = alloca i64 1" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:211]   --->   Operation 12 'alloca' 'arg0_buf_r1_2_p0_V' <Predicate = true> <Delay = 1.20> <CoreInst = "RAM_S2P_BRAM">   --->   Core 97 'RAM_S2P_BRAM' <Latency = 2> <II = 1> <Delay = 1.20> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 576> <Depth = 128> <RAM>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%zext_ln115 = zext i14 %p_read21" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:115]   --->   Operation 13 'zext' 'zext_ln115' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns) (grouped into LUT with out node upper_limit_x)   --->   "%trunc_ln115 = trunc i14 %p_read21" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:115]   --->   Operation 14 'trunc' 'trunc_ln115' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns) (grouped into LUT with out node upper_limit_x)   --->   "%true_tile_size_x = bitconcatenate i16 @_ssdm_op_BitConcatenate.i16.i10.i6, i10 %trunc_ln115, i6 0" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:115]   --->   Operation 15 'bitconcatenate' 'true_tile_size_x' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns) (grouped into LUT with out node upper_limit_x)   --->   "%select_ln136 = select i1 %p_read_17, i16 %p_read_18, i16 %true_tile_size_x" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:136]   --->   Operation 16 'select' 'select_ln136' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 17 [1/1] (0.78ns) (out node of the LUT)   --->   "%upper_limit_x = add i16 %select_ln136, i16 65535" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:136]   --->   Operation 17 'add' 'upper_limit_x' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%zext_ln138 = zext i16 %p_read_19" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:138]   --->   Operation 18 'zext' 'zext_ln138' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln173 = zext i16 %p_read_20" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:173]   --->   Operation 19 'zext' 'zext_ln173' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [4/4] (0.53ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i30 %zext_ln173, i30 %zext_ln115" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:173]   --->   Operation 20 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 21 [4/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln239 = mul i30 %zext_ln138, i30 %zext_ln115" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:239]   --->   Operation 21 'mul' 'mul_ln239' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 2 <SV = 1> <Delay = 0.53>
+ST_2 : Operation 22 [3/4] (0.53ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i30 %zext_ln173, i30 %zext_ln115" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:173]   --->   Operation 22 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 23 [3/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln239 = mul i30 %zext_ln138, i30 %zext_ln115" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:239]   --->   Operation 23 'mul' 'mul_ln239' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 3 <SV = 2> <Delay = 0.53>
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%p_read_16 = read i14 @_ssdm_op_Read.ap_auto.i14, i14 %p_read25"   --->   Operation 24 'read' 'p_read_16' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 25 [2/4] (0.53ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i30 %zext_ln173, i30 %zext_ln115" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:173]   --->   Operation 25 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 26 [2/4] (0.53ns) (root node of the DSP)   --->   "%mul_ln239 = mul i30 %zext_ln138, i30 %zext_ln115" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:239]   --->   Operation 26 'mul' 'mul_ln239' <Predicate = true> <Delay = 0.53> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 4 <SV = 3> <Delay = 2.00>
+ST_4 : Operation 27 [1/1] (0.00ns)   --->   "%p_read_cast2 = zext i14 %p_read21"   --->   Operation 27 'zext' 'p_read_cast2' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 28 [1/1] (0.78ns)   --->   "%upper_limit_y = add i16 %p_read_19, i16 65534" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:138]   --->   Operation 28 'add' 'upper_limit_y' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 29 [1/4] (0.00ns) (root node of the DSP)   --->   "%S2D_00_P10_M10_0P1_0M1_read_ub_itr = mul i30 %zext_ln173, i30 %zext_ln115" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:173]   --->   Operation 29 'mul' 'S2D_00_P10_M10_0P1_0M1_read_ub_itr' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 30 [1/1] (0.76ns)   --->   "%cond_x_val = add i15 %p_read_cast2, i15 32767" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:223]   --->   Operation 30 'add' 'cond_x_val' <Predicate = true> <Delay = 0.76> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.76> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 31 [1/1] (0.78ns)   --->   "%cond_y_val = add i16 %p_read_19, i16 65535" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:224]   --->   Operation 31 'add' 'cond_y_val' <Predicate = true> <Delay = 0.78> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.78> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 32 [1/4] (0.00ns) (root node of the DSP)   --->   "%mul_ln239 = mul i30 %zext_ln138, i30 %zext_ln115" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:239]   --->   Operation 32 'mul' 'mul_ln239' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 33 [1/1] (0.00ns)   --->   "%empty = wait i32 @_ssdm_op_Wait"   --->   Operation 33 'wait' 'empty' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 34 [2/2] (1.22ns)   --->   "%call_ln239 = call void @stencilRun_Pipeline_VITIS_LOOP_239_1, i30 %mul_ln239, i544 %arg0_buf_r0_1_p0_V, i576 %arg0_buf_r1_2_p0_V, i14 %p_read_16, i16 %upper_limit_y, i16 %upper_limit_x, i15 %cond_x_val, i16 %cond_y_val, i30 %S2D_00_P10_M10_0P1_0M1_read_ub_itr, i288 %arg0_poisson_kernel_stencil_in_subtile_stream_6, i288 %arg0_poisson_kernel_stencil_in_subtile_stream_7, i288 %arg1_poisson_kernel_stencil_out_subtile_stream_6, i288 %arg1_poisson_kernel_stencil_out_subtile_stream_7" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:239]   --->   Operation 34 'call' 'call_ln239' <Predicate = true> <Delay = 1.22> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 35 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i288 %arg0_poisson_kernel_stencil_in_subtile_stream_6, void @empty_27, i32 0, i32 0, void @empty_5, i32 0, i32 0, void @empty_5, void @empty_5, void @empty_5, i32 0, i32 0, i32 0, i32 0, void @empty_5, void @empty_5, i32 4294967295, i32 0"   --->   Operation 35 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 36 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i288 %arg0_poisson_kernel_stencil_in_subtile_stream_7, void @empty_27, i32 0, i32 0, void @empty_5, i32 0, i32 0, void @empty_5, void @empty_5, void @empty_5, i32 0, i32 0, i32 0, i32 0, void @empty_5, void @empty_5, i32 4294967295, i32 0"   --->   Operation 36 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 37 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i288 %arg1_poisson_kernel_stencil_out_subtile_stream_6, void @empty_27, i32 0, i32 0, void @empty_5, i32 0, i32 0, void @empty_5, void @empty_5, void @empty_5, i32 0, i32 0, i32 0, i32 0, void @empty_5, void @empty_5, i32 4294967295, i32 0"   --->   Operation 37 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 38 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i288 %arg1_poisson_kernel_stencil_out_subtile_stream_7, void @empty_27, i32 0, i32 0, void @empty_5, i32 0, i32 0, void @empty_5, void @empty_5, void @empty_5, i32 0, i32 0, i32 0, i32 0, void @empty_5, void @empty_5, i32 4294967295, i32 0"   --->   Operation 38 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 39 [1/1] (0.00ns)   --->   "%specmemcore_ln207 = specmemcore void @_ssdm_op_SpecMemCore, i544 %arg0_buf_r0_1_p0_V, i64 666, i64 28, i64 2" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:207]   --->   Operation 39 'specmemcore' 'specmemcore_ln207' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 40 [1/1] (0.00ns)   --->   "%specmemcore_ln212 = specmemcore void @_ssdm_op_SpecMemCore, i576 %arg0_buf_r1_2_p0_V, i64 666, i64 25, i64 2" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:212]   --->   Operation 40 'specmemcore' 'specmemcore_ln212' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 41 [1/2] (0.00ns)   --->   "%call_ln239 = call void @stencilRun_Pipeline_VITIS_LOOP_239_1, i30 %mul_ln239, i544 %arg0_buf_r0_1_p0_V, i576 %arg0_buf_r1_2_p0_V, i14 %p_read_16, i16 %upper_limit_y, i16 %upper_limit_x, i15 %cond_x_val, i16 %cond_y_val, i30 %S2D_00_P10_M10_0P1_0M1_read_ub_itr, i288 %arg0_poisson_kernel_stencil_in_subtile_stream_6, i288 %arg0_poisson_kernel_stencil_in_subtile_stream_7, i288 %arg1_poisson_kernel_stencil_out_subtile_stream_6, i288 %arg1_poisson_kernel_stencil_out_subtile_stream_7" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:239]   --->   Operation 41 'call' 'call_ln239' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 42 [1/1] (0.00ns)   --->   "%ret_ln463 = ret" [/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_unalign_interleave_p7/hls/device/include/PE_poisson_kernel_stencil.hpp:463]   --->   Operation 42 'ret' 'ret_ln463' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 0
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ p_read]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ p_read1]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ p_read2]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ p_read13]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ p_read4]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ p_read25]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ arg0_poisson_kernel_stencil_in_subtile_stream_6]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ arg0_poisson_kernel_stencil_in_subtile_stream_7]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ arg1_poisson_kernel_stencil_out_subtile_stream_6]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ arg1_poisson_kernel_stencil_out_subtile_stream_7]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+p_read_17                          (read          ) [ 000000]
+p_read_18                          (read          ) [ 000000]
+p_read_19                          (read          ) [ 001110]
+p_read_20                          (read          ) [ 000000]
+p_read21                           (read          ) [ 001110]
+arg0_buf_r0_1_p0_V                 (alloca        ) [ 001111]
+arg0_buf_r1_2_p0_V                 (alloca        ) [ 001111]
+zext_ln115                         (zext          ) [ 001110]
+trunc_ln115                        (trunc         ) [ 000000]
+true_tile_size_x                   (bitconcatenate) [ 000000]
+select_ln136                       (select        ) [ 000000]
+upper_limit_x                      (add           ) [ 001111]
+zext_ln138                         (zext          ) [ 001110]
+zext_ln173                         (zext          ) [ 001110]
+p_read_16                          (read          ) [ 000011]
+p_read_cast2                       (zext          ) [ 000000]
+upper_limit_y                      (add           ) [ 000001]
+S2D_00_P10_M10_0P1_0M1_read_ub_itr (mul           ) [ 000001]
+cond_x_val                         (add           ) [ 000001]
+cond_y_val                         (add           ) [ 000001]
+mul_ln239                          (mul           ) [ 000001]
+empty                              (wait          ) [ 000000]
+specinterface_ln0                  (specinterface ) [ 000000]
+specinterface_ln0                  (specinterface ) [ 000000]
+specinterface_ln0                  (specinterface ) [ 000000]
+specinterface_ln0                  (specinterface ) [ 000000]
+specmemcore_ln207                  (specmemcore   ) [ 000000]
+specmemcore_ln212                  (specmemcore   ) [ 000000]
+call_ln239                         (call          ) [ 000000]
+ret_ln463                          (ret           ) [ 000000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="p_read">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="p_read1">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="p_read2">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1000" name="p_read13">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read13"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1000" name="p_read4">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read4"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1000" name="p_read25">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read25"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1000" name="arg0_poisson_kernel_stencil_in_subtile_stream_6">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg0_poisson_kernel_stencil_in_subtile_stream_6"/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1000" name="arg0_poisson_kernel_stencil_in_subtile_stream_7">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg0_poisson_kernel_stencil_in_subtile_stream_7"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1000" name="arg1_poisson_kernel_stencil_out_subtile_stream_6">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg1_poisson_kernel_stencil_out_subtile_stream_6"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1000" name="arg1_poisson_kernel_stencil_out_subtile_stream_7">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg1_poisson_kernel_stencil_out_subtile_stream_7"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_auto.i1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_auto.i16"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_auto.i14"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_BitConcatenate.i16.i10.i6"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Wait"/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="stencilRun_Pipeline_VITIS_LOOP_239_1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_27"/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1001" name="const_46">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1001" name="const_48">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_5"/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1001" name="const_50">
+<pin_list>
+<pin id="51" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="52" class="1001" name="const_52">
+<pin_list>
+<pin id="53" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecMemCore"/></StgValue>
+</bind>
+</comp>
+
+<comp id="54" class="1001" name="const_54">
+<pin_list>
+<pin id="55" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="56" class="1001" name="const_56">
+<pin_list>
+<pin id="57" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="58" class="1001" name="const_58">
+<pin_list>
+<pin id="59" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="60" class="1001" name="const_60">
+<pin_list>
+<pin id="61" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="62" class="1004" name="arg0_buf_r0_1_p0_V_alloca_fu_62">
+<pin_list>
+<pin id="63" dir="0" index="0" bw="1" slack="0"/>
+<pin id="64" dir="1" index="1" bw="544" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="arg0_buf_r0_1_p0_V/1 "/>
+</bind>
+</comp>
+
+<comp id="66" class="1004" name="arg0_buf_r1_2_p0_V_alloca_fu_66">
+<pin_list>
+<pin id="67" dir="0" index="0" bw="1" slack="0"/>
+<pin id="68" dir="1" index="1" bw="576" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="arg0_buf_r1_2_p0_V/1 "/>
+</bind>
+</comp>
+
+<comp id="70" class="1004" name="p_read_17_read_fu_70">
+<pin_list>
+<pin id="71" dir="0" index="0" bw="1" slack="0"/>
+<pin id="72" dir="0" index="1" bw="1" slack="0"/>
+<pin id="73" dir="1" index="2" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read_17/1 "/>
+</bind>
+</comp>
+
+<comp id="76" class="1004" name="p_read_18_read_fu_76">
+<pin_list>
+<pin id="77" dir="0" index="0" bw="16" slack="0"/>
+<pin id="78" dir="0" index="1" bw="16" slack="0"/>
+<pin id="79" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read_18/1 "/>
+</bind>
+</comp>
+
+<comp id="82" class="1004" name="p_read_19_read_fu_82">
+<pin_list>
+<pin id="83" dir="0" index="0" bw="16" slack="0"/>
+<pin id="84" dir="0" index="1" bw="16" slack="0"/>
+<pin id="85" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read_19/1 "/>
+</bind>
+</comp>
+
+<comp id="88" class="1004" name="p_read_20_read_fu_88">
+<pin_list>
+<pin id="89" dir="0" index="0" bw="16" slack="0"/>
+<pin id="90" dir="0" index="1" bw="16" slack="0"/>
+<pin id="91" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read_20/1 "/>
+</bind>
+</comp>
+
+<comp id="94" class="1004" name="p_read21_read_fu_94">
+<pin_list>
+<pin id="95" dir="0" index="0" bw="14" slack="0"/>
+<pin id="96" dir="0" index="1" bw="14" slack="0"/>
+<pin id="97" dir="1" index="2" bw="14" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read21/1 "/>
+</bind>
+</comp>
+
+<comp id="100" class="1004" name="p_read_16_read_fu_100">
+<pin_list>
+<pin id="101" dir="0" index="0" bw="14" slack="0"/>
+<pin id="102" dir="0" index="1" bw="14" slack="0"/>
+<pin id="103" dir="1" index="2" bw="14" slack="1"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read_16/3 "/>
+</bind>
+</comp>
+
+<comp id="106" class="1004" name="grp_stencilRun_Pipeline_VITIS_LOOP_239_1_fu_106">
+<pin_list>
+<pin id="107" dir="0" index="0" bw="0" slack="0"/>
+<pin id="108" dir="0" index="1" bw="30" slack="0"/>
+<pin id="109" dir="0" index="2" bw="544" slack="2147483647"/>
+<pin id="110" dir="0" index="3" bw="576" slack="2147483647"/>
+<pin id="111" dir="0" index="4" bw="14" slack="1"/>
+<pin id="112" dir="0" index="5" bw="16" slack="0"/>
+<pin id="113" dir="0" index="6" bw="16" slack="3"/>
+<pin id="114" dir="0" index="7" bw="15" slack="0"/>
+<pin id="115" dir="0" index="8" bw="16" slack="0"/>
+<pin id="116" dir="0" index="9" bw="30" slack="0"/>
+<pin id="117" dir="0" index="10" bw="288" slack="0"/>
+<pin id="118" dir="0" index="11" bw="288" slack="0"/>
+<pin id="119" dir="0" index="12" bw="288" slack="0"/>
+<pin id="120" dir="0" index="13" bw="288" slack="0"/>
+<pin id="121" dir="1" index="14" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln239/4 "/>
+</bind>
+</comp>
+
+<comp id="127" class="1004" name="zext_ln115_fu_127">
+<pin_list>
+<pin id="128" dir="0" index="0" bw="14" slack="0"/>
+<pin id="129" dir="1" index="1" bw="30" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="zext_ln115/1 "/>
+</bind>
+</comp>
+
+<comp id="131" class="1004" name="trunc_ln115_fu_131">
+<pin_list>
+<pin id="132" dir="0" index="0" bw="14" slack="0"/>
+<pin id="133" dir="1" index="1" bw="10" slack="0"/>
+</pin_list>
+<bind>
+<opcode="trunc(33) " fcode="trunc"/>
+<opset="trunc_ln115/1 "/>
+</bind>
+</comp>
+
+<comp id="135" class="1004" name="true_tile_size_x_fu_135">
+<pin_list>
+<pin id="136" dir="0" index="0" bw="16" slack="0"/>
+<pin id="137" dir="0" index="1" bw="10" slack="0"/>
+<pin id="138" dir="0" index="2" bw="1" slack="0"/>
+<pin id="139" dir="1" index="3" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="bitconcatenate(1004) " fcode="bitconcatenate"/>
+<opset="true_tile_size_x/1 "/>
+</bind>
+</comp>
+
+<comp id="143" class="1004" name="select_ln136_fu_143">
+<pin_list>
+<pin id="144" dir="0" index="0" bw="1" slack="0"/>
+<pin id="145" dir="0" index="1" bw="16" slack="0"/>
+<pin id="146" dir="0" index="2" bw="16" slack="0"/>
+<pin id="147" dir="1" index="3" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="select(49) " fcode="select"/>
+<opset="select_ln136/1 "/>
+</bind>
+</comp>
+
+<comp id="151" class="1004" name="upper_limit_x_fu_151">
+<pin_list>
+<pin id="152" dir="0" index="0" bw="16" slack="0"/>
+<pin id="153" dir="0" index="1" bw="1" slack="0"/>
+<pin id="154" dir="1" index="2" bw="16" slack="3"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="upper_limit_x/1 "/>
+</bind>
+</comp>
+
+<comp id="157" class="1004" name="zext_ln138_fu_157">
+<pin_list>
+<pin id="158" dir="0" index="0" bw="16" slack="0"/>
+<pin id="159" dir="1" index="1" bw="30" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="zext_ln138/1 "/>
+</bind>
+</comp>
+
+<comp id="161" class="1004" name="zext_ln173_fu_161">
+<pin_list>
+<pin id="162" dir="0" index="0" bw="16" slack="0"/>
+<pin id="163" dir="1" index="1" bw="30" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="zext_ln173/1 "/>
+</bind>
+</comp>
+
+<comp id="165" class="1004" name="p_read_cast2_fu_165">
+<pin_list>
+<pin id="166" dir="0" index="0" bw="14" slack="3"/>
+<pin id="167" dir="1" index="1" bw="15" slack="0"/>
+</pin_list>
+<bind>
+<opcode="zext(34) " fcode="zext"/>
+<opset="p_read_cast2/4 "/>
+</bind>
+</comp>
+
+<comp id="168" class="1004" name="upper_limit_y_fu_168">
+<pin_list>
+<pin id="169" dir="0" index="0" bw="16" slack="3"/>
+<pin id="170" dir="0" index="1" bw="2" slack="0"/>
+<pin id="171" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="upper_limit_y/4 "/>
+</bind>
+</comp>
+
+<comp id="174" class="1004" name="cond_x_val_fu_174">
+<pin_list>
+<pin id="175" dir="0" index="0" bw="14" slack="0"/>
+<pin id="176" dir="0" index="1" bw="1" slack="0"/>
+<pin id="177" dir="1" index="2" bw="15" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="cond_x_val/4 "/>
+</bind>
+</comp>
+
+<comp id="181" class="1004" name="cond_y_val_fu_181">
+<pin_list>
+<pin id="182" dir="0" index="0" bw="16" slack="3"/>
+<pin id="183" dir="0" index="1" bw="1" slack="0"/>
+<pin id="184" dir="1" index="2" bw="16" slack="0"/>
+</pin_list>
+<bind>
+<opcode="add(8) " fcode="add"/>
+<opset="cond_y_val/4 "/>
+</bind>
+</comp>
+
+<comp id="187" class="1007" name="grp_fu_187">
+<pin_list>
+<pin id="188" dir="0" index="0" bw="16" slack="0"/>
+<pin id="189" dir="0" index="1" bw="14" slack="0"/>
+<pin id="190" dir="1" index="2" bw="30" slack="0"/>
+</pin_list>
+<bind>
+<opcode="mul(12) " fcode="mul"/>
+<opset="S2D_00_P10_M10_0P1_0M1_read_ub_itr/1 "/>
+</bind>
+</comp>
+
+<comp id="194" class="1007" name="grp_fu_194">
+<pin_list>
+<pin id="195" dir="0" index="0" bw="16" slack="0"/>
+<pin id="196" dir="0" index="1" bw="14" slack="0"/>
+<pin id="197" dir="1" index="2" bw="30" slack="0"/>
+</pin_list>
+<bind>
+<opcode="mul(12) " fcode="mul"/>
+<opset="mul_ln239/1 "/>
+</bind>
+</comp>
+
+<comp id="201" class="1005" name="p_read_19_reg_201">
+<pin_list>
+<pin id="202" dir="0" index="0" bw="16" slack="3"/>
+<pin id="203" dir="1" index="1" bw="16" slack="3"/>
+</pin_list>
+<bind>
+<opset="p_read_19 "/>
+</bind>
+</comp>
+
+<comp id="207" class="1005" name="p_read21_reg_207">
+<pin_list>
+<pin id="208" dir="0" index="0" bw="14" slack="3"/>
+<pin id="209" dir="1" index="1" bw="14" slack="3"/>
+</pin_list>
+<bind>
+<opset="p_read21 "/>
+</bind>
+</comp>
+
+<comp id="212" class="1005" name="zext_ln115_reg_212">
+<pin_list>
+<pin id="213" dir="0" index="0" bw="30" slack="1"/>
+<pin id="214" dir="1" index="1" bw="30" slack="1"/>
+</pin_list>
+<bind>
+<opset="zext_ln115 "/>
+</bind>
+</comp>
+
+<comp id="218" class="1005" name="upper_limit_x_reg_218">
+<pin_list>
+<pin id="219" dir="0" index="0" bw="16" slack="3"/>
+<pin id="220" dir="1" index="1" bw="16" slack="3"/>
+</pin_list>
+<bind>
+<opset="upper_limit_x "/>
+</bind>
+</comp>
+
+<comp id="223" class="1005" name="zext_ln138_reg_223">
+<pin_list>
+<pin id="224" dir="0" index="0" bw="30" slack="1"/>
+<pin id="225" dir="1" index="1" bw="30" slack="1"/>
+</pin_list>
+<bind>
+<opset="zext_ln138 "/>
+</bind>
+</comp>
+
+<comp id="228" class="1005" name="zext_ln173_reg_228">
+<pin_list>
+<pin id="229" dir="0" index="0" bw="30" slack="1"/>
+<pin id="230" dir="1" index="1" bw="30" slack="1"/>
+</pin_list>
+<bind>
+<opset="zext_ln173 "/>
+</bind>
+</comp>
+
+<comp id="233" class="1005" name="p_read_16_reg_233">
+<pin_list>
+<pin id="234" dir="0" index="0" bw="14" slack="1"/>
+<pin id="235" dir="1" index="1" bw="14" slack="1"/>
+</pin_list>
+<bind>
+<opset="p_read_16 "/>
+</bind>
+</comp>
+
+<comp id="238" class="1005" name="upper_limit_y_reg_238">
+<pin_list>
+<pin id="239" dir="0" index="0" bw="16" slack="1"/>
+<pin id="240" dir="1" index="1" bw="16" slack="1"/>
+</pin_list>
+<bind>
+<opset="upper_limit_y "/>
+</bind>
+</comp>
+
+<comp id="243" class="1005" name="S2D_00_P10_M10_0P1_0M1_read_ub_itr_reg_243">
+<pin_list>
+<pin id="244" dir="0" index="0" bw="30" slack="1"/>
+<pin id="245" dir="1" index="1" bw="30" slack="1"/>
+</pin_list>
+<bind>
+<opset="S2D_00_P10_M10_0P1_0M1_read_ub_itr "/>
+</bind>
+</comp>
+
+<comp id="248" class="1005" name="cond_x_val_reg_248">
+<pin_list>
+<pin id="249" dir="0" index="0" bw="15" slack="1"/>
+<pin id="250" dir="1" index="1" bw="15" slack="1"/>
+</pin_list>
+<bind>
+<opset="cond_x_val "/>
+</bind>
+</comp>
+
+<comp id="253" class="1005" name="cond_y_val_reg_253">
+<pin_list>
+<pin id="254" dir="0" index="0" bw="16" slack="1"/>
+<pin id="255" dir="1" index="1" bw="16" slack="1"/>
+</pin_list>
+<bind>
+<opset="cond_y_val "/>
+</bind>
+</comp>
+
+<comp id="258" class="1005" name="mul_ln239_reg_258">
+<pin_list>
+<pin id="259" dir="0" index="0" bw="30" slack="1"/>
+<pin id="260" dir="1" index="1" bw="30" slack="1"/>
+</pin_list>
+<bind>
+<opset="mul_ln239 "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="65"><net_src comp="26" pin="0"/><net_sink comp="62" pin=0"/></net>
+
+<net id="69"><net_src comp="26" pin="0"/><net_sink comp="66" pin=0"/></net>
+
+<net id="74"><net_src comp="20" pin="0"/><net_sink comp="70" pin=0"/></net>
+
+<net id="75"><net_src comp="8" pin="0"/><net_sink comp="70" pin=1"/></net>
+
+<net id="80"><net_src comp="22" pin="0"/><net_sink comp="76" pin=0"/></net>
+
+<net id="81"><net_src comp="6" pin="0"/><net_sink comp="76" pin=1"/></net>
+
+<net id="86"><net_src comp="22" pin="0"/><net_sink comp="82" pin=0"/></net>
+
+<net id="87"><net_src comp="4" pin="0"/><net_sink comp="82" pin=1"/></net>
+
+<net id="92"><net_src comp="22" pin="0"/><net_sink comp="88" pin=0"/></net>
+
+<net id="93"><net_src comp="2" pin="0"/><net_sink comp="88" pin=1"/></net>
+
+<net id="98"><net_src comp="24" pin="0"/><net_sink comp="94" pin=0"/></net>
+
+<net id="99"><net_src comp="0" pin="0"/><net_sink comp="94" pin=1"/></net>
+
+<net id="104"><net_src comp="24" pin="0"/><net_sink comp="100" pin=0"/></net>
+
+<net id="105"><net_src comp="10" pin="0"/><net_sink comp="100" pin=1"/></net>
+
+<net id="122"><net_src comp="40" pin="0"/><net_sink comp="106" pin=0"/></net>
+
+<net id="123"><net_src comp="12" pin="0"/><net_sink comp="106" pin=10"/></net>
+
+<net id="124"><net_src comp="14" pin="0"/><net_sink comp="106" pin=11"/></net>
+
+<net id="125"><net_src comp="16" pin="0"/><net_sink comp="106" pin=12"/></net>
+
+<net id="126"><net_src comp="18" pin="0"/><net_sink comp="106" pin=13"/></net>
+
+<net id="130"><net_src comp="94" pin="2"/><net_sink comp="127" pin=0"/></net>
+
+<net id="134"><net_src comp="94" pin="2"/><net_sink comp="131" pin=0"/></net>
+
+<net id="140"><net_src comp="28" pin="0"/><net_sink comp="135" pin=0"/></net>
+
+<net id="141"><net_src comp="131" pin="1"/><net_sink comp="135" pin=1"/></net>
+
+<net id="142"><net_src comp="30" pin="0"/><net_sink comp="135" pin=2"/></net>
+
+<net id="148"><net_src comp="70" pin="2"/><net_sink comp="143" pin=0"/></net>
+
+<net id="149"><net_src comp="76" pin="2"/><net_sink comp="143" pin=1"/></net>
+
+<net id="150"><net_src comp="135" pin="3"/><net_sink comp="143" pin=2"/></net>
+
+<net id="155"><net_src comp="143" pin="3"/><net_sink comp="151" pin=0"/></net>
+
+<net id="156"><net_src comp="32" pin="0"/><net_sink comp="151" pin=1"/></net>
+
+<net id="160"><net_src comp="82" pin="2"/><net_sink comp="157" pin=0"/></net>
+
+<net id="164"><net_src comp="88" pin="2"/><net_sink comp="161" pin=0"/></net>
+
+<net id="172"><net_src comp="34" pin="0"/><net_sink comp="168" pin=1"/></net>
+
+<net id="173"><net_src comp="168" pin="2"/><net_sink comp="106" pin=5"/></net>
+
+<net id="178"><net_src comp="165" pin="1"/><net_sink comp="174" pin=0"/></net>
+
+<net id="179"><net_src comp="36" pin="0"/><net_sink comp="174" pin=1"/></net>
+
+<net id="180"><net_src comp="174" pin="2"/><net_sink comp="106" pin=7"/></net>
+
+<net id="185"><net_src comp="32" pin="0"/><net_sink comp="181" pin=1"/></net>
+
+<net id="186"><net_src comp="181" pin="2"/><net_sink comp="106" pin=8"/></net>
+
+<net id="191"><net_src comp="161" pin="1"/><net_sink comp="187" pin=0"/></net>
+
+<net id="192"><net_src comp="127" pin="1"/><net_sink comp="187" pin=1"/></net>
+
+<net id="193"><net_src comp="187" pin="2"/><net_sink comp="106" pin=9"/></net>
+
+<net id="198"><net_src comp="157" pin="1"/><net_sink comp="194" pin=0"/></net>
+
+<net id="199"><net_src comp="127" pin="1"/><net_sink comp="194" pin=1"/></net>
+
+<net id="200"><net_src comp="194" pin="2"/><net_sink comp="106" pin=1"/></net>
+
+<net id="204"><net_src comp="82" pin="2"/><net_sink comp="201" pin=0"/></net>
+
+<net id="205"><net_src comp="201" pin="1"/><net_sink comp="168" pin=0"/></net>
+
+<net id="206"><net_src comp="201" pin="1"/><net_sink comp="181" pin=0"/></net>
+
+<net id="210"><net_src comp="94" pin="2"/><net_sink comp="207" pin=0"/></net>
+
+<net id="211"><net_src comp="207" pin="1"/><net_sink comp="165" pin=0"/></net>
+
+<net id="215"><net_src comp="127" pin="1"/><net_sink comp="212" pin=0"/></net>
+
+<net id="216"><net_src comp="212" pin="1"/><net_sink comp="187" pin=1"/></net>
+
+<net id="217"><net_src comp="212" pin="1"/><net_sink comp="194" pin=1"/></net>
+
+<net id="221"><net_src comp="151" pin="2"/><net_sink comp="218" pin=0"/></net>
+
+<net id="222"><net_src comp="218" pin="1"/><net_sink comp="106" pin=6"/></net>
+
+<net id="226"><net_src comp="157" pin="1"/><net_sink comp="223" pin=0"/></net>
+
+<net id="227"><net_src comp="223" pin="1"/><net_sink comp="194" pin=0"/></net>
+
+<net id="231"><net_src comp="161" pin="1"/><net_sink comp="228" pin=0"/></net>
+
+<net id="232"><net_src comp="228" pin="1"/><net_sink comp="187" pin=0"/></net>
+
+<net id="236"><net_src comp="100" pin="2"/><net_sink comp="233" pin=0"/></net>
+
+<net id="237"><net_src comp="233" pin="1"/><net_sink comp="106" pin=4"/></net>
+
+<net id="241"><net_src comp="168" pin="2"/><net_sink comp="238" pin=0"/></net>
+
+<net id="242"><net_src comp="238" pin="1"/><net_sink comp="106" pin=5"/></net>
+
+<net id="246"><net_src comp="187" pin="2"/><net_sink comp="243" pin=0"/></net>
+
+<net id="247"><net_src comp="243" pin="1"/><net_sink comp="106" pin=9"/></net>
+
+<net id="251"><net_src comp="174" pin="2"/><net_sink comp="248" pin=0"/></net>
+
+<net id="252"><net_src comp="248" pin="1"/><net_sink comp="106" pin=7"/></net>
+
+<net id="256"><net_src comp="181" pin="2"/><net_sink comp="253" pin=0"/></net>
+
+<net id="257"><net_src comp="253" pin="1"/><net_sink comp="106" pin=8"/></net>
+
+<net id="261"><net_src comp="194" pin="2"/><net_sink comp="258" pin=0"/></net>
+
+<net id="262"><net_src comp="258" pin="1"/><net_sink comp="106" pin=1"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: arg1_poisson_kernel_stencil_out_subtile_stream_6 | {4 5 }
+	Port: arg1_poisson_kernel_stencil_out_subtile_stream_7 | {4 5 }
+ - Input state : 
+	Port: stencilRun : p_read | {1 }
+	Port: stencilRun : p_read1 | {1 }
+	Port: stencilRun : p_read2 | {1 }
+	Port: stencilRun : p_read13 | {1 }
+	Port: stencilRun : p_read4 | {1 }
+	Port: stencilRun : p_read25 | {3 }
+	Port: stencilRun : arg0_poisson_kernel_stencil_in_subtile_stream_6 | {4 5 }
+	Port: stencilRun : arg0_poisson_kernel_stencil_in_subtile_stream_7 | {4 5 }
+  - Chain level:
+	State 1
+		true_tile_size_x : 1
+		select_ln136 : 2
+		upper_limit_x : 3
+		S2D_00_P10_M10_0P1_0M1_read_ub_itr : 1
+		mul_ln239 : 1
+	State 2
+	State 3
+	State 4
+		cond_x_val : 1
+		call_ln239 : 2
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+| Operation|                 Functional Unit                 |   DSP   |  Delay  |    FF   |   LUT   |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+|   call   | grp_stencilRun_Pipeline_VITIS_LOOP_239_1_fu_106 |   128   |  25.542 |  31060  |  21628  |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+|          |               upper_limit_x_fu_151              |    0    |    0    |    0    |    23   |
+|    add   |               upper_limit_y_fu_168              |    0    |    0    |    0    |    23   |
+|          |                cond_x_val_fu_174                |    0    |    0    |    0    |    21   |
+|          |                cond_y_val_fu_181                |    0    |    0    |    0    |    23   |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+|  select  |               select_ln136_fu_143               |    0    |    0    |    0    |    16   |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+|    mul   |                    grp_fu_187                   |    1    |    0    |    0    |    0    |
+|          |                    grp_fu_194                   |    1    |    0    |    0    |    0    |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+|          |               p_read_17_read_fu_70              |    0    |    0    |    0    |    0    |
+|          |               p_read_18_read_fu_76              |    0    |    0    |    0    |    0    |
+|   read   |               p_read_19_read_fu_82              |    0    |    0    |    0    |    0    |
+|          |               p_read_20_read_fu_88              |    0    |    0    |    0    |    0    |
+|          |               p_read21_read_fu_94               |    0    |    0    |    0    |    0    |
+|          |              p_read_16_read_fu_100              |    0    |    0    |    0    |    0    |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+|          |                zext_ln115_fu_127                |    0    |    0    |    0    |    0    |
+|   zext   |                zext_ln138_fu_157                |    0    |    0    |    0    |    0    |
+|          |                zext_ln173_fu_161                |    0    |    0    |    0    |    0    |
+|          |               p_read_cast2_fu_165               |    0    |    0    |    0    |    0    |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+|   trunc  |                trunc_ln115_fu_131               |    0    |    0    |    0    |    0    |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+|bitconcatenate|             true_tile_size_x_fu_135             |    0    |    0    |    0    |    0    |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+|   Total  |                                                 |   130   |  25.542 |  31060  |  21734  |
+|----------|-------------------------------------------------|---------|---------|---------|---------|
+
+Memories:
++------------------+--------+--------+--------+--------+
+|                  |  BRAM  |   FF   |   LUT  |  URAM  |
++------------------+--------+--------+--------+--------+
+|arg0_buf_r0_1_p0_V|    -   |    0   |    0   |    8   |
+|arg0_buf_r1_2_p0_V|    8   |    0   |    0   |    -   |
++------------------+--------+--------+--------+--------+
+|       Total      |    8   |    0   |    0   |    8   |
++------------------+--------+--------+--------+--------+
+
+* Register list:
++------------------------------------------+--------+
+|                                          |   FF   |
++------------------------------------------+--------+
+|S2D_00_P10_M10_0P1_0M1_read_ub_itr_reg_243|   30   |
+|            cond_x_val_reg_248            |   15   |
+|            cond_y_val_reg_253            |   16   |
+|             mul_ln239_reg_258            |   30   |
+|             p_read21_reg_207             |   14   |
+|             p_read_16_reg_233            |   14   |
+|             p_read_19_reg_201            |   16   |
+|           upper_limit_x_reg_218          |   16   |
+|           upper_limit_y_reg_238          |   16   |
+|            zext_ln115_reg_212            |   30   |
+|            zext_ln138_reg_223            |   30   |
+|            zext_ln173_reg_228            |   30   |
++------------------------------------------+--------+
+|                   Total                  |   257  |
++------------------------------------------+--------+
+
+* Multiplexer (MUX) list: 
+|-------------------------------------------------|------|------|------|--------||---------||---------|
+|                       Comp                      |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|-------------------------------------------------|------|------|------|--------||---------||---------|
+| grp_stencilRun_Pipeline_VITIS_LOOP_239_1_fu_106 |  p1  |   2  |  30  |   60   ||    9    |
+| grp_stencilRun_Pipeline_VITIS_LOOP_239_1_fu_106 |  p5  |   2  |  16  |   32   ||    9    |
+| grp_stencilRun_Pipeline_VITIS_LOOP_239_1_fu_106 |  p7  |   2  |  15  |   30   ||    9    |
+| grp_stencilRun_Pipeline_VITIS_LOOP_239_1_fu_106 |  p8  |   2  |  16  |   32   ||    9    |
+| grp_stencilRun_Pipeline_VITIS_LOOP_239_1_fu_106 |  p9  |   2  |  30  |   60   ||    9    |
+|                    grp_fu_187                   |  p0  |   2  |  16  |   32   ||    9    |
+|                    grp_fu_187                   |  p1  |   2  |  14  |   28   ||    9    |
+|                    grp_fu_194                   |  p0  |   2  |  16  |   32   ||    9    |
+|                    grp_fu_194                   |  p1  |   2  |  14  |   28   ||    9    |
+|-------------------------------------------------|------|------|------|--------||---------||---------|
+|                      Total                      |      |      |      |   334  ||  3.483  ||    81   |
+|-------------------------------------------------|------|------|------|--------||---------||---------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+--------+--------+
+|           |  BRAM  |   DSP  |  Delay |   FF   |   LUT  |  URAM  |
++-----------+--------+--------+--------+--------+--------+--------+
+|  Function |    -   |   130  |   25   |  31060 |  21734 |    -   |
+|   Memory  |    8   |    -   |    -   |    0   |    0   |    8   |
+|Multiplexer|    -   |    -   |    3   |    -   |   81   |    -   |
+|  Register |    -   |    -   |    -   |   257  |    -   |    -   |
++-----------+--------+--------+--------+--------+--------+--------+
+|   Total   |    8   |   130  |   29   |  31317 |  21815 |    8   |
++-----------+--------+--------+--------+--------+--------+--------+

@@ -1,0 +1,796 @@
+===============================================================================
+Version:    v++ v2022.2 (64-bit)
+Build:      SW Build 3671529 on 2022-10-13-17:52:11
+Copyright:  Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Created:    Thu Aug 13 19:17:48 2026
+===============================================================================
+
+-------------------------------------------------------------------------------
+Design Name:             poisson2d
+Target Device:           xilinx:u280:gen3x16_xdma_1:202211.1
+Target Clock:            300.000000MHz
+Total number of kernels: 5
+-------------------------------------------------------------------------------
+
+Kernel Summary
+Kernel Name            Type  Target              OpenCL Library  Compute Units
+---------------------  ----  ------------------  --------------  -------------
+repeater_outerloop_0   c     fpga0:OCL_REGION_0  poisson2d       1
+kernel_outerloop_0_2   c     fpga0:OCL_REGION_0  poisson2d       1
+datamover_outerloop_0  c     fpga0:OCL_REGION_0  poisson2d       1
+kernel_outerloop_0_0   c     fpga0:OCL_REGION_0  poisson2d       1
+kernel_outerloop_0_1   c     fpga0:OCL_REGION_0  poisson2d       1
+
+
+-------------------------------------------------------------------------------
+OpenCL Binary:     poisson2d
+Kernels mapped to: clc_region
+
+Timing Information (MHz)
+Compute Unit               Kernel Name            Module Name                                                                   Target Frequency  Estimated Frequency
+-------------------------  ---------------------  ----------------------------------------------------------------------------  ----------------  -------------------
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc56                                                                  300.300293        821.692688
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry5_proc_2                          300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_Pipeline_VITIS_LOOP_533_1                                300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_s                                                        300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry57_proc_2                         300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_1_Pipeline_VITIS_LOOP_533_1                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_1                                                        300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_3                                            300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D_3                                                  300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry5_proc_1                          300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_2_Pipeline_VITIS_LOOP_533_1                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_2                                                        300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry57_proc_1                         300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_3_Pipeline_VITIS_LOOP_533_1                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_3                                                        300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_2                                            300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D_2                                                  300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry5_proc                            300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_4_Pipeline_VITIS_LOOP_533_1                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_4                                                        300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry57_proc                           300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_5_Pipeline_VITIS_LOOP_533_1                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_5                                                        300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_1                                            300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D_1                                                  300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry3_proc                            300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_6_Pipeline_VITIS_LOOP_533_1                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_6                                                        300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_7_Pipeline_VITIS_LOOP_533_1                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_7                                                        300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner                                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D                                                    300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  register_it_ap_uint_256_s                                                     300.300293        inf
+datamover_outerloop_0_1    datamover_outerloop_0  redirectTile2D_Pipeline_beat_loop                                             300.300293        555.24707
+datamover_outerloop_0_1    datamover_outerloop_0  redirectTile2D_unsigned_short_256_unsigned_short_8_unsigned_short_1_s         300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2axisTileStepdown2D_Pipeline_beat_loop                                  300.300293        821.692688
+datamover_outerloop_0_1    datamover_outerloop_0  stream2axisTileStepdown2D                                                     300.300293        457.665924
+datamover_outerloop_0_1    datamover_outerloop_0  axis2streamTileStepup2D_Pipeline_beat_loop                                    300.300293        821.692688
+datamover_outerloop_0_1    datamover_outerloop_0  axis2streamTileStepup2D                                                       300.300293        457.665924
+datamover_outerloop_0_1    datamover_outerloop_0  reverseRedirectTile2D_Pipeline_beat_loop                                      300.300293        555.24707
+datamover_outerloop_0_1    datamover_outerloop_0  reverseRedirectTile2D_unsigned_short_256_unsigned_short_8_unsigned_short_1_s  300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc55                                                                  300.300293        821.692688
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry5_proc_2                          300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_Pipeline_avoid_loop                             300.300293        875.656799
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_Pipeline_write_loop                             300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_s                                               300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry57_proc_2                         300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_8_Pipeline_avoid_loop                           300.300293        875.656799
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_8_Pipeline_write_loop                           300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_8                                               300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_3                                            300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_3                                                  300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc54                                                                  300.300293        821.692688
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry5_proc_1                          300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_9_Pipeline_avoid_loop                           300.300293        875.656799
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_9_Pipeline_write_loop                           300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_9                                               300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry57_proc_1                         300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_10_Pipeline_avoid_loop                          300.300293        875.656799
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_10_Pipeline_write_loop                          300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_10                                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_2                                            300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_2                                                  300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc53                                                                  300.300293        821.692688
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry5_proc                            300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_11_Pipeline_avoid_loop                          300.300293        875.656799
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_11_Pipeline_write_loop                          300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_11                                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry57_proc                           300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_12_Pipeline_avoid_loop                          300.300293        875.656799
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_12_Pipeline_write_loop                          300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_12                                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_1                                            300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_1                                                  300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc                                                                    300.300293        821.692688
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry3_proc                            300.300293        871.8396
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_13_Pipeline_avoid_loop                          300.300293        875.656799
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_13_Pipeline_write_loop                          300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_13                                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_14_Pipeline_avoid_loop                          300.300293        875.656799
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_14_Pipeline_write_loop                          300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_14                                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner                                              300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D                                                    300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  datamover_outerloop_0_dataflow_read_write_dataflow_region                     300.300293        411.015198
+datamover_outerloop_0_1    datamover_outerloop_0  datamover_outerloop_0                                                         300.300293        411.015198
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   entry_proc                                                                    300.300293        821.692688
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_Pipeline_VITIS_LOOP_7497_1                                   300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_s                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_1                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_2                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_3                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_4                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_5                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_6                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_7                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   register_it_ap_uint_256_s                                                     300.300293        inf
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2interleave_Pipeline_VITIS_LOOP_1470_1                                  300.300293        424.448242
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2interleave                                                             300.300293        411.015198
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   generic_ldexp_float_s                                                         300.300293        562.746216
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_3_Pipeline_VITIS_LOOP_239_1                                        300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_3                                                                  300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_s          300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_2_Pipeline_VITIS_LOOP_239_1                                        300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_2                                                                  300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_s          300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_1_Pipeline_VITIS_LOOP_239_1                                        300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_1                                                                  300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_s          300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_Pipeline_VITIS_LOOP_239_1                                          300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun                                                                    300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_s          300.300293        426.985474
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   register_it_ap_uint_288_s                                                     300.300293        inf
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   interleave2stream_Pipeline_VITIS_LOOP_1597_1                                  300.300293        424.448242
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   interleave2stream                                                             300.300293        411.015198
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_Pipeline_VITIS_LOOP_7444_1                                   300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_s                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_8_Pipeline_VITIS_LOOP_7444_1                                 300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_8                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_9_Pipeline_VITIS_LOOP_7444_1                                 300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_9                                                            300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_10_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_10                                                           300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_11_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_11                                                           300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_12_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_12                                                           300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_13_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_13                                                           300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_14_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_14                                                           300.300293        800.640564
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_outerloop_0_dataflow_region                                            300.300293        411.015198
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_outerloop_0_0                                                          300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   entry_proc                                                                    300.300293        821.692688
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_Pipeline_VITIS_LOOP_7497_1                                   300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_s                                                            300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_1                                                            300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_2                                                            300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_3                                                            300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_4                                                            300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_5                                                            300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_6                                                            300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_7                                                            300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   register_it_ap_uint_256_s                                                     300.300293        inf
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2interleave_Pipeline_VITIS_LOOP_1470_1                                  300.300293        424.448242
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2interleave                                                             300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   generic_ldexp_float_s                                                         300.300293        562.746216
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_3_Pipeline_VITIS_LOOP_239_1                                        300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_3                                                                  300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_s          300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_2_Pipeline_VITIS_LOOP_239_1                                        300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_2                                                                  300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_s          300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_1_Pipeline_VITIS_LOOP_239_1                                        300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_1                                                                  300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_s          300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_Pipeline_VITIS_LOOP_239_1                                          300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun                                                                    300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_s          300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   register_it_ap_uint_288_s                                                     300.300293        inf
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries_1_Pipeline_VITIS_LOOP_1699_1                       300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries_1                                                  300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_8          300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_9          300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_10         300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_11         300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries_Pipeline_VITIS_LOOP_1699_1                         300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries                                                    300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_13         300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_14         300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_15         300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_16         300.300293        426.985474
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   interleave2stream_Pipeline_VITIS_LOOP_1597_1                                  300.300293        424.448242
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   interleave2stream                                                             300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_Pipeline_VITIS_LOOP_7444_1                                   300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_s                                                            300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_17_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_17                                                           300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_18_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_18                                                           300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_19_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_19                                                           300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_20_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_20                                                           300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_21_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_21                                                           300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_22_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_22                                                           300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_23_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_23                                                           300.300293        800.640564
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_outerloop_0_dataflow_region                                            300.300293        411.015198
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_outerloop_0_1                                                          300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   entry_proc                                                                    300.300293        821.692688
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_Pipeline_VITIS_LOOP_7497_1                                   300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_s                                                            300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_1                                                            300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_2                                                            300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_3                                                            300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_4                                                            300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_5                                                            300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_6                                                            300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_7                                                            300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   register_it_ap_uint_256_s                                                     300.300293        inf
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2interleave_Pipeline_VITIS_LOOP_1470_1                                  300.300293        424.448242
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2interleave                                                             300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   generic_ldexp_float_s                                                         300.300293        562.746216
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_3_Pipeline_VITIS_LOOP_239_1                                        300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_3                                                                  300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_s          300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_2_Pipeline_VITIS_LOOP_239_1                                        300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_2                                                                  300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_s          300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_1_Pipeline_VITIS_LOOP_239_1                                        300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_1                                                                  300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_s          300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_Pipeline_VITIS_LOOP_239_1                                          300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun                                                                    300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_s          300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   register_it_ap_uint_288_s                                                     300.300293        inf
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries_1_Pipeline_VITIS_LOOP_1699_1                       300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries_1                                                  300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_8          300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_9          300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_10         300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_11         300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries_Pipeline_VITIS_LOOP_1699_1                         300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries                                                    300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_13         300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_14         300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_15         300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_16         300.300293        426.985474
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   interleave2stream_Pipeline_VITIS_LOOP_1597_1                                  300.300293        424.448242
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   interleave2stream                                                             300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_Pipeline_VITIS_LOOP_7444_1                                   300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_s                                                            300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_17_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_17                                                           300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_18_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_18                                                           300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_19_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_19                                                           300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_20_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_20                                                           300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_21_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_21                                                           300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_22_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_22                                                           300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_23_Pipeline_VITIS_LOOP_7444_1                                300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_23                                                           300.300293        800.640564
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_outerloop_0_dataflow_region                                            300.300293        411.015198
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_outerloop_0_2                                                          300.300293        411.015198
+repeater_outerloop_0_1     repeater_outerloop_0   repeater_outerloop_0                                                          300.300293        inf
+
+Latency Information
+Compute Unit               Kernel Name            Module Name                                                                   Start Interval  Best (cycles)  Avg (cycles)  Worst (cycles)  Best (absolute)  Avg (absolute)  Worst (absolute)
+-------------------------  ---------------------  ----------------------------------------------------------------------------  --------------  -------------  ------------  --------------  ---------------  --------------  ----------------
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc56                                                                  0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry5_proc_2                          0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_Pipeline_VITIS_LOOP_533_1                                undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_s                                                        undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry57_proc_2                         0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_1_Pipeline_VITIS_LOOP_533_1                              undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_1                                                        undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_3                                            undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D_3                                                  undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry5_proc_1                          0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_2_Pipeline_VITIS_LOOP_533_1                              undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_2                                                        undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry57_proc_1                         0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_3_Pipeline_VITIS_LOOP_533_1                              undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_3                                                        undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_2                                            undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D_2                                                  undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry5_proc                            0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_4_Pipeline_VITIS_LOOP_533_1                              undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_4                                                        undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry57_proc                           0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_5_Pipeline_VITIS_LOOP_533_1                              undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_5                                                        undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_1                                            undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D_1                                                  undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry3_proc                            0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_6_Pipeline_VITIS_LOOP_533_1                              undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_6                                                        undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_7_Pipeline_VITIS_LOOP_533_1                              undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_7                                                        undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner                                              undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D                                                    undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  register_it_ap_uint_256_s                                                     1               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  redirectTile2D_Pipeline_beat_loop                                             4 ~ 1027        4              515           1027            13.332 ns        1.716 us        3.423 us
+datamover_outerloop_0_1    datamover_outerloop_0  redirectTile2D_unsigned_short_256_unsigned_short_8_unsigned_short_1_s         9 ~ 269746305   9              33882177      269746305       29.997 ns        0.113 sec       0.899 sec
+datamover_outerloop_0_1    datamover_outerloop_0  stream2axisTileStepdown2D_Pipeline_beat_loop                                  3 ~ 1026        3              514           1026            9.999 ns         1.713 us        3.420 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2axisTileStepdown2D                                                     8 ~ 269484161   8              33816641      269484161       26.664 ns        0.113 sec       0.898 sec
+datamover_outerloop_0_1    datamover_outerloop_0  axis2streamTileStepup2D_Pipeline_beat_loop                                    3 ~ 1026        3              514           1026            9.999 ns         1.713 us        3.420 us
+datamover_outerloop_0_1    datamover_outerloop_0  axis2streamTileStepup2D                                                       8 ~ 269484161   8              33816641      269484161       26.664 ns        0.113 sec       0.898 sec
+datamover_outerloop_0_1    datamover_outerloop_0  reverseRedirectTile2D_Pipeline_beat_loop                                      4 ~ 1027        4              515           1027            13.332 ns        1.716 us        3.423 us
+datamover_outerloop_0_1    datamover_outerloop_0  reverseRedirectTile2D_unsigned_short_256_unsigned_short_8_unsigned_short_1_s  9 ~ 269746305   9              33882177      269746305       29.997 ns        0.113 sec       0.899 sec
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc55                                                                  0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry5_proc_2                          0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_Pipeline_avoid_loop                             3 ~ 66          3              34            66              9.999 ns         0.113 us        0.220 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_Pipeline_write_loop                             4 ~ 259         4              131           259             13.332 ns        0.437 us        0.863 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_s                                               7 ~ 375         7              127           375             23.331 ns        0.423 us        1.250 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry57_proc_2                         0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_8_Pipeline_avoid_loop                           3 ~ 66          3              34            66              9.999 ns         0.113 us        0.220 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_8_Pipeline_write_loop                           4 ~ 259         4              131           259             13.332 ns        0.437 us        0.863 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_8                                               7 ~ 375         7              127           375             23.331 ns        0.423 us        1.250 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_3                                            8 ~ 376         8              128           376             26.664 ns        0.427 us        1.253 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_3                                                  undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc54                                                                  0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry5_proc_1                          0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_9_Pipeline_avoid_loop                           3 ~ 66          3              34            66              9.999 ns         0.113 us        0.220 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_9_Pipeline_write_loop                           4 ~ 259         4              131           259             13.332 ns        0.437 us        0.863 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_9                                               7 ~ 375         7              127           375             23.331 ns        0.423 us        1.250 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry57_proc_1                         0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_10_Pipeline_avoid_loop                          3 ~ 66          3              34            66              9.999 ns         0.113 us        0.220 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_10_Pipeline_write_loop                          4 ~ 259         4              131           259             13.332 ns        0.437 us        0.863 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_10                                              7 ~ 375         7              127           375             23.331 ns        0.423 us        1.250 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_2                                            8 ~ 376         8              128           376             26.664 ns        0.427 us        1.253 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_2                                                  undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc53                                                                  0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry5_proc                            0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_11_Pipeline_avoid_loop                          3 ~ 66          3              34            66              9.999 ns         0.113 us        0.220 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_11_Pipeline_write_loop                          4 ~ 259         4              131           259             13.332 ns        0.437 us        0.863 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_11                                              7 ~ 375         7              127           375             23.331 ns        0.423 us        1.250 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry57_proc                           0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_12_Pipeline_avoid_loop                          3 ~ 66          3              34            66              9.999 ns         0.113 us        0.220 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_12_Pipeline_write_loop                          4 ~ 259         4              131           259             13.332 ns        0.437 us        0.863 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_12                                              7 ~ 375         7              127           375             23.331 ns        0.423 us        1.250 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_1                                            8 ~ 376         8              128           376             26.664 ns        0.427 us        1.253 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_1                                                  undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc                                                                    0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry3_proc                            0               0              0             0               0 ns             0 ns            0 ns
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_13_Pipeline_avoid_loop                          3 ~ 66          3              34            66              9.999 ns         0.113 us        0.220 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_13_Pipeline_write_loop                          4 ~ 259         4              131           259             13.332 ns        0.437 us        0.863 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_13                                              7 ~ 375         7              127           375             23.331 ns        0.423 us        1.250 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_14_Pipeline_avoid_loop                          3 ~ 66          3              34            66              9.999 ns         0.113 us        0.220 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_14_Pipeline_write_loop                          4 ~ 259         4              131           259             13.332 ns        0.437 us        0.863 us
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_14                                              7 ~ 375         7              127           375             23.331 ns        0.423 us        1.250 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner                                              8 ~ 376         8              128           376             26.664 ns        0.427 us        1.253 us
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D                                                    undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  datamover_outerloop_0_dataflow_read_write_dataflow_region                     undef           undef          undef         undef           undef            undef           undef
+datamover_outerloop_0_1    datamover_outerloop_0  datamover_outerloop_0                                                         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   entry_proc                                                                    0               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_Pipeline_VITIS_LOOP_7497_1                                   2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_s                                                            4 ~ 536862724   4              undef         536862724       13.332 ns        undef           1.789 sec
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_1                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_2                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_3                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_4                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_5                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_6                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_7                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   register_it_ap_uint_256_s                                                     1               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2interleave_Pipeline_VITIS_LOOP_1470_1                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2interleave                                                             undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   generic_ldexp_float_s                                                         1               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_3_Pipeline_VITIS_LOOP_239_1                                        undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_3                                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_2_Pipeline_VITIS_LOOP_239_1                                        undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_2                                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_1_Pipeline_VITIS_LOOP_239_1                                        undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_1                                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_Pipeline_VITIS_LOOP_239_1                                          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun                                                                    undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   register_it_ap_uint_288_s                                                     1               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   interleave2stream_Pipeline_VITIS_LOOP_1597_1                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   interleave2stream                                                             undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_Pipeline_VITIS_LOOP_7444_1                                   undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_s                                                            undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_8_Pipeline_VITIS_LOOP_7444_1                                 undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_8                                                            undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_9_Pipeline_VITIS_LOOP_7444_1                                 undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_9                                                            undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_10_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_10                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_11_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_11                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_12_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_12                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_13_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_13                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_14_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_14                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_outerloop_0_dataflow_region                                            undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_outerloop_0_0                                                          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   entry_proc                                                                    0               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_Pipeline_VITIS_LOOP_7497_1                                   2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_s                                                            4 ~ 536862724   4              undef         536862724       13.332 ns        undef           1.789 sec
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_1                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_2                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_3                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_4                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_5                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_6                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_7                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   register_it_ap_uint_256_s                                                     1               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2interleave_Pipeline_VITIS_LOOP_1470_1                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2interleave                                                             undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   generic_ldexp_float_s                                                         1               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_3_Pipeline_VITIS_LOOP_239_1                                        undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_3                                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_2_Pipeline_VITIS_LOOP_239_1                                        undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_2                                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_1_Pipeline_VITIS_LOOP_239_1                                        undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_1                                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_Pipeline_VITIS_LOOP_239_1                                          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun                                                                    undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   register_it_ap_uint_288_s                                                     1               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries_1_Pipeline_VITIS_LOOP_1699_1                       undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries_1                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_8          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_9          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_10         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_11         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries_Pipeline_VITIS_LOOP_1699_1                         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries                                                    undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_13         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_14         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_15         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_16         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   interleave2stream_Pipeline_VITIS_LOOP_1597_1                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   interleave2stream                                                             undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_Pipeline_VITIS_LOOP_7444_1                                   undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_s                                                            undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_17_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_17                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_18_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_18                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_19_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_19                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_20_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_20                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_21_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_21                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_22_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_22                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_23_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_23                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_outerloop_0_dataflow_region                                            undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_outerloop_0_1                                                          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   entry_proc                                                                    0               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_Pipeline_VITIS_LOOP_7497_1                                   2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_s                                                            4 ~ 536862724   4              undef         536862724       13.332 ns        undef           1.789 sec
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_1                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_2                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_3                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_4                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_5                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_6                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_7                                                            2 ~ 536862722   2              undef         536862722       6.666 ns         undef           1.789 sec
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   register_it_ap_uint_256_s                                                     1               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2interleave_Pipeline_VITIS_LOOP_1470_1                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2interleave                                                             undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   generic_ldexp_float_s                                                         1               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_3_Pipeline_VITIS_LOOP_239_1                                        undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_3                                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_2_Pipeline_VITIS_LOOP_239_1                                        undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_2                                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_1_Pipeline_VITIS_LOOP_239_1                                        undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_1                                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_Pipeline_VITIS_LOOP_239_1                                          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun                                                                    undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_s          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   register_it_ap_uint_288_s                                                     1               0              0             0               0 ns             0 ns            0 ns
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries_1_Pipeline_VITIS_LOOP_1699_1                       undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries_1                                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_8          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_9          undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_10         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_11         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries_Pipeline_VITIS_LOOP_1699_1                         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries                                                    undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_13         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_14         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_15         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_16         undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   interleave2stream_Pipeline_VITIS_LOOP_1597_1                                  undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   interleave2stream                                                             undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_Pipeline_VITIS_LOOP_7444_1                                   undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_s                                                            undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_17_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_17                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_18_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_18                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_19_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_19                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_20_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_20                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_21_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_21                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_22_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_22                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_23_Pipeline_VITIS_LOOP_7444_1                                undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_23                                                           undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_outerloop_0_dataflow_region                                            undef           undef          undef         undef           undef            undef           undef
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_outerloop_0_2                                                          undef           undef          undef         undef           undef            undef           undef
+repeater_outerloop_0_1     repeater_outerloop_0   repeater_outerloop_0                                                          1               1              1             1               3.333 ns         3.333 ns        3.333 ns
+
+Area Information
+Compute Unit               Kernel Name            Module Name                                                                   FF      LUT     DSP  BRAM  URAM
+-------------------------  ---------------------  ----------------------------------------------------------------------------  ------  ------  ---  ----  ----
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc56                                                                  3       173     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry5_proc_2                          66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_Pipeline_VITIS_LOOP_533_1                                276     93      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_s                                                        386     471     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry57_proc_2                         66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_1_Pipeline_VITIS_LOOP_533_1                              276     93      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_1                                                        386     471     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_3                                            1174    1330    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D_3                                                  1526    2003    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry5_proc_1                          66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_2_Pipeline_VITIS_LOOP_533_1                              276     93      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_2                                                        386     471     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry57_proc_1                         66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_3_Pipeline_VITIS_LOOP_533_1                              276     93      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_3                                                        386     471     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_2                                            1174    1330    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D_2                                                  1525    1927    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry5_proc                            66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_4_Pipeline_VITIS_LOOP_533_1                              276     93      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_4                                                        386     471     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry57_proc                           66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_5_Pipeline_VITIS_LOOP_533_1                              276     93      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_5                                                        386     471     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_1                                            1174    1330    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D_1                                                  1526    1951    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner_Block_entry3_proc                            66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_6_Pipeline_VITIS_LOOP_533_1                              276     93      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_6                                                        386     471     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_7_Pipeline_VITIS_LOOP_533_1                              276     93      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  mem2streamV2_256u_1u_7                                                        385     467     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2Stream2D_inner                                              973     1149    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileMem2stream2D                                                    1324    1738    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  register_it_ap_uint_256_s                                                     0       0       0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  redirectTile2D_Pipeline_beat_loop                                             4124    757     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  redirectTile2D_unsigned_short_256_unsigned_short_8_unsigned_short_1_s         4346    1371    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2axisTileStepdown2D_Pipeline_beat_loop                                  17      223     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2axisTileStepdown2D                                                     182     556     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  axis2streamTileStepup2D_Pipeline_beat_loop                                    2065    221     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  axis2streamTileStepup2D                                                       2166    610     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  reverseRedirectTile2D_Pipeline_beat_loop                                      2083    593     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  reverseRedirectTile2D_unsigned_short_256_unsigned_short_8_unsigned_short_1_s  2325    1342    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc55                                                                  2       47      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry5_proc_2                          66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_Pipeline_avoid_loop                             16      81      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_Pipeline_write_loop                             294     121     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_s                                               498     741     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry57_proc_2                         66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_8_Pipeline_avoid_loop                           16      81      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_8_Pipeline_write_loop                           294     121     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_8                                               498     741     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_3                                            1419    1980    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_3                                                  2034    2816    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc54                                                                  2       47      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry5_proc_1                          66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_9_Pipeline_avoid_loop                           16      81      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_9_Pipeline_write_loop                           294     121     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_9                                               498     741     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry57_proc_1                         66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_10_Pipeline_avoid_loop                          16      81      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_10_Pipeline_write_loop                          294     121     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_10                                              498     741     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_2                                            1419    1980    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_2                                                  2034    2786    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc53                                                                  2       47      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry5_proc                            66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_11_Pipeline_avoid_loop                          16      81      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_11_Pipeline_write_loop                          294     121     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_11                                              498     741     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry57_proc                           66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_12_Pipeline_avoid_loop                          16      81      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_12_Pipeline_write_loop                          294     121     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_12                                              498     741     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_1                                            1419    1980    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_1                                                  2035    2819    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  entry_proc                                                                    2       29      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner_Block_entry3_proc                            66      91      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_13_Pipeline_avoid_loop                          16      81      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_13_Pipeline_write_loop                          294     121     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_13                                              498     741     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_14_Pipeline_avoid_loop                          16      81      0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_14_Pipeline_write_loop                          294     121     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  stream2memWithAvoidV3_256u_1u_14                                              471     723     0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D_inner                                              1183    1742    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  interleaveTileStream2mem2D                                                    1798    2534    0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  datamover_outerloop_0_dataflow_read_write_dataflow_region                     44903   35068   0    0     0
+datamover_outerloop_0_1    datamover_outerloop_0  datamover_outerloop_0                                                         86865   75788   0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   entry_proc                                                                    3       236     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_Pipeline_VITIS_LOOP_7497_1                                   288     114     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_s                                                            294     181     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_1                                                            288     116     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_2                                                            288     116     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_3                                                            288     116     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_4                                                            288     116     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_5                                                            288     116     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_6                                                            288     116     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   axis2stream_256u_7                                                            288     116     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   register_it_ap_uint_256_s                                                     0       0       0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2interleave_Pipeline_VITIS_LOOP_1470_1                                  2341    356     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2interleave                                                             2406    595     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   generic_ldexp_float_s                                                         0       183     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_3_Pipeline_VITIS_LOOP_239_1                                        33098   23085   0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_3                                                                  33227   23259   0    8     8
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_s          33308   23374   0    8     8
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_2_Pipeline_VITIS_LOOP_239_1                                        33098   23101   0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_2                                                                  33227   23275   0    8     8
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_s          33308   23390   0    8     8
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_1_Pipeline_VITIS_LOOP_239_1                                        33098   23101   0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_1                                                                  33227   23275   0    8     8
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_s          33308   23390   0    8     8
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun_Pipeline_VITIS_LOOP_239_1                                          33098   23101   0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stencilRun                                                                    33227   23275   0    8     8
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_s          33308   23390   0    8     8
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   register_it_ap_uint_288_s                                                     0       0       0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   interleave2stream_Pipeline_VITIS_LOOP_1597_1                                  32      240     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   interleave2stream                                                             67      505     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_Pipeline_VITIS_LOOP_7444_1                                   32      114     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_s                                                            66      165     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_8_Pipeline_VITIS_LOOP_7444_1                                 32      114     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_8                                                            66      165     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_9_Pipeline_VITIS_LOOP_7444_1                                 32      114     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_9                                                            66      165     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_10_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_10                                                           66      165     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_11_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_11                                                           66      165     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_12_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_12                                                           66      165     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_13_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_13                                                           66      165     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_14_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   stream2axis_256u_14                                                           66      165     0    0     0
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_outerloop_0_dataflow_region                                            168284  113308  0    32    32
+kernel_outerloop_inst_0_1  kernel_outerloop_0_0   kernel_outerloop_0_0                                                          168867  114313  0    32    32
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   entry_proc                                                                    3       245     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_Pipeline_VITIS_LOOP_7497_1                                   288     114     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_s                                                            294     181     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_1                                                            288     116     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_2                                                            288     116     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_3                                                            288     116     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_4                                                            288     116     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_5                                                            288     116     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_6                                                            288     116     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   axis2stream_256u_7                                                            288     116     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   register_it_ap_uint_256_s                                                     0       0       0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2interleave_Pipeline_VITIS_LOOP_1470_1                                  2341    356     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2interleave                                                             2406    595     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   generic_ldexp_float_s                                                         0       183     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_3_Pipeline_VITIS_LOOP_239_1                                        33101   23085   0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_3                                                                  33243   23295   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_s          33327   23659   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_2_Pipeline_VITIS_LOOP_239_1                                        33101   23101   0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_2                                                                  33243   23317   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_s          33324   23432   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_1_Pipeline_VITIS_LOOP_239_1                                        33101   23101   0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_1                                                                  33243   23317   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_s          33324   23432   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun_Pipeline_VITIS_LOOP_239_1                                          33101   23101   0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stencilRun                                                                    33233   23311   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_s          33315   23432   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   register_it_ap_uint_288_s                                                     0       0       0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries_1_Pipeline_VITIS_LOOP_1699_1                       2469    356     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries_1                                                  2534    595     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_8          33327   23659   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_9          33324   23432   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_10         33324   23432   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_11         33315   23432   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries_Pipeline_VITIS_LOOP_1699_1                         2469    356     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   updateInterleaveBoundaries                                                    2534    595     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_13         33326   23425   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_14         33324   23432   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_15         33324   23432   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_16         33315   23432   0    8     8
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   interleave2stream_Pipeline_VITIS_LOOP_1597_1                                  32      240     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   interleave2stream                                                             67      505     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_Pipeline_VITIS_LOOP_7444_1                                   32      114     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_s                                                            66      165     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_17_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_17                                                           66      165     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_18_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_18                                                           66      165     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_19_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_19                                                           66      165     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_20_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_20                                                           66      165     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_21_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_21                                                           66      165     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_22_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_22                                                           66      165     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_23_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   stream2axis_256u_23                                                           66      165     0    0     0
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_outerloop_0_dataflow_region                                            473150  320161  0    96    96
+kernel_outerloop_inst_0_2  kernel_outerloop_0_1   kernel_outerloop_0_1                                                          473734  321179  0    96    96
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   entry_proc                                                                    3       245     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_Pipeline_VITIS_LOOP_7497_1                                   288     114     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_s                                                            294     181     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_1                                                            288     116     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_2                                                            288     116     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_3                                                            288     116     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_4                                                            288     116     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_5                                                            288     116     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_6                                                            288     116     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   axis2stream_256u_7                                                            288     116     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   register_it_ap_uint_256_s                                                     0       0       0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2interleave_Pipeline_VITIS_LOOP_1470_1                                  2341    356     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2interleave                                                             2406    595     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   generic_ldexp_float_s                                                         0       183     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_3_Pipeline_VITIS_LOOP_239_1                                        33101   23085   0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_3                                                                  33243   23295   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_s          33327   23659   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_2_Pipeline_VITIS_LOOP_239_1                                        33101   23101   0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_2                                                                  33243   23317   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_s          33324   23432   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_1_Pipeline_VITIS_LOOP_239_1                                        33101   23101   0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_1                                                                  33243   23317   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_s          33324   23432   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun_Pipeline_VITIS_LOOP_239_1                                          33101   23101   0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stencilRun                                                                    33233   23311   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_s          33315   23432   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   register_it_ap_uint_288_s                                                     0       0       0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries_1_Pipeline_VITIS_LOOP_1699_1                       2469    356     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries_1                                                  2534    595     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_8          33327   23659   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_9          33324   23432   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_10         33324   23432   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_11         33315   23432   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries_Pipeline_VITIS_LOOP_1699_1                         2469    356     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   updateInterleaveBoundaries                                                    2534    595     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_0_13         33326   23425   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_1_14         33324   23432   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_2_15         33324   23432   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_poisson_kernel_stencil_PE_unsigned_short_4_unsigned_short_3_16         33315   23432   0    8     8
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   interleave2stream_Pipeline_VITIS_LOOP_1597_1                                  32      240     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   interleave2stream                                                             67      505     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_Pipeline_VITIS_LOOP_7444_1                                   32      114     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_s                                                            66      165     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_17_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_17                                                           66      165     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_18_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_18                                                           66      165     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_19_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_19                                                           66      165     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_20_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_20                                                           66      165     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_21_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_21                                                           66      165     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_22_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_22                                                           66      165     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_23_Pipeline_VITIS_LOOP_7444_1                                32      114     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   stream2axis_256u_23                                                           66      165     0    0     0
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_outerloop_0_dataflow_region                                            473150  320161  0    96    96
+kernel_outerloop_inst_0_3  kernel_outerloop_0_2   kernel_outerloop_0_2                                                          473734  321179  0    96    96
+repeater_outerloop_0_1     repeater_outerloop_0   repeater_outerloop_0                                                          6       164     0    0     0
+-------------------------------------------------------------------------------
