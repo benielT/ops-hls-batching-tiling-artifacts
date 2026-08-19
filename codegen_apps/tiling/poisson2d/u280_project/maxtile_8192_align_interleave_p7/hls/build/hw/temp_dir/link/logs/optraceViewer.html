@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+<html>
+<!-- Styles -->
+<style>
+    #chartdiv {
+      width: 100%;
+      height: 1000px;
+    }
+</style>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>OPTraceViewer</title>
+  <script src="https://www.amcharts.com/lib/3/amcharts.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/serial.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/gantt.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/themes/light.js">
+  </script>
+  <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js">
+  </script>
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all"/>
+
+  <form name="userInputForm" action="javascript:userInputFormCallback()">
+    <fieldset>
+    <legend>Graph Filters:</legend>
+    <table style="width:100%">
+      <col width="50"></col>
+      <col width="20"></col>
+      <col width="60"></col>
+      <tr>
+        <td style="text-align: center"; colspan="3"><input type="number" name="userDurationFilterSecInput" id="userDurationFilterSecInput" value="2" min="0" max="6000" step="1"> sec</td>
+        <td>Filter out run durations lower than this value</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center"><input type="checkbox" name="userGroupPidSortSelected" id="userGroupPidSortSelected"></td>
+        <td>Group sort by process ID</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#0099ff"></td>
+        <td style="text-align: center"><input type="checkbox" name="userRollupSelected" id="userRollupSelected"></td>
+        <td>Show rollup entries</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#8dc49f"></td>
+        <td style="text-align: center"><input type="checkbox" name="userIndividualEntrySelected" id="userIndividualEntrySelected"></td>
+        <td>Show individual entries</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td bgcolor="#cd82ad"></td>
+        <td style="text-align: center"><input type="checkbox" name="userCheckpointEntrySelected" id="userCheckpointEntrySelected"></td>
+        <td>Show checkpoints entry</td>
+      </tr>
+       <tr>
+        <td></td>
+        <td bgcolor="#b9783f"></td>
+        <td style="text-align: center"><input type="checkbox" name="userReportEntrySelected" id="userReportEntrySelected"></td>
+        <td>Show report entry</td>
+      </tr>
+
+    </table>
+    <br>
+    <input name="Submit" type="submit" value="Update Graph">
+    </fieldset>
+  </form> 
+
+  <div id="chartdiv">
+  </div>
+
+  <script>
+  </script>
+
+</head>
+
+
+<body>
+<table id="myDynamicTable" cellpadding="2" cellspacing="2" border="1" onclick="tester()">
+  <tr>
+  <td>Task</td>
+  <td>Start</td>
+  <td>Duration</td>
+  </tr>
+</table>
+<script>
+  // Default User Selected variables
+  var m_secondFilter = 1;
+  var m_groupPidSort = true;
+  var m_showRollup = true;
+  var m_showIndividualEntry = false;
+  var m_showCheckpointEntry = false;
+  var m_showReportEntry = false;
+
+  function SetDefaultUserValues()
+  {
+    document.getElementById("userDurationFilterSecInput").value = m_secondFilter;
+    document.getElementById("userGroupPidSortSelected").checked = m_groupPidSort;
+    document.getElementById("userRollupSelected").checked = m_showRollup;
+    document.getElementById("userIndividualEntrySelected").checked = m_showIndividualEntry;
+    document.getElementById("userCheckpointEntrySelected").checked = m_showCheckpointEntry;
+    document.getElementById("userReportEntrySelected").checked = m_showReportEntry;
+  }
+
+  window.onload = function(){
+    SetDefaultUserValues();
+  }
+
+
+
+
+  // Header
+  var header = "Keyword|pid|Entry|SrcFile|Catagory|TimeStampMSec|Action|Task|Tags|Misc";
+                         
+  // Insert Raw Data Here
+  // Note: Do not change the following signature. 
+  var csvData =    [
+      "[OPTRACE]|3691796|10|run|cpp|1786738045170|START|OCL_LINK|",
+      "[OPTRACE]|3691796|11|setupBinaryForLink|cpp|1786738045171|START|Create Binary|",
+      "[OPTRACE]|3691796|12||cpp|1786738045171|END|Create Binary|",
+      "[OPTRACE]|3691796|13|setupBinaryForLink|cpp|1786738045171|START|Extract Kernels|",
+      "[OPTRACE]|3691796|14||cpp|1786738052963|END|Extract Kernels|",
+      "[OPTRACE]|3691796|15|launchStep_|cpp|1786738053629|START|Launch Step: system_link|",
+      "[OPTRACE]|3691796|16||cpp|1786738113048|END|Launch Step: system_link|",
+      "[OPTRACE]|3691796|17|launchStep_|cpp|1786738113050|START|Launch Step: cf2sw|",
+      "[OPTRACE]|3691796|18||cpp|1786738153711|END|Launch Step: cf2sw|",
+      "[OPTRACE]|3691796|19|launchStep_|cpp|1786738153714|START|Launch Step: rtd2_system_diagram|",
+      "[OPTRACE]|3691796|1|main|cpp|1786738032340|START|v++|ROLLUP_0",
+      "[OPTRACE]|3691796|20||cpp|1786738154144|END|Launch Step: rtd2_system_diagram|",
+      "[OPTRACE]|3691796|21|launchStep_|cpp|1786738154146|START|Launch Step: vpl|",
+      "[OPTRACE]|3691796|226||cpp|1786774362630|END|Launch Step: vpl|",
+      "[OPTRACE]|3691796|227|launchStep_|cpp|1786774362636|START|Launch Step: rtdgen|",
+      "[OPTRACE]|3691796|228|launchCf2sw_|cpp|1786774362680|START|Launch cf2sw|",
+      "[OPTRACE]|3691796|229||cpp|1786774400356|END|Launch cf2sw|",
+      "[OPTRACE]|3691796|230|writeSystemDiagram|cpp|1786774400356|START|writeSystemDiagram|",
+      "[OPTRACE]|3691796|231||cpp|1786774400376|END|writeSystemDiagram|",
+      "[OPTRACE]|3691796|232|writeAutomationSummary|cpp|1786774400376|START|writeAutomationSummary|",
+      "[OPTRACE]|3691796|233||cpp|1786774400387|END|writeAutomationSummary|",
+      "[OPTRACE]|3691796|234||cpp|1786774400389|END|Launch Step: rtdgen|",
+      "[OPTRACE]|3691796|235|launchStep_|cpp|1786774400394|START|Launch Step: xclbinutil|",
+      "[OPTRACE]|3691796|236||cpp|1786774400827|END|Launch Step: xclbinutil|",
+      "[OPTRACE]|3691796|237|launchStep_|cpp|1786774400829|START|Launch Step: xclbinutilinfo|",
+      "[OPTRACE]|3691796|238||cpp|1786774401622|END|Launch Step: xclbinutilinfo|",
+      "[OPTRACE]|3691796|239|launchStep_|cpp|1786774401626|START|Launch Step: generate_sc_driver|",
+      "[OPTRACE]|3691796|240||cpp|1786774401635|END|Launch Step: generate_sc_driver|",
+      "[OPTRACE]|3691796|241||cpp|1786774401646|END|OCL_LINK|",
+      "[OPTRACE]|3691796|242||cpp|1786774401807|END|v++|",
+      "[OPTRACE]|3691796|2|run|cpp|1786738032340|START|Validate Kernels|",
+      "[OPTRACE]|3691796|3||cpp|1786738032541|END|Validate Kernels|",
+      "[OPTRACE]|3691796|4|prepareProject|cpp|1786738032556|START|Create Solution|",
+      "[OPTRACE]|3691796|5||cpp|1786738042741|END|Create Solution|",
+      "[OPTRACE]|3691796|6|prepareProject|cpp|1786738042742|START|Add Device|",
+      "[OPTRACE]|3691796|7|addDevice|cpp|1786738042742|START|Find & Load Device|",
+      "[OPTRACE]|3691796|8||cpp|1786738043701|END|Find & Load Device|",
+      "[OPTRACE]|3691796|9||cpp|1786738045155|END|Add Device|",
+      "[OPTRACE]|3692412|222|runPlatformLinker|cpp|1786774362573|START|Generate Resource Availability Report|",
+      "[OPTRACE]|3692412|223||cpp|1786774362576|END|Generate Resource Availability Report|",
+      "[OPTRACE]|3692412|224||cpp|1786774362576|END|runPlatformLinker|",
+      "[OPTRACE]|3692412|225||cpp|1786774362599|END|vpl|",
+      "[OPTRACE]|3692412|22|main|cpp|1786738155232|START|vpl|",
+      "[OPTRACE]|3692412|23|runPlatformLinker|cpp|1786738155251|START|runPlatformLinker|",
+      "[OPTRACE]|3692412|24|setupBinaryForLink|cpp|1786738155251|START|Create Solution|",
+      "[OPTRACE]|3692412|25||cpp|1786738155263|END|Create Solution|",
+      "[OPTRACE]|3692412|26|setupBinaryForLink|cpp|1786738155263|START|Add platform|",
+      "[OPTRACE]|3692412|27||cpp|1786738157924|END|Add platform|",
+      "[OPTRACE]|3692412|28|setupBinaryForLink|cpp|1786738157924|START|Create Binary|",
+      "[OPTRACE]|3692412|29||cpp|1786738157924|END|Create Binary|",
+      "[OPTRACE]|3692412|30|setupBinaryForLink|cpp|1786738157924|START|Create Kernels|",
+      "[OPTRACE]|3692412|31||cpp|1786738158025|END|Create Kernels|",
+      "[OPTRACE]|3692412|32|runPlatformLinker|cpp|1786738158035|START|Process Kernels|",
+      "[OPTRACE]|3692412|33|runPlatformLinker|cpp|1786738158035|START|Set Board Repo Paths and Connections|",
+      "[OPTRACE]|3692412|34||cpp|1786738158035|END|Set Board Repo Paths and Connections|",
+      "[OPTRACE]|3692412|35|runPlatformLinker|cpp|1786738158035|START|Process Kernel Profiles|",
+      "[OPTRACE]|3692412|36||cpp|1786738158035|END|Process Kernel Profiles|",
+      "[OPTRACE]|3692412|37|runPlatformLinker|cpp|1786738158035|START|Process Trace Memory|",
+      "[OPTRACE]|3692412|38||cpp|1786738158035|END|Process Trace Memory|",
+      "[OPTRACE]|3692412|39|runPlatformLinker|cpp|1786738158035|START|Process AIE Trace|",
+      "[OPTRACE]|3692412|40||cpp|1786738158035|END|Process AIE Trace|",
+      "[OPTRACE]|3692412|41||cpp|1786738158035|END|Process Kernels|",
+      "[OPTRACE]|3692412|42|runPlatformLinker|cpp|1786738158035|START|Process Kernel Debug|",
+      "[OPTRACE]|3692412|43||cpp|1786738158035|END|Process Kernel Debug|",
+      "[OPTRACE]|3692412|44|runPlatformLinker|cpp|1786738158035|START|Set Kernel Debug|",
+      "[OPTRACE]|3692412|45||cpp|1786738158035|END|Set Kernel Debug|",
+      "[OPTRACE]|3692412|46|runPlatformLinker|cpp|1786738158035|START|Set Miscellaneous|",
+      "[OPTRACE]|3692412|47||cpp|1786738158036|END|Set Miscellaneous|",
+      "[OPTRACE]|3692412|48|run|cpp|1786738158037|START|Extract Platform|",
+      "[OPTRACE]|3692412|49||cpp|1786738159691|END|Extract Platform|",
+      "[OPTRACE]|3692507|110|ipirun.tcl|vpl|1786739095753|END|Synthesis|",
+      "[OPTRACE]|3692507|221|ipirun.tcl|vpl|1786774360516|END|Implementation|",
+      "[OPTRACE]|3692507|50|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/vpl.tcl|vivado_impl|1786738169164|START|Implementation|ROLLUP_1",
+      "[OPTRACE]|3692507|51|ipirun.tcl|vpl|1786738169187|START|ipirun|ROLLUP_0",
+      "[OPTRACE]|3692507|52|ipirun.tcl|vpl|1786738169188|END|ipirun|",
+      "[OPTRACE]|3692507|53|ipirun.tcl|vpl|1786738169210|START|Source pre_sys_link Tcl script|",
+      "[OPTRACE]|3692507|54|ipirun.tcl|vpl|1786738169211|END|Source pre_sys_link Tcl script|",
+      "[OPTRACE]|3692507|55|ipirun.tcl|vpl|1786738169212|START|Create project|",
+      "[OPTRACE]|3692507|56|ipirun.tcl|vpl|1786738174024|END|Create project|",
+      "[OPTRACE]|3692507|57|ipirun.tcl|vpl|1786738174044|START|Create IP caching environment|",
+      "[OPTRACE]|3692507|58|ipirun.tcl|vpl|1786738176064|END|Create IP caching environment|",
+      "[OPTRACE]|3692507|59|ipirun.tcl|vpl|1786738176064|START|Import/add dynamic BD|",
+      "[OPTRACE]|3692507|60|ipirun.tcl|vpl|1786738178684|END|Import/add dynamic BD|",
+      "[OPTRACE]|3692507|61|ipirun.tcl|vpl|1786738178685|START|Open BD and insert kernels|",
+      "[OPTRACE]|3692507|62|ipirun.tcl|vpl|1786738211659|END|Open BD and insert kernels|",
+      "[OPTRACE]|3692507|63|ipirun.tcl|vpl|1786738211667|START|Add debug/profiling support|",
+      "[OPTRACE]|3692507|64|ipirun.tcl|vpl|1786738211883|END|Add debug/profiling support|",
+      "[OPTRACE]|3692507|65|ipirun.tcl|vpl|1786738211883|START|IPI address assignments|",
+      "[OPTRACE]|3692507|66|ipirun.tcl|vpl|1786738211907|END|IPI address assignments|",
+      "[OPTRACE]|3692507|67|ipirun.tcl|vpl|1786738211909|START|Source hardware platform post_sys_link Tcl script|",
+      "[OPTRACE]|3692507|68|ipirun.tcl|vpl|1786738212014|END|Source hardware platform post_sys_link Tcl script|",
+      "[OPTRACE]|3692507|69|ipirun.tcl|vpl|1786738212026|START|Create address map and debug IP profile files|",
+      "[OPTRACE]|3692507|70|ipirun.tcl|vpl|1786738212051|END|Create address map and debug IP profile files|",
+      "[OPTRACE]|3692507|71|ipirun.tcl|vpl|1786738212051|START|Collect BD interface connectivity and write automation summary report|",
+      "[OPTRACE]|3692507|72|ipirun.tcl|vpl|1786738212105|END|Collect BD interface connectivity and write automation summary report|",
+      "[OPTRACE]|3692507|73|ipirun.tcl|vpl|1786738212418|START|Generate output products|",
+      "[OPTRACE]|3692507|74|ipirun.tcl|vpl|1786738351036|END|Generate output products|",
+      "[OPTRACE]|3692507|75|ipirun.tcl|vpl|1786738351060|START|Source report_commands_tcl|",
+      "[OPTRACE]|3692507|76|ipirun.tcl|vpl|1786738351338|END|Source report_commands_tcl|",
+      "[OPTRACE]|3692507|77|ipirun.tcl|vpl|1786738351339|START|Source synth_props_tcl|",
+      "[OPTRACE]|3692507|78|ipirun.tcl|vpl|1786738354363|END|Source synth_props_tcl|",
+      "[OPTRACE]|3692507|79|ipirun.tcl|vpl|1786738354412|START|Source impl_props_tcl|",
+      "[OPTRACE]|3692507|80|ipirun.tcl|vpl|1786738354567|END|Source impl_props_tcl|",
+      "[OPTRACE]|3692507|81|ipirun.tcl|vpl|1786738354576|START|Synthesis|ROLLUP_1,SYNTH",
+      "[OPTRACE]|3693255|82|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738538901|START|ulp_datamover_outerloop_0_1_0_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|3693255|83|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738538902|START|Creating in-memory project|",
+      "[OPTRACE]|3693255|84|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738544796|END|Creating in-memory project|",
+      "[OPTRACE]|3693255|85|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738544796|START|Adding files|",
+      "[OPTRACE]|3693255|86|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738545151|END|Adding files|",
+      "[OPTRACE]|3693255|87|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738545154|START|Configure IP Cache|",
+      "[OPTRACE]|3693255|88|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738545155|END|Configure IP Cache|",
+      "[OPTRACE]|3693255|89|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738545157|START|synth_design|",
+      "[OPTRACE]|3693255|90|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738966741|END|synth_design|",
+      "[OPTRACE]|3693255|91|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738966742|START|Write IP Cache|",
+      "[OPTRACE]|3693255|92|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738983614|END|Write IP Cache|",
+      "[OPTRACE]|3693255|93|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738983627|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|3693255|94|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738992025|END|write_checkpoint|",
+      "[OPTRACE]|3693255|95|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738992025|START|synth reports|REPORT",
+      "[OPTRACE]|3693255|96|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786738992887|END|synth reports|",
+      "[OPTRACE]|3693255|97|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/ulp_datamover_outerloop_0_1_0_synth_1/ulp_datamover_outerloop_0_1_0.tcl|vivado_synth|1786739001187|END|ulp_datamover_outerloop_0_1_0_synth_1|",
+      "[OPTRACE]|3693796|100|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739019637|END|Creating in-memory project|",
+      "[OPTRACE]|3693796|101|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739019637|START|Adding files|",
+      "[OPTRACE]|3693796|102|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739039479|END|Adding files|",
+      "[OPTRACE]|3693796|103|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739039530|START|synth_design|",
+      "[OPTRACE]|3693796|104|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739088642|END|synth_design|",
+      "[OPTRACE]|3693796|105|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739088653|START|write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|3693796|106|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739089807|END|write_checkpoint|",
+      "[OPTRACE]|3693796|107|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739089807|START|synth reports|REPORT",
+      "[OPTRACE]|3693796|108|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739089807|END|synth reports|",
+      "[OPTRACE]|3693796|109|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739091058|END|my_rm_synth_1|",
+      "[OPTRACE]|3693796|98|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739013814|START|my_rm_synth_1|ROLLUP_AUTO",
+      "[OPTRACE]|3693796|99|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/my_rm_synth_1/ulp.tcl|vivado_synth|1786739013815|START|Creating in-memory project|",
+      "[OPTRACE]|3694105|111|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739106038|START|impl_1|ROLLUP_1",
+      "[OPTRACE]|3694105|112|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739106038|START|Phase: Init Design|ROLLUP_AUTO",
+      "[OPTRACE]|3694105|113|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739106040|START|Design Initialization: pre hook|",
+      "[OPTRACE]|3694105|114|ipirun.tcl|vpl|1786739106059|START|ipirun|ROLLUP_0",
+      "[OPTRACE]|3694105|115|ipirun.tcl|vpl|1786739106060|END|ipirun|",
+      "[OPTRACE]|3694105|116|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739106061|END|Design Initialization: pre hook|",
+      "[OPTRACE]|3694105|117|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739106062|START|create in-memory project|",
+      "[OPTRACE]|3694105|118|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739110081|END|create in-memory project|",
+      "[OPTRACE]|3694105|119|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739110081|START|set parameters|",
+      "[OPTRACE]|3694105|120|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739111783|END|set parameters|",
+      "[OPTRACE]|3694105|121|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739111784|START|add files|",
+      "[OPTRACE]|3694105|122|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739131493|START|read constraints: implementation|",
+      "[OPTRACE]|3694105|123|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739131495|END|read constraints: implementation|",
+      "[OPTRACE]|3694105|124|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739131498|END|add files|",
+      "[OPTRACE]|3694105|125|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786739131498|START|link_design|",
+      "[OPTRACE]|3694105|126|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740586469|END|link_design|",
+      "[OPTRACE]|3694105|127|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740586470|START|gray box cells|",
+      "[OPTRACE]|3694105|128|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740586470|END|gray box cells|",
+      "[OPTRACE]|3694105|129|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740586470|START|Design Initialization: post hook|",
+      "[OPTRACE]|3694105|130|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740587131|END|Design Initialization: post hook|",
+      "[OPTRACE]|3694105|131|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740587131|START|init_design_reports|REPORT",
+      "[OPTRACE]|3694105|132|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740587131|END|init_design_reports|",
+      "[OPTRACE]|3694105|133|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740587131|START|init_design_write_hwdef|",
+      "[OPTRACE]|3694105|134|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740587131|END|init_design_write_hwdef|",
+      "[OPTRACE]|3694105|135|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740587135|END|Phase: Init Design|",
+      "[OPTRACE]|3694105|136|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740587135|START|Phase: Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|3694105|137|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740587138|START|Opt Design: pre hook|",
+      "[OPTRACE]|3694105|138|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740754097|END|Opt Design: pre hook|",
+      "[OPTRACE]|3694105|139|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740754097|START|read constraints: opt_design|",
+      "[OPTRACE]|3694105|140|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740754097|END|read constraints: opt_design|",
+      "[OPTRACE]|3694105|141|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786740754097|START|opt_design|",
+      "[OPTRACE]|3694105|142|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259244|END|opt_design|",
+      "[OPTRACE]|3694105|143|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259245|START|read constraints: opt_design_post|",
+      "[OPTRACE]|3694105|144|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259245|END|read constraints: opt_design_post|",
+      "[OPTRACE]|3694105|145|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259245|START|Opt Design: post hook|",
+      "[OPTRACE]|3694105|146|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259268|END|Opt Design: post hook|",
+      "[OPTRACE]|3694105|147|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259269|START|opt_design reports|REPORT",
+      "[OPTRACE]|3694105|148|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259269|END|opt_design reports|",
+      "[OPTRACE]|3694105|149|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259272|END|Phase: Opt Design|",
+      "[OPTRACE]|3694105|150|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259272|START|Phase: Place Design|ROLLUP_AUTO",
+      "[OPTRACE]|3694105|151|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259275|START|Place Design: pre hook|",
+      "[OPTRACE]|3694105|152|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259302|END|Place Design: pre hook|",
+      "[OPTRACE]|3694105|153|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259302|START|read constraints: place_design|",
+      "[OPTRACE]|3694105|154|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259302|END|read constraints: place_design|",
+      "[OPTRACE]|3694105|155|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259302|START|implement_debug_core|",
+      "[OPTRACE]|3694105|156|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259443|END|implement_debug_core|",
+      "[OPTRACE]|3694105|157|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786741259443|START|place_design|",
+      "[OPTRACE]|3694105|158|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748371394|END|place_design|",
+      "[OPTRACE]|3694105|159|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748371394|START|read constraints: place_design_post|",
+      "[OPTRACE]|3694105|160|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748371394|END|read constraints: place_design_post|",
+      "[OPTRACE]|3694105|161|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748371394|START|Place Design: post hook|",
+      "[OPTRACE]|3694105|162|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748762639|END|Place Design: post hook|",
+      "[OPTRACE]|3694105|163|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748762639|START|place_design reports|REPORT",
+      "[OPTRACE]|3694105|164|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748762639|END|place_design reports|",
+      "[OPTRACE]|3694105|165|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748762643|END|Phase: Place Design|",
+      "[OPTRACE]|3694105|166|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748762643|START|Phase: Physical Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|3694105|167|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748762646|START|read constraints: phys_opt_design|",
+      "[OPTRACE]|3694105|168|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748762646|END|read constraints: phys_opt_design|",
+      "[OPTRACE]|3694105|169|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786748762646|START|phys_opt_design|",
+      "[OPTRACE]|3694105|170|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768807|END|phys_opt_design|",
+      "[OPTRACE]|3694105|171|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768807|START|read constraints: phys_opt_design_post|",
+      "[OPTRACE]|3694105|172|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768807|END|read constraints: phys_opt_design_post|",
+      "[OPTRACE]|3694105|173|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768807|START|phys_opt_design report|REPORT",
+      "[OPTRACE]|3694105|174|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768807|END|phys_opt_design report|",
+      "[OPTRACE]|3694105|175|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768811|END|Phase: Physical Opt Design|",
+      "[OPTRACE]|3694105|176|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768811|START|Phase: Route Design|ROLLUP_AUTO",
+      "[OPTRACE]|3694105|177|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768817|START|read constraints: route_design|",
+      "[OPTRACE]|3694105|178|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768817|END|read constraints: route_design|",
+      "[OPTRACE]|3694105|179|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786749768817|START|route_design|",
+      "[OPTRACE]|3694105|180|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786763213587|END|route_design|",
+      "[OPTRACE]|3694105|181|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786763213588|START|read constraints: route_design_post|",
+      "[OPTRACE]|3694105|182|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786763213588|END|read constraints: route_design_post|",
+      "[OPTRACE]|3694105|183|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786763213588|START|Route Design: post hook|",
+      "[OPTRACE]|3694105|184|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786763949687|END|Route Design: post hook|",
+      "[OPTRACE]|3694105|185|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786763949688|START|Route Design: write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|3694105|186|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786764279300|END|Route Design: write_checkpoint|",
+      "[OPTRACE]|3694105|187|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786764279300|START|route_design reports|REPORT",
+      "[OPTRACE]|3694105|188|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786764365534|END|route_design reports|",
+      "[OPTRACE]|3694105|189|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786764365534|START|route_design misc|",
+      "[OPTRACE]|3694105|190|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786764365538|END|route_design misc|",
+      "[OPTRACE]|3694105|191|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786764365538|END|Phase: Route Design|",
+      "[OPTRACE]|3694105|192|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786764365538|START|Phase: Phys-Opt Design|ROLLUP_AUTO",
+      "[OPTRACE]|3694105|193|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786764365541|START|phys_opt_design|",
+      "[OPTRACE]|3694105|194|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772175872|END|phys_opt_design|",
+      "[OPTRACE]|3694105|195|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772175873|START|Post-Route Phys Opt Design: post hook|",
+      "[OPTRACE]|3694105|196|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772175878|END|Post-Route Phys Opt Design: post hook|",
+      "[OPTRACE]|3694105|197|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772175878|START|Post-Route Phys Opt Design: write_checkpoint|CHECKPOINT",
+      "[OPTRACE]|3694105|198|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772604927|END|Post-Route Phys Opt Design: write_checkpoint|",
+      "[OPTRACE]|3694105|199|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772604927|START|phys_opt_design reports|REPORT",
+      "[OPTRACE]|3694105|200|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772756434|END|phys_opt_design reports|",
+      "[OPTRACE]|3694105|201|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772756434|START|phys_opt_design misc|",
+      "[OPTRACE]|3694105|202|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772756438|END|phys_opt_design misc|",
+      "[OPTRACE]|3694105|203|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772756438|END|Phase: Phys-Opt Design|",
+      "[OPTRACE]|3694105|204|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772756438|START|Phase: Write Bitstream|ROLLUP_AUTO",
+      "[OPTRACE]|3694105|205|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772756438|START|write_bitstream setup|",
+      "[OPTRACE]|3694105|206|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772756441|START|Write Bitstream: pre hook|",
+      "[OPTRACE]|3694105|207|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772809629|END|Write Bitstream: pre hook|",
+      "[OPTRACE]|3694105|208|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772809629|START|read constraints: write_bitstream|",
+      "[OPTRACE]|3694105|209|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772809629|END|read constraints: write_bitstream|",
+      "[OPTRACE]|3694105|210|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772809644|END|write_bitstream setup|",
+      "[OPTRACE]|3694105|211|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786772809644|START|write_bitstream|",
+      "[OPTRACE]|3694105|212|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786774344271|END|write_bitstream|",
+      "[OPTRACE]|3694105|213|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786774344272|START|write_bitstream misc|",
+      "[OPTRACE]|3694105|214|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786774344272|START|read constraints: write_bitstream_post|",
+      "[OPTRACE]|3694105|215|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786774344272|END|read constraints: write_bitstream_post|",
+      "[OPTRACE]|3694105|216|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786774344272|START|Write Bitstream: post hook|",
+      "[OPTRACE]|3694105|217|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786774344278|END|Write Bitstream: post hook|",
+      "[OPTRACE]|3694105|218|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786774344295|END|write_bitstream misc|",
+      "[OPTRACE]|3694105|219|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786774344295|END|Phase: Write Bitstream|",
+      "[OPTRACE]|3694105|220|/home/x_thileeb/repos/ops-hls-batching-new/codegen_apps/tiling/poisson2d/u280_project/maxtile_8192_align_interleave_p7/hls/build/hw/temp_dir/link/link/vivado/vpl/prj/prj.runs/impl_1/level0_wrapper.tcl|vivado_impl|1786774344295|END|impl_1|"
+      ];
+
+  var legendData = [
+  { "title": "Report Generation",
+    "color": "#b9783f"
+  }, {
+    "title": "Write Checkpoint",
+    "color": "#cd82ad"
+  },
+  {
+    "title": "Incomplete Data",
+    "color": "#cc4748"
+  } ];
+
+  // -- Convert Raw data into something we can use ---------------------------
+  console.log("Convert log data (%s entries) to Javascript 'JSON' objects...", csvData.length);
+  var jsonData = csvArrayToJSON(header, csvData, "|");
+
+  // -- Clean up the JSON objects --------------------------------------------
+  for (var i = 0; i < jsonData.length; i++) {
+    jsonData[i].Action = jsonData[i].Action.toUpperCase();
+    jsonData[i].Tags = jsonData[i].Tags.toUpperCase();
+    jsonData[i].Tags = jsonData[i].Tags.trim();
+    jsonData[i].TimeStampMSec = parseInt(jsonData[i].TimeStampMSec, 10);
+    jsonData[i].pid = parseInt(jsonData[i].pid, 10);
+  }
+
+  // -- Sort JSON array ------------------------------------------------------
+  console.log("Sorting JSON objects (%s objects) according to timestamps...", jsonData.length);
+  jsonData.sort(compareByTimeStamp);
+
+  // Record the PID grouping order
+  var pidOrder = new Map();
+  for (var i = 0; i < jsonData.length; i++) {
+    if (pidOrder.has(jsonData[i].pid) == false) {
+      pidOrder.set(jsonData[i].pid, i);    // Simple ordering (lower is first)
+    }
+  }
+
+  // -- Create secondary data array for the chart data array -----------------
+  console.log("Preparing graph data...");
+
+  // Task limits
+  var m_startTS = 0;      // Earliest Timestamp
+  var m_endTS = 0;        // Latest Timestamp
+
+  if (jsonData.length > 0) {
+    m_startTS = jsonData[0].TimeStampMSec;
+    m_endTS = jsonData[jsonData.length - 1].TimeStampMSec;
+  }
+
+
+  var chartData = [ ];   // Empty JSON array
+
+
+  populateChartData();
+  tableCreate( chartData );
+
+  filterChartEntries();
+
+  // -- Search for "holes"
+  // -- Sort by common PID
+  // -- Create groupings by process
+
+  console.log("done");
+
+  var chart = AmCharts.makeChart("chartdiv", {
+    "type": "gantt",
+    "theme": "light",
+    "titles": [
+    { "text": "OPTrace", "size": 15}],
+    "marginRight": 70,
+    "period": "fff",                                     // X-Axis
+    "balloonDateFormat": "JJ:NN:SS",
+    "columnWidth": 0.5,                                 // Bar thickness
+    "valueAxis": {
+      "type": "numeric",
+      "title": "Time [HH:MM:SS]",
+      "duration": "ss",
+      "durationUnits": { DD: 'd. ', hh: ':', mm: ':', ss: '' },
+    },
+    "brightnessStep": 10,
+    "graph": {
+      "fillAlphas": 1,
+      "labelFunction": barLabelCallBack,
+      "labelText": " ",
+      "labelPosition": "right",
+      "balloonFunction": ballonLabelCallBack,
+      "balloonText": "<p align='left'> Task: [[task]]<br/>Start:[[start]]<br/>End:[[end]]<br/>Duration:[[duration]]</p>",
+      "bulletField": "bullet",
+      "bulletSize": 8
+    },
+    "rotate": true,
+    "categoryField": "category",
+    "segmentsField": "segments",
+    "colorField": "color",
+    "startDate": "2015-01-01 00:00:00",
+    "startField": "start",
+    "endField": "end",
+    "durationField": "duration",
+    "dataProvider": chartData,
+    "valueScrollbar": {
+      "autoGridCount": true
+    },
+    "chartScrollbar": {
+      "enable": true
+    },
+    "chartCursor": {
+      "cursorColor": "#55bb76",
+      "valueBalloonsEnabled": false,
+      "cursorAlpha": 0.1,
+      "valueLineAlpha": 0.5,
+      "valueLineBalloonEnabled": true,
+      "valueLineEnabled": true,
+      "zoomable": true,
+      "valueZoomable": true,
+      "fullWidth": true
+    },
+    "legend": {
+      "data": legendData,
+    },
+    "export": {
+      "enabled": true
+    }
+  });
+
+  // =========================================================================
+  // Call back methods
+  // =========================================================================
+function ballonLabelCallBack( _graphDataItem )
+{
+  var start = _graphDataItem.values.open;
+  var end = _graphDataItem.values.value;
+  var duration = end - start;
+
+  var result = "<p align='left'>Task: " + _graphDataItem.category + "<br/>Start: " + secondsToHHMMSS(start) + "<br/>End: " + secondsToHHMMSS( end ) + "<br/>Duration: " + secondsToHHMMSS( duration ) + "</p>";
+  return result;
+}
+
+
+function barLabelCallBack( _graphDataItem )
+{
+   var duration = _graphDataItem.values.value - _graphDataItem.values.open;
+
+   return secondsToHHMMSS( duration);
+}
+
+
+function userInputFormCallback()
+{
+  // Second filter
+  m_secondFilter = document.getElementById("userDurationFilterSecInput").value;
+  console.log("Setting second filter to: " + m_secondFilter + " seconds");
+
+  // Group PID Sort
+  m_groupPidSort = document.getElementById("userGroupPidSortSelected").checked;
+  console.log("Group PID filter is set to: " + m_groupPidSort);
+
+  // Rollup filter
+  m_showRollup = document.getElementById("userRollupSelected").checked;
+  console.log("Rollup filter is set to: " + m_showRollup);
+
+  // Individual filter
+  m_showIndividualEntry = document.getElementById("userIndividualEntrySelected").checked;
+  console.log("Individual filter is set to: " + m_showIndividualEntry);
+
+  // Checkpoint Report Entries filter
+  m_showCheckpointEntry = document.getElementById("userCheckpointEntrySelected").checked;
+  console.log("Checkpoint Entry filter is set to: " + m_showCheckpointEntry);
+
+  // Checkpoint Report Entries filter
+  m_showReportEntry = document.getElementById("userReportEntrySelected").checked;
+  console.log("Report Entry filter is set to: " + m_showReportEntry);
+
+  populateChartData();
+  filterChartEntries()
+  chart.dataProvider = chartData;
+  chart.validateData();
+}
+
+  // =========================================================================
+  // Utilities
+  // =========================================================================
+
+
+function populateChartData()
+{
+  chartData = [ ];
+  if (m_groupPidSort == false) {
+    jsonData.sort(compareByTimeStamp);
+  } else {
+    jsonData.sort(compareByGroupTimeStamp);
+  }
+
+  for (var i = 0; i < jsonData.length; i++) {
+    var timestamp = parseInt(jsonData[0].TimeStampMSec, 10);
+
+    if (m_startTS > timestamp) m_startTS = timestamp;
+    if (m_endTS < timestamp) m_endTS = timestamp;
+
+    for (var i = 0; i < jsonData.length; i++) {
+      switch (jsonData[i].Action) {
+      case "START":
+        var categoryEntry = { };
+        categoryEntry["category"] = jsonData[i].Task;
+        categoryEntry["pid"] = jsonData[i].pid;
+
+        var segmentEntry = { };
+        // Normalize entry and convert to seconds
+        segmentEntry["start"] = (jsonData[i].TimeStampMSec - m_startTS) / 1000;
+        segmentEntry["color"] = getTaskBarColor(jsonData[i].Tags)
+        segmentEntry["task"] = jsonData[i].Task;
+        segmentEntry["tags"] = jsonData[i].Tags;
+        segmentEntry["duration"] = -1;
+
+        categoryEntry["segments"] = [ ];
+        categoryEntry["segments"].push(segmentEntry);
+        chartData.push(categoryEntry);
+        break;
+
+      case "END":
+        var catagory = findCatagory(jsonData[i].pid, jsonData[i].Task, chartData);
+        if (catagory != null) {
+          var segmentsEntry = catagory.segments[0];
+          segmentsEntry["end"] = (jsonData[i].TimeStampMSec - m_startTS) / 1000;
+          segmentsEntry["duration"] = segmentsEntry.end - segmentsEntry.start;
+        } else {
+          console.log("Null entry found: pid:%s, Task: %s", jsonData[i].pid, jsonData[i].Task);
+        }
+
+        break;
+
+      default:
+        console.log("Default");
+        break;
+      }
+    }
+  }
+}
+
+function filterChartEntries()
+{
+  for(var i = chartData.length - 1; i >= 0; i--) {
+    var segment = chartData[i].segments[0];
+
+    // -- Remove entries less than 1 seconds
+    if ( segment["duration"] == -1) {
+      segment["bullet"] = "xError";
+      segment["color"] = "#cc4748";
+      segment["duration"] = ((m_endTS - m_startTS) / 1000) - segment["start"];
+    } else if (segment["duration"] <  m_secondFilter) {
+      chartData.splice(i, 1);
+      continue;
+    }
+  
+
+    // Filter by tags
+    var bHasRollup = false;
+    var bHasCheckpoint = false;
+    var bHasReport = false;
+
+    var tags = segment["tags"];
+    console.log("Tag: " + tags);
+    if (tags.search(/ROLLUP_/i) != -1) { bHasRollup = true; }
+    if (tags.search(/CHECKPOINT/i) != -1) { bHasCheckpoint = true; }
+    if (tags.search(/REPORT/i) != -1) { bHasReport = true; }
+
+    var bRemoveEntry = false;
+
+    // Remove rollups
+    if ((m_showRollup == false) && (bHasRollup == true)) {
+      bRemoveEntry = true;
+    }
+    
+    // Remove checkpoints    
+    if ((m_showCheckpointEntry == false) && (bHasCheckpoint == true)) {
+      bRemoveEntry = true;
+    }
+
+    // Remove reports
+    if ((m_showReportEntry == false) && (bHasReport == true)) {
+      bRemoveEntry = true;
+    }
+
+    // Remove individual entry
+    if (((m_showIndividualEntry == false) && 
+         ((bHasRollup == false) &&
+          (bHasCheckpoint == false) &&
+          (bHasReport == false)))) {
+      bRemoveEntry = true;
+    }
+
+    if (bRemoveEntry == true) {
+      chartData.splice(i, 1);
+      continue;
+    }
+  }
+
+  console.log("ChartData.length: " + chartData.length);
+}
+
+
+function getTaskBarColor( _tags )
+{
+  if (_tags == null)
+    return "#8dc49f";
+
+  if (_tags.search(/ROLLUP_AUTO/i) != -1){ return "#0099ff"; }
+  if (_tags.search(/ROLLUP_0/i) != -1)   { return "#006699"; }
+  if (_tags.search(/ROLLUP_1/i) != -1)   { return "#009933"; }
+  if (_tags.search(/ROLLUP_2/i) != -1)   { return "#66ccff"; }
+  if (_tags.search(/REPORT/i) != -1)     { return "#b9783f"; }
+  if (_tags.search(/CHECKPOINT/i) != -1) { return "#cd82ad"; }
+
+  return "#8dc49f"
+}
+
+
+function tableCreate( _chartData ){
+    var myTableDiv = document.getElementById("myDynamicTable");
+
+
+    for ( var i = 0; i < _chartData.length; i++) {
+      var tr = myTableDiv.insertRow();
+
+      var td_task = tr.insertCell();
+      td_task.appendChild(document.createTextNode( _chartData[i].category ));
+
+      var segmentEntry = _chartData[i].segments;
+      var td_start = tr.insertCell();
+      td_start.appendChild(document.createTextNode( secondsToHHMMSS(segmentEntry[0].start) ));
+
+      var td_duration = tr.insertCell();
+      td_duration.appendChild(document.createTextNode( secondsToHHMMSS(segmentEntry[0].duration) ));
+
+    }
+}
+
+function secondsToHHMMSS( _seconds )
+{
+  var hours = Math.floor(_seconds / 3600);
+  var minutes = Math.floor(_seconds % 3600 / 60);
+  var seconds = Math.floor(_seconds % 3600 % 60);
+
+  var result = hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds; 
+
+  return result;
+}
+
+
+  function findCatagory(_pid, _category, _catagoryArray) {
+    for (var i = (_catagoryArray.length - 1); i >= 0; i--) {
+      if (_pid == _catagoryArray[i].pid) {
+        if (_catagoryArray[i].category == _category) {
+          return  _catagoryArray[i];
+        }
+      }
+    }
+    return null;
+  }
+
+
+  // Compares the timestamps between to JSON objects
+  function compareByTimeStamp(_a, _b) {
+    if (_a.TimeStampMSec < _b.TimeStampMSec) return -1;
+    if (_a.TimeStampMSec > _b.TimeStampMSec) return 1;
+
+    if (_a.pid == _b.pid) {
+      if ((_a.Action == "START") && (_b.Action == "END")) return -1;
+      if ((_a.Action == "END") && (_b.Action == "START")) return 1;
+
+      if(_a.Entry < _b.Entry) return -1;
+      if(_a.Entry > _b.Entry) return 1;
+    }
+
+    return 0;
+  }
+
+
+  // Compares the timestamps between to JSON objects
+  function compareByGroupTimeStamp(_a, _b) {
+    if (pidOrder.get(_a.pid) < pidOrder.get(_b.pid)) return -1;
+
+    if (pidOrder.get(_a.pid) > pidOrder.get(_b.pid)) return 1;
+
+    return compareByTimeStamp(_a, _b);
+  }
+
+
+  // Return array of string values, or NULL if CSV string not well formed.
+  function CSVtoArray(_text, _sep) {
+    // Regex expressions
+    var re_valid_default = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+    var re_value_default = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+    var re_special_default = /,\s*$/;
+
+    // Algorithm:
+    //   1) Convert regex expression to a string.
+    //   2) Remove leading regex escape character (e.g., '\')
+    //   3) Remove training regex escape character(s) (e.g., '\' or "\g")
+    //   4) Replace the comma (',') character witht he new delimiter character
+    //   5) Build the regex command
+
+    // Check delimiter, if special insert escapes
+    if (_sep == "|") _sep = "\\|";
+
+    var re_valid = new RegExp(re_valid_default.toString().substr(1).slice(0, -1).replace(/,/g, _sep));
+    var re_value = new RegExp(re_value_default.toString().substr(1).slice(0, -2).replace(/,/g, _sep), 'g');
+    var re_special = new RegExp(re_special_default.toString().substr(1).slice(0, -1).replace(/,/g, _sep));
+
+    // Validate the input string to determine if it is well formed
+    if (!re_valid.test(_text)) return null;
+
+    var a = [ ];                     // Initialize array to receive values.
+    _text.replace(re_value,           // "Walk" the string using replace with callback.
+                  function(m0, m1, m2, m3) {
+                      // Remove backslash from \' in single quoted values.
+                      if      (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+                      // Remove backslash from \" in double quoted values.
+                      else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+                      else if (m3 !== undefined) a.push(m3);
+                      return ''; // Return empty string.
+                  });
+
+    // Handle special case of empty last value.
+    if (re_special.test(_text)) a.push('');
+
+    return a;
+  };
+
+
+  // Converts the given CSV array & header into a JSON array
+  function csvArrayToJSON(_header, _csvArray, _sep) {
+    var result = [ ];
+    var headers = CSVtoArray(_header, _sep);
+
+    for (var i = 0; i < _csvArray.length; i++) {
+
+      var obj = { };
+      var currentline = CSVtoArray(_csvArray[i], _sep);
+
+      for (var j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
+      }
+
+      result.push(obj);
+
+    }
+
+    return result; //JavaScript object
+  }
+
+
+</script>
+</body>
+
+</html>
+

@@ -1,0 +1,799 @@
+
+
+================================================================
+== Vitis HLS Report for 'interleaveTileMem2Stream2D_inner_3'
+================================================================
+* Date:           Fri Aug 14 22:50:20 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        datamover_outerloop_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.433 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|  dataflow|
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------+------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                           |                        |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |          Instance         |         Module         |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +---------------------------+------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |mem2streamV2_256u_1u_U0    |mem2streamV2_256u_1u_s  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        |mem2streamV2_256u_1u_1_U0  |mem2streamV2_256u_1u_1  |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+        +---------------------------+------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|       16|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|      768|      932|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|       18|    -|
+|Register             |        -|     -|        2|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|      770|      966|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------+------------------------+---------+----+-----+-----+-----+
+    |          Instance         |         Module         | BRAM_18K| DSP|  FF | LUT | URAM|
+    +---------------------------+------------------------+---------+----+-----+-----+-----+
+    |mem2streamV2_256u_1u_1_U0  |mem2streamV2_256u_1u_1  |        0|   0|  384|  466|    0|
+    |mem2streamV2_256u_1u_U0    |mem2streamV2_256u_1u_s  |        0|   0|  384|  466|    0|
+    +---------------------------+------------------------+---------+----+-----+-----+-----+
+    |Total                      |                        |        0|   0|  768|  932|    0|
+    +---------------------------+------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------------------+----------+----+---+----+------------+------------+
+    |                Variable Name               | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------------------+----------+----+---+----+------------+------------+
+    |ap_idle                                     |       and|   0|  0|   2|           1|           1|
+    |ap_sync_continue                            |       and|   0|  0|   2|           1|           1|
+    |ap_sync_done                                |       and|   0|  0|   2|           1|           1|
+    |ap_sync_ready                               |       and|   0|  0|   2|           1|           1|
+    |mem2streamV2_256u_1u_1_U0_ap_start          |       and|   0|  0|   2|           1|           1|
+    |mem2streamV2_256u_1u_U0_ap_start            |       and|   0|  0|   2|           1|           1|
+    |ap_sync_mem2streamV2_256u_1u_1_U0_ap_ready  |        or|   0|  0|   2|           1|           1|
+    |ap_sync_mem2streamV2_256u_1u_U0_ap_ready    |        or|   0|  0|   2|           1|           1|
+    +--------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                       |          |   0|  0|  16|           8|           8|
+    +--------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------------------------+----+-----------+-----+-----------+
+    |                      Name                      | LUT| Input Size| Bits| Total Bits|
+    +------------------------------------------------+----+-----------+-----+-----------+
+    |ap_sync_reg_mem2streamV2_256u_1u_1_U0_ap_ready  |   9|          2|    1|          2|
+    |ap_sync_reg_mem2streamV2_256u_1u_U0_ap_ready    |   9|          2|    1|          2|
+    +------------------------------------------------+----+-----------+-----+-----------+
+    |Total                                           |  18|          4|    2|          4|
+    +------------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------+---+----+-----+-----------+
+    |                      Name                      | FF| LUT| Bits| Const Bits|
+    +------------------------------------------------+---+----+-----+-----------+
+    |ap_sync_reg_mem2streamV2_256u_1u_1_U0_ap_ready  |  1|   0|    1|          0|
+    |ap_sync_reg_mem2streamV2_256u_1u_U0_ap_ready    |  1|   0|    1|          0|
+    +------------------------------------------------+---+----+-----+-----------+
+    |Total                                           |  2|   0|    2|          0|
+    +------------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------------+-----+-----+------------+------------------------------------+--------------+
+|            RTL Ports           | Dir | Bits|  Protocol  |            Source Object           |    C Type    |
++--------------------------------+-----+-----+------------+------------------------------------+--------------+
+|arg0_read_mem_strm_g0_0_din     |  out|  256|     ap_fifo|             arg0_read_mem_strm_g0_0|       pointer|
+|arg0_read_mem_strm_g0_0_full_n  |   in|    1|     ap_fifo|             arg0_read_mem_strm_g0_0|       pointer|
+|arg0_read_mem_strm_g0_0_write   |  out|    1|     ap_fifo|             arg0_read_mem_strm_g0_0|       pointer|
+|arg0_read_mem_strm_g0_1_din     |  out|  256|     ap_fifo|             arg0_read_mem_strm_g0_1|       pointer|
+|arg0_read_mem_strm_g0_1_full_n  |   in|    1|     ap_fifo|             arg0_read_mem_strm_g0_1|       pointer|
+|arg0_read_mem_strm_g0_1_write   |  out|    1|     ap_fifo|             arg0_read_mem_strm_g0_1|       pointer|
+|p_read                          |   in|   13|     ap_none|                              p_read|        scalar|
+|p_read_ap_vld                   |   in|    1|     ap_none|                              p_read|        scalar|
+|m_axi_gmem0_AWVALID             |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWREADY             |   in|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWADDR              |  out|   64|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWID                |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWLEN               |  out|   32|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWSIZE              |  out|    3|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWBURST             |  out|    2|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWLOCK              |  out|    2|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWCACHE             |  out|    4|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWPROT              |  out|    3|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWQOS               |  out|    4|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWREGION            |  out|    4|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_AWUSER              |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_WVALID              |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_WREADY              |   in|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_WDATA               |  out|  256|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_WSTRB               |  out|   32|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_WLAST               |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_WID                 |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_WUSER               |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARVALID             |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARREADY             |   in|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARADDR              |  out|   64|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARID                |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARLEN               |  out|   32|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARSIZE              |  out|    3|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARBURST             |  out|    2|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARLOCK              |  out|    2|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARCACHE             |  out|    4|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARPROT              |  out|    3|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARQOS               |  out|    4|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARREGION            |  out|    4|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_ARUSER              |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_RVALID              |   in|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_RREADY              |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_RDATA               |   in|  256|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_RLAST               |   in|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_RID                 |   in|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_RFIFONUM            |   in|    6|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_RUSER               |   in|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_RRESP               |   in|    2|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_BVALID              |   in|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_BREADY              |  out|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_BRESP               |   in|    2|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_BID                 |   in|    1|       m_axi|                               gmem0|       pointer|
+|m_axi_gmem0_BUSER               |   in|    1|       m_axi|                               gmem0|       pointer|
+|mem_in                          |   in|   64|     ap_none|                              mem_in|        scalar|
+|mem_in_ap_vld                   |   in|    1|     ap_none|                              mem_in|        scalar|
+|m_axi_gmem1_AWVALID             |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWREADY             |   in|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWADDR              |  out|   64|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWID                |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWLEN               |  out|   32|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWSIZE              |  out|    3|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWBURST             |  out|    2|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWLOCK              |  out|    2|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWCACHE             |  out|    4|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWPROT              |  out|    3|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWQOS               |  out|    4|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWREGION            |  out|    4|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_AWUSER              |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_WVALID              |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_WREADY              |   in|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_WDATA               |  out|  256|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_WSTRB               |  out|   32|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_WLAST               |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_WID                 |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_WUSER               |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARVALID             |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARREADY             |   in|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARADDR              |  out|   64|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARID                |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARLEN               |  out|   32|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARSIZE              |  out|    3|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARBURST             |  out|    2|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARLOCK              |  out|    2|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARCACHE             |  out|    4|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARPROT              |  out|    3|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARQOS               |  out|    4|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARREGION            |  out|    4|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_ARUSER              |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_RVALID              |   in|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_RREADY              |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_RDATA               |   in|  256|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_RLAST               |   in|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_RID                 |   in|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_RFIFONUM            |   in|    6|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_RUSER               |   in|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_RRESP               |   in|    2|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_BVALID              |   in|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_BREADY              |  out|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_BRESP               |   in|    2|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_BID                 |   in|    1|       m_axi|                               gmem1|       pointer|
+|m_axi_gmem1_BUSER               |   in|    1|       m_axi|                               gmem1|       pointer|
+|mem_in1                         |   in|   64|     ap_none|                             mem_in1|        scalar|
+|mem_in1_ap_vld                  |   in|    1|     ap_none|                             mem_in1|        scalar|
+|ap_clk                          |   in|    1|  ap_ctrl_hs|  interleaveTileMem2Stream2D_inner.3|  return value|
+|ap_rst                          |   in|    1|  ap_ctrl_hs|  interleaveTileMem2Stream2D_inner.3|  return value|
+|ap_start                        |   in|    1|  ap_ctrl_hs|  interleaveTileMem2Stream2D_inner.3|  return value|
+|ap_done                         |  out|    1|  ap_ctrl_hs|  interleaveTileMem2Stream2D_inner.3|  return value|
+|ap_ready                        |  out|    1|  ap_ctrl_hs|  interleaveTileMem2Stream2D_inner.3|  return value|
+|ap_idle                         |  out|    1|  ap_ctrl_hs|  interleaveTileMem2Stream2D_inner.3|  return value|
+|ap_continue                     |   in|    1|  ap_ctrl_hs|  interleaveTileMem2Stream2D_inner.3|  return value|
++--------------------------------+-----+-----+------------+------------------------------------+--------------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 2
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 0
+* Dataflow Pipeline: 1
+  DF-Pipeline-0: Size = 2, States = { 1 2 }
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.43>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%mem_in1_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %mem_in1" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5804]   --->   Operation 3 'read' 'mem_in1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%mem_in_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %mem_in" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5804]   --->   Operation 4 'read' 'mem_in_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%p_read_15 = read i13 @_ssdm_op_Read.ap_auto.i13, i13 %p_read" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5804]   --->   Operation 5 'read' 'p_read_15' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [2/2] (2.43ns)   --->   "%call_ln5812 = call void @mem2streamV2<256u, 1u>, i256 %gmem0, i64 %mem_in_read, i256 %arg0_read_mem_strm_g0_0, i13 %p_read_15" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5812]   --->   Operation 6 'call' 'call_ln5812' <Predicate = true> <Delay = 2.43> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_1 : Operation 7 [2/2] (2.43ns)   --->   "%call_ln5812 = call void @mem2streamV2<256u, 1u>.1, i256 %gmem1, i64 %mem_in1_read, i256 %arg0_read_mem_strm_g0_1, i13 %p_read_15" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5812]   --->   Operation 7 'call' 'call_ln5812' <Predicate = true> <Delay = 2.43> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 8 [1/1] (0.00ns)   --->   "%specdataflowpipeline_ln5831 = specdataflowpipeline void @_ssdm_op_SpecDataflowPipeline, i32 4294967295, i32 0, void @empty_11" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5831]   --->   Operation 8 'specdataflowpipeline' 'specdataflowpipeline_ln5831' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %gmem1, void @empty_2, i32 0, i32 0, void @empty_11, i32 40, i32 8192, void @empty_56, void @empty_57, void @empty_11, i32 2, i32 2, i32 16, i32 16, void @empty_11, void @empty_11, i32 4294967295, i32 0"   --->   Operation 9 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %gmem0, void @empty_2, i32 0, i32 0, void @empty_11, i32 40, i32 8192, void @empty_58, void @empty_57, void @empty_11, i32 2, i32 2, i32 16, i32 16, void @empty_11, void @empty_11, i32 4294967295, i32 0"   --->   Operation 10 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_g0_0, void @empty_42, i32 0, i32 0, void @empty_11, i32 0, i32 0, void @empty_11, void @empty_11, void @empty_11, i32 0, i32 0, i32 0, i32 0, void @empty_11, void @empty_11, i32 4294967295, i32 0"   --->   Operation 11 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %arg0_read_mem_strm_g0_1, void @empty_42, i32 0, i32 0, void @empty_11, i32 0, i32 0, void @empty_11, void @empty_11, void @empty_11, i32 0, i32 0, i32 0, i32 0, void @empty_11, void @empty_11, i32 4294967295, i32 0"   --->   Operation 12 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [1/2] (0.00ns)   --->   "%call_ln5812 = call void @mem2streamV2<256u, 1u>, i256 %gmem0, i64 %mem_in_read, i256 %arg0_read_mem_strm_g0_0, i13 %p_read_15" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5812]   --->   Operation 13 'call' 'call_ln5812' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 14 [1/2] (0.00ns)   --->   "%call_ln5812 = call void @mem2streamV2<256u, 1u>.1, i256 %gmem1, i64 %mem_in1_read, i256 %arg0_read_mem_strm_g0_1, i13 %p_read_15" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5812]   --->   Operation 14 'call' 'call_ln5812' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%ret_ln5834 = ret" [/home/x_thileeb/repos/ops-hls-batching-new/OPS/ops/hls/include/device/../../L1/include/ops_hls_datamover.hpp:5834]   --->   Operation 15 'ret' 'ret_ln5834' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 0
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ arg0_read_mem_strm_g0_0]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ arg0_read_mem_strm_g0_1]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ p_read]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ gmem0]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=4; pingpong=0; private_global=0; IO mode=m_axi:ce=0
+Port [ mem_in]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ gmem1]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=4; pingpong=0; private_global=0; IO mode=m_axi:ce=0
+Port [ mem_in1]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+mem_in1_read                (read                ) [ 001]
+mem_in_read                 (read                ) [ 001]
+p_read_15                   (read                ) [ 001]
+specdataflowpipeline_ln5831 (specdataflowpipeline) [ 000]
+specinterface_ln0           (specinterface       ) [ 000]
+specinterface_ln0           (specinterface       ) [ 000]
+specinterface_ln0           (specinterface       ) [ 000]
+specinterface_ln0           (specinterface       ) [ 000]
+call_ln5812                 (call                ) [ 000]
+call_ln5812                 (call                ) [ 000]
+ret_ln5834                  (ret                 ) [ 000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="arg0_read_mem_strm_g0_0">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg0_read_mem_strm_g0_0"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="arg0_read_mem_strm_g0_1">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="arg0_read_mem_strm_g0_1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="p_read">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_read"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1000" name="gmem0">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="gmem0"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1000" name="mem_in">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="mem_in"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1000" name="gmem1">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="gmem1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1000" name="mem_in1">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="mem_in1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1001" name="const_14">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_auto.i64"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_auto.i13"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="mem2streamV2<256u, 1u>"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="mem2streamV2<256u, 1u>.1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecDataflowPipeline"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_11"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_56"/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_57"/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1001" name="const_46">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_58"/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1001" name="const_48">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_42"/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1004" name="mem_in1_read_read_fu_50">
+<pin_list>
+<pin id="51" dir="0" index="0" bw="64" slack="0"/>
+<pin id="52" dir="0" index="1" bw="64" slack="0"/>
+<pin id="53" dir="1" index="2" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="mem_in1_read/1 "/>
+</bind>
+</comp>
+
+<comp id="56" class="1004" name="mem_in_read_read_fu_56">
+<pin_list>
+<pin id="57" dir="0" index="0" bw="64" slack="0"/>
+<pin id="58" dir="0" index="1" bw="64" slack="0"/>
+<pin id="59" dir="1" index="2" bw="64" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="mem_in_read/1 "/>
+</bind>
+</comp>
+
+<comp id="62" class="1004" name="p_read_15_read_fu_62">
+<pin_list>
+<pin id="63" dir="0" index="0" bw="13" slack="0"/>
+<pin id="64" dir="0" index="1" bw="13" slack="0"/>
+<pin id="65" dir="1" index="2" bw="13" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="p_read_15/1 "/>
+</bind>
+</comp>
+
+<comp id="68" class="1004" name="grp_mem2streamV2_256u_1u_s_fu_68">
+<pin_list>
+<pin id="69" dir="0" index="0" bw="0" slack="0"/>
+<pin id="70" dir="0" index="1" bw="256" slack="0"/>
+<pin id="71" dir="0" index="2" bw="64" slack="0"/>
+<pin id="72" dir="0" index="3" bw="256" slack="0"/>
+<pin id="73" dir="0" index="4" bw="13" slack="0"/>
+<pin id="74" dir="1" index="5" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln5812/1 "/>
+</bind>
+</comp>
+
+<comp id="80" class="1004" name="grp_mem2streamV2_256u_1u_1_fu_80">
+<pin_list>
+<pin id="81" dir="0" index="0" bw="0" slack="0"/>
+<pin id="82" dir="0" index="1" bw="256" slack="0"/>
+<pin id="83" dir="0" index="2" bw="64" slack="0"/>
+<pin id="84" dir="0" index="3" bw="256" slack="0"/>
+<pin id="85" dir="0" index="4" bw="13" slack="0"/>
+<pin id="86" dir="1" index="5" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln5812/1 "/>
+</bind>
+</comp>
+
+<comp id="92" class="1005" name="mem_in1_read_reg_92">
+<pin_list>
+<pin id="93" dir="0" index="0" bw="64" slack="1"/>
+<pin id="94" dir="1" index="1" bw="64" slack="1"/>
+</pin_list>
+<bind>
+<opset="mem_in1_read "/>
+</bind>
+</comp>
+
+<comp id="97" class="1005" name="mem_in_read_reg_97">
+<pin_list>
+<pin id="98" dir="0" index="0" bw="64" slack="1"/>
+<pin id="99" dir="1" index="1" bw="64" slack="1"/>
+</pin_list>
+<bind>
+<opset="mem_in_read "/>
+</bind>
+</comp>
+
+<comp id="102" class="1005" name="p_read_15_reg_102">
+<pin_list>
+<pin id="103" dir="0" index="0" bw="13" slack="1"/>
+<pin id="104" dir="1" index="1" bw="13" slack="1"/>
+</pin_list>
+<bind>
+<opset="p_read_15 "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="54"><net_src comp="14" pin="0"/><net_sink comp="50" pin=0"/></net>
+
+<net id="55"><net_src comp="12" pin="0"/><net_sink comp="50" pin=1"/></net>
+
+<net id="60"><net_src comp="14" pin="0"/><net_sink comp="56" pin=0"/></net>
+
+<net id="61"><net_src comp="8" pin="0"/><net_sink comp="56" pin=1"/></net>
+
+<net id="66"><net_src comp="16" pin="0"/><net_sink comp="62" pin=0"/></net>
+
+<net id="67"><net_src comp="4" pin="0"/><net_sink comp="62" pin=1"/></net>
+
+<net id="75"><net_src comp="18" pin="0"/><net_sink comp="68" pin=0"/></net>
+
+<net id="76"><net_src comp="6" pin="0"/><net_sink comp="68" pin=1"/></net>
+
+<net id="77"><net_src comp="56" pin="2"/><net_sink comp="68" pin=2"/></net>
+
+<net id="78"><net_src comp="0" pin="0"/><net_sink comp="68" pin=3"/></net>
+
+<net id="79"><net_src comp="62" pin="2"/><net_sink comp="68" pin=4"/></net>
+
+<net id="87"><net_src comp="20" pin="0"/><net_sink comp="80" pin=0"/></net>
+
+<net id="88"><net_src comp="10" pin="0"/><net_sink comp="80" pin=1"/></net>
+
+<net id="89"><net_src comp="50" pin="2"/><net_sink comp="80" pin=2"/></net>
+
+<net id="90"><net_src comp="2" pin="0"/><net_sink comp="80" pin=3"/></net>
+
+<net id="91"><net_src comp="62" pin="2"/><net_sink comp="80" pin=4"/></net>
+
+<net id="95"><net_src comp="50" pin="2"/><net_sink comp="92" pin=0"/></net>
+
+<net id="96"><net_src comp="92" pin="1"/><net_sink comp="80" pin=2"/></net>
+
+<net id="100"><net_src comp="56" pin="2"/><net_sink comp="97" pin=0"/></net>
+
+<net id="101"><net_src comp="97" pin="1"/><net_sink comp="68" pin=2"/></net>
+
+<net id="105"><net_src comp="62" pin="2"/><net_sink comp="102" pin=0"/></net>
+
+<net id="106"><net_src comp="102" pin="1"/><net_sink comp="68" pin=4"/></net>
+
+<net id="107"><net_src comp="102" pin="1"/><net_sink comp="80" pin=4"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: arg0_read_mem_strm_g0_0 | {1 2 }
+	Port: arg0_read_mem_strm_g0_1 | {1 2 }
+	Port: gmem0 | {}
+	Port: gmem1 | {}
+ - Input state : 
+	Port: interleaveTileMem2Stream2D_inner.3 : arg0_read_mem_strm_g0_0 | {}
+	Port: interleaveTileMem2Stream2D_inner.3 : arg0_read_mem_strm_g0_1 | {}
+	Port: interleaveTileMem2Stream2D_inner.3 : p_read | {1 }
+	Port: interleaveTileMem2Stream2D_inner.3 : gmem0 | {1 2 }
+	Port: interleaveTileMem2Stream2D_inner.3 : mem_in | {1 }
+	Port: interleaveTileMem2Stream2D_inner.3 : gmem1 | {1 2 }
+	Port: interleaveTileMem2Stream2D_inner.3 : mem_in1 | {1 }
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|----------------------------------|---------|---------|---------|
+| Operation|          Functional Unit         |  Delay  |    FF   |   LUT   |
+|----------|----------------------------------|---------|---------|---------|
+|   call   | grp_mem2streamV2_256u_1u_s_fu_68 |  0.774  |   694   |    50   |
+|          | grp_mem2streamV2_256u_1u_1_fu_80 |  0.774  |   694   |    50   |
+|----------|----------------------------------|---------|---------|---------|
+|          |      mem_in1_read_read_fu_50     |    0    |    0    |    0    |
+|   read   |      mem_in_read_read_fu_56      |    0    |    0    |    0    |
+|          |       p_read_15_read_fu_62       |    0    |    0    |    0    |
+|----------|----------------------------------|---------|---------|---------|
+|   Total  |                                  |  1.548  |   1388  |   100   |
+|----------|----------------------------------|---------|---------|---------|
+
+Memories:
+N/A
+
+* Register list:
++-------------------+--------+
+|                   |   FF   |
++-------------------+--------+
+|mem_in1_read_reg_92|   64   |
+| mem_in_read_reg_97|   64   |
+| p_read_15_reg_102 |   13   |
++-------------------+--------+
+|       Total       |   141  |
++-------------------+--------+
+
+* Multiplexer (MUX) list: 
+|----------------------------------|------|------|------|--------||---------||---------|
+|               Comp               |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|----------------------------------|------|------|------|--------||---------||---------|
+| grp_mem2streamV2_256u_1u_s_fu_68 |  p2  |   2  |  64  |   128  ||    9    |
+| grp_mem2streamV2_256u_1u_s_fu_68 |  p4  |   2  |  13  |   26   ||    9    |
+| grp_mem2streamV2_256u_1u_1_fu_80 |  p2  |   2  |  64  |   128  ||    9    |
+| grp_mem2streamV2_256u_1u_1_fu_80 |  p4  |   2  |  13  |   26   ||    9    |
+|----------------------------------|------|------|------|--------||---------||---------|
+|               Total              |      |      |      |   308  ||  1.548  ||    36   |
+|----------------------------------|------|------|------|--------||---------||---------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+
+|           |  Delay |   FF   |   LUT  |
++-----------+--------+--------+--------+
+|  Function |    1   |  1388  |   100  |
+|   Memory  |    -   |    -   |    -   |
+|Multiplexer|    1   |    -   |   36   |
+|  Register |    -   |   141  |    -   |
++-----------+--------+--------+--------+
+|   Total   |    3   |  1529  |   136  |
++-----------+--------+--------+--------+

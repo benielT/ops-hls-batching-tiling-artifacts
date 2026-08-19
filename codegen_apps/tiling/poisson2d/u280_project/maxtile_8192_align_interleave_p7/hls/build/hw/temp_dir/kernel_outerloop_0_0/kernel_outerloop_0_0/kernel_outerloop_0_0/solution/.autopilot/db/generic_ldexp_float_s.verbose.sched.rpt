@@ -1,0 +1,142 @@
+
+
+================================================================
+== Vitis HLS Report for 'generic_ldexp_float_s'
+================================================================
+* Date:           Fri Aug 14 22:53:09 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        kernel_outerloop_0_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  1.777 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.77>
+ST_1 : Operation 2 [1/1] (0.00ns)   --->   "%exp_read = read i3 @_ssdm_op_Read.ap_auto.i3, i3 %exp"   --->   Operation 2 'read' 'exp_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%x_read = read i32 @_ssdm_op_Read.ap_auto.float, i32 %x"   --->   Operation 3 'read' 'x_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%sext_ln13 = sext i3 %exp_read" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:13]   --->   Operation 4 'sext' 'sext_ln13' <Predicate = (!and_ln18)> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%data_V = bitcast i32 %x_read" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:317]   --->   Operation 5 'bitcast' 'data_V' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%p_Result_s = bitselect i1 @_ssdm_op_BitSelect.i1.i32.i32, i32 %data_V, i32 31"   --->   Operation 6 'bitselect' 'p_Result_s' <Predicate = (!and_ln18)> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%xs_exp_V_3 = partselect i8 @_ssdm_op_PartSelect.i8.i32.i32.i32, i32 %data_V, i32 23, i32 30"   --->   Operation 7 'partselect' 'xs_exp_V_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%xs_sig_V = trunc i32 %data_V"   --->   Operation 8 'trunc' 'xs_sig_V' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%zext_ln17 = zext i8 %xs_exp_V_3" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:17]   --->   Operation 9 'zext' 'zext_ln17' <Predicate = (!and_ln18)> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%sext_ln17 = sext i3 %exp_read" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:17]   --->   Operation 10 'sext' 'sext_ln17' <Predicate = (!ininf & xor_ln23 & !and_ln18)> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.70ns)   --->   "%add_ln17 = add i9 %zext_ln17, i9 %sext_ln13" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:17]   --->   Operation 11 'add' 'add_ln17' <Predicate = (!and_ln18)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 12 [1/1] (0.58ns)   --->   "%ininf = icmp_eq  i8 %xs_exp_V_3, i8 255"   --->   Operation 12 'icmp' 'ininf' <Predicate = true> <Delay = 0.58> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 13 [1/1] (0.75ns)   --->   "%icmp_ln1023 = icmp_ne  i23 %xs_sig_V, i23 0"   --->   Operation 13 'icmp' 'icmp_ln1023' <Predicate = true> <Delay = 0.75> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.75> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 14 [1/1] (0.12ns)   --->   "%and_ln18 = and i1 %ininf, i1 %icmp_ln1023" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h:18]   --->   Operation 14 'and' 'and_ln18' <Predicate = true> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 15 [1/1] (0.58ns)   --->   "%icmp_ln23 = icmp_ne  i8 %xs_exp_V_3, i8 0" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23]   --->   Operation 15 'icmp' 'icmp_ln23' <Predicate = (!and_ln18)> <Delay = 0.58> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 16 [1/1] (0.59ns)   --->   "%icmp_ln23_1 = icmp_sgt  i9 %add_ln17, i9 0" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23]   --->   Operation 16 'icmp' 'icmp_ln23_1' <Predicate = (!and_ln18)> <Delay = 0.59> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.59> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 17 [1/1] (0.00ns) (grouped into LUT with out node xor_ln23)   --->   "%and_ln23 = and i1 %icmp_ln23_1, i1 %icmp_ln23" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23]   --->   Operation 17 'and' 'and_ln23' <Predicate = (!and_ln18)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 18 [1/1] (0.00ns) (grouped into LUT with out node xor_ln23)   --->   "%or_ln23 = or i1 %ininf, i1 %and_ln23" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23]   --->   Operation 18 'or' 'or_ln23' <Predicate = (!and_ln18)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 19 [1/1] (0.70ns)   --->   "%xs_exp_V = add i8 %xs_exp_V_3, i8 %sext_ln17"   --->   Operation 19 'add' 'xs_exp_V' <Predicate = (!ininf & xor_ln23 & !and_ln18)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 20 [1/1] (0.00ns) (grouped into LUT with out node select_ln18)   --->   "%xs_exp_V_4 = select i1 %ininf, i8 255, i8 %xs_exp_V" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:25]   --->   Operation 20 'select' 'xs_exp_V_4' <Predicate = (xor_ln23 & !and_ln18)> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.30> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 21 [1/1] (0.00ns) (grouped into LUT with out node select_ln18)   --->   "%xs_sig_V_1 = select i1 %ininf, i23 0, i23 %xs_sig_V" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:25]   --->   Operation 21 'select' 'xs_sig_V_1' <Predicate = (xor_ln23 & !and_ln18)> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.35> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 22 [1/1] (0.00ns) (grouped into LUT with out node select_ln18)   --->   "%p_Result_8 = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i1.i8.i23, i1 %p_Result_s, i8 %xs_exp_V_4, i23 %xs_sig_V_1"   --->   Operation 22 'bitconcatenate' 'p_Result_8' <Predicate = (xor_ln23 & !and_ln18)> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns) (grouped into LUT with out node select_ln18)   --->   "%p_Result_9 = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i1.i31, i1 %p_Result_s, i31 0"   --->   Operation 23 'bitconcatenate' 'p_Result_9' <Predicate = (!xor_ln23 & !and_ln18)> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.12ns) (out node of the LUT)   --->   "%xor_ln23 = xor i1 %and_ln18, i1 %or_ln23" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23]   --->   Operation 24 'xor' 'xor_ln23' <Predicate = (!and_ln18)> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 25 [1/1] (0.00ns) (grouped into LUT with out node select_ln18)   --->   "%select_ln23 = select i1 %xor_ln23, i32 %p_Result_8, i32 %p_Result_9" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23]   --->   Operation 25 'select' 'select_ln23' <Predicate = (!and_ln18)> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.22> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 26 [1/1] (0.00ns) (grouped into LUT with out node select_ln18)   --->   "%bitcast_ln23 = bitcast i32 %select_ln23" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23]   --->   Operation 26 'bitcast' 'bitcast_ln23' <Predicate = (!and_ln18)> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.35ns) (out node of the LUT)   --->   "%select_ln18 = select i1 %and_ln18, i32 %x_read, i32 %bitcast_ln23" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h:18]   --->   Operation 27 'select' 'select_ln18' <Predicate = true> <Delay = 0.35> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.22> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%ret_ln33 = ret i32 %select_ln18" [/wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:33]   --->   Operation 28 'ret' 'ret_ln33' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 1.78ns
+The critical path consists of the following:
+	wire read operation ('exp') on port 'exp' [3]  (0 ns)
+	'add' operation ('exp', /wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:17) [12]  (0.705 ns)
+	'icmp' operation ('icmp_ln23_1', /wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23) [17]  (0.593 ns)
+	'and' operation ('and_ln23', /wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23) [18]  (0 ns)
+	'or' operation ('or_ln23', /wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23) [19]  (0 ns)
+	'xor' operation ('xor_ln23', /wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23) [25]  (0.122 ns)
+	'select' operation ('select_ln23', /wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_ldexp.h:23) [26]  (0 ns)
+	'select' operation ('select_ln18', /wrk/ci/prod/2022.2/hls_product/continuous/608/2022.2/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h:18) [28]  (0.357 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
