@@ -1,15 +1,15 @@
-# OPS HLS Benchmark artifacts
+# OPS HLS Batching and Tiling Benchmark Artifacts
 
-The repository contains benchmark applications and results from work carried out in ongoing work, "[Automatic Code-Generation for Accelerating Structured-Mesh-Based Explicit Numerical Solvers on FPGAs](#publication)", to be published in the PACT25 conference. The artifact is organized into (1) code-generated FPGA applications, (2) hand-coded FPGA applications, and (3) GPU applications,  along with data artifacts and utility scripts. 
+The repository contains ongoing benchmark applications and results of follow-up changes related to advanced optimisations, tiling, and batching on top of our published work "[Automatic Code-Generation for Accelerating Structured-Mesh-Based Explicit Numerical Solvers on FPGAs](#publication)", to be published in the PACT25 conference. The artifact is organized into (1) code-generated FPGA applications, (2) hand-coded FPGA applications, and (3) GPU applications,  along with data artifacts and utility scripts. 
 
-Our work is a derivative work on OPS-DSL, which is a mandatory dependency; together with each type of application mentioned above requires additional dependencies and setups. 
-Please follow the Getting Started section of this document for instructions to set up OPS and the common environment setups. Afterwards, please follow the README.md files inside each application type (ie gpu_apps, codgen_apps & handcoded_apps) for properly setting up and running applications. 
+Our work is a derivative of OPS-DSL, which is a mandatory dependency; for each application type mentioned above, it requires additional dependencies and configurations. 
+Please follow the Getting Started section of this document for instructions to set up OPS and the common environment setups. Afterwards, please follow the README.md files in each application type (i.e., gpu_apps, codgen_apps & handcoded_apps) to properly set up and run applications. 
 
-Each OPS application (ie, poisson2d) will have a separate project for each target to maintain reproducability and ease of setups, though the source codes are identical, with the exception to batched GPU OPS application where you'll find slight differences in OPS-API as we are using OPS_batched APIs which is not yet merged to the current version of OPS.
+Each OPS application (ie, poisson2d) will have a separate project for each target to maintain reproducibility and ease of setup, though the source code is identical, with the exception of batched GPU OPS applications where you'll find slight differences in the OPS API, as we are using OPS_batched APIs, which are not yet merged into the current version of OPS.
 
 ## Getting Started
 
-The benchmark applications are structured into independent projects with their own Makefile and runscript. The target-specific requirements are in each section README.md files.
+The benchmark applications are structured as independent projects, each with its own Makefile and runscript. The target-specific requirements are in each section's README.md file.
 
 This repository is organized in the following manner:
 
